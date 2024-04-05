@@ -166,6 +166,21 @@ int main(int argc, char *argv[])
              << endl;
         exit(EXIT_FAILURE);
     }
+    
+      listen_fd = socket(PF_INET, SOCK_STREAM, 0);
+
+      if (listen_fd == -1) {
+        std::cerr << "Socket creation failed.\n" << std::endl;
+        exit(EXIT_FAILURE);
+      }
+
+      int opt = 1;
+      if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
+                     sizeof(opt)) < 0) {
+        std::cerr << "Setting socket option failed.\n";
+        close(listen_fd);
+        exit(EXIT_FAILURE);
+      }
 
     server_index = atoi(argv[optind]);
     sockaddr_in server_sockaddr = parse_config_file(config_file);
