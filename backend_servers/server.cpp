@@ -5,7 +5,7 @@
 
 3. On a connection, it creates a new thread.
 
-4. Thread echoes back the input.
+4. Thread reads the command and retrieves the key value pair and sends back a message.
 
 */
 
@@ -20,6 +20,9 @@
 #include <unistd.h>
 #include <signal.h>
 #include <pthread.h>
+#include <sstream>
+
+#include "../utils/utils.h"
 using namespace std;
 
 // Global Varibles
@@ -30,6 +33,30 @@ bool verbose = false;
 int server_index;
 int listen_fd;
 
+F_2_B_Message process_message(const string &serialized)
+{
+    F_2_B_Message message;
+    istringstream iss(serialized);
+    string token;
+
+    getline(iss, token, '|');
+    message.type = stoi(token);
+
+    getline(iss, message.rowkey, '|');
+    getline(iss, message.colkey, '|');
+    getline(iss, message.value, '|');
+    getline(iss, message.value2, '|');
+
+    getline(iss, token, '|');
+    message.status = stoi(token);
+
+    // errorMessage might contain '|' characters, but since it's the last field,
+    // we use the remainder of the string.
+    getline(iss, message.errorMessage);
+
+    return message;
+}
+
 // Function to handle a connection.
 void *handle_connection(void *arg)
 {
@@ -38,7 +65,7 @@ void *handle_connection(void *arg)
 
     const int buffer_size = 1024;
     char buffer[buffer_size];
-    string response = "WELCOME TO THE SERVER " + to_string(server_index);
+    string response = "WELCOME TO THE SERVER";
     ssize_t bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
     if (bytes_sent < 0)
     {
@@ -50,27 +77,64 @@ void *handle_connection(void *arg)
     {
         memset(buffer, 0, buffer_size);
         ssize_t bytes_received = recv(client_fd, buffer, buffer_size - 1, 0);
-        if (bytes_received < 0)
+        if (bytes_received <= 0)
         {
             cerr << "Error in recv(). Exiting" << endl;
             break;
         }
+
         string message(buffer);
-        if (message == "quit\n" || message == "quit\r\n")
+        if (message == "quit\n")
         {
             cout << "Quit command received. Closing connection." << endl;
             break;
         }
 
-        cout << "Received message: " << message;
-        string response = "ECHO " + message;
-        ssize_t bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
+        cout << "Received message: " << message << endl;
+
+        F_2_B_Message f2b_message = process_message(message);
+        if (verbose)
+        {
+            cout << "Message details:" << endl;
+            cout << "Type: " << f2b_message.type << endl;
+            cout << "Rowkey: " << f2b_message.rowkey << endl;
+            cout << "Colkey: " << f2b_message.colkey << endl;
+            cout << "Value: " << f2b_message.value << endl;
+            cout << "Value2: " << f2b_message.value2 << endl;
+            cout << "Status: " << f2b_message.status << endl;
+            cout << "ErrorMessage: " << f2b_message.errorMessage << endl;
+        }
+
+        // Process the message based on type
+        switch (f2b_message.type)
+        {
+        case 1: // get
+            // handle get
+            break;
+        case 2: // put
+            // handle put
+            break;
+        case 3: // delete
+            // handle delete
+            break;
+        case 4: // cput
+            // handle cput
+            break;
+        default:
+            cout << "Unknown command type received" << endl;
+            break;
+        }
+
+        response = "ECHO: " + message;
+        bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
         if (bytes_sent < 0)
         {
             cerr << "Error in send(). Exiting" << endl;
             break;
         }
     }
+
+    cout << "Closing connection" << endl;
     close(client_fd);
     return nullptr;
 }
@@ -101,7 +165,6 @@ sockaddr_in parse_config_file(string config_file)
     string line;
     while (getline(config_stream, line))
     {
-        cout << i << endl;
         if (i == server_index)
         {
             char raw_line[line.length() + 1];
@@ -111,7 +174,6 @@ sockaddr_in parse_config_file(string config_file)
         }
         i++;
     }
-    cout << 2 << endl;
     return server_sockaddr;
 }
 
@@ -166,21 +228,24 @@ int main(int argc, char *argv[])
              << endl;
         exit(EXIT_FAILURE);
     }
-    
-      listen_fd = socket(PF_INET, SOCK_STREAM, 0);
 
-      if (listen_fd == -1) {
-        std::cerr << "Socket creation failed.\n" << std::endl;
+    listen_fd = socket(PF_INET, SOCK_STREAM, 0);
+
+    if (listen_fd == -1)
+    {
+        cerr << "Socket creation failed.\n"
+             << endl;
         exit(EXIT_FAILURE);
-      }
+    }
 
-      int opt = 1;
-      if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
-                     sizeof(opt)) < 0) {
-        std::cerr << "Setting socket option failed.\n";
+    int opt = 1;
+    if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
+                   sizeof(opt)) < 0)
+    {
+        cerr << "Setting socket option failed.\n";
         close(listen_fd);
         exit(EXIT_FAILURE);
-      }
+    }
 
     server_index = atoi(argv[optind]);
     sockaddr_in server_sockaddr = parse_config_file(config_file);
@@ -195,8 +260,8 @@ int main(int argc, char *argv[])
 
     if (bind(listen_fd, (struct sockaddr *)&server_sockaddr, sizeof(server_sockaddr)) != 0)
     {
-        std::cerr << "Socket binding failed.\n"
-                  << std::endl;
+        cerr << "Socket binding failed.\n"
+             << endl;
         close(listen_fd);
         exit(EXIT_FAILURE);
     }
@@ -204,8 +269,8 @@ int main(int argc, char *argv[])
 
     if (listen(listen_fd, SOMAXCONN) != 0)
     {
-        std::cerr << "Socket listening failed.\n"
-                  << std::endl;
+        cerr << "Socket listening failed.\n"
+             << endl;
         close(listen_fd);
         exit(EXIT_FAILURE);
     }
@@ -223,8 +288,8 @@ int main(int argc, char *argv[])
                 // Retry if interrupted or non-blocking operation would block
                 continue;
             }
-            std::cerr << "Failed to accept new connection: " << strerror(errno)
-                      << std::endl;
+            cerr << "Failed to accept new connection: " << strerror(errno)
+                 << endl;
             break; // Break the loop on other errors
         }
 
