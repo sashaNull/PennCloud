@@ -5,6 +5,8 @@
 #include <arpa/inet.h>  // for inet_pton
 #include <unistd.h>     // for close
 #include <sys/select.h> // for select()
+#include <sstream>
+#include "../../utils/utils.h"
 
 int main(int argc, char *argv[])
 {
@@ -77,10 +79,56 @@ int main(int argc, char *argv[])
             std::getline(std::cin, input);
             if (input == "quit")
             {
+                input = input + "\n";
+                std::cout << "Closing the connection" << std::endl;
                 send(sock, input.c_str(), input.length(), 0);
                 break;
             }
-            send(sock, input.c_str(), input.length(), 0);
+            std::istringstream iss(input);
+            std::string command, rowkey, colkey, value, value2;
+            iss >> command >> rowkey >> colkey;
+
+            F_2_B_Message message;
+            message.rowkey = rowkey;
+            message.colkey = colkey;
+            message.type = 0;
+            message.status = 0;
+
+            if (command == "get")
+            {
+                message.type = 1;
+            }
+            else if (command == "put")
+            {
+                iss >> value;
+                message.value = value;
+                message.type = 2;
+            }
+            else if (command == "delete")
+            {
+                message.type = 3;
+            }
+            else if (command == "cput")
+            {
+                iss >> value >> value2;
+                message.value = value;
+                message.value2 = value2;
+                message.type = 4;
+            }
+            else
+            {
+                std::cerr << "Unknown command" << std::endl;
+                continue;
+            }
+
+            // Simple serialization (you may need a more complex method for actual use)
+            std::ostringstream oss;
+            oss << message.type << "|" << message.rowkey << "|" << message.colkey << "|"
+                << message.value << "|" << message.value2 << "|" << message.status << "|"
+                << message.errorMessage << "\n";
+            std::string serialized = oss.str();
+
+            send(sock, serialized.c_str(), serialized.length(), 0);
         }
     }
 
