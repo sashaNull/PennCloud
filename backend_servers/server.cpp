@@ -21,6 +21,7 @@
 #include <signal.h>
 #include <pthread.h>
 #include <sstream>
+#include <vector>
 
 #include "../utils/utils.h"
 using namespace std;
@@ -32,6 +33,8 @@ string data_file_location;
 bool verbose = false;
 int server_index;
 int listen_fd;
+
+constexpr int MAX_BUFFER_SIZE = 1024;
 
 F_2_B_Message process_message(const string &serialized)
 {
@@ -57,14 +60,251 @@ F_2_B_Message process_message(const string &serialized)
     return message;
 }
 
+F_2_B_Message handle_get(F_2_B_Message message)
+{
+    string file_path = data_file_location + "/" + message.rowkey + ".txt";
+    ifstream file(file_path);
+    if (!file.is_open())
+    {
+        message.status = 1;
+        message.errorMessage = "Rowkey does not exist";
+        return message;
+    }
+
+    string line;
+    bool keyFound = false;
+    while (getline(file, line))
+    {
+        istringstream iss(line);
+        string key, value;
+        if (getline(iss, key, ':') && getline(iss, value))
+        {
+            if (key == message.colkey)
+            {
+                message.value = value;
+                keyFound = true;
+                break;
+            }
+        }
+    }
+
+    if (!keyFound)
+    {
+        message.status = 1;
+        message.errorMessage = "Colkey does not exist";
+    }
+    else
+    {
+        message.status = 0;
+        message.errorMessage.clear();
+    }
+
+    file.close();
+    return message;
+}
+
+F_2_B_Message handle_put(F_2_B_Message message)
+{
+    string file_path = data_file_location + "/" + message.rowkey + ".txt";
+    ofstream file(file_path, ios::app);
+    if (!file.is_open())
+    {
+        message.status = 1;
+        message.errorMessage = "Error opening file for rowkey";
+        return message;
+    }
+    file << message.colkey << ":" << message.value << "\n";
+    if (file.fail())
+    {
+        message.status = 1;
+        message.errorMessage = "Error writing to file for rowkey";
+    }
+    else
+    {
+        message.status = 0;
+        message.errorMessage = "Data written successfully";
+    }
+
+    file.close();
+    return message;
+}
+
+F_2_B_Message handle_delete(F_2_B_Message message)
+{
+    string file_path = data_file_location + "/" + message.rowkey + ".txt";
+
+    ifstream file(file_path);
+    if (!file.is_open())
+    {
+        message.status = 1;
+        message.errorMessage = "Rowkey does not exist";
+        return message;
+    }
+
+    vector<string> lines;
+    string line;
+    bool keyFound = false;
+    while (getline(file, line))
+    {
+        string key;
+        stringstream lineStream(line);
+        getline(lineStream, key, ':');
+        if (key != message.colkey)
+        {
+            lines.push_back(line);
+        }
+        else
+        {
+            keyFound = true;
+        }
+    }
+    file.close();
+
+    if (!keyFound)
+    {
+        message.status = 1;
+        message.errorMessage = "Colkey does not exist";
+        return message;
+    }
+
+    // Rewrite the file without the deleted colkey
+    ofstream outFile(file_path, ios::trunc);
+    for (const auto &l : lines)
+    {
+        outFile << l << endl;
+    }
+    outFile.close();
+
+    message.status = 0; // assuming 0 means success
+    message.errorMessage = "Colkey deleted successfully";
+
+    return message;
+}
+
+F_2_B_Message handle_cput(F_2_B_Message message)
+{
+    string file_path = data_file_location + "/" + message.rowkey + ".txt";
+    ifstream file(file_path);
+    if (!file.is_open())
+    {
+        message.status = 1;
+        message.errorMessage = "Rowkey does not exist";
+        return message;
+    }
+
+    bool keyFound = false;
+    bool valueUpdated = false;
+    vector<string> lines;
+    string line;
+
+    while (getline(file, line))
+    {
+        string key, value;
+        stringstream lineStream(line);
+        getline(lineStream, key, ':');
+        getline(lineStream, value);
+
+        if (key == message.colkey)
+        {
+            keyFound = true;
+            if (value == message.value)
+            {
+                lines.push_back(key + ":" + message.value2);
+                valueUpdated = true;
+            }
+            else
+            {
+                lines.push_back(line);
+            }
+        }
+        else
+        {
+            lines.push_back(line);
+        }
+    }
+    file.close();
+
+    if (keyFound && valueUpdated)
+    {
+        ofstream outFile(file_path, ios::trunc);
+        for (const auto &l : lines)
+        {
+            outFile << l << endl;
+        }
+        outFile.close();
+
+        message.status = 0;
+        message.errorMessage = "Value updated successfully";
+    }
+    else if (keyFound && !valueUpdated)
+    {
+        message.status = 1;
+        message.errorMessage = "Old value does not match";
+    }
+    else
+    {
+        message.status = 1;
+        message.errorMessage = "Colkey does not exist";
+    }
+
+    return message;
+}
+
+// Function for reliable message receipt
+bool do_read(int client_fd, char *client_buf)
+{
+    size_t n = MAX_BUFFER_SIZE;
+    size_t bytes_left = n;
+    bool r_arrived = false;
+
+    while (bytes_left > 0)
+    {
+        ssize_t result = read(client_fd, client_buf + n - bytes_left, 1);
+
+        if (result == -1)
+        {
+            if ((errno == EINTR) || (errno == EAGAIN))
+            {
+                continue;
+            }
+
+            return false;
+        }
+        else if (result == 0)
+        {
+            return false;
+        }
+
+        if (r_arrived && client_buf[n - bytes_left] == '\n')
+        {
+            client_buf[n - bytes_left + 1] = '\0';
+            break;
+        }
+        else
+        {
+            r_arrived = false;
+        }
+
+        if (client_buf[n - bytes_left] == '\r')
+        {
+            r_arrived = true;
+        }
+
+        bytes_left -= result;
+    }
+
+    client_buf[MAX_BUFFER_SIZE - 1] = '\0';
+    return true;
+}
+
 // Function to handle a connection.
 void *handle_connection(void *arg)
 {
     int client_fd = *static_cast<int *>(arg);
     delete static_cast<int *>(arg);
 
-    const int buffer_size = 1024;
-    char buffer[buffer_size];
+    char buffer[MAX_BUFFER_SIZE];
+
     string response = "WELCOME TO THE SERVER";
     ssize_t bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
     if (bytes_sent < 0)
@@ -73,24 +313,19 @@ void *handle_connection(void *arg)
         return nullptr;
     }
 
-    while (true)
+    while (do_read(client_fd, buffer))
     {
-        memset(buffer, 0, buffer_size);
-        ssize_t bytes_received = recv(client_fd, buffer, buffer_size - 1, 0);
-        if (bytes_received <= 0)
+        string message(buffer);
+        if (verbose)
         {
-            cerr << "Error in recv(). Exiting" << endl;
-            break;
+            cout << "[" << client_fd << "] C: " << message;
         }
 
-        string message(buffer);
-        if (message == "quit\n")
+        if (message == "quit\r\n")
         {
             cout << "Quit command received. Closing connection." << endl;
             break;
         }
-
-        cout << "Received message: " << message << endl;
 
         F_2_B_Message f2b_message = process_message(message);
         if (verbose)
@@ -109,24 +344,28 @@ void *handle_connection(void *arg)
         switch (f2b_message.type)
         {
         case 1: // get
-            // handle get
+            f2b_message = handle_get(f2b_message);
             break;
         case 2: // put
-            // handle put
+            f2b_message = handle_put(f2b_message);
             break;
         case 3: // delete
-            // handle delete
+            f2b_message = handle_delete(f2b_message);
             break;
         case 4: // cput
-            // handle cput
+            f2b_message = handle_cput(f2b_message);
             break;
         default:
             cout << "Unknown command type received" << endl;
             break;
         }
+        std::ostringstream oss;
+        oss << f2b_message.type << "|" << f2b_message.rowkey << "|" << f2b_message.colkey << "|"
+            << f2b_message.value << "|" << f2b_message.value2 << "|" << f2b_message.status << "|"
+            << f2b_message.errorMessage << "\r\n";
+        std::string serialized = oss.str();
 
-        response = "ECHO: " + message;
-        bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
+        bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
         if (bytes_sent < 0)
         {
             cerr << "Error in send(). Exiting" << endl;

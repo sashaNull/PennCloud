@@ -8,6 +8,39 @@
 #include <sstream>
 #include "../../utils/utils.h"
 
+F_2_B_Message deserialize_message(const std::string &serialized)
+{
+    F_2_B_Message message;
+    std::istringstream iss(serialized);
+    std::string token;
+
+    getline(iss, token, '|');
+    message.type = std::stoi(token);
+
+    getline(iss, message.rowkey, '|');
+    getline(iss, message.colkey, '|');
+    getline(iss, message.value, '|');
+    getline(iss, message.value2, '|');
+
+    getline(iss, token, '|');
+    message.status = std::stoi(token);
+
+    getline(iss, message.errorMessage);
+
+    return message;
+}
+
+void print_message(const F_2_B_Message &message)
+{
+    std::cout << "Type: " << message.type << std::endl;
+    std::cout << "Rowkey: " << message.rowkey << std::endl;
+    std::cout << "Colkey: " << message.colkey << std::endl;
+    std::cout << "Value: " << message.value << std::endl;
+    std::cout << "Value2: " << message.value2 << std::endl;
+    std::cout << "Status: " << message.status << std::endl;
+    std::cout << "ErrorMessage: " << message.errorMessage << std::endl;
+}
+
 int main(int argc, char *argv[])
 {
     if (argc != 3)
@@ -70,7 +103,17 @@ int main(int argc, char *argv[])
                 std::cout << "Server closed the connection or error occurred." << std::endl;
                 break;
             }
-            std::cout << "\nServer: " << buffer << std::endl;
+            std::string buffer_str(buffer);
+            if (buffer_str.find('|') != std::string::npos)
+            {
+                std::cout << "\nServer: " << std::endl;
+                F_2_B_Message received_message = deserialize_message(buffer_str);
+                print_message(received_message);
+            }
+            else
+            {
+                std::cout << "\nServer: " << buffer << std::endl;
+            }
         }
 
         if (FD_ISSET(STDIN_FILENO, &readfds))
@@ -79,7 +122,7 @@ int main(int argc, char *argv[])
             std::getline(std::cin, input);
             if (input == "quit")
             {
-                input = input + "\n";
+                input = input + "\r\n";
                 std::cout << "Closing the connection" << std::endl;
                 send(sock, input.c_str(), input.length(), 0);
                 break;
@@ -125,7 +168,7 @@ int main(int argc, char *argv[])
             std::ostringstream oss;
             oss << message.type << "|" << message.rowkey << "|" << message.colkey << "|"
                 << message.value << "|" << message.value2 << "|" << message.status << "|"
-                << message.errorMessage << "\n";
+                << message.errorMessage << "\r\n";
             std::string serialized = oss.str();
 
             send(sock, serialized.c_str(), serialized.length(), 0);
