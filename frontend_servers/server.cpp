@@ -162,7 +162,6 @@ void send_dummy_msg_to_backend() {
     }
   }
   close(fd);
-
 }
 
 // Function to handle a connection.
@@ -170,6 +169,37 @@ void *handle_connection(void *arg) {
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // TODO: handle requests from browser here
+  // Receive the request
+  const unsigned int BUFFER_SIZE = 4096;
+  char buffer[BUFFER_SIZE];
+  ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
+  if (bytes_read <= 0) {
+    cerr << "Failed to read from socket." << endl;
+    close(client_fd);
+    return nullptr;
+  }
+  buffer[bytes_read] = '\0';
+  string request(buffer);
+  // Parse the request
+  istringstream request_stream(request);
+  string request_line;
+  getline(request_stream, request_line);
+
+  string method, uri, http_version;
+  istringstream request_line_stream(request_line);
+  request_line_stream >> method >> uri >> http_version;
+  // Send data to backend
+  // Receive data from backend
+  // Send response to client
+  if (method == "GET") {
+    // For simplicity, assume all GET requests ask for index.html
+    string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>Welcome!</h1>";
+    send(client_fd, response.c_str(), response.length(), 0);
+  } else {
+    // For non-GET methods or other paths, you can add additional handling here
+    string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
+    send(client_fd, response.c_str(), response.length(), 0);
+  }
   cout << "Closing connection" << endl;
   close(client_fd);
   return nullptr;
@@ -222,7 +252,8 @@ int main(int argc, char *argv[]) {
 
   send_dummy_msg_to_backend();
 
-  // listen to messages from client (user)
+  // TODO: is connection from client supposed to be TCP? Or just UDP
+  //listen to messages from client (user)
   while (true) {
     sockaddr_in client_sockaddr;
     socklen_t client_socklen = sizeof(client_sockaddr);
