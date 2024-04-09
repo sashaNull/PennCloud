@@ -42,29 +42,6 @@ map<string, pthread_mutex_t> file_lock_map{};
 
 constexpr int MAX_BUFFER_SIZE = 1024;
 
-F_2_B_Message process_message(const string &serialized) {
-  F_2_B_Message message;
-  istringstream iss(serialized);
-  string token;
-
-  getline(iss, token, '|');
-  message.type = stoi(token);
-
-  getline(iss, message.rowkey, '|');
-  getline(iss, message.colkey, '|');
-  getline(iss, message.value, '|');
-  getline(iss, message.value2, '|');
-
-  getline(iss, token, '|');
-  message.status = stoi(token);
-
-  // errorMessage might contain '|' characters, but since it's the last field,
-  // we use the remainder of the string.
-  getline(iss, message.errorMessage);
-
-  return message;
-}
-
 F_2_B_Message handle_get(F_2_B_Message message) {
   string file_path = data_file_location + "/" + message.rowkey + ".txt";
   ifstream file(file_path);
@@ -281,7 +258,8 @@ void *handle_connection(void *arg) {
       break;
     }
 
-    F_2_B_Message f2b_message = process_message(message);
+
+    F_2_B_Message f2b_message = decode_message(message);
     if (verbose) {
       cout << "Message details:" << endl;
       cout << "Type: " << f2b_message.type << endl;
@@ -320,12 +298,7 @@ void *handle_connection(void *arg) {
       break;
     }
 
-    ostringstream oss;
-    oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
-        << f2b_message.colkey << "|" << f2b_message.value << "|"
-        << f2b_message.value2 << "|" << f2b_message.status << "|"
-        << f2b_message.errorMessage << "\r\n";
-    string serialized = oss.str();
+    string serialized = encode_message(f2b_message);
 
     bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
     if (bytes_sent < 0) {
