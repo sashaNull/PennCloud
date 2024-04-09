@@ -2,21 +2,27 @@
 
 using namespace std;
 
-bool filepath_is_valid(string filepath) {
-  FILE* file = fopen(filepath.c_str(), "r");
-  if (file) {
+bool filepath_is_valid(string filepath)
+{
+  FILE *file = fopen(filepath.c_str(), "r");
+  if (file)
+  {
     fclose(file);
     return true;
-  } else {
+  }
+  else
+  {
     return false;
   }
 }
 
-bool fd_is_open(int fd) {
+bool fd_is_open(int fd)
+{
   return fcntl(fd, F_GETFD) != -1;
 }
 
-F_2_B_Message decode_message(const string &serialized) {
+F_2_B_Message decode_message(const string &serialized)
+{
   F_2_B_Message message;
   istringstream iss(serialized);
   string token;
@@ -39,8 +45,8 @@ F_2_B_Message decode_message(const string &serialized) {
   return message;
 }
 
-
-std::string encode_message(F_2_B_Message f2b_message) {
+std::string encode_message(F_2_B_Message f2b_message)
+{
   ostringstream oss;
   oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
       << f2b_message.colkey << "|" << f2b_message.value << "|"
@@ -48,4 +54,15 @@ std::string encode_message(F_2_B_Message f2b_message) {
       << f2b_message.errorMessage << "\r\n";
   string serialized = oss.str();
   return serialized;
+}
+
+void print_message(const F_2_B_Message &message)
+{
+  std::cout << "Type: " << message.type << std::endl;
+  std::cout << "Rowkey: " << message.rowkey << std::endl;
+  std::cout << "Colkey: " << message.colkey << std::endl;
+  std::cout << "Value: " << message.value << std::endl;
+  std::cout << "Value2: " << message.value2 << std::endl;
+  std::cout << "Status: " << message.status << std::endl;
+  std::cout << "ErrorMessage: " << message.errorMessage << std::endl;
 }
