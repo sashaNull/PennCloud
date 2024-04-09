@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+
+    <h2>Welcome to Your Home Page</h2>
+    <button onclick="redirectToEmail()">Email</button>
+    <button onclick="redirectToDrive()">Drive</button>
+
+    <script>
+        function redirectToEmail() {
+            window.location.href = "/user/email"; // Navigate to the user-specific email page
+        }
+
+        function redirectToDrive() {
+            window.location.href = "/user/drive"; // Navigate to the user-specific drive page
+        }
+    </script>
+
+</body>
+
+</html>
