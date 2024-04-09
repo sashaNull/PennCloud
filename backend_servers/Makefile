@@ -2,7 +2,7 @@ TARGETS = server
 
 all: $(TARGETS)
 
-server: server.cpp
+server: server.cpp ../utils/utils.cpp
 	g++ $^ -lpthread -g -o $@
 
 clean::
