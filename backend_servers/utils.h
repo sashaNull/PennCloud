@@ -17,10 +17,16 @@
 #include <string>
 #include <sys/socket.h>
 #include <unistd.h>
+
+extern const int MAX_BUFFER_SIZE;
+
 // Declare function prototypes
 F_2_B_Message handle_get(F_2_B_Message message, std::string data_file_location);
 F_2_B_Message handle_put(F_2_B_Message message, std::string data_file_location);
 F_2_B_Message handle_cput(F_2_B_Message message, std::string data_file_location);
 F_2_B_Message handle_delete(F_2_B_Message message, std::string data_file_location);
+
+// Function prototype for reading data from client socket
+bool do_read(int client_fd, char *client_buf);
 
 #endif // UTILS_FUNCTIONS_H

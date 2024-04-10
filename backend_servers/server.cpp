@@ -18,9 +18,6 @@ int server_index;                             // Index of the server
 int listen_fd;                                // File descriptor for the listening socket
 bool verbose = false;                         // Verbosity flag for debugging
 
-// Maximum buffer size for data transmission
-constexpr int MAX_BUFFER_SIZE = 1024;
-
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
@@ -33,9 +30,6 @@ void initialize_file_lock();
 
 // Function prototype for handling client connections in separate threads
 void *handle_connection(void *arg);
-
-// Function prototype for reading data from client socket
-bool do_read(int client_fd, char *client_buf);
 
 int main(int argc, char *argv[])
 {
@@ -440,59 +434,4 @@ void *handle_connection(void *arg)
     cout << "[" << client_fd << "] Connection closed!\n";
   }
   return nullptr;
-}
-
-/**
- * Reads data from the client socket into the buffer.
- *
- * @param client_fd The file descriptor of the client socket.
- * @param client_buf The buffer to store the received data.
- * @return bool True if reading is successful, false otherwise.
- */
-bool do_read(int client_fd, char *client_buf)
-{
-  size_t n = MAX_BUFFER_SIZE;
-  size_t bytes_left = n;
-  bool r_arrived = false;
-
-  while (bytes_left > 0)
-  {
-    ssize_t result = read(client_fd, client_buf + n - bytes_left, 1);
-
-    if (result == -1)
-    {
-      // Handle read errors
-      if ((errno == EINTR) || (errno == EAGAIN))
-      {
-        continue; // Retry if interrupted or non-blocking operation
-      }
-      return false; // Return false for other errors
-    }
-    else if (result == 0)
-    {
-      return false; // Return false if connection closed by client
-    }
-
-    // Check if \r\n sequence has arrived
-    if (r_arrived && client_buf[n - bytes_left] == '\n')
-    {
-      client_buf[n - bytes_left + 1] = '\0'; // Null-terminate the string
-      break;                                 // Exit the loop
-    }
-    else
-    {
-      r_arrived = false;
-    }
-
-    // Check if \r has arrived
-    if (client_buf[n - bytes_left] == '\r')
-    {
-      r_arrived = true;
-    }
-
-    bytes_left -= result; // Update bytes_left counter
-  }
-
-  client_buf[MAX_BUFFER_SIZE - 1] = '\0'; // Null-terminate the string
-  return true;                            // Return true indicating successful reading
 }
