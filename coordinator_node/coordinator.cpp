@@ -81,8 +81,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     int opt = 1;
-    if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
-                   sizeof(opt)) < 0)
+    if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) < 0)
     {
         cerr << "Setting socket option failed.\n";
         close(listen_fd);
