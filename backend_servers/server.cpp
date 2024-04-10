@@ -1,23 +1,9 @@
 // Includes necessary header files for socket programming, file manipulation,
 // and threading
-#include <algorithm>
-#include <arpa/inet.h>
-#include <cstring>
-#include <dirent.h>
-#include <fstream>
-#include <iostream>
-#include <map>
-#include <netinet/in.h>
-#include <pthread.h>
-#include <signal.h>
-#include <sstream>
-#include <string>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <vector>
 
 // Includes custom utility functions
-#include "../utils/utils.h"
+// #include "../utils/utils.h"
+#include "utils.h"
 
 // Namespace declaration for convenience
 using namespace std;
@@ -27,19 +13,13 @@ map<string, pthread_mutex_t> file_lock_map{}; // Map to store file locks
 vector<int> client_fds{};                     // All client file descriptors
 string server_ip;                             // Server IP address
 string data_file_location;                    // Location of data files
-int server_port;      // Port on which server listens for connections
-int server_index;     // Index of the server
-int listen_fd;        // File descriptor for the listening socket
-bool verbose = false; // Verbosity flag for debugging
+int server_port;                              // Port on which server listens for connections
+int server_index;                             // Index of the server
+int listen_fd;                                // File descriptor for the listening socket
+bool verbose = false;                         // Verbosity flag for debugging
 
 // Maximum buffer size for data transmission
 constexpr int MAX_BUFFER_SIZE = 1024;
-
-// Function prototypes for handling different types of requests
-F_2_B_Message handle_get(F_2_B_Message message);
-F_2_B_Message handle_put(F_2_B_Message message);
-F_2_B_Message handle_cput(F_2_B_Message message);
-F_2_B_Message handle_delete(F_2_B_Message message);
 
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
@@ -57,17 +37,21 @@ void *handle_connection(void *arg);
 // Function prototype for reading data from client socket
 bool do_read(int client_fd, char *client_buf);
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
   // Check if there are enough command-line arguments
-  if (argc == 1) {
+  if (argc == 1)
+  {
     cerr << "*** PennCloud: T15" << endl;
     exit(EXIT_FAILURE);
   }
 
   int option;
   // Parse command-line options
-  while ((option = getopt(argc, argv, "vo:")) != -1) {
-    switch (option) {
+  while ((option = getopt(argc, argv, "vo:")) != -1)
+  {
+    switch (option)
+    {
     case 'v':
       verbose = true;
       break;
@@ -79,7 +63,8 @@ int main(int argc, char *argv[]) {
   }
 
   // Ensure there are enough arguments after parsing options
-  if (optind == argc) {
+  if (optind == argc)
+  {
     cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
     exit(EXIT_FAILURE);
   }
@@ -89,7 +74,8 @@ int main(int argc, char *argv[]) {
 
   // Extract server index
   optind++;
-  if (optind == argc) {
+  if (optind == argc)
+  {
     cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
     exit(EXIT_FAILURE);
   }
@@ -97,15 +83,18 @@ int main(int argc, char *argv[]) {
   // Create a socket
   listen_fd = socket(PF_INET, SOCK_STREAM, 0);
 
-  if (listen_fd == -1) {
-    cerr << "Socket creation failed.\n" << endl;
+  if (listen_fd == -1)
+  {
+    cerr << "Socket creation failed.\n"
+         << endl;
     exit(EXIT_FAILURE);
   }
 
   // Set socket options
   int opt = 1;
   if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
-                 sizeof(opt)) < 0) {
+                 sizeof(opt)) < 0)
+  {
     cerr << "Setting socket option failed.\n";
     close(listen_fd);
     exit(EXIT_FAILURE);
@@ -114,7 +103,8 @@ int main(int argc, char *argv[]) {
   // Parse configuration file and extract server address and port
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
-  if (verbose) {
+  if (verbose)
+  {
     cout << "Server IP: " << server_ip << ":" << server_port << endl;
     cout << "Server Port: " << ntohs(server_sockaddr.sin_port) << endl;
     cout << "Data Loc:" << data_file_location << endl;
@@ -123,15 +113,19 @@ int main(int argc, char *argv[]) {
 
   // Bind the socket to the server address
   if (bind(listen_fd, (struct sockaddr *)&server_sockaddr,
-           sizeof(server_sockaddr)) != 0) {
-    cerr << "Socket binding failed.\n" << endl;
+           sizeof(server_sockaddr)) != 0)
+  {
+    cerr << "Socket binding failed.\n"
+         << endl;
     close(listen_fd);
     exit(EXIT_FAILURE);
   }
 
   // Start listening for incoming connections
-  if (listen(listen_fd, SOMAXCONN) != 0) {
-    cerr << "Socket listening failed.\n" << endl;
+  if (listen(listen_fd, SOMAXCONN) != 0)
+  {
+    cerr << "Socket listening failed.\n"
+         << endl;
     close(listen_fd);
     exit(EXIT_FAILURE);
   }
@@ -143,15 +137,18 @@ int main(int argc, char *argv[]) {
   signal(SIGINT, exit_handler);
 
   // Accept and handle incoming connections
-  while (true) {
+  while (true)
+  {
     sockaddr_in client_sockaddr;
     socklen_t client_socklen = sizeof(client_sockaddr);
     int client_fd =
         accept(listen_fd, (struct sockaddr *)&client_sockaddr, &client_socklen);
 
-    if (client_fd < 0) {
+    if (client_fd < 0)
+    {
       // If accept fails due to certain errors, continue accepting
-      if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK)) {
+      if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK))
+      {
         continue;
       }
       // Otherwise, print error and exit loop
@@ -162,7 +159,8 @@ int main(int argc, char *argv[]) {
     // Push into the list of all client file descriptors
     client_fds.push_back(client_fd);
 
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] New connection\n";
     }
 
@@ -178,245 +176,6 @@ int main(int argc, char *argv[]) {
 }
 
 /**
- * Handles the GET operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message to be processed.
- * @return F_2_B_Message The processed F_2_B_Message containing the retrieved
- * value or error message.
- */
-F_2_B_Message handle_get(F_2_B_Message message) {
-  // Construct file path for the specified rowkey
-  string file_path = data_file_location + "/" + message.rowkey + ".txt";
-
-  // Open file for reading
-  ifstream file(file_path);
-
-  // Check if file exists and can be opened
-  if (!file.is_open()) {
-    // If file does not exist, set error status and message
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-    return message;
-  }
-
-  // Iterate through file lines to find the specified colkey
-  string line;
-  bool keyFound = false;
-  while (getline(file, line)) {
-    istringstream iss(line);
-    string key, value;
-    // Extract key-value pairs from the line
-    if (getline(iss, key, ':') && getline(iss, value)) {
-      // Check if key matches the requested colkey
-      if (key == message.colkey) {
-        // If key found, set message value and flag
-        message.value = value;
-        keyFound = true;
-        break;
-      }
-    }
-  }
-
-  // If requested colkey not found, set error status and message
-  if (!keyFound) {
-    message.status = 1;
-    message.errorMessage = "Colkey does not exist";
-  } else {
-    // Otherwise, clear error message and set success status
-    message.status = 0;
-    message.errorMessage.clear();
-  }
-
-  // Close file and return processed message
-  file.close();
-  return message;
-}
-
-/**
- * Handles the PUT operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be written.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_put(F_2_B_Message message) {
-  // Construct file path for the specified rowkey
-  string file_path = data_file_location + "/" + message.rowkey + ".txt";
-
-  // Open file for writing in append mode
-  ofstream file(file_path, ios::app);
-
-  // Check if file can be opened
-  if (!file.is_open()) {
-    // If file cannot be opened, set error status and message
-    message.status = 1;
-    message.errorMessage = "Error opening file for rowkey";
-    return message;
-  }
-
-  // Write data to file
-  file << message.colkey << ":" << message.value << "\n";
-
-  // Check for write errors
-  if (file.fail()) {
-    // If error occurred while writing, set error status and message
-    message.status = 1;
-    message.errorMessage = "Error writing to file for rowkey";
-  } else {
-    // Otherwise, set success status and message
-    message.status = 0;
-    message.errorMessage = "Data written successfully";
-  }
-
-  // Close file and return processed message
-  file.close();
-  return message;
-}
-
-/**
- * Handles the CPUT operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be updated.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_cput(F_2_B_Message message) {
-  // Construct file path for the specified rowkey
-  string file_path = data_file_location + "/" + message.rowkey + ".txt";
-
-  // Open file for reading
-  ifstream file(file_path);
-
-  // Check if file exists and can be opened
-  if (!file.is_open()) {
-    // If file does not exist, set error status and message
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-    return message;
-  }
-
-  bool keyFound = false;
-  bool valueUpdated = false;
-  vector<string> lines;
-  string line;
-
-  // Read file line by line
-  while (getline(file, line)) {
-    string key, value;
-    stringstream lineStream(line);
-    getline(lineStream, key, ':');
-    getline(lineStream, value);
-
-    // Check if colkey matches
-    if (key == message.colkey) {
-      keyFound = true;
-      // Check if current value matches message value
-      if (value == message.value) {
-        // Update value if match found
-        lines.push_back(key + ":" + message.value2);
-        valueUpdated = true;
-      } else {
-        // Otherwise, keep the original line
-        lines.push_back(line);
-      }
-    } else {
-      // Keep the original line
-      lines.push_back(line);
-    }
-  }
-  file.close();
-
-  // Check conditions for updating value
-  if (keyFound && valueUpdated) {
-    // If key and value updated successfully, rewrite file
-    ofstream outFile(file_path, ios::trunc);
-    for (const auto &l : lines) {
-      outFile << l << endl;
-    }
-    outFile.close();
-
-    // Set success status and message
-    message.status = 0;
-    message.errorMessage = "Value updated successfully";
-  } else if (keyFound && !valueUpdated) {
-    // If old value does not match, set error status and message
-    message.status = 1;
-    message.errorMessage = "Old value does not match";
-  } else {
-    // If colkey does not exist, set error status and message
-    message.status = 1;
-    message.errorMessage = "Colkey does not exist";
-  }
-
-  // Return processed message
-  return message;
-}
-
-/**
- * Handles the DELETE operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be deleted.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_delete(F_2_B_Message message) {
-  // Construct file path for the specified rowkey
-  string file_path = data_file_location + "/" + message.rowkey + ".txt";
-
-  // Open file for reading
-  ifstream file(file_path);
-
-  // Check if file exists and can be opened
-  if (!file.is_open()) {
-    // If file does not exist, set error status and message
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-    return message;
-  }
-
-  vector<string> lines;
-  string line;
-  bool keyFound = false;
-
-  // Read file line by line
-  while (getline(file, line)) {
-    string key;
-    stringstream lineStream(line);
-    getline(lineStream, key, ':');
-    // If colkey doesn't match, keep the line
-    if (key != message.colkey) {
-      lines.push_back(line);
-    } else {
-      // If colkey matches, mark as found
-      keyFound = true;
-    }
-  }
-  file.close();
-
-  // If colkey not found, set error status and message
-  if (!keyFound) {
-    message.status = 1;
-    message.errorMessage = "Colkey does not exist";
-    return message;
-  }
-
-  // Open file for writing (truncating previous content)
-  ofstream outFile(file_path, ios::trunc);
-  // Write remaining lines to file
-  for (const auto &l : lines) {
-    outFile << l << endl;
-  }
-  outFile.close();
-
-  // Set success status and message
-  message.status = 0;
-  message.errorMessage = "Colkey deleted successfully";
-
-  // Return processed message
-  return message;
-}
-
-/**
  * Parses the raw address information from a string and returns a sockaddr_in
  * structure.
  *
@@ -425,7 +184,8 @@ F_2_B_Message handle_delete(F_2_B_Message message) {
  * @return sockaddr_in The parsed sockaddr_in structure representing the
  * address.
  */
-sockaddr_in parse_address(char *raw_line) {
+sockaddr_in parse_address(char *raw_line)
+{
   // Initialize sockaddr_in structure
   sockaddr_in addr;
   bzero(&addr, sizeof(addr));
@@ -455,7 +215,8 @@ sockaddr_in parse_address(char *raw_line) {
  * @return sockaddr_in The sockaddr_in structure representing the server
  * address.
  */
-sockaddr_in parse_config_file(string config_file) {
+sockaddr_in parse_config_file(string config_file)
+{
   // Open configuration file for reading
   ifstream config_stream(config_file);
   // Initialize sockaddr_in structure
@@ -464,9 +225,11 @@ sockaddr_in parse_config_file(string config_file) {
   int i = 0;
   string line;
   // Read each line of the configuration file
-  while (getline(config_stream, line)) {
+  while (getline(config_stream, line))
+  {
     // Check if current line corresponds to the server index
-    if (i == server_index) {
+    if (i == server_index)
+    {
       // Convert string line to C-style string
       char raw_line[line.length() + 1];
       strcpy(raw_line, line.c_str());
@@ -488,16 +251,20 @@ sockaddr_in parse_config_file(string config_file) {
  * @param sig The signal received for server shutdown.
  *            Typically SIGINT or SIGTERM.
  */
-void exit_handler(int sig) {
+void exit_handler(int sig)
+{
   // Prepare shutdown message
   string shutdown_message = "Server shutting down!\r\n";
   // Iterate through client file descriptors
-  for (const auto &client_fd : client_fds) {
+  for (const auto &client_fd : client_fds)
+  {
     // Set socket to non-blocking mode
     int flags = fcntl(client_fd, F_GETFL, 0);
-    if (flags != -1) {
+    if (flags != -1)
+    {
       flags |= O_NONBLOCK;
-      if (fcntl(client_fd, F_SETFL, flags) == -1) {
+      if (fcntl(client_fd, F_SETFL, flags) == -1)
+      {
         perror("fcntl");
       }
     }
@@ -505,7 +272,8 @@ void exit_handler(int sig) {
     ssize_t bytes_sent =
         send(client_fd, shutdown_message.c_str(), shutdown_message.length(), 0);
     // Display shutdown message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cerr << "[" << client_fd << "] S: " << shutdown_message;
       cout << "[" << client_fd << "] Connection closed\n";
     }
@@ -514,7 +282,8 @@ void exit_handler(int sig) {
   }
 
   // Close listening socket if it is open
-  if (listen_fd >= 0) {
+  if (listen_fd >= 0)
+  {
     close(listen_fd);
   }
   // Exit the server process with success status
@@ -527,16 +296,20 @@ void exit_handler(int sig) {
  * This function creates a pthread_mutex_t for each file in the data directory
  * and stores it in the file_lock_map for later use.
  */
-void initialize_file_lock() {
+void initialize_file_lock()
+{
   // Open the data directory
   DIR *dir = opendir(data_file_location.c_str());
-  if (dir) {
+  if (dir)
+  {
     struct dirent *entry;
     // Iterate over each entry in the directory
-    while ((entry = readdir(dir)) != nullptr) {
+    while ((entry = readdir(dir)) != nullptr)
+    {
       string file_name = entry->d_name;
       // Skip "." and ".." entries
-      if (file_name != "." && file_name != "..") {
+      if (file_name != "." && file_name != "..")
+      {
         // Initialize a pthread_mutex_t for the file lock
         pthread_mutex_t file_lock{};
         pthread_mutex_init(&file_lock, nullptr);
@@ -555,7 +328,8 @@ void initialize_file_lock() {
  * @param arg Pointer to the client file descriptor.
  * @return nullptr
  */
-void *handle_connection(void *arg) {
+void *handle_connection(void *arg)
+{
   // Extract client file descriptor from argument
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg); // Delete memory allocated for the argument
@@ -564,32 +338,38 @@ void *handle_connection(void *arg) {
   string response = "WELCOME TO THE SERVER\r\n";
   ssize_t bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
   // Check for send errors
-  if (bytes_sent < 0) {
+  if (bytes_sent < 0)
+  {
     cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
     return nullptr;
   }
 
   char buffer[MAX_BUFFER_SIZE];
   // Continue reading client messages until quit command received
-  while (do_read(client_fd, buffer)) {
+  while (do_read(client_fd, buffer))
+  {
     string message(buffer);
     // Print received message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] C: " << message;
     }
 
     // Check for quit command
-    if (message == "quit\r\n") {
+    if (message == "quit\r\n")
+    {
       string goodbye = "Quit command received. Server goodbye!\r\n";
       bytes_sent = send(client_fd, goodbye.c_str(), goodbye.length(), 0);
       // Check for send errors
-      if (bytes_sent < 0) {
+      if (bytes_sent < 0)
+      {
         cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
         break;
       }
 
       // Print goodbye message if in verbose mode
-      if (verbose) {
+      if (verbose)
+      {
         cout << "[" << client_fd << "] S: " << goodbye;
       }
       break;
@@ -599,25 +379,26 @@ void *handle_connection(void *arg) {
     F_2_B_Message f2b_message = decode_message(message);
 
     // Handle message based on its type
-    switch (f2b_message.type) {
+    switch (f2b_message.type)
+    {
     case 1:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
-      f2b_message = handle_get(f2b_message);
+      f2b_message = handle_get(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     case 2:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
-      f2b_message = handle_put(f2b_message);
+      f2b_message = handle_put(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     case 3:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
-      f2b_message = handle_delete(f2b_message);
+      f2b_message = handle_delete(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     case 4:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
-      f2b_message = handle_cput(f2b_message);
+      f2b_message = handle_cput(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     default:
@@ -630,20 +411,23 @@ void *handle_connection(void *arg) {
     // Send response to client
     bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
     // Check for send errors
-    if (bytes_sent < 0) {
+    if (bytes_sent < 0)
+    {
       cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
       break;
     }
 
     // Print sent message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] S: " << serialized;
     }
   }
 
   // Remove client file descriptor from the list
   auto it = find(client_fds.begin(), client_fds.end(), client_fd);
-  if (it != client_fds.end()) {
+  if (it != client_fds.end())
+  {
     client_fds.erase(it);
   }
 
@@ -651,7 +435,8 @@ void *handle_connection(void *arg) {
   close(client_fd);
 
   // Print connection closed message if in verbose mode
-  if (verbose) {
+  if (verbose)
+  {
     cout << "[" << client_fd << "] Connection closed!\n";
   }
   return nullptr;
@@ -664,34 +449,44 @@ void *handle_connection(void *arg) {
  * @param client_buf The buffer to store the received data.
  * @return bool True if reading is successful, false otherwise.
  */
-bool do_read(int client_fd, char *client_buf) {
+bool do_read(int client_fd, char *client_buf)
+{
   size_t n = MAX_BUFFER_SIZE;
   size_t bytes_left = n;
   bool r_arrived = false;
 
-  while (bytes_left > 0) {
+  while (bytes_left > 0)
+  {
     ssize_t result = read(client_fd, client_buf + n - bytes_left, 1);
 
-    if (result == -1) {
+    if (result == -1)
+    {
       // Handle read errors
-      if ((errno == EINTR) || (errno == EAGAIN)) {
+      if ((errno == EINTR) || (errno == EAGAIN))
+      {
         continue; // Retry if interrupted or non-blocking operation
       }
       return false; // Return false for other errors
-    } else if (result == 0) {
+    }
+    else if (result == 0)
+    {
       return false; // Return false if connection closed by client
     }
 
     // Check if \r\n sequence has arrived
-    if (r_arrived && client_buf[n - bytes_left] == '\n') {
+    if (r_arrived && client_buf[n - bytes_left] == '\n')
+    {
       client_buf[n - bytes_left + 1] = '\0'; // Null-terminate the string
       break;                                 // Exit the loop
-    } else {
+    }
+    else
+    {
       r_arrived = false;
     }
 
     // Check if \r has arrived
-    if (client_buf[n - bytes_left] == '\r') {
+    if (client_buf[n - bytes_left] == '\r')
+    {
       r_arrived = true;
     }
 
@@ -699,5 +494,5 @@ bool do_read(int client_fd, char *client_buf) {
   }
 
   client_buf[MAX_BUFFER_SIZE - 1] = '\0'; // Null-terminate the string
-  return true; // Return true indicating successful reading
+  return true;                            // Return true indicating successful reading
 }
