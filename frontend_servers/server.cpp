@@ -36,7 +36,7 @@ void install_sigint_handler() {
   }
 }
 
-sockaddr_in get_socket_address(const string& addr_str) {
+sockaddr_in get_socket_address(const string &addr_str) {
   sockaddr_in addr;
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
@@ -57,14 +57,14 @@ sockaddr_in get_socket_address(const string& addr_str) {
 string parse_commands(int argc, char *argv[]) {
   int cmd;
   string ordering_str;
-  while ((cmd = getopt (argc, argv, "o:v")) != -1) {
+  while ((cmd = getopt(argc, argv, "o:v")) != -1) {
     switch (cmd) {
-      case 'v':
-        verbose = true;
-        break;
-      default: /* if other error, stderr */
-        cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
-        exit(EXIT_FAILURE);
+    case 'v':
+      verbose = true;
+      break;
+    default: /* if other error, stderr */
+      cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
+      exit(EXIT_FAILURE);
     }
   }
   // get config file
@@ -101,8 +101,9 @@ string parse_commands(int argc, char *argv[]) {
     cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
     exit(EXIT_FAILURE);
   }
-  if (server_index < 0 || server_index > line_count-1) {
-    cerr << "Error: Server index " << server_index << " is not in valid range." << endl;
+  if (server_index < 0 || server_index > line_count - 1) {
+    cerr << "Error: Server index " << server_index << " is not in valid range."
+         << endl;
     exit(EXIT_FAILURE);
   }
   // return server address
@@ -126,7 +127,8 @@ void send_dummy_msg_to_backend() {
   sockaddr_in backend_serveraddr = get_socket_address(backend_serveraddr_str);
   cout << "server ip: " << backend_serveraddr.sin_addr.s_addr << endl;
 
-  connect(fd, (struct sockaddr *)&backend_serveraddr, sizeof(backend_serveraddr));
+  connect(fd, (struct sockaddr *)&backend_serveraddr,
+          sizeof(backend_serveraddr));
 
   ssize_t bytes_sent = send(fd, to_send.c_str(), to_send.length(), 0);
 
@@ -139,11 +141,13 @@ void send_dummy_msg_to_backend() {
   while (true) {
     const unsigned int BUFFER_SIZE = 1024;
     char buffer[BUFFER_SIZE];
-    std::fill(std::begin(buffer), std::end(buffer), 0); // Initialize buffer to zero
+    std::fill(std::begin(buffer), std::end(buffer),
+              0); // Initialize buffer to zero
 
     // Receive a response from the server
-    ssize_t bytes_received = recv(fd, buffer, BUFFER_SIZE - 1, 0); // Leave space for null terminator
-    
+    ssize_t bytes_received =
+        recv(fd, buffer, BUFFER_SIZE - 1, 0); // Leave space for null terminator
+
     if (bytes_received == -1) {
       // Receiving failed
       std::cerr << "Receiving message failed.\n";
@@ -151,7 +155,8 @@ void send_dummy_msg_to_backend() {
       // The server closed the connection
       std::cout << "Server closed the connection.\n";
     } else {
-      // Null-terminate the received data (important if you're expecting a string)
+      // Null-terminate the received data (important if you're expecting a
+      // string)
       buffer[bytes_received] = '\0';
       std::cout << "Received message: " << buffer << std::endl;
     }
@@ -172,33 +177,54 @@ void *handle_connection(void *arg) {
   // Receive the request
   const unsigned int BUFFER_SIZE = 4096;
   char buffer[BUFFER_SIZE];
-  ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
-  if (bytes_read <= 0) {
-    cerr << "Failed to read from socket." << endl;
-    close(client_fd);
-    return nullptr;
-  }
-  buffer[bytes_read] = '\0';
-  string request(buffer);
-  // Parse the request
-  istringstream request_stream(request);
-  string request_line;
-  getline(request_stream, request_line);
 
-  string method, uri, http_version;
-  istringstream request_line_stream(request_line);
-  request_line_stream >> method >> uri >> http_version;
-  // Send data to backend
-  // Receive data from backend
-  // Send response to client
-  if (method == "GET") {
-    // For simplicity, assume all GET requests ask for index.html
-    string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>Welcome!</h1>";
-    send(client_fd, response.c_str(), response.length(), 0);
-  } else {
-    // For non-GET methods or other paths, you can add additional handling here
-    string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
-    send(client_fd, response.c_str(), response.length(), 0);
+  // Keep listening for requests
+  while (true) {
+    cout << "Listning..." << endl;
+    memset(buffer, 0, BUFFER_SIZE);
+    ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
+    if (bytes_read <= 0) {
+      if (bytes_read == 0) {
+        cout << "Client closed the connection." << endl;
+      } else {
+        cerr << "Failed to read from socket." << endl;
+      }
+      break;
+    }
+    buffer[bytes_read] = '\0';
+    string request(buffer);
+    // Parse the request
+    istringstream request_stream(request);
+    string request_line;
+    getline(request_stream, request_line);
+    cout << request_line << endl;
+    string method, uri, http_version;
+    istringstream request_line_stream(request_line);
+    request_line_stream >> method >> uri >> http_version;
+    // Handle the request
+    if (uri == "/signup" && method == "GET") {
+      ifstream file("html_files/signup.html");
+      string content((istreambuf_iterator<char>(file)),
+                     istreambuf_iterator<char>());
+      file.close();
+      string response =
+          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
+      send(client_fd, response.c_str(), response.length(), 0);
+    } else if (uri == "/signup" && method == "POST") {
+      cout << "POST request from /signup" << endl;
+      // Similar file reading logic for POST request
+    } else if (uri == "/login" && method == "GET") {
+      ifstream file("html_files/login.html");
+      string content((istreambuf_iterator<char>(file)),
+                     istreambuf_iterator<char>());
+      file.close();
+      string response =
+          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
+      send(client_fd, response.c_str(), response.length(), 0);
+    } else {
+      string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
+      send(client_fd, response.c_str(), response.length(), 0);
+    }
   }
   cout << "Closing connection" << endl;
   close(client_fd);
@@ -250,15 +276,15 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  send_dummy_msg_to_backend();
+  // send_dummy_msg_to_backend();
 
   // TODO: is connection from client supposed to be TCP? Or just UDP
-  //listen to messages from client (user)
+  // listen to messages from client (user)
   while (true) {
     sockaddr_in client_sockaddr;
     socklen_t client_socklen = sizeof(client_sockaddr);
-    int client_fd =
-        accept(g_listen_fd, (struct sockaddr *)&client_sockaddr, &client_socklen);
+    int client_fd = accept(g_listen_fd, (struct sockaddr *)&client_sockaddr,
+                           &client_socklen);
 
     if (client_fd < 0) {
       if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK)) {

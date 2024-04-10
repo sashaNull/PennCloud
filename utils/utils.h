@@ -6,6 +6,7 @@
 #include <fstream>
 #include <fcntl.h>
 #include <sstream>
+#include <iostream>
 
 struct F_2_B_Message
 {
@@ -26,6 +27,6 @@ F_2_B_Message decode_message(const std::string &serialized);
 
 std::string encode_message(F_2_B_Message f2b_message);
 
+void print_message(const F_2_B_Message &message);
+
 #endif // UTILS_H
-
-

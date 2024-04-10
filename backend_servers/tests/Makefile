@@ -2,7 +2,7 @@ TARGETS = client
 
 all: $(TARGETS)
 
-client: client.cpp
+client: client.cpp ../../utils/utils.cpp
 	g++ $^ -lpthread -g -o $@
 
 clean::

@@ -1,8 +1,8 @@
-TARGETS = frontend
+TARGETS = server
 
 all: $(TARGETS)
 
-frontend: server.cpp ../utils/utils.cpp
+server: server.cpp ../utils/utils.cpp
 	g++ $^ -lpthread -g -o $@
 
 clean::
