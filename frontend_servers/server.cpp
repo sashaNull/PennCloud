@@ -116,7 +116,7 @@ void send_dummy_msg_to_backend() {
   test_msg.rowkey = "adwait_info";
   test_msg.colkey = "name";
   test_msg.errorMessage = "";
-  test_msg.status = 0;
+  test_msg.status = 0; // 1 is error
   string to_send = encode_message(test_msg);
   string backend_serveraddr_str = "127.0.0.1:6000";
   int fd = socket(PF_INET, SOCK_STREAM, 0);
@@ -180,7 +180,7 @@ void *handle_connection(void *arg) {
 
   // Keep listening for requests
   while (true) {
-    cout << "Listning..." << endl;
+    cout << "Listneing..." << endl;
     memset(buffer, 0, BUFFER_SIZE);
     ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
     if (bytes_read <= 0) {
@@ -201,7 +201,11 @@ void *handle_connection(void *arg) {
     string method, uri, http_version;
     istringstream request_line_stream(request_line);
     request_line_stream >> method >> uri >> http_version;
-    // Handle the request
+
+    // Extract the body, if any
+    string body = string(istreambuf_iterator<char>(request_stream), {});
+    cout << "body: " << body << endl;
+    // GET: rendering signup page
     if (uri == "/signup" && method == "GET") {
       ifstream file("html_files/signup.html");
       string content((istreambuf_iterator<char>(file)),
@@ -210,9 +214,17 @@ void *handle_connection(void *arg) {
       string response =
           "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
       send(client_fd, response.c_str(), response.length(), 0);
+
+    // POST: new user signup
     } else if (uri == "/signup" && method == "POST") {
       cout << "POST request from /signup" << endl;
-      // Similar file reading logic for POST request
+      cout << request_line << endl;
+      // check if user exists with get
+      // Parse out formData
+      // Send data to backend
+      // if successful, ask browser to redirect to /login
+      // if not successful, error page
+    // GET: rendering login page
     } else if (uri == "/login" && method == "GET") {
       ifstream file("html_files/login.html");
       string content((istreambuf_iterator<char>(file)),
@@ -221,6 +233,9 @@ void *handle_connection(void *arg) {
       string response =
           "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
       send(client_fd, response.c_str(), response.length(), 0);
+
+    // POST: user login
+    } else if (uri == "/login" && method == "POST") {
     } else {
       string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
       send(client_fd, response.c_str(), response.length(), 0);
