@@ -24,6 +24,8 @@ struct tablet_cache_struct
   map<string, map<string, string>> kv_map;
 } tablet_cache;
 
+map<string, fileRange> prefix_to_file;
+
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
@@ -143,6 +145,17 @@ int main(int argc, char *argv[])
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
+
+  // Create map from filenames
+  createPrefixToFileMap(data_file_location, prefix_to_file);
+
+  // Output the contents of the map to verify correctness
+  for (const auto &entry : prefix_to_file)
+  {
+    std::cout << "Key: " << entry.first
+              << " Range: " << entry.second.range_start << " to " << entry.second.range_end
+              << " Filename: " << entry.second.filename << std::endl;
+  }
 
   // Accept and handle incoming connections
   while (true)

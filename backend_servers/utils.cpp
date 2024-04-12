@@ -333,3 +333,38 @@ bool do_read(int client_fd, char *client_buf)
     client_buf[MAX_BUFFER_SIZE - 1] = '\0'; // Null-terminate the string
     return true;                            // Return true indicating successful reading
 }
+
+void createPrefixToFileMap(const std::string &directory_path, std::map<std::string, fileRange> &prefix_to_file)
+{
+    DIR *dir;
+    struct dirent *ent;
+    std::regex pattern(R"((\w+)_to_(\w+)\.txt)");
+    std::smatch match;
+
+    if ((dir = opendir(directory_path.c_str())) != nullptr)
+    {
+        while ((ent = readdir(dir)) != nullptr)
+        {
+            std::string filename = ent->d_name;
+            // Check if filename matches the regex pattern
+            if (std::regex_match(filename, match, pattern))
+            {
+                // Extract the parts of the filename
+                std::string range_start = match[1];
+                std::string range_end = match[2];
+
+                // Populate the map
+                prefix_to_file[range_end] = fileRange{range_start, range_end, filename};
+            }
+        }
+        closedir(dir);
+    }
+    else
+    {
+        std::cerr << "Could not open directory" << std::endl;
+    }
+    return;
+}
+// string get_tablet_file_from_row(string row_name)
+// {
+// }
