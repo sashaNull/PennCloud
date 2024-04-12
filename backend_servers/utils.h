@@ -40,4 +40,6 @@ bool do_read(int client_fd, char *client_buf);
 
 void createPrefixToFileMap(const std::string &directory_path, std::map<std::string, fileRange> &prefix_to_file);
 
+std::string findFileNameInRange(const std::map<std::string, fileRange> &prefix_to_file, const std::string &rowname);
+
 #endif // UTILS_FUNCTIONS_H

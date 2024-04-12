@@ -365,6 +365,35 @@ void createPrefixToFileMap(const std::string &directory_path, std::map<std::stri
     }
     return;
 }
-// string get_tablet_file_from_row(string row_name)
-// {
-// }
+
+std::string standardizeRowName(const std::string &rowname)
+{
+    if (rowname.length() == 3)
+    {
+        return rowname;
+    }
+    else if (rowname.length() > 3)
+    {
+        return rowname.substr(0, 3);
+    }
+    else
+    {
+        return rowname + std::string(3 - rowname.length(), 'a');
+    }
+}
+
+std::string findFileNameInRange(const std::map<std::string, fileRange> &prefix_to_file, const std::string &rowname)
+{
+    std::string standardizedRowName = standardizeRowName(rowname);
+    for (const auto &entry : prefix_to_file)
+    {
+        const auto &range = entry.second;
+        std::string standardizedStart = standardizeRowName(range.range_start);
+        std::string standardizedEnd = standardizeRowName(range.range_end);
+        if (standardizedStart <= standardizedRowName && standardizedRowName <= standardizedEnd)
+        {
+            return range.filename;
+        }
+    }
+    return "";
+}

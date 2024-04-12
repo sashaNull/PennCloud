@@ -149,14 +149,6 @@ int main(int argc, char *argv[])
   // Create map from filenames
   createPrefixToFileMap(data_file_location, prefix_to_file);
 
-  // Output the contents of the map to verify correctness
-  for (const auto &entry : prefix_to_file)
-  {
-    std::cout << "Key: " << entry.first
-              << " Range: " << entry.second.range_start << " to " << entry.second.range_end
-              << " Filename: " << entry.second.filename << std::endl;
-  }
-
   // Accept and handle incoming connections
   while (true)
   {
@@ -398,7 +390,7 @@ void *handle_connection(void *arg)
 
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
-
+    cout << "This row is in file: " << findFileNameInRange(prefix_to_file, f2b_message.rowkey) << endl;
     // Handle message based on its type
     switch (f2b_message.type)
     {
