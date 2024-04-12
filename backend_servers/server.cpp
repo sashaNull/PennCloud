@@ -18,6 +18,12 @@ int server_index;                             // Index of the server
 int listen_fd;                                // File descriptor for the listening socket
 bool verbose = false;                         // Verbosity flag for debugging
 
+struct tablet_cache_struct
+{
+  string tablet_name;
+  map<string, map<string, string>> kv_map;
+} tablet_cache;
+
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
@@ -30,6 +36,14 @@ void initialize_file_lock();
 
 // Function prototype for handling client connections in separate threads
 void *handle_connection(void *arg);
+
+void load_tablet_cache(string row_key);
+
+void save_cache();
+
+void save_cache()
+{
+}
 
 int main(int argc, char *argv[])
 {
