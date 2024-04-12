@@ -391,6 +391,9 @@ void *handle_connection(void *arg)
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
     cout << "This row is in file: " << findFileNameInRange(prefix_to_file, f2b_message.rowkey) << endl;
+
+    // Add the message to the LOG
+    log_message(f2b_message, data_file_location);
     // Handle message based on its type
     switch (f2b_message.type)
     {
@@ -454,3 +457,17 @@ void *handle_connection(void *arg)
   }
   return nullptr;
 }
+
+/*
+TODO: function that does checkpointing.
+This function should block access to the cache.
+Save cache into a file for the checkpointing.
+Clear the log.
+Release lock to the cache.
+*/
+
+/*
+TODO: a function that recovers from failure.
+This function should run on startup.
+Load cache from checkpoint file,  and replay any logged entries.
+*/

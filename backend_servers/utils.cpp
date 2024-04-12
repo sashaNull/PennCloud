@@ -334,24 +334,24 @@ bool do_read(int client_fd, char *client_buf)
     return true;                            // Return true indicating successful reading
 }
 
-void createPrefixToFileMap(const std::string &directory_path, std::map<std::string, fileRange> &prefix_to_file)
+void createPrefixToFileMap(const string &directory_path, map<string, fileRange> &prefix_to_file)
 {
     DIR *dir;
     struct dirent *ent;
-    std::regex pattern(R"((\w+)_to_(\w+)\.txt)");
-    std::smatch match;
+    regex pattern(R"((\w+)_to_(\w+)\.txt)");
+    smatch match;
 
     if ((dir = opendir(directory_path.c_str())) != nullptr)
     {
         while ((ent = readdir(dir)) != nullptr)
         {
-            std::string filename = ent->d_name;
+            string filename = ent->d_name;
             // Check if filename matches the regex pattern
-            if (std::regex_match(filename, match, pattern))
+            if (regex_match(filename, match, pattern))
             {
                 // Extract the parts of the filename
-                std::string range_start = match[1];
-                std::string range_end = match[2];
+                string range_start = match[1];
+                string range_end = match[2];
 
                 // Populate the map
                 prefix_to_file[range_end] = fileRange{range_start, range_end, filename};
@@ -361,12 +361,12 @@ void createPrefixToFileMap(const std::string &directory_path, std::map<std::stri
     }
     else
     {
-        std::cerr << "Could not open directory" << std::endl;
+        cerr << "Could not open directory" << endl;
     }
     return;
 }
 
-std::string standardizeRowName(const std::string &rowname)
+string standardizeRowName(const string &rowname)
 {
     if (rowname.length() == 3)
     {
@@ -378,22 +378,64 @@ std::string standardizeRowName(const std::string &rowname)
     }
     else
     {
-        return rowname + std::string(3 - rowname.length(), 'a');
+        return rowname + string(3 - rowname.length(), 'a');
     }
 }
 
-std::string findFileNameInRange(const std::map<std::string, fileRange> &prefix_to_file, const std::string &rowname)
+string findFileNameInRange(const map<string, fileRange> &prefix_to_file, const string &rowname)
 {
-    std::string standardizedRowName = standardizeRowName(rowname);
+    string standardizedRowName = standardizeRowName(rowname);
     for (const auto &entry : prefix_to_file)
     {
         const auto &range = entry.second;
-        std::string standardizedStart = standardizeRowName(range.range_start);
-        std::string standardizedEnd = standardizeRowName(range.range_end);
+        string standardizedStart = standardizeRowName(range.range_start);
+        string standardizedEnd = standardizeRowName(range.range_end);
         if (standardizedStart <= standardizedRowName && standardizedRowName <= standardizedEnd)
         {
             return range.filename;
         }
     }
     return "";
+}
+
+void trim_trailing_whitespaces(string &str)
+{
+    // Find the last character that's not a whitespace
+    auto it = find_if(str.rbegin(), str.rend(), [](unsigned char ch)
+                      { return !isspace(ch); });
+
+    // Erase trailing whitespaces
+    str.erase(it.base(), str.end());
+}
+
+void log_message(const F_2_B_Message &f2b_message, string data_file_location)
+{
+    // Serialize the message using the provided serialize function
+    string serialized_message = encode_message(f2b_message);
+    trim_trailing_whitespaces(serialized_message);
+
+    // Construct the full path to the log file
+    string log_file_path = data_file_location + "/logs.txt";
+
+    // Open the log file in append mode
+    ofstream log_file(log_file_path, ios::app);
+
+    // Check if the file is open
+    if (!log_file.is_open())
+    {
+        cerr << "Failed to open log file: " << log_file_path << endl;
+        return;
+    }
+
+    // Write the serialized message to a new line in the log file
+    log_file << serialized_message << endl;
+
+    // Optionally check for write errors
+    if (log_file.fail())
+    {
+        cerr << "Failed to write to log file: " << log_file_path << endl;
+    }
+
+    // Close the log file
+    log_file.close();
 }
