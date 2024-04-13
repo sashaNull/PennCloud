@@ -1,0 +1,6 @@
+adwait_info|name:adwait;pass:123
+adwait_email|id1:emailcontent1;id2:emailcontent2
+adwait_drive|part1_file:content_of_file
+brutus_info|name:brutus;pass:ceaser
+brutus_email|id1:brutusEmail1;id2:BrutusEmail2
+brutus_drive|
