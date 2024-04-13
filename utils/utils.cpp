@@ -66,3 +66,51 @@ void print_message(const F_2_B_Message &message)
   std::cout << "Status: " << message.status << std::endl;
   std::cout << "ErrorMessage: " << message.errorMessage << std::endl;
 }
+
+std::vector<std::string> split(const std::string& s, const std::string& delimiter) {
+  std::vector<std::string> tokens;
+  std::string token;
+  size_t start = 0, end = 0;
+  if (delimiter == " ") {
+    std::istringstream stream(s);
+    while (stream >> token) {
+      tokens.push_back(token);
+    }
+  } else {
+    while ((end = s.find(delimiter, start)) != std::string::npos) {
+      token = s.substr(start, end - start);
+      if (!token.empty()) {
+        tokens.push_back(token);
+      }
+      start = end + delimiter.length();
+    }
+    if (start < s.length()) {
+      token = s.substr(start);
+      if (!token.empty()) {
+        tokens.push_back(token);
+      }
+    }
+  }
+  return tokens;
+}
+
+std::string strip(const std::string& str, const std::string& chars) {
+  size_t start = str.find_first_not_of(chars);
+  if (start == std::string::npos) return "";
+  size_t end = str.find_last_not_of(chars);
+  return str.substr(start, end - start + 1);
+}
+
+std::map<std::string,std::string> parse_json_string_to_map(const std::string json_str) {
+  std::map<std::string,std::string> to_return;
+  std::string to_strip = "{}";
+  std::string stripped_str = strip(json_str, to_strip);
+  std::vector<std::string> pairs = split(stripped_str, ",");
+  for (const auto& s : pairs) {
+    std::vector<std::string> key_value = split(s, ":");
+    std::string key = strip(key_value[0], "\"");
+    std::string value = strip(key_value[1], "\"");
+    to_return[key] = value;
+  }
+  return to_return;
+}

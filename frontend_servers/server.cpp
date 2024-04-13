@@ -17,8 +17,7 @@
 using namespace std;
 
 bool verbose = false;
-string g_server_ip;
-int g_server_port;
+string g_serveraddr_str;
 int g_listen_fd;
 
 void sigint_handler(int signum) {
@@ -110,77 +109,89 @@ string parse_commands(int argc, char *argv[]) {
   return lines[server_index];
 }
 
-void send_dummy_msg_to_backend() {
-  F_2_B_Message test_msg;
-  test_msg.type = 1;
-  test_msg.rowkey = "adwait_info";
-  test_msg.colkey = "name";
-  test_msg.errorMessage = "";
-  test_msg.status = 0; // 1 is error
-  string to_send = encode_message(test_msg);
-  string backend_serveraddr_str = "127.0.0.1:6000";
-  int fd = socket(PF_INET, SOCK_STREAM, 0);
-  if (fd == -1) {
-    cerr << "Socket creation failed.\n" << endl;
-    exit(EXIT_FAILURE);
-  }
-  sockaddr_in backend_serveraddr = get_socket_address(backend_serveraddr_str);
-  cout << "server ip: " << backend_serveraddr.sin_addr.s_addr << endl;
+F_2_B_Message construct_msg(int type, string rowkey, string colkey, string value, string value2, string errmsg, int status) {
+  F_2_B_Message msg;
+  msg.type = type;
+  msg.rowkey = rowkey;
+  msg.colkey = colkey;
+  msg.value = value;
+  msg.value2 = value2;
+  msg.errorMessage = errmsg;
+  msg.status = status;
+  return msg;
+}
 
-  connect(fd, (struct sockaddr *)&backend_serveraddr,
-          sizeof(backend_serveraddr));
-
+F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message msg) {
+  F_2_B_Message msg_to_return;
+  sockaddr_in addr = get_socket_address(addr_str);
+  connect(fd, (struct sockaddr *)&addr,
+          sizeof(addr));
+  string to_send = encode_message(msg);
+  cout << "to send: " << to_send << endl;
   ssize_t bytes_sent = send(fd, to_send.c_str(), to_send.length(), 0);
-
   if (bytes_sent == -1) {
     cerr << "Sending message failed.\n";
   } else {
     cout << "Message sent successfully: " << bytes_sent << " bytes.\n";
   }
 
+  // Receive response from the server
+  string buffer;
   while (true) {
     const unsigned int BUFFER_SIZE = 1024;
-    char buffer[BUFFER_SIZE];
-    std::fill(std::begin(buffer), std::end(buffer),
-              0); // Initialize buffer to zero
-
-    // Receive a response from the server
-    ssize_t bytes_received =
-        recv(fd, buffer, BUFFER_SIZE - 1, 0); // Leave space for null terminator
+    char temp_buffer[BUFFER_SIZE];
+    memset(temp_buffer, 0, BUFFER_SIZE);
+    ssize_t bytes_received = recv(fd, temp_buffer, BUFFER_SIZE - 1, 0);
 
     if (bytes_received == -1) {
-      // Receiving failed
-      std::cerr << "Receiving message failed.\n";
+        cerr << "Receiving message failed.\n";
+        continue;
     } else if (bytes_received == 0) {
-      // The server closed the connection
-      std::cout << "Server closed the connection.\n";
+        cout << "Server closed the connection.\n";
+        break;
     } else {
-      // Null-terminate the received data (important if you're expecting a
-      // string)
-      buffer[bytes_received] = '\0';
-      std::cout << "Received message: " << buffer << std::endl;
+        temp_buffer[bytes_received] = '\0';
+        buffer += string(temp_buffer);
     }
-    string received_msg(buffer);
-    if (received_msg.substr(0, 1) != "W") {
-      F_2_B_Message received_message = decode_message(received_msg);
-      cout << "Received message value: " << received_message.value << endl;
+
+    size_t pos;
+    while ((pos = buffer.find("\r\n")) != string::npos) {
+        string line = buffer.substr(0, pos);
+        buffer.erase(0, pos + 2);
+
+        if (!line.empty() && line != "WELCOME TO THE SERVER") {
+            msg_to_return = decode_message(line);
+            return msg_to_return;
+        }
     }
   }
-  close(fd);
+  return msg_to_return;
+}
+
+void redirect(int client_fd, std::string redirect_to) {
+  std::string response = "HTTP/1.1 302 Found\r\n";
+  response += "Location: " + redirect_to + "\r\n";
+  response += "Content-Length: 0\r\n";
+  response += "Connection: keep-alive\r\n";
+  response += "\r\n";
+
+  send(client_fd, response.c_str(), response.size(), 0);
+
+  std::cout << "Sent redirection response to " << redirect_to << std::endl;
 }
 
 // Function to handle a connection.
 void *handle_connection(void *arg) {
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
-  // TODO: handle requests from browser here
+
   // Receive the request
   const unsigned int BUFFER_SIZE = 4096;
   char buffer[BUFFER_SIZE];
 
   // Keep listening for requests
   while (true) {
-    cout << "Listneing..." << endl;
+    cout << "Listening..." << endl;
     memset(buffer, 0, BUFFER_SIZE);
     ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
     if (bytes_read <= 0) {
@@ -193,6 +204,7 @@ void *handle_connection(void *arg) {
     }
     buffer[bytes_read] = '\0';
     string request(buffer);
+
     // Parse the request
     istringstream request_stream(request);
     string request_line;
@@ -202,9 +214,22 @@ void *handle_connection(void *arg) {
     istringstream request_line_stream(request_line);
     request_line_stream >> method >> uri >> http_version;
 
+    // Extract the headers
+    map<string, string> headers;
+    string header_line;
+    while (getline(request_stream, header_line) && header_line != "\r") {
+        size_t delimiter_pos = header_line.find(':');
+        if (delimiter_pos != string::npos) {
+            string header_name = header_line.substr(0, delimiter_pos);
+            string header_value = header_line.substr(delimiter_pos + 2, header_line.length() - delimiter_pos - 3);
+            headers[header_name] = header_value;
+        }
+    }
+
     // Extract the body, if any
     string body = string(istreambuf_iterator<char>(request_stream), {});
     cout << "body: " << body << endl;
+
     // GET: rendering signup page
     if (uri == "/signup" && method == "GET") {
       ifstream file("html_files/signup.html");
@@ -219,13 +244,81 @@ void *handle_connection(void *arg) {
     } else if (uri == "/signup" && method == "POST") {
       cout << "POST request from /signup" << endl;
       cout << request_line << endl;
-      // check if user exists with get
+
       // Parse out formData
-      // Send data to backend
-      // if successful, ask browser to redirect to /login
-      // if not successful, error page
+      map<string,string> form_data = parse_json_string_to_map(body);
+      string username = form_data["username"];
+
+      // check if user exists with get
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      int fd = socket(PF_INET, SOCK_STREAM, 0);
+      if (fd == -1) {
+        cerr << "Socket creation failed.\n" << endl;
+        exit(EXIT_FAILURE);
+      }
+      F_2_B_Message msg_to_send = construct_msg(1, username+"_info", "", "", "", "", 0);
+      F_2_B_Message get_response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      if (get_response_msg.status == 1 && strip(get_response_msg.errorMessage) == "Rowkey does not exist") {
+        cout << "in if" << endl;
+        // Send new user data to backend and receive response
+        string firstname = form_data["firstName"];
+        string lastname = form_data["lastName"];
+        string email = form_data["email"];
+        string password = form_data["password"];
+
+        msg_to_send = construct_msg(2, username+"_info", "firstName", firstname, "", "", 0);
+        F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        if (response_msg.status != 0) {
+          cerr << "Error in PUT to backend" << endl;
+        }
+
+        msg_to_send = construct_msg(2, username+"_info", "lastName", lastname, "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        if (response_msg.status != 0) {
+          cerr << "Error in PUT to backend" << endl;
+        }
+        msg_to_send = construct_msg(2, username+"_info", "email", email, "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        if (response_msg.status != 0) {
+          cerr << "Error in PUT to backend" << endl;
+        }
+
+        msg_to_send = construct_msg(2, username+"_info", "password", password, "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        if (response_msg.status != 0) {
+          cerr << "Error in PUT to backend" << endl;
+        }
+
+        // if successful, ask browser to redirect to /login
+        std::string redirect_to = "http://" + g_serveraddr_str + "/login";
+        redirect(client_fd, redirect_to);
+      } else if (get_response_msg.status == 0) {
+        // error: user already exists
+        // TODO: alert and then redirect to login?
+        // TODO: alert and load empty signup form again?
+        // just alert for now
+        std::string content = "{\"error\":\"User already exists\"}";
+        std::string content_length = std::to_string(content.length());
+        std::string http_response = "HTTP/1.1 409 Conflict\r\n"
+                                    "Content-Type: application/json\r\n"
+                                    "Content-Length: " + content_length + "\r\n"
+                                    "\r\n";
+        http_response += content;
+
+        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
+        if (bytes_sent < 0) {
+            std::cerr << "Failed to send response" << std::endl;
+        } else {
+            std::cout << "Sent response successfully, bytes sent: " << bytes_sent << std::endl;
+        }
+
+      } else {
+        // error: some other type of error
+      }
     // GET: rendering login page
     } else if (uri == "/login" && method == "GET") {
+      cout << "in render login" << endl;
       ifstream file("html_files/login.html");
       string content((istreambuf_iterator<char>(file)),
                      istreambuf_iterator<char>());
@@ -257,9 +350,9 @@ int main(int argc, char *argv[]) {
 
   // parse commands
   // <ip>:<port> string for future use
-  string serveraddr_str = parse_commands(argc, argv);
-  cout << "IP: " << serveraddr_str << endl;
-  sockaddr_in server_sockaddr = get_socket_address(serveraddr_str);
+  g_serveraddr_str = parse_commands(argc, argv);
+  cout << "IP: " << g_serveraddr_str << endl;
+  sockaddr_in server_sockaddr = get_socket_address(g_serveraddr_str);
 
   // create listening socket
   g_listen_fd = socket(PF_INET, SOCK_STREAM, 0);

@@ -18,9 +18,9 @@
         <button type="submit">Login</button>
     </form>
 
-    <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    <p>Don't have an account? <a href="http://127.0.0.1:8000/signup">Sign up</a></p>
 
-    <p>Click here to reset your password? <a href="reset-password.html">Reset password</a></p>
+    <p>Click here to reset your password? <a href="http://127.0.0.1:8000/reset-password">Reset password</a></p>
 
     <script>
         document.getElementById("loginForm").addEventListener("submit", function (event) {
@@ -39,7 +39,7 @@
                 .then(response => {
                     if (response.ok) {
                         alert("Login successful!");
-                        window.location.href = "home.html"; // Redirect to the home page
+                        window.location.href = "http://127.0.0.1:8000"; // Redirect to the home page
                     } else {
                         throw new Error("Login failed.");
                     }
