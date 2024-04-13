@@ -50,6 +50,8 @@ F_2_B_Message handle_get(F_2_B_Message message, string data_file_location)
     }
 
     // If requested colkey not found, set error status and message
+    // TODO: added check for empty col key here to take care of checking whether user exists
+    // if (!keyFound && message.colkey != "")
     if (!keyFound)
     {
         message.status = 1;
