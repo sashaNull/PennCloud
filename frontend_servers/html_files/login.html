@@ -29,7 +29,7 @@
                 username: document.getElementById("username").value,
                 password: document.getElementById("password").value
             };
-            fetch("/login", {
+            fetch("http://127.0.0.1:8000/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -39,10 +39,18 @@
                 .then(response => {
                     if (response.ok) {
                         alert("Login successful!");
-                        window.location.href = "http://127.0.0.1:8000"; // Redirect to the home page
-                    } else {
-                        throw new Error("Login failed.");
+                        window.location.href = "http://127.0.0.1:8000/home"; // Redirect to the home page
                     }
+                    // Not a 2XX response, so parse the JSON and handle it
+                    return response.json().then(data => {
+                        if (response.status === 404 && data.error === "User does not exist") {
+                            throw new Error("Username does not exist"); // This will be caught by .catch
+                        }
+                        else if (response.status === 401 && data.error === "Incorrect password") {
+                            throw new Error("Password is incorrect"); // This will be caught by .catch
+                        }
+                        throw new Error("Login failed for another reason"); // General error
+                    });
                 })
                 .catch(error => {
                     console.error("Error logging in:", error);
