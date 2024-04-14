@@ -348,9 +348,6 @@ void *handle_connection(void *arg)
       else if (get_response_msg.status == 0)
       {
         // error: user already exists
-        // TODO: alert and then redirect to login?
-        // TODO: alert and load empty signup form again?
-        // just alert for now
         std::string content = "{\"error\":\"User already exists\"}";
         std::string content_length = std::to_string(content.length());
         std::string http_response = "HTTP/1.1 409 Conflict\r\n"
@@ -372,8 +369,27 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // error: some other type of error
+        // error: signup failed
+        std::string content = "{\"error\":\"Signup Failed\"}";
+        std::string content_length = std::to_string(content.length());
+        std::string http_response = "HTTP/1.1 400 Bad Request\r\n"
+                                    "Content-Type: application/json\r\n"
+                                    "Content-Length: " +
+                                    content_length + "\r\n"
+                                                     "\r\n";
+        http_response += content;
+
+        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
+        if (bytes_sent < 0)
+        {
+          std::cerr << "Failed to send response" << std::endl;
+        }
+        else
+        {
+          std::cout << "Sent response successfully, bytes sent: " << bytes_sent << std::endl;
+        }
       }
+
       // GET: rendering login page
     }
     else if (uri == "/login" && method == "GET")
