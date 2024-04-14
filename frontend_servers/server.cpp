@@ -302,7 +302,7 @@ void *handle_connection(void *arg)
              << endl;
         exit(EXIT_FAILURE);
       }
-      F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "", "", "", "", 0);
+      F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "password", "", "", "", 0);
       F_2_B_Message get_response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
       if (get_response_msg.status == 1 && strip(get_response_msg.errorMessage) == "Rowkey does not exist")
@@ -556,9 +556,6 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
-  // send_dummy_msg_to_backend();
-
-  // TODO: is connection from client supposed to be TCP? Or just UDP
   // listen to messages from client (user)
   while (true)
   {
