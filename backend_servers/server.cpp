@@ -52,6 +52,17 @@ void save_cache()
 {
 }
 
+void printPrefixToFileMap(const std::map<std::string, fileRange> &prefix_to_file)
+{
+  for (const auto &entry : prefix_to_file)
+  {
+    std::cout << "Prefix: " << entry.first << std::endl;
+    std::cout << "  Range Start: " << entry.second.range_start << std::endl;
+    std::cout << "  Range End: " << entry.second.range_end << std::endl;
+    std::cout << "  Filename: " << entry.second.filename << std::endl;
+  }
+}
+
 int main(int argc, char *argv[])
 {
   // Check if there are enough command-line arguments
@@ -153,6 +164,7 @@ int main(int argc, char *argv[])
 
   // Create map from filenames
   createPrefixToFileMap(data_file_location, prefix_to_file);
+  printPrefixToFileMap(prefix_to_file);
 
   // Accept and handle incoming connections
   while (true)
@@ -395,10 +407,10 @@ void *handle_connection(void *arg)
 
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
-    cout << "This row is in file: " << findFileNameInRange(prefix_to_file, f2b_message.rowkey) << endl;
 
-    // Add the message to the LOG
-    log_message(f2b_message, data_file_location);
+    string tablet_name = findFileNameInRange(prefix_to_file, f2b_message.rowkey);
+    cout << "This row is in file: " << tablet_name << endl;
+
     // Handle message based on its type
     switch (f2b_message.type)
     {
@@ -409,22 +421,35 @@ void *handle_connection(void *arg)
       break;
     case 2:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
+      // Add the message to the LOG
+      cache[tablet_name].requests_since_checkpoint++;
+      log_message(f2b_message, data_file_location, tablet_name);
       f2b_message = handle_put(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     case 3:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
+      // Add the message to the LOG
+      cache[tablet_name].requests_since_checkpoint++;
+      log_message(f2b_message, data_file_location, tablet_name);
       f2b_message = handle_delete(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     case 4:
       pthread_mutex_lock(&file_lock_map[f2b_message.rowkey + ".txt"]);
+      // Add the message to the LOG
+      cache[tablet_name].requests_since_checkpoint++;
+      log_message(f2b_message, data_file_location, tablet_name);
       f2b_message = handle_cput(f2b_message, data_file_location);
       pthread_mutex_unlock(&file_lock_map[f2b_message.rowkey + ".txt"]);
       break;
     default:
       cout << "Unknown command type received" << endl;
       break;
+    }
+    if (cache[tablet_name].requests_since_checkpoint > 2)
+    {
+      cout << "Needs Checkpoint: " << tablet_name << " " << cache[tablet_name].requests_since_checkpoint;
     }
 
     // Encode response message

@@ -408,14 +408,24 @@ void trim_trailing_whitespaces(string &str)
     str.erase(it.base(), str.end());
 }
 
-void log_message(const F_2_B_Message &f2b_message, string data_file_location)
+std::string get_log_file_name(const std::string &filename)
+{
+    // Find the position of the last occurrence of '.'
+    size_t dot_position = filename.find_last_of('.');
+    std::string name_without_extension = filename.substr(0, dot_position);
+
+    // Append "_logs.txt" to the filename without extension
+    return name_without_extension + "_logs.txt";
+}
+
+void log_message(const F_2_B_Message &f2b_message, string data_file_location, string tablet_name)
 {
     // Serialize the message using the provided serialize function
     string serialized_message = encode_message(f2b_message);
     trim_trailing_whitespaces(serialized_message);
 
     // Construct the full path to the log file
-    string log_file_path = data_file_location + "/logs.txt";
+    string log_file_path = data_file_location + "/" + get_log_file_name(tablet_name);
 
     // Open the log file in append mode
     ofstream log_file(log_file_path, ios::app);
@@ -507,10 +517,4 @@ void checkpointServer(tablet_cache_struct tablet_cache, string data_file_locatio
     save_cache(tablet_cache, data_file_location);
     copyFilesToCheckpointFolder(data_file_location, next_checkpoint_num);
     clearLogFile(data_file_location);
-}
-
-void recover(string data_file_location)
-{
-    // TODO: Find latest checkpoint folder.
-    // Copy all txt files from the latest checkpoint folder to the current data_file_location.
 }
