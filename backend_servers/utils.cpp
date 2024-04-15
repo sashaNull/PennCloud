@@ -439,3 +439,78 @@ void log_message(const F_2_B_Message &f2b_message, string data_file_location)
     // Close the log file
     log_file.close();
 }
+
+void save_cache(tablet_cache_struct tablet_cache, string data_file_location)
+{
+}
+
+void clearLogFile(const string &folderPath)
+{
+    string filePath = folderPath + "/logs.txt";
+    ofstream ofs(filePath, ofstream::out | ofstream::trunc);
+    ofs.close();
+    cout << "Logs cleared successfully." << endl;
+}
+
+int findNextCheckpointNumber(const std::string &data_file_location)
+{
+    int max_checkpoint_num = 0;
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir(data_file_location.c_str())) != nullptr)
+    {
+        while ((ent = readdir(dir)) != nullptr)
+        {
+            if (ent->d_type == DT_DIR && std::string(ent->d_name).find("checkpoint_") == 0)
+            {
+                int checkpoint_num = std::stoi(std::string(ent->d_name).substr(11));
+                max_checkpoint_num = std::max(max_checkpoint_num, checkpoint_num);
+            }
+        }
+        closedir(dir);
+    }
+    return max_checkpoint_num + 1;
+}
+
+void createCheckpointFolder(const std::string &data_file_location, int next_checkpoint_num)
+{
+    std::string new_folder_path = data_file_location + "/checkpoint_" + std::to_string(next_checkpoint_num);
+    mkdir(new_folder_path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+}
+
+void copyFilesToCheckpointFolder(const std::string &data_file_location, int next_checkpoint_num)
+{
+    std::string new_folder_path = data_file_location + "/checkpoint_" + std::to_string(next_checkpoint_num);
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir(data_file_location.c_str())) != nullptr)
+    {
+        while ((ent = readdir(dir)) != nullptr)
+        {
+            if (ent->d_type == DT_REG && std::string(ent->d_name) != "logs.txt" && std::string(ent->d_name).substr(std::string(ent->d_name).size() - 4) == ".txt")
+            {
+                std::ifstream src(data_file_location + "/" + ent->d_name, std::ios::binary);
+                std::ofstream dst(new_folder_path + "/" + ent->d_name, std::ios::binary);
+                dst << src.rdbuf();
+                src.close();
+                dst.close();
+            }
+        }
+        closedir(dir);
+    }
+}
+
+void checkpointServer(tablet_cache_struct tablet_cache, string data_file_location)
+{
+    int next_checkpoint_num = findNextCheckpointNumber(data_file_location);
+    createCheckpointFolder(data_file_location, next_checkpoint_num);
+    save_cache(tablet_cache, data_file_location);
+    copyFilesToCheckpointFolder(data_file_location, next_checkpoint_num);
+    clearLogFile(data_file_location);
+}
+
+void recover(string data_file_location)
+{
+    // TODO: Find latest checkpoint folder.
+    // Copy all txt files from the latest checkpoint folder to the current data_file_location.
+}

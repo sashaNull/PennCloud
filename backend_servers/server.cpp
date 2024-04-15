@@ -18,11 +18,7 @@ int server_index;                             // Index of the server
 int listen_fd;                                // File descriptor for the listening socket
 bool verbose = false;                         // Verbosity flag for debugging
 
-struct tablet_cache_struct
-{
-  string tablet_name;
-  map<string, map<string, string>> kv_map;
-} tablet_cache;
+tablet_cache_struct tablet_cache;
 
 map<string, fileRange> prefix_to_file;
 

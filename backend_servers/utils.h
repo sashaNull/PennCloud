@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <regex>
 #include <dirent.h>
+#include <sys/stat.h>
 
 extern const int MAX_BUFFER_SIZE;
 
@@ -27,6 +28,12 @@ struct fileRange
     std::string range_start;
     std::string range_end;
     std::string filename;
+};
+
+struct tablet_cache_struct
+{
+    std::string tablet_name;
+    std::map<std::string, std::map<std::string, std::string>> kv_map;
 };
 
 // Declare function prototypes
@@ -43,5 +50,6 @@ void createPrefixToFileMap(const std::string &directory_path, std::map<std::stri
 std::string findFileNameInRange(const std::map<std::string, fileRange> &prefix_to_file, const std::string &rowname);
 
 void log_message(const F_2_B_Message &f2b_message, std::string data_file_location);
+void checkpointServer(tablet_cache_struct tablet_cache, std::string data_file_location);
 
 #endif // UTILS_FUNCTIONS_H
