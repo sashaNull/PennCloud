@@ -22,6 +22,15 @@ tablet_cache_struct tablet_cache;
 
 map<string, fileRange> prefix_to_file;
 
+struct tablet_data
+{
+  map<string, map<string, string>> row_to_kv;
+  pthread_mutex_t tablet_lock;
+  int requests_since_checkpoint = 0;
+};
+
+map<string, tablet_data> cache;
+
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
