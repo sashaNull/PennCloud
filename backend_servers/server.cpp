@@ -8,6 +8,8 @@
 // Namespace declaration for convenience
 using namespace std;
 
+#define CHECKPOINT_SIZE 2
+
 // Global variables for server configuration and state
 map<string, pthread_mutex_t> file_lock_map{}; // Map to store file locks
 vector<int> client_fds{};                     // All client file descriptors
@@ -18,16 +20,7 @@ int server_index;                             // Index of the server
 int listen_fd;                                // File descriptor for the listening socket
 bool verbose = false;                         // Verbosity flag for debugging
 
-tablet_cache_struct tablet_cache;
-
 map<string, fileRange> prefix_to_file;
-
-struct tablet_data
-{
-  map<string, map<string, string>> row_to_kv;
-  pthread_mutex_t tablet_lock;
-  int requests_since_checkpoint = 0;
-};
 
 map<string, tablet_data> cache;
 
@@ -447,9 +440,10 @@ void *handle_connection(void *arg)
       cout << "Unknown command type received" << endl;
       break;
     }
-    if (cache[tablet_name].requests_since_checkpoint > 2)
+    if (cache[tablet_name].requests_since_checkpoint > CHECKPOINT_SIZE)
     {
       cout << "Needs Checkpoint: " << tablet_name << " " << cache[tablet_name].requests_since_checkpoint;
+      checkpoint_tablet(cache[tablet_name], tablet_name, data_file_location);
     }
 
     // Encode response message
