@@ -8,7 +8,7 @@
 // Namespace declaration for convenience
 using namespace std;
 
-#define CHECKPOINT_SIZE 2
+#define CHECKPOINT_SIZE 20
 vector<int> client_fds{};  // All client file descriptors
 string server_ip;          // Server IP address
 string data_file_location; // Location of data files
@@ -33,12 +33,15 @@ void load_cache();
 
 void save_cache();
 
-void load_cache() {
-  for (auto &entry : cache) {
+void load_cache()
+{
+  for (auto &entry : cache)
+  {
     ifstream file(data_file_location + "/" + entry.first);
     string line;
 
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
       stringstream ss(line);
       string key, inner_key, value;
 
@@ -50,12 +53,16 @@ void load_cache() {
   }
 }
 
-void save_cache() {
-  for (const auto &entry : cache) {
+void save_cache()
+{
+  for (const auto &entry : cache)
+  {
     ofstream file(data_file_location + "/" + entry.first);
 
-    for (const auto &row : entry.second.row_to_kv) {
-      for (const auto &inner_entry : row.second) {
+    for (const auto &row : entry.second.row_to_kv)
+    {
+      for (const auto &inner_entry : row.second)
+      {
         file << row.first << " " << inner_entry.first << " "
              << inner_entry.second << "\n";
       }
@@ -65,8 +72,10 @@ void save_cache() {
 }
 
 void printPrefixToFileMap(
-    const std::map<std::string, fileRange> &prefix_to_file) {
-  for (const auto &entry : prefix_to_file) {
+    const std::map<std::string, fileRange> &prefix_to_file)
+{
+  for (const auto &entry : prefix_to_file)
+  {
     std::cout << "Prefix: " << entry.first << std::endl;
     std::cout << "  Range Start: " << entry.second.range_start << std::endl;
     std::cout << "  Range End: " << entry.second.range_end << std::endl;
@@ -74,24 +83,42 @@ void printPrefixToFileMap(
   }
 }
 
-string get_file_name(string row_key) {
-  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c') {
+string get_file_name(string row_key)
+{
+  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c')
+  {
     return "a_c.txt";
-  } else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f') {
+  }
+  else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f')
+  {
     return "d_f.txt";
-  } else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i') {
+  }
+  else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i')
+  {
     return "g_i.txt";
-  } else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l') {
+  }
+  else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l')
+  {
     return "j_l.txt";
-  } else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o') {
+  }
+  else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o')
+  {
     return "m_o.txt";
-  } else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r') {
+  }
+  else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r')
+  {
     return "p_r.txt";
-  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
+  }
+  else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
+  {
     return "s_u.txt";
-  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
+  }
+  else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
+  {
     return "v_x.txt";
-  } else {
+  }
+  else
+  {
     return "y_z.txt";
   }
 }
@@ -103,18 +130,25 @@ string get_file_name(string row_key) {
  * @return F_2_B_Message The processed F_2_B_Message containing the retrieved
  * value or error message.
  */
-F_2_B_Message handle_get(F_2_B_Message message, string tablet_name) {
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey)) {
-    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey)) {
+F_2_B_Message handle_get(F_2_B_Message message, string tablet_name)
+{
+  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
+  {
+    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey))
+    {
       message.value =
           cache[tablet_name].row_to_kv[message.rowkey][message.colkey];
       message.status = 0;
       message.errorMessage.clear();
-    } else {
+    }
+    else
+    {
       message.status = 1;
       message.errorMessage = "Colkey does not exist";
     }
-  } else {
+  }
+  else
+  {
     message.status = 1;
     message.errorMessage = "Rowkey does not exist";
   }
@@ -129,7 +163,8 @@ F_2_B_Message handle_get(F_2_B_Message message, string tablet_name) {
  * @return F_2_B_Message The processed F_2_B_Message containing status and error
  * message.
  */
-F_2_B_Message handle_put(F_2_B_Message message, string tablet_name) {
+F_2_B_Message handle_put(F_2_B_Message message, string tablet_name)
+{
   std::cout << tablet_name << " " << message.rowkey << " " << message.colkey << " " << message.value;
   cache[tablet_name].row_to_kv[message.rowkey][message.colkey] = message.value;
   message.status = 0;
@@ -144,24 +179,34 @@ F_2_B_Message handle_put(F_2_B_Message message, string tablet_name) {
  * @return F_2_B_Message The processed F_2_B_Message containing status and error
  * message.
  */
-F_2_B_Message handle_cput(F_2_B_Message message, string tablet_name) {
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey)) {
-    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey)) {
+F_2_B_Message handle_cput(F_2_B_Message message, string tablet_name)
+{
+  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
+  {
+    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey))
+    {
       if (cache[tablet_name].row_to_kv[message.rowkey][message.colkey] ==
-          message.value) {
+          message.value)
+      {
         cache[tablet_name].row_to_kv[message.rowkey][message.colkey] =
             message.value2;
         message.status = 0;
         message.errorMessage = "Colkey updated successfully";
-      } else {
+      }
+      else
+      {
         message.status = 1;
         message.errorMessage = "Current value is not v1";
       }
-    } else {
+    }
+    else
+    {
       message.status = 1;
       message.errorMessage = "Colkey does not exist";
     }
-  } else {
+  }
+  else
+  {
     message.status = 1;
     message.errorMessage = "Rowkey does not exist";
   }
@@ -177,16 +222,23 @@ F_2_B_Message handle_cput(F_2_B_Message message, string tablet_name) {
  * @return F_2_B_Message The processed F_2_B_Message containing status and error
  * message.
  */
-F_2_B_Message handle_delete(F_2_B_Message message, string tablet_name) {
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey)) {
-    if (cache[tablet_name].row_to_kv[message.rowkey].erase(message.colkey)) {
+F_2_B_Message handle_delete(F_2_B_Message message, string tablet_name)
+{
+  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
+  {
+    if (cache[tablet_name].row_to_kv[message.rowkey].erase(message.colkey))
+    {
       message.status = 0;
       message.errorMessage = "Colkey deleted successfully";
-    } else {
+    }
+    else
+    {
       message.status = 1;
       message.errorMessage = "Colkey does not exist";
     }
-  } else {
+  }
+  else
+  {
     message.status = 1;
     message.errorMessage = "Rowkey does not exist";
   }
@@ -195,17 +247,21 @@ F_2_B_Message handle_delete(F_2_B_Message message, string tablet_name) {
   return message;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
   // Check if there are enough command-line arguments
-  if (argc == 1) {
+  if (argc == 1)
+  {
     cerr << "*** PennCloud: T15" << endl;
     exit(EXIT_FAILURE);
   }
 
   int option;
   // Parse command-line options
-  while ((option = getopt(argc, argv, "v")) != -1) {
-    switch (option) {
+  while ((option = getopt(argc, argv, "v")) != -1)
+  {
+    switch (option)
+    {
     case 'v':
       verbose = true;
       break;
@@ -217,7 +273,8 @@ int main(int argc, char *argv[]) {
   }
 
   // Ensure there are enough arguments after parsing options
-  if (optind == argc) {
+  if (optind == argc)
+  {
     cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
     exit(EXIT_FAILURE);
   }
@@ -227,7 +284,8 @@ int main(int argc, char *argv[]) {
 
   // Extract server index
   optind++;
-  if (optind == argc) {
+  if (optind == argc)
+  {
     cerr << "Syntax: " << argv[0] << " -v <config_file_name> <index>" << endl;
     exit(EXIT_FAILURE);
   }
@@ -235,15 +293,18 @@ int main(int argc, char *argv[]) {
   // Create a socket
   listen_fd = socket(PF_INET, SOCK_STREAM, 0);
 
-  if (listen_fd == -1) {
-    cerr << "Socket creation failed.\n" << endl;
+  if (listen_fd == -1)
+  {
+    cerr << "Socket creation failed.\n"
+         << endl;
     exit(EXIT_FAILURE);
   }
 
   // Set socket options
   int opt = 1;
   if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
-                 sizeof(opt)) < 0) {
+                 sizeof(opt)) < 0)
+  {
     cerr << "Setting socket option failed.\n";
     close(listen_fd);
     exit(EXIT_FAILURE);
@@ -252,7 +313,8 @@ int main(int argc, char *argv[]) {
   // Parse configuration file and extract server address and port
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
-  if (verbose) {
+  if (verbose)
+  {
     cout << "Server IP: " << server_ip << ":" << server_port << endl;
     cout << "Server Port: " << ntohs(server_sockaddr.sin_port) << endl;
     cout << "Data Loc:" << data_file_location << endl;
@@ -261,28 +323,35 @@ int main(int argc, char *argv[]) {
 
   // Bind the socket to the server address
   if (bind(listen_fd, (struct sockaddr *)&server_sockaddr,
-           sizeof(server_sockaddr)) != 0) {
-    cerr << "Socket binding failed.\n" << endl;
+           sizeof(server_sockaddr)) != 0)
+  {
+    cerr << "Socket binding failed.\n"
+         << endl;
     close(listen_fd);
     exit(EXIT_FAILURE);
   }
 
   // Start listening for incoming connections
-  if (listen(listen_fd, SOMAXCONN) != 0) {
-    cerr << "Socket listening failed.\n" << endl;
+  if (listen(listen_fd, SOMAXCONN) != 0)
+  {
+    cerr << "Socket listening failed.\n"
+         << endl;
     close(listen_fd);
     exit(EXIT_FAILURE);
   }
 
   // Initialize cache for handling file operations
   DIR *dir = opendir(data_file_location.c_str());
-  if (dir) {
+  if (dir)
+  {
     struct dirent *entry;
     // Iterate over each entry in the directory
-    while ((entry = readdir(dir)) != nullptr) {
+    while ((entry = readdir(dir)) != nullptr)
+    {
       string file_name = entry->d_name;
       // Skip "." and ".." entries
-      if (file_name != "." && file_name != "..") {
+      if (file_name != "." && file_name != "..")
+      {
         tablet_data new_tablet;
         cache[file_name] = new_tablet;
       }
@@ -302,15 +371,18 @@ int main(int argc, char *argv[]) {
   // printPrefixToFileMap(prefix_to_file);
 
   // Accept and handle incoming connections
-  while (true) {
+  while (true)
+  {
     sockaddr_in client_sockaddr;
     socklen_t client_socklen = sizeof(client_sockaddr);
     int client_fd =
         accept(listen_fd, (struct sockaddr *)&client_sockaddr, &client_socklen);
 
-    if (client_fd < 0) {
+    if (client_fd < 0)
+    {
       // If accept fails due to certain errors, continue accepting
-      if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK)) {
+      if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK))
+      {
         continue;
       }
       // Otherwise, print error and exit loop
@@ -321,7 +393,8 @@ int main(int argc, char *argv[]) {
     // Push into the list of all client file descriptors
     client_fds.push_back(client_fd);
 
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] New connection\n";
     }
 
@@ -345,7 +418,8 @@ int main(int argc, char *argv[]) {
  * @return sockaddr_in The parsed sockaddr_in structure representing the
  * address.
  */
-sockaddr_in parse_address(char *raw_line) {
+sockaddr_in parse_address(char *raw_line)
+{
   // Initialize sockaddr_in structure
   sockaddr_in addr;
   bzero(&addr, sizeof(addr));
@@ -375,7 +449,8 @@ sockaddr_in parse_address(char *raw_line) {
  * @return sockaddr_in The sockaddr_in structure representing the server
  * address.
  */
-sockaddr_in parse_config_file(string config_file) {
+sockaddr_in parse_config_file(string config_file)
+{
   // Open configuration file for reading
   ifstream config_stream(config_file);
   // Initialize sockaddr_in structure
@@ -384,9 +459,11 @@ sockaddr_in parse_config_file(string config_file) {
   int i = 0;
   string line;
   // Read each line of the configuration file
-  while (getline(config_stream, line)) {
+  while (getline(config_stream, line))
+  {
     // Check if current line corresponds to the server index
-    if (i == server_index) {
+    if (i == server_index)
+    {
       // Convert string line to C-style string
       char raw_line[line.length() + 1];
       strcpy(raw_line, line.c_str());
@@ -408,16 +485,20 @@ sockaddr_in parse_config_file(string config_file) {
  * @param sig The signal received for server shutdown.
  *            Typically SIGINT or SIGTERM.
  */
-void exit_handler(int sig) {
+void exit_handler(int sig)
+{
   // Prepare shutdown message
   string shutdown_message = "Server shutting down!\r\n";
   // Iterate through client file descriptors
-  for (const auto &client_fd : client_fds) {
+  for (const auto &client_fd : client_fds)
+  {
     // Set socket to non-blocking mode
     int flags = fcntl(client_fd, F_GETFL, 0);
-    if (flags != -1) {
+    if (flags != -1)
+    {
       flags |= O_NONBLOCK;
-      if (fcntl(client_fd, F_SETFL, flags) == -1) {
+      if (fcntl(client_fd, F_SETFL, flags) == -1)
+      {
         perror("fcntl");
       }
     }
@@ -425,7 +506,8 @@ void exit_handler(int sig) {
     ssize_t bytes_sent =
         send(client_fd, shutdown_message.c_str(), shutdown_message.length(), 0);
     // Display shutdown message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cerr << "[" << client_fd << "] S: " << shutdown_message;
       cout << "[" << client_fd << "] Connection closed\n";
     }
@@ -434,7 +516,8 @@ void exit_handler(int sig) {
   }
 
   // Close listening socket if it is open
-  if (listen_fd >= 0) {
+  if (listen_fd >= 0)
+  {
     close(listen_fd);
   }
   // Exit the server process with success status
@@ -447,7 +530,8 @@ void exit_handler(int sig) {
  * @param arg Pointer to the client file descriptor.
  * @return nullptr
  */
-void *handle_connection(void *arg) {
+void *handle_connection(void *arg)
+{
   // Extract client file descriptor from argument
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg); // Delete memory allocated for the argument
@@ -456,32 +540,38 @@ void *handle_connection(void *arg) {
   string response = "WELCOME TO THE SERVER\r\n";
   ssize_t bytes_sent = send(client_fd, response.c_str(), response.length(), 0);
   // Check for send errors
-  if (bytes_sent < 0) {
+  if (bytes_sent < 0)
+  {
     cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
     return nullptr;
   }
 
   char buffer[MAX_BUFFER_SIZE];
   // Continue reading client messages until quit command received
-  while (do_read(client_fd, buffer)) {
+  while (do_read(client_fd, buffer))
+  {
     string message(buffer);
     // Print received message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] C: " << message;
     }
 
     // Check for quit command
-    if (message == "quit\r\n") {
+    if (message == "quit\r\n")
+    {
       string goodbye = "Quit command received. Server goodbye!\r\n";
       bytes_sent = send(client_fd, goodbye.c_str(), goodbye.length(), 0);
       // Check for send errors
-      if (bytes_sent < 0) {
+      if (bytes_sent < 0)
+      {
         cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
         break;
       }
 
       // Print goodbye message if in verbose mode
-      if (verbose) {
+      if (verbose)
+      {
         cout << "[" << client_fd << "] S: " << goodbye;
       }
       break;
@@ -494,7 +584,8 @@ void *handle_connection(void *arg) {
     cout << "This row is in file: " << tablet_name << endl;
 
     // Handle message based on its type
-    switch (f2b_message.type) {
+    switch (f2b_message.type)
+    {
     case 1:
       f2b_message = handle_get(f2b_message, tablet_name);
       break;
@@ -504,7 +595,7 @@ void *handle_connection(void *arg) {
       log_message(f2b_message, data_file_location, tablet_name);
       f2b_message = handle_put(f2b_message, tablet_name);
       cache[tablet_name].requests_since_checkpoint++;
-      save_cache();
+
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
     case 3:
@@ -527,10 +618,13 @@ void *handle_connection(void *arg) {
       cout << "Unknown command type received" << endl;
       break;
     }
-    if (cache[tablet_name].requests_since_checkpoint > CHECKPOINT_SIZE) {
+    if (cache[tablet_name].requests_since_checkpoint > CHECKPOINT_SIZE)
+    {
       cout << "Needs Checkpoint: " << tablet_name << " "
            << cache[tablet_name].requests_since_checkpoint;
+      pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       checkpoint_tablet(cache[tablet_name], tablet_name, data_file_location);
+      pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
 
     // Encode response message
@@ -538,20 +632,23 @@ void *handle_connection(void *arg) {
     // Send response to client
     bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
     // Check for send errors
-    if (bytes_sent < 0) {
+    if (bytes_sent < 0)
+    {
       cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
       break;
     }
 
     // Print sent message if in verbose mode
-    if (verbose) {
+    if (verbose)
+    {
       cout << "[" << client_fd << "] S: " << serialized;
     }
   }
 
   // Remove client file descriptor from the list
   auto it = find(client_fds.begin(), client_fds.end(), client_fd);
-  if (it != client_fds.end()) {
+  if (it != client_fds.end())
+  {
     client_fds.erase(it);
   }
 
@@ -559,7 +656,8 @@ void *handle_connection(void *arg) {
   close(client_fd);
 
   // Print connection closed message if in verbose mode
-  if (verbose) {
+  if (verbose)
+  {
     cout << "[" << client_fd << "] Connection closed!\n";
   }
   return nullptr;

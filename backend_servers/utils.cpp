@@ -183,9 +183,45 @@ void clearLogFile(const string &folderPath, string &fileName)
     cout << "Logs cleared successfully." << endl;
 }
 
+void save_tablet(tablet_data &checkpoint_tablet_data, const std::string &tablet_name, const std::string &data_file_location)
+{
+    // Ensure the directory exists
+    mkdir(data_file_location.c_str(), 0777);
+
+    // Construct file paths
+    std::string temp_file_path = data_file_location + "/temp_" + tablet_name;
+    std::string final_file_path = data_file_location + "/" + tablet_name;
+
+    // Create and open the temporary file
+    std::ofstream temp_file(temp_file_path);
+    if (!temp_file.is_open())
+    {
+        std::cerr << "Failed to open file: " << temp_file_path << std::endl;
+        return;
+    }
+
+    // Write the data to the temporary file
+    for (const auto &row : checkpoint_tablet_data.row_to_kv)
+    {
+        for (const auto &kv : row.second)
+        {
+            temp_file << row.first << " " << kv.first << " " << kv.second << "\n";
+        }
+    }
+
+    // Close the temporary file
+    temp_file.close();
+
+    // Rename the temporary file to the final file name
+    if (std::rename(temp_file_path.c_str(), final_file_path.c_str()) != 0)
+    {
+        std::cerr << "Error renaming file from " << temp_file_path << " to " << final_file_path << std::endl;
+    }
+}
+
 void checkpoint_tablet(tablet_data &checkpoint_tablet_data, string tablet_name, std::string data_file_location)
 {
     string tablet_log_file = get_log_file_name(tablet_name);
-    // save_tablet();
+    save_tablet(checkpoint_tablet_data, tablet_name, data_file_location);
     clearLogFile(data_file_location, tablet_log_file);
 }
