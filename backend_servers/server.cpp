@@ -29,30 +29,6 @@ void exit_handler(int sig);
 // Function prototype for handling client connections in separate threads
 void *handle_connection(void *arg);
 
-void load_cache();
-
-void save_cache();
-
-void load_cache()
-{
-  for (auto &entry : cache)
-  {
-    ifstream file(data_file_location + "/" + entry.first);
-    string line;
-
-    while (getline(file, line))
-    {
-      stringstream ss(line);
-      string key, inner_key, value;
-
-      ss >> key >> inner_key >> value;
-      entry.second.row_to_kv[key][inner_key] = value;
-    }
-
-    file.close();
-  }
-}
-
 void save_cache()
 {
   for (const auto &entry : cache)
@@ -81,170 +57,6 @@ void printPrefixToFileMap(
     std::cout << "  Range End: " << entry.second.range_end << std::endl;
     std::cout << "  Filename: " << entry.second.filename << std::endl;
   }
-}
-
-string get_file_name(string row_key)
-{
-  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c')
-  {
-    return "a_c.txt";
-  }
-  else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f')
-  {
-    return "d_f.txt";
-  }
-  else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i')
-  {
-    return "g_i.txt";
-  }
-  else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l')
-  {
-    return "j_l.txt";
-  }
-  else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o')
-  {
-    return "m_o.txt";
-  }
-  else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r')
-  {
-    return "p_r.txt";
-  }
-  else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
-  {
-    return "s_u.txt";
-  }
-  else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
-  {
-    return "v_x.txt";
-  }
-  else
-  {
-    return "y_z.txt";
-  }
-}
-
-/**
- * Handles the GET operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message to be processed.
- * @return F_2_B_Message The processed F_2_B_Message containing the retrieved
- * value or error message.
- */
-F_2_B_Message handle_get(F_2_B_Message message, string tablet_name)
-{
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
-  {
-    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey))
-    {
-      message.value =
-          cache[tablet_name].row_to_kv[message.rowkey][message.colkey];
-      message.status = 0;
-      message.errorMessage.clear();
-    }
-    else
-    {
-      message.status = 1;
-      message.errorMessage = "Colkey does not exist";
-    }
-  }
-  else
-  {
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-  }
-
-  return message;
-}
-
-/**
- * Handles the PUT operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be written.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_put(F_2_B_Message message, string tablet_name)
-{
-  std::cout << tablet_name << " " << message.rowkey << " " << message.colkey << " " << message.value;
-  cache[tablet_name].row_to_kv[message.rowkey][message.colkey] = message.value;
-  message.status = 0;
-  message.errorMessage = "Data written successfully";
-  return message;
-}
-
-/**
- * Handles the CPUT operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be updated.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_cput(F_2_B_Message message, string tablet_name)
-{
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
-  {
-    if (cache[tablet_name].row_to_kv[message.rowkey].contains(message.colkey))
-    {
-      if (cache[tablet_name].row_to_kv[message.rowkey][message.colkey] ==
-          message.value)
-      {
-        cache[tablet_name].row_to_kv[message.rowkey][message.colkey] =
-            message.value2;
-        message.status = 0;
-        message.errorMessage = "Colkey updated successfully";
-      }
-      else
-      {
-        message.status = 1;
-        message.errorMessage = "Current value is not v1";
-      }
-    }
-    else
-    {
-      message.status = 1;
-      message.errorMessage = "Colkey does not exist";
-    }
-  }
-  else
-  {
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-  }
-
-  // Return processed message
-  return message;
-}
-
-/**
- * Handles the DELETE operation for F_2_B_Messages.
- *
- * @param message The F_2_B_Message containing data to be deleted.
- * @return F_2_B_Message The processed F_2_B_Message containing status and error
- * message.
- */
-F_2_B_Message handle_delete(F_2_B_Message message, string tablet_name)
-{
-  if (cache[tablet_name].row_to_kv.contains(message.rowkey))
-  {
-    if (cache[tablet_name].row_to_kv[message.rowkey].erase(message.colkey))
-    {
-      message.status = 0;
-      message.errorMessage = "Colkey deleted successfully";
-    }
-    else
-    {
-      message.status = 1;
-      message.errorMessage = "Colkey does not exist";
-    }
-  }
-  else
-  {
-    message.status = 1;
-    message.errorMessage = "Rowkey does not exist";
-  }
-
-  // Return processed message
-  return message;
 }
 
 int main(int argc, char *argv[])
@@ -361,7 +173,7 @@ int main(int argc, char *argv[])
   }
 
   // Load data to cache
-  load_cache();
+  load_cache(cache, data_file_location);
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
@@ -587,13 +399,13 @@ void *handle_connection(void *arg)
     switch (f2b_message.type)
     {
     case 1:
-      f2b_message = handle_get(f2b_message, tablet_name);
+      f2b_message = handle_get(f2b_message, tablet_name, cache);
       break;
     case 2:
       // Add the message to the LOG
       pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       log_message(f2b_message, data_file_location, tablet_name);
-      f2b_message = handle_put(f2b_message, tablet_name);
+      f2b_message = handle_put(f2b_message, tablet_name, cache);
       cache[tablet_name].requests_since_checkpoint++;
 
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
@@ -602,7 +414,7 @@ void *handle_connection(void *arg)
       // Add the message to the LOG
       pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       log_message(f2b_message, data_file_location, tablet_name);
-      f2b_message = handle_delete(f2b_message, tablet_name);
+      f2b_message = handle_delete(f2b_message, tablet_name, cache);
       cache[tablet_name].requests_since_checkpoint++;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
@@ -610,7 +422,7 @@ void *handle_connection(void *arg)
       // Add the message to the LOG
       pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       log_message(f2b_message, data_file_location, tablet_name);
-      f2b_message = handle_cput(f2b_message, tablet_name);
+      f2b_message = handle_cput(f2b_message, tablet_name, cache);
       cache[tablet_name].requests_since_checkpoint++;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
@@ -620,8 +432,8 @@ void *handle_connection(void *arg)
     }
     if (cache[tablet_name].requests_since_checkpoint > CHECKPOINT_SIZE)
     {
-      cout << "Needs Checkpoint: " << tablet_name << " "
-           << cache[tablet_name].requests_since_checkpoint;
+      cout << "Checkpointing the file: " << tablet_name << " "
+           << cache[tablet_name].requests_since_checkpoint << endl;
       pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       checkpoint_tablet(cache[tablet_name], tablet_name, data_file_location);
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
@@ -662,14 +474,6 @@ void *handle_connection(void *arg)
   }
   return nullptr;
 }
-
-/*
-TODO: function that does checkpointing.
-This function should block access to the cache.
-Save cache into a file for the checkpointing.
-Clear the log.
-Release lock to the cache.
-*/
 
 /*
 TODO: a function that recovers from failure.

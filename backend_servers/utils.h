@@ -45,10 +45,12 @@ struct tablet_data
 };
 
 // Declare function prototypes
-F_2_B_Message handle_get(F_2_B_Message message, std::string tablet_name);
-F_2_B_Message handle_put(F_2_B_Message message, std::string tablet_name);
-F_2_B_Message handle_cput(F_2_B_Message message, std::string tablet_name);
-F_2_B_Message handle_delete(F_2_B_Message message, std::string tablet_name);
+F_2_B_Message handle_get(F_2_B_Message message, std::string tablet_name, std::unordered_map<std::string, tablet_data> &cache);
+F_2_B_Message handle_put(F_2_B_Message message, std::string tablet_name, std::unordered_map<std::string, tablet_data> &cache);
+F_2_B_Message handle_cput(F_2_B_Message message, std::string tablet_name, std::unordered_map<std::string, tablet_data> &cache);
+F_2_B_Message handle_delete(F_2_B_Message message, std::string tablet_name, std::unordered_map<std::string, tablet_data> &cache);
+
+std::string get_file_name(std::string row_key);
 
 // Function prototype for reading data from client socket
 bool do_read(int client_fd, char *client_buf);
@@ -60,4 +62,6 @@ std::string findFileNameInRange(const std::map<std::string, fileRange> &prefix_t
 void log_message(const F_2_B_Message &f2b_message, std::string data_file_location, std::string tablet_name);
 void checkpoint_tablet(tablet_data &checkpoint_tablet_data, std::string tablet_name, std::string data_file_location);
 
-#endif 
+void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location);
+
+#endif
