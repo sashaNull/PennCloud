@@ -426,7 +426,9 @@ void *handle_connection(void *arg)
     switch (f2b_message.type)
     {
     case 1:
+      pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       f2b_message = handle_get(f2b_message, tablet_name, cache);
+      pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
     case 2:
       // Add the message to the LOG
@@ -434,7 +436,6 @@ void *handle_connection(void *arg)
       log_message(f2b_message, data_file_location, tablet_name);
       f2b_message = handle_put(f2b_message, tablet_name, cache);
       cache[tablet_name].requests_since_checkpoint++;
-
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
     case 3:
@@ -463,6 +464,7 @@ void *handle_connection(void *arg)
            << cache[tablet_name].requests_since_checkpoint << endl;
       pthread_mutex_lock(&cache[tablet_name].tablet_lock);
       checkpoint_tablet(cache[tablet_name], tablet_name, data_file_location);
+      cache[tablet_name].requests_since_checkpoint = 0;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
 
