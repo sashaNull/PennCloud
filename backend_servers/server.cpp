@@ -8,7 +8,6 @@
 // Namespace declaration for convenience
 using namespace std;
 
-#define CHECKPOINT_SIZE 20
 vector<int> client_fds{};  // All client file descriptors
 string server_ip;          // Server IP address
 string data_file_location; // Location of data files

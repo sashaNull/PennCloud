@@ -22,6 +22,8 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
+#define CHECKPOINT_SIZE 2
+
 extern const int MAX_BUFFER_SIZE;
 // Global variables for server configuration and state
 

@@ -101,7 +101,7 @@ F_2_B_Message handle_get(F_2_B_Message message, string tablet_name, unordered_ma
  */
 F_2_B_Message handle_put(F_2_B_Message message, string tablet_name, unordered_map<string, tablet_data> &cache)
 {
-    std::cout << tablet_name << " " << message.rowkey << " " << message.colkey << " " << message.value;
+    // std::cout << tablet_name << " " << message.rowkey << " " << message.colkey << " " << message.value;
     cache[tablet_name].row_to_kv[message.rowkey][message.colkey] = message.value;
     message.status = 0;
     message.errorMessage = "Data written successfully";
@@ -410,6 +410,34 @@ void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string
     }
 }
 
+void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_Message f2b_message)
+{
+    string tablet_name = get_file_name(f2b_message.rowkey);
+    // cout << "This row is in file: " << tablet_name << endl;
+
+    switch (f2b_message.type)
+    {
+    case 1:
+        f2b_message = handle_get(f2b_message, tablet_name, cache);
+        break;
+    case 2:
+        f2b_message = handle_put(f2b_message, tablet_name, cache);
+        cache[tablet_name].requests_since_checkpoint++;
+        break;
+    case 3:
+        f2b_message = handle_delete(f2b_message, tablet_name, cache);
+        cache[tablet_name].requests_since_checkpoint++;
+        break;
+    case 4:
+        f2b_message = handle_cput(f2b_message, tablet_name, cache);
+        cache[tablet_name].requests_since_checkpoint++;
+        break;
+    default:
+        cout << "Unknown command type received" << endl;
+        break;
+    }
+}
+
 void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location)
 {
     // Loop over the cache
@@ -437,9 +465,8 @@ void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &d
             {
                 // Decode the message
                 F_2_B_Message message = decode_message(line);
-
-                // Print the message
-                print_message(message);
+                // Replay the message
+                replay_message(cache, message);
             }
         }
 
