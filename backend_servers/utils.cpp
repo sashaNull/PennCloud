@@ -264,7 +264,7 @@ std::string get_log_file_name(const std::string &filename)
     std::string name_without_extension = filename.substr(0, dot_position);
 
     // Append "_logs.txt" to the filename without extension
-    return name_without_extension + "_logs.txt";
+    return "logs/" + name_without_extension + "_logs.txt";
 }
 
 void log_message(const F_2_B_Message &f2b_message, string data_file_location, string tablet_name)
@@ -407,5 +407,43 @@ void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string
         }
 
         file.close();
+    }
+}
+
+void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location)
+{
+    // Loop over the cache
+    for (auto &entry : cache)
+    {
+        // Generate log file name for each tablet
+        std::string log_file_name = get_log_file_name(entry.first);
+
+        // Construct the full path to the log file
+        std::string full_log_file_path = data_file_location + "/" + log_file_name;
+
+        // Open the log file
+        std::ifstream log_file(full_log_file_path);
+        if (!log_file.is_open())
+        {
+            std::cerr << "Failed to open log file: " << full_log_file_path << std::endl;
+            continue;
+        }
+
+        // Read each line from the log file
+        std::string line;
+        while (std::getline(log_file, line))
+        {
+            if (!line.empty())
+            {
+                // Decode the message
+                F_2_B_Message message = decode_message(line);
+
+                // Print the message
+                print_message(message);
+            }
+        }
+
+        // Close the log file
+        log_file.close();
     }
 }

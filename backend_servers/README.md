@@ -1,8 +1,6 @@
 To run a server:
-./server server_config_file 0 -v
+./server server_config.txt 0 -v
 
 TODO:
-1. Modify the KV store
-2. Create a struct to store tablets in local
-3. Metadata per tablet
-4. Work on checkpointing and recovery
+1. Cannot hardcode values in get_file_name
+2. Saving all txt files in cache, we dont need to save log files.

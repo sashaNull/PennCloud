@@ -64,4 +64,6 @@ void checkpoint_tablet(tablet_data &checkpoint_tablet_data, std::string tablet_n
 
 void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location);
 
+void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location);
+
 #endif

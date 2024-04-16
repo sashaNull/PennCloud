@@ -59,6 +59,48 @@ void printPrefixToFileMap(
   }
 }
 
+void initialize_cache(std::unordered_map<std::string, tablet_data> &cache, const std::string &data_file_location)
+{
+  // Open the directory
+  DIR *dir = opendir(data_file_location.c_str());
+  if (dir)
+  {
+    struct dirent *entry;
+    struct stat entry_stat;
+
+    // Iterate over each entry in the directory
+    while ((entry = readdir(dir)) != nullptr)
+    {
+      std::string file_name = entry->d_name;
+      std::string full_path = data_file_location + "/" + file_name;
+
+      // Skip "." and ".." entries
+      if (file_name != "." && file_name != "..")
+      {
+        // Use stat to check if the entry is a file
+        if (stat(full_path.c_str(), &entry_stat) == 0)
+        {
+          if (S_ISREG(entry_stat.st_mode)) // Check if it is a regular file
+          {
+            tablet_data new_tablet;
+            cache[file_name] = new_tablet;
+          }
+        }
+        else
+        {
+          std::cerr << "Failed to get stats for " << full_path << std::endl;
+        }
+      }
+    }
+    // Close the directory
+    closedir(dir);
+  }
+  else
+  {
+    std::cerr << "Failed to open directory: " << data_file_location << std::endl;
+  }
+}
+
 int main(int argc, char *argv[])
 {
   // Check if there are enough command-line arguments
@@ -152,28 +194,14 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
-  // Initialize cache for handling file operations
-  DIR *dir = opendir(data_file_location.c_str());
-  if (dir)
-  {
-    struct dirent *entry;
-    // Iterate over each entry in the directory
-    while ((entry = readdir(dir)) != nullptr)
-    {
-      string file_name = entry->d_name;
-      // Skip "." and ".." entries
-      if (file_name != "." && file_name != "..")
-      {
-        tablet_data new_tablet;
-        cache[file_name] = new_tablet;
-      }
-    }
-    // Close the directory
-    closedir(dir);
-  }
+  // INIT the cache.
+  initialize_cache(cache, data_file_location);
 
   // Load data to cache
   load_cache(cache, data_file_location);
+
+  // Perform Recovery
+  recover(cache, data_file_location);
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
