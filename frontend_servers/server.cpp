@@ -389,9 +389,8 @@ void *handle_connection(void *arg)
           std::cout << "Sent response successfully, bytes sent: " << bytes_sent << std::endl;
         }
       }
-
-      // GET: rendering login page
     }
+    // GET: rendering login page
     else if (uri == "/login" && method == "GET")
     {
       cout << "in render login" << endl;
@@ -424,8 +423,8 @@ void *handle_connection(void *arg)
       }
 
       // Check if user exists
-      F_2_B_Message check_user_msg = construct_msg(1, username + "_info", "", "", "", "", 0);
-      F_2_B_Message user_existence_response = send_and_receive_msg(fd, backend_serveraddr_str, check_user_msg);
+      F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "password", "", "", "", 0);
+      F_2_B_Message user_existence_response = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
       if (user_existence_response.status == 1 && strip(user_existence_response.errorMessage) == "Rowkey does not exist")
       {
@@ -438,6 +437,8 @@ void *handle_connection(void *arg)
                                content_length + "\r\n"
                                                 "\r\n";
         http_response += content;
+
+        cout << http_response << endl;
 
         ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
         if (bytes_sent < 0)
@@ -453,9 +454,11 @@ void *handle_connection(void *arg)
       {
         // User exists, check password
         string actual_password = user_existence_response.value;
+        cout << actual_password << endl;
 
         if (password == actual_password)
         {
+          cout << "Password matches.." << endl;
           // Password matches, redirect to home page
           string redirect_to = "http://" + g_serveraddr_str + "/home";
           redirect(client_fd, redirect_to);
@@ -506,7 +509,18 @@ void *handle_connection(void *arg)
         }
       }
     }
-
+    // GET: rendering home page
+    else if (uri == "/home" && method == "GET")
+    {
+      cout << "in render home" << endl;
+      ifstream file("html_files/home.html");
+      string content((istreambuf_iterator<char>(file)),
+                     istreambuf_iterator<char>());
+      file.close();
+      string response =
+          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
+      send(client_fd, response.c_str(), response.length(), 0);
+    }
     else
     {
       string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
