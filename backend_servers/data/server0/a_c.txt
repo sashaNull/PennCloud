@@ -1,0 +1,46 @@
+adam_c@/tasks/ items [F@todo_list.txt;;F@meeting_notes.docx]
+adam_s@/ items [D@projects]
+alice99@/documents/resume.pdf content helloworldtryhackme
+adam_s@/projects/proposal.docx content VGhpcyBpcyBhIG5ldyBwcm9qZWN0IGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBwcm9qZWN0cyBhcmUgYWxyZWFkeSBkZWFsLg==
+charlie_g@/projects/budget.xlsx content VGhpcyBpcyBhIG5ldyBjb3JyZXNwb25kaW5nIGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBidWRnZXQu
+adam_c@/tasks/meeting_notes.docx contentVGhpcyBpcyBhIG5ldyBtZWV0aW5nIG5vdGVzLg== 
+anna_m@/personal/journal.txt content VGhpcyBpcyBhIG5ldyBqb3VybmFsIG1vZGVsIG9yIGJpbmFyeSB3aXRoIGl0Lg==
+adam_s@/projects/timeline.pdf content VGhpcyBpcyBhIG5ldyB0aW1lbGluZSBmaWxlIGluIHRoaXMgZW5kIGNhc2Ugb2YgdGltZWxpbmUgcHJlc2VudGF0aW9uLg==
+carol_d@/personal/diary.txt content mydiary
+amber_j@/projects/ items [F@proposal.docx;;F@budget.xlsx;;F@timeline.pdf]
+claire_s@/ items [D@documents]
+amber_j@/ items [D@projects]
+adam_c@/ items [D@tasks]
+carol_d@/ items [D@personal]
+charlie_g@/projects/timeline.pdf content VGhpcyBpcyBhIG5ldyB0aW1lbGluZSBmaWxlIGluIHRoaXMgZW5kIGNhc2Ugb2YgdGltZWxpbmUgcHJlc2VudGF0aW9uLg==
+charlie_g@/ items [D@projects]
+amber_j@/projects/proposal.docx content VGhpcyBpcyBhIG5ldyBwcm9qZWN0IGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBwcm9qZWN0cyBhcmUgYWxyZWFkeSBkZWFsLg==
+claire_s@/documents/cover_letter.pdf contentVGhpcyBpcyBhIG5ldyBjb3ZlciBsZWFkZXIgZG9jeC4= 
+carol_d@/personal/photos.zip content U29ycnksIEkgY2Fubm90IG5lZWQgdG8gYXBwIHNpbWlsYXIgcGhvdG9zLg==
+anna_m@/personal/photos.zip content U29ycnksIEkgY2Fubm90IG5lZWQgdG8gYXBwIHNpbWlsYXIgcGhvdG9zLg==
+adam_c@/tasks/todo_list.txt contentVGhpcyBpcyBhIG5ldyB0b2RvIGxpc3Qu 
+carol_d@/personal/ items [F@diary.txt;;F@photos.zip]
+benjamin_l@/projects/proposal.docx content VGhpcyBpcyBhIG5ldyBwcm9qZWN0IGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBwcm9qZWN0cyBhcmUgYWxyZWFkeSBkZWFsLg==
+anna_m@/personal/ items [F@journal.txt;;F@photos.zip]
+anna_m@/ items [D@personal]
+benjamin_l@/projects/timeline.pdf content VGhpcyBpcyBhIG5ldyB0aW1lbGluZSBmaWxlIGluIHRoaXMgZW5kIGNhc2Ugb2YgdGltZWxpbmUgcHJlc2VudGF0aW9uLg==
+benjamin_l@/ items [D@projects]
+charlie_g@/projects/ items [F@proposal.docx;;F@budget.xlsx;;F@timeline.pdf]
+alison_r@/reports/ items [F@sales_report.xlsx;;F@analysis.pdf]
+alison_r@/reports/analysis.pdf contentVGhpcyBpcyBhIG5ldyBhbmltYXNpYyBwcm9kdWN0aW9uIGluIHRoZSBkYXRhIHByb3ZpZGVycy4= 
+brian_f@/work/presentation.pptx content VGhpcyBpcyBhIG5ldyBjb250ZW50IGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBwcmVzZW50YXRpb24gcGVyc29uYWwu
+alison_r@/reports/sales_report.xlsx contentVGhpcyBpcyBhIG5ldyBzYWxlcyByb3V0ZXIgaW4gdGhpcyBlbmQgY2FzZSBvZiBzYWxlcyByZXBvcnQu 
+benjamin_l@/projects/ items [F@proposal.docx;;F@budget.xlsx;;F@timeline.pdf]
+amber_j@/projects/timeline.pdf content VGhpcyBpcyBhIG5ldyB0aW1lbGluZSBmaWxlIGluIHRoaXMgZW5kIGNhc2Ugb2YgdGltZWxpbmUgcHJlc2VudGF0aW9uLg==
+brian_f@/work/report.docx content VGhpcyBpcyBhIG5ldyByZXBvcnQu
+charlie_g@/projects/proposal.docx content VGhpcyBpcyBhIG5ldyBwcm9qZWN0IGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBwcm9qZWN0cyBhcmUgYWxyZWFkeSBkZWFsLg==
+brian_f@/work/ items [F@report.docx;;F@presentation.pptx]
+claire_s@/documents/resume.docx contentVGhpcyBpcyBhIG5ldyByZXN1bWUgcGRmIGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBhY3Rpb24gcHJvZmlsZXMgYXJlIGNvbnN0cnVjdGlvbi4= 
+benjamin_l@/projects/budget.xlsx content VGhpcyBpcyBhIG5ldyBjb3JyZXNwb25kaW5nIGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBidWRnZXQu
+alice99@/ items [D@documents]
+adam_s@/projects/budget.xlsx content VGhpcyBpcyBhIG5ldyBjb3JyZXNwb25kaW5nIGZpbGUgaW4gdGhpcyBlbmQgY2FzZSBvZiBidWRnZXQu
+adam_s@/projects/ items [F@proposal.docx;;F@budget.xlsx;;F@timeline.pdf]
+alison_r@/ items [D@reports]
+alice99@/documents/ items [F@resume.pdf;;F@cover_letter.docx]
+claire_s@/documents/ items [F@resume.docx;;F@cover_letter.pdf]
+brian_f@/ items [D@work]

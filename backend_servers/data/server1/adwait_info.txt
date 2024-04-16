@@ -1,2 +1,0 @@
-name:adwait
-pass:123
