@@ -1,4 +1,0 @@
-firstName:Emma
-lastName:Jin
-email:mqjin@seas.upenn.edu
-password:123456
