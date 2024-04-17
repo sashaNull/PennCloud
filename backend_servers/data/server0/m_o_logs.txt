@@ -1,0 +1,4 @@
+2|muskaanberiwal_info|firstName|Muskaan||0|
+2|muskaanberiwal_info|lastName|Beriwal||0|
+2|muskaanberiwal_info|email|mberiwal13@gmail.com||0|
+2|muskaanberiwal_info|password|pass@123||0|
