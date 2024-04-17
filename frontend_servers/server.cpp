@@ -521,6 +521,115 @@ void *handle_connection(void *arg)
           "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
       send(client_fd, response.c_str(), response.length(), 0);
     }
+    // GET: rendering reset-password page
+    else if (uri == "/reset-password" && method == "GET")
+    {
+      // Serve the reset password page HTML
+      ifstream file("html_files/reset_password.html");
+      string content((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+      file.close();
+      string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
+      send(client_fd, response.c_str(), response.length(), 0);
+    }
+    // POST: reset password
+    else if (uri == "/reset-password" && method == "POST")
+    {
+      // Parse out formData
+      map<string, string> form_data = parse_json_string_to_map(body);
+      string username = form_data["username"];
+      string oldPassword = form_data["oldPassword"];
+      string newPassword = form_data["newPassword"];
+
+      // Send request to backend and receive response
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      int fd = socket(PF_INET, SOCK_STREAM, 0);
+      if (fd == -1)
+      {
+        cerr << "Socket creation failed." << endl;
+        exit(EXIT_FAILURE);
+      }
+
+      // Check the response and parse accordingly
+      F_2_B_Message msg_to_send = construct_msg(4, username + "_info", "password", oldPassword, newPassword, "", 0);
+      F_2_B_Message reset_request_response = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      if (reset_request_response.status == 1 && strip(reset_request_response.errorMessage) == "Rowkey does not exist")
+      {
+        // User does not exist
+        string content = "{\"error\":\"User does not exist\"}";
+        string content_length = to_string(content.length());
+        string http_response = "HTTP/1.1 404 Not Found\r\n"
+                               "Content-Type: application/json\r\n"
+                               "Content-Length: " +
+                               content_length + "\r\n"
+                                                "\r\n";
+        http_response += content;
+
+        cout << http_response << endl;
+
+        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
+        if (bytes_sent < 0)
+        {
+          cerr << "Failed to send response" << endl;
+        }
+        else
+        {
+          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
+        }
+      }
+      else if (reset_request_response.status == 1 && strip(reset_request_response.errorMessage) == "Current value is not v1")
+      {
+        // Old password is wrong
+        string content = "{\"error\":\"Current password is wrong!\"}";
+        string content_length = to_string(content.length());
+        string http_response = "HTTP/1.1 401 Unauthorized\r\n"
+                               "Content-Type: application/json\r\n"
+                               "Content-Length: " +
+                               content_length + "\r\n"
+                                                "\r\n";
+        http_response += content;
+
+        cout << http_response << endl;
+
+        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
+        if (bytes_sent < 0)
+        {
+          cerr << "Failed to send response" << endl;
+        }
+        else
+        {
+          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
+        }
+      }
+      else if (reset_request_response.status == 0)
+      {
+        // Password reset successful, redirect to login page
+        string redirect_to = "http://" + g_serveraddr_str + "/login";
+        redirect(client_fd, redirect_to);
+      }
+      else
+      {
+        // Error in fetching user
+        string content = "{\"error\":\"Error fetching user\"}";
+        string content_length = to_string(content.length());
+        string http_response = "HTTP/1.1 500 Internal Server Error\r\n"
+                               "Content-Type: application/json\r\n"
+                               "Content-Length: " +
+                               content_length + "\r\n"
+                                                "\r\n";
+        http_response += content;
+
+        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
+        if (bytes_sent < 0)
+        {
+          cerr << "Failed to send response" << endl;
+        }
+        else
+        {
+          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
+        }
+      }
+    }
     else
     {
       string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
