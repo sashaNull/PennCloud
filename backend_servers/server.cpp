@@ -276,7 +276,7 @@ sockaddr_in parse_address(char *raw_line)
 
   // Parse data file location
   data_file_location =
-      strtok(NULL, "\n"); // Assuming `data_file_location` is a global variable
+      strtok(NULL, ","); // Assuming `data_file_location` is a global variable
 
   return addr;
 }

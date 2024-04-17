@@ -3,4 +3,3 @@ To run a server:
 
 TODO:
 1. Cannot hardcode values in get_file_name
-2. Saving all txt files in cache, we dont need to save log files.

@@ -1,3 +1,3 @@
-127.0.0.1:6000,./data/server0
-127.0.0.1:6001,./data/server1
-127.0.0.1:6002,./data/server2
+127.0.0.1:6000,./data/server0,a_e,f_j,u_z
+127.0.0.1:6001,./data/server1,f_j,k_o
+127.0.0.1:6002,./data/server2,k_o,p_t,u_z
