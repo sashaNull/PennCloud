@@ -2,7 +2,7 @@ TARGETS = coordinator
 
 all: $(TARGETS)
 
-coordinator: coordinator.cpp
+coordinator: coordinator.cpp helper.cpp
 	g++ $^ -lpthread -g -o $@
 
 clean::
