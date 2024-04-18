@@ -19,6 +19,7 @@ using namespace std;
 bool verbose = false;
 string g_serveraddr_str;
 int g_listen_fd;
+// TODO: global unordered_map {endpoint : html string}
 
 void sigint_handler(int signum)
 {
@@ -128,6 +129,7 @@ string parse_commands(int argc, char *argv[])
   return lines[server_index];
 }
 
+// backend
 F_2_B_Message construct_msg(int type, string rowkey, string colkey, string value, string value2, string errmsg, int status)
 {
   F_2_B_Message msg;
@@ -141,6 +143,7 @@ F_2_B_Message construct_msg(int type, string rowkey, string colkey, string value
   return msg;
 }
 
+// backend
 F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message msg)
 {
   F_2_B_Message msg_to_return;
@@ -200,6 +203,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
   return msg_to_return;
 }
 
+// frontend
 void redirect(int client_fd, std::string redirect_to)
 {
   std::string response = "HTTP/1.1 302 Found\r\n";
@@ -219,6 +223,7 @@ void *handle_connection(void *arg)
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
 
+  // TODO: frontend function
   // Receive the request
   const unsigned int BUFFER_SIZE = 4096;
   char buffer[BUFFER_SIZE];
@@ -271,9 +276,12 @@ void *handle_connection(void *arg)
     string body = string(istreambuf_iterator<char>(request_stream), {});
     cout << "body: " << body << endl;
 
+    // TODO: until here--------------------------------------------
+
     // GET: rendering signup page
     if (uri == "/signup" && method == "GET")
     {
+      // TODO: handle_get function in fronend
       ifstream file("html_files/signup.html");
       string content((istreambuf_iterator<char>(file)),
                      istreambuf_iterator<char>());
@@ -286,6 +294,7 @@ void *handle_connection(void *arg)
     }
     else if (uri == "/signup" && method == "POST")
     {
+      // TODO: handle_post function in frontend
       cout << "POST request from /signup" << endl;
       cout << request_line << endl;
 
@@ -314,6 +323,7 @@ void *handle_connection(void *arg)
         string email = form_data["email"];
         string password = form_data["password"];
 
+        // TODO: handle_put in backend
         msg_to_send = construct_msg(2, username + "_info", "firstName", firstname, "", "", 0);
         F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status != 0)
@@ -347,6 +357,7 @@ void *handle_connection(void *arg)
       }
       else if (get_response_msg.status == 0)
       {
+        // TODO: construct_http_error (content, code) in frontend
         // error: user already exists
         std::string content = "{\"error\":\"User already exists\"}";
         std::string content_length = std::to_string(content.length());
@@ -356,7 +367,7 @@ void *handle_connection(void *arg)
                                     content_length + "\r\n"
                                                      "\r\n";
         http_response += content;
-
+        // TODO: send_response in frontend
         ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
         if (bytes_sent < 0)
         {
@@ -414,6 +425,7 @@ void *handle_connection(void *arg)
       string password = form_data["password"];
 
       // Send login request to backend and receive response
+      // TODO: create_socket_to_backend in backend (maybe call in handle_post in frontend?)
       string backend_serveraddr_str = "127.0.0.1:6000";
       int fd = socket(PF_INET, SOCK_STREAM, 0);
       if (fd == -1)
