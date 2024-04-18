@@ -1,7 +1,7 @@
 // API for frontend to the coordinator
 /*
 
-From Frontend: GET rowname
+From Frontend: GET rowname type
 
 From Coordinator:
 +OK RESP 127.0.0.1:port
@@ -188,21 +188,34 @@ int main(int argc, char *argv[])
         if (strncmp(buffer, "GET ", 4) == 0)
         {
             char row_key[MAX_BUFFER_SIZE];
+            char type[MAX_BUFFER_SIZE];
+            memset(row_key, 0, MAX_BUFFER_SIZE);
+            memset(type, 0, MAX_BUFFER_SIZE);
             row_key[MAX_BUFFER_SIZE - 1] = '\0';
-            if (sscanf(buffer, "GET %1023s\r\n", row_key) != -1)
+            type[MAX_BUFFER_SIZE - 1] = '\0';
+            if (sscanf(buffer, "GET %1023s %1023s\r\n", row_key, type) != -1)
             {
-                string range = get_range_from_rowname(string(row_key));
-                pthread_mutex_lock(&map_and_list_mutex);
-                string server_with_range = get_active_server_from_range(range_to_server_map, range);
-                pthread_mutex_unlock(&map_and_list_mutex);
                 string response;
-                if (server_with_range == "")
+                if (type[0] == '\0')
                 {
-                    response = "-ERR No server for this range\r\n";
+                    response = "-ERR type not specified";
                 }
                 else
                 {
-                    response = "+OK RESP " + server_with_range + "\r\n";
+                    string reqType(type);
+                    string range = get_range_from_rowname(string(row_key));
+                    pthread_mutex_lock(&map_and_list_mutex);
+                    string server_with_range = get_active_server_from_range(range_to_server_map, range, reqType);
+                    pthread_mutex_unlock(&map_and_list_mutex);
+
+                    if (server_with_range == "")
+                    {
+                        response = "-ERR No server for this range\r\n";
+                    }
+                    else
+                    {
+                        response = "+OK RESP " + server_with_range + "\r\n";
+                    }
                 }
                 size_t n = send(client_fd, response.c_str(), response.length(), 0);
                 if (n < 0)

@@ -34,4 +34,4 @@ void *handle_heartbeat(void *arg);
 bool do_read(int client_fd, char *client_buf);
 std::string get_range_from_rowname(const std::string &rowname);
 std::string get_active_server_from_range(const std::unordered_map<std::string, std::vector<server_info *>> &range_to_server_map,
-                                         const std::string &range);
+                                         const std::string &range, std::string type);
