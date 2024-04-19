@@ -131,7 +131,8 @@ void *handle_connection(void *arg)
     if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "GET")
     {
       // Retrieve HTML content from the map
-      std::string html_content = g_endpoint_html_map["html_files/signup.html"];
+      std::string html_content = g_endpoint_html_map["signup"];
+      cout << html_content << endl;
 
       // Construct and send the HTTP response
       send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -206,7 +207,7 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/login" && html_request_map["method"] == "GET")
     {
       // Retrieve HTML content from the map
-      std::string html_content = g_endpoint_html_map["html_files/login.html"];
+      std::string html_content = g_endpoint_html_map["login"];
 
       // Construct and send the HTTP response
       send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -260,7 +261,7 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/home" && html_request_map["method"] == "GET")
     {
       // Retrieve HTML content from the map
-      std::string html_content = g_endpoint_html_map["html_files/home.html"];
+      std::string html_content = g_endpoint_html_map["home"];
 
       // Construct and send the HTTP response
       send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -269,7 +270,7 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/reset-password" && html_request_map["method"] == "GET")
     {
       // Retrieve HTML content from the map
-      std::string html_content = g_endpoint_html_map["html_files/reset_password.html"];
+      std::string html_content = g_endpoint_html_map["reset_password"];
 
       // Construct and send the HTTP response
       send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -316,7 +317,7 @@ void *handle_connection(void *arg)
     }
     else
     {
-      send_response(client_fd, 405, "Method Not Allowed", "text/html", 0);
+      send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
     }
   }
   close(client_fd);

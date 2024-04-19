@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void send_response(int client_fd, int status_code, const std::string& status_message, const std::string& content_type, const std::string& body)
+void send_response(int client_fd, int status_code, const std::string &status_message, const std::string &content_type, const std::string &body)
 {
     std::ostringstream response_stream;
     response_stream << "HTTP/1.1 " << status_code << " " << status_message << "\r\n";
@@ -23,7 +23,7 @@ void send_response(int client_fd, int status_code, const std::string& status_mes
     }
 }
 
-unordered_map<string, string> receive_parse_http_request(int client_fd, char* buffer, unsigned int buffer_size)
+unordered_map<string, string> receive_parse_http_request(int client_fd, char *buffer, unsigned int buffer_size)
 {
     cout << "Listening..." << endl;
     memset(buffer, 0, buffer_size);
@@ -75,11 +75,12 @@ unordered_map<string, string> receive_parse_http_request(int client_fd, char* bu
     result["headers"] = "";
     result["body"] = body;
 
+    cout << "end of parse" << endl;
     return result;
 }
 
-
-std::unordered_map<std::string, std::string> load_html_files() {
+std::unordered_map<std::string, std::string> load_html_files()
+{
     std::unordered_map<std::string, std::string> endpoint_html_map;
     // Define the list of endpoints and corresponding HTML file names
     std::vector<std::pair<std::string, std::string>> endpoints_html_files = {
@@ -89,30 +90,33 @@ std::unordered_map<std::string, std::string> load_html_files() {
         {"reset-password", "html_files/reset_password.html"},
     };
 
-    for (const auto& pair : endpoints_html_files) {
+    for (const auto &pair : endpoints_html_files)
+    {
         std::ifstream file(pair.second);
-        if (file) {
+        if (file)
+        {
             std::stringstream buffer;
             buffer << file.rdbuf();
             endpoint_html_map[pair.first] = buffer.str();
             file.close();
-        } else {
+        }
+        else
+        {
             std::cerr << "Failed to open HTML file: " << pair.second << std::endl;
         }
     }
     return endpoint_html_map;
 }
 
-
 void redirect(int client_fd, std::string redirect_to)
 {
-  std::string response = "HTTP/1.1 302 Found\r\n";
-  response += "Location: " + redirect_to + "\r\n";
-  response += "Content-Length: 0\r\n";
-  response += "Connection: keep-alive\r\n";
-  response += "\r\n";
+    std::string response = "HTTP/1.1 302 Found\r\n";
+    response += "Location: " + redirect_to + "\r\n";
+    response += "Content-Length: 0\r\n";
+    response += "Connection: keep-alive\r\n";
+    response += "\r\n";
 
-  send(client_fd, response.c_str(), response.size(), 0);
+    send(client_fd, response.c_str(), response.size(), 0);
 
-  std::cout << "Sent redirection response to " << redirect_to << std::endl;
+    std::cout << "Sent redirection response to " << redirect_to << std::endl;
 }

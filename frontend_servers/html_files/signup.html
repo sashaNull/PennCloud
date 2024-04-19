@@ -45,7 +45,6 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        alert("Sign up successful! You'll be redirected to the login page.");
                         window.location.href = "http://127.0.0.1:8000/login"; // Redirect to the login page
                         return;
                     }
