@@ -1,0 +1,71 @@
+Server IP: 127.0.0.1:6002
+Server Port: 6002
+Data Loc:./data/server2
+Server Index: 2
+Server Tablet Ranges:
+ka_km.txt
+kn_kz.txt
+la_lm.txt
+ln_lz.txt
+ma_mm.txt
+mn_mz.txt
+na_nm.txt
+nn_nz.txt
+oa_om.txt
+on_oz.txt
+pa_pm.txt
+pn_pz.txt
+qa_qm.txt
+qn_qz.txt
+ra_rm.txt
+rn_rz.txt
+sa_sm.txt
+sn_sz.txt
+ta_tm.txt
+tn_tz.txt
+ua_um.txt
+un_uz.txt
+va_vm.txt
+vn_vz.txt
+wa_wm.txt
+wn_wz.txt
+xa_xm.txt
+xn_xz.txt
+ya_ym.txt
+yn_yz.txt
+za_zm.txt
+zn_zz.txt
+Failed to open log file: ./data/server2/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server2/logs/yn_yz_logs.txt
+Failed to open log file: ./data/server2/logs/za_zm_logs.txt
+Failed to open log file: ./data/server2/logs/qa_qm_logs.txt
+Failed to open log file: ./data/server2/logs/vn_vz_logs.txt
+Failed to open log file: ./data/server2/logs/xn_xz_logs.txt
+Failed to open log file: ./data/server2/logs/pn_pz_logs.txt
+Failed to open log file: ./data/server2/logs/on_oz_logs.txt
+Failed to open log file: ./data/server2/logs/kn_kz_logs.txt
+Failed to open log file: ./data/server2/logs/rn_rz_logs.txt
+Failed to open log file: ./data/server2/logs/ka_km_logs.txt
+Failed to open log file: ./data/server2/logs/mn_mz_logs.txt
+Failed to open log file: ./data/server2/logs/ma_mm_logs.txt
+Failed to open log file: ./data/server2/logs/oa_om_logs.txt
+Failed to open log file: ./data/server2/logs/ln_lz_logs.txt
+Failed to open log file: ./data/server2/logs/qn_qz_logs.txt
+Failed to open log file: ./data/server2/logs/wa_wm_logs.txt
+Failed to open log file: ./data/server2/logs/ra_rm_logs.txt
+Failed to open log file: ./data/server2/logs/sa_sm_logs.txt
+Failed to open log file: ./data/server2/logs/la_lm_logs.txt
+Failed to open log file: ./data/server2/logs/sn_sz_logs.txt
+Failed to open log file: ./data/server2/logs/wn_wz_logs.txt
+Failed to open log file: ./data/server2/logs/ta_tm_logs.txt
+Failed to open log file: ./data/server2/logs/nn_nz_logs.txt
+Failed to open log file: ./data/server2/logs/un_uz_logs.txt
+Failed to open log file: ./data/server2/logs/tn_tz_logs.txt
+Failed to open log file: ./data/server2/logs/na_nm_logs.txt
+Failed to open log file: ./data/server2/logs/ua_um_logs.txt
+Failed to open log file: ./data/server2/logs/va_vm_logs.txt
+Failed to open log file: ./data/server2/logs/xa_xm_logs.txt
+Failed to open log file: ./data/server2/logs/pa_pm_logs.txt
+Failed to open log file: ./data/server2/logs/ya_ym_logs.txt
+[4] New connection
+[4] Connection closed!

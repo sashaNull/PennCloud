@@ -1,0 +1,47 @@
+Server IP: 127.0.0.1:6001
+Server Port: 6001
+Data Loc:./data/server1
+Server Index: 1
+Server Tablet Ranges:
+fa_fm.txt
+fn_fz.txt
+ga_gm.txt
+gn_gz.txt
+ha_hm.txt
+hn_hz.txt
+ia_im.txt
+in_iz.txt
+ja_jm.txt
+jn_jz.txt
+ka_km.txt
+kn_kz.txt
+la_lm.txt
+ln_lz.txt
+ma_mm.txt
+mn_mz.txt
+na_nm.txt
+nn_nz.txt
+oa_om.txt
+on_oz.txt
+Failed to open log file: ./data/server1/logs/oa_om_logs.txt
+Failed to open log file: ./data/server1/logs/na_nm_logs.txt
+Failed to open log file: ./data/server1/logs/mn_mz_logs.txt
+Failed to open log file: ./data/server1/logs/ma_mm_logs.txt
+Failed to open log file: ./data/server1/logs/ln_lz_logs.txt
+Failed to open log file: ./data/server1/logs/fa_fm_logs.txt
+Failed to open log file: ./data/server1/logs/fn_fz_logs.txt
+Failed to open log file: ./data/server1/logs/hn_hz_logs.txt
+Failed to open log file: ./data/server1/logs/ga_gm_logs.txt
+Failed to open log file: ./data/server1/logs/gn_gz_logs.txt
+Failed to open log file: ./data/server1/logs/ha_hm_logs.txt
+Failed to open log file: ./data/server1/logs/ia_im_logs.txt
+Failed to open log file: ./data/server1/logs/nn_nz_logs.txt
+Failed to open log file: ./data/server1/logs/jn_jz_logs.txt
+Failed to open log file: ./data/server1/logs/ka_km_logs.txt
+Failed to open log file: ./data/server1/logs/on_oz_logs.txt
+Failed to open log file: ./data/server1/logs/kn_kz_logs.txt
+Failed to open log file: ./data/server1/logs/in_iz_logs.txt
+Failed to open log file: ./data/server1/logs/ja_jm_logs.txt
+Failed to open log file: ./data/server1/logs/la_lm_logs.txt
+[4] New connection
+[4] Connection closed!
