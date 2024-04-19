@@ -6,6 +6,10 @@ TODO:
     Make the tablet names more spaced out like aa-ag, ah-am, etc.
     Include more servers
     Make a script to run all servers at the same time.
+
+Requirements to implement this:
+- Modify initialise_cache function so it reads from config file instead of the data directory.
+- Modify the get_file_name function so that it works with variable file names.
 Planned Deadline: 19th April
 
 2. Primary Based Replication:
