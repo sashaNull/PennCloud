@@ -132,22 +132,18 @@ void *handle_connection(void *arg)
     {
       // Retrieve HTML content from the map
       std::string html_content = g_endpoint_html_map["html_files/signup.html"];
-      // Construct and send the HTTP response using send_response function
-      send_response(client_fd, 200, "OK", "text/html", html_content);
 
-    // POST: new user signup
+      // Construct and send the HTTP response
+      send_response(client_fd, 200, "OK", "text/html", html_content);
     }
+    // POST: new user signup
     else if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "POST")
     {
-      // TODO: handle_post function in frontend
-      cout << "POST request from /signup" << endl;
-
       // Parse out formData
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
 
       // check if user exists with get
-      // TODO: create_socket()
       string backend_serveraddr_str = "127.0.0.1:6000";
 
       F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "password", "", "", "", 0);
@@ -155,14 +151,12 @@ void *handle_connection(void *arg)
 
       if (get_response_msg.status == 1 && strip(get_response_msg.errorMessage) == "Rowkey does not exist")
       {
-        cout << "in if" << endl;
         // Send new user data to backend and receive response
         string firstname = form_data["firstName"];
         string lastname = form_data["lastName"];
         string email = form_data["email"];
         string password = form_data["password"];
 
-        // TODO: handle_put() in backend
         msg_to_send = construct_msg(2, username + "_info", "firstName", firstname, "", "", 0);
         F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status != 0)
@@ -176,6 +170,7 @@ void *handle_connection(void *arg)
         {
           cerr << "Error in PUT to backend" << endl;
         }
+
         msg_to_send = construct_msg(2, username + "_info", "email", email, "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status != 0)
@@ -196,191 +191,88 @@ void *handle_connection(void *arg)
       }
       else if (get_response_msg.status == 0)
       {
-        // TODO: construct_http_error (content, code) in frontend
-        // error: user already exists
+        // error: user already exists - Construct and send the HTTP response
         std::string content = "{\"error\":\"User already exists\"}";
-        std::string content_length = std::to_string(content.length());
-        std::string http_response = "HTTP/1.1 409 Conflict\r\n"
-                                    "Content-Type: application/json\r\n"
-                                    "Content-Length: " +
-                                    content_length + "\r\n"
-                                                     "\r\n";
-        http_response += content;
-        // TODO: send_response in frontend
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          std::cerr << "Failed to send response" << std::endl;
-        }
-        else
-        {
-          std::cout << "Sent response successfully, bytes sent: " << bytes_sent << std::endl;
-        }
+        send_response(client_fd, 409, "Conflict", "application/json", content);
       }
       else
       {
-        // error: signup failed
+        // error: signup failed - Construct and send the HTTP response
         std::string content = "{\"error\":\"Signup Failed\"}";
-        std::string content_length = std::to_string(content.length());
-        std::string http_response = "HTTP/1.1 400 Bad Request\r\n"
-                                    "Content-Type: application/json\r\n"
-                                    "Content-Length: " +
-                                    content_length + "\r\n"
-                                                     "\r\n";
-        http_response += content;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          std::cerr << "Failed to send response" << std::endl;
-        }
-        else
-        {
-          std::cout << "Sent response successfully, bytes sent: " << bytes_sent << std::endl;
-        }
+        send_response(client_fd, 400, "Bad Request", "application/json", content);
       }
     }
     // GET: rendering login page
     else if (html_request_map["uri"] == "/login" && html_request_map["method"] == "GET")
     {
-      cout << "in render login" << endl;
-      ifstream file("html_files/login.html");
-      string content((istreambuf_iterator<char>(file)),
-                     istreambuf_iterator<char>());
-      file.close();
-      string response =
-          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
-      send(client_fd, response.c_str(), response.length(), 0);
+      // Retrieve HTML content from the map
+      std::string html_content = g_endpoint_html_map["html_files/login.html"];
+
+      // Construct and send the HTTP response
+      send_response(client_fd, 200, "OK", "text/html", html_content);
     }
     // POST: user login
     else if (html_request_map["uri"] == "/login" && html_request_map["method"] == "POST")
     {
-      cout << "POST request to /login" << endl;
-      cout << "body: " << html_request_map["body"] << endl;
-
       // Parse out formData
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
       string password = form_data["password"];
 
-      // Send login request to backend and receive response
-      // TODO: create_socket_to_backend in backend (maybe call in handle_post in frontend?)
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      int fd = socket(PF_INET, SOCK_STREAM, 0);
-      if (fd == -1)
-      {
-        cerr << "Socket creation failed." << endl;
-        exit(EXIT_FAILURE);
-      }
-
       // Check if user exists
+      string backend_serveraddr_str = "127.0.0.1:6000";
+
       F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "password", "", "", "", 0);
       F_2_B_Message user_existence_response = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
       if (user_existence_response.status == 1 && strip(user_existence_response.errorMessage) == "Rowkey does not exist")
       {
-        // User does not exist
+        // User does not exist - Construct and send the HTTP response
         string content = "{\"error\":\"User does not exist\"}";
-        string content_length = to_string(content.length());
-        string http_response = "HTTP/1.1 404 Not Found\r\n"
-                               "Content-Type: application/json\r\n"
-                               "Content-Length: " +
-                               content_length + "\r\n"
-                                                "\r\n";
-        http_response += content;
-
-        cout << http_response << endl;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          cerr << "Failed to send response" << endl;
-        }
-        else
-        {
-          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-        }
+        send_response(client_fd, 404, "Not Found", "application/json", content);
       }
       else if (user_existence_response.status == 0)
       {
         // User exists, check password
         string actual_password = user_existence_response.value;
-        cout << actual_password << endl;
 
         if (password == actual_password)
         {
-          cout << "Password matches.." << endl;
           // Password matches, redirect to home page
           string redirect_to = "http://" + g_serveraddr_str + "/home";
           redirect(client_fd, redirect_to);
         }
         else
         {
-          // Password is incorrect
+          // Password is incorrect- Construct and send the HTTP response
           string content = "{\"error\":\"Incorrect password\"}";
-          string content_length = to_string(content.length());
-          string http_response = "HTTP/1.1 401 Unauthorized\r\n"
-                                 "Content-Type: application/json\r\n"
-                                 "Content-Length: " +
-                                 content_length + "\r\n"
-                                                  "\r\n";
-          http_response += content;
-
-          ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-          if (bytes_sent < 0)
-          {
-            cerr << "Failed to send response" << endl;
-          }
-          else
-          {
-            cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-          }
+          send_response(client_fd, 401, "Unauthorized", "application/json", content);
         }
       }
       else
       {
-        // Error in checking user existence
+        // Error in checking user existence - Construct and send the HTTP response
         string content = "{\"error\":\"Error checking user existence\"}";
-        string content_length = to_string(content.length());
-        string http_response = "HTTP/1.1 500 Internal Server Error\r\n"
-                               "Content-Type: application/json\r\n"
-                               "Content-Length: " +
-                               content_length + "\r\n"
-                                                "\r\n";
-        http_response += content;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          cerr << "Failed to send response" << endl;
-        }
-        else
-        {
-          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-        }
+        send_response(client_fd, 500, "Internal Server Error", "application/json", content);
       }
     }
     // GET: rendering home page
     else if (html_request_map["uri"] == "/home" && html_request_map["method"] == "GET")
     {
-      cout << "in render home" << endl;
-      ifstream file("html_files/home.html");
-      string content((istreambuf_iterator<char>(file)),
-                     istreambuf_iterator<char>());
-      file.close();
-      string response =
-          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
-      send(client_fd, response.c_str(), response.length(), 0);
+      // Retrieve HTML content from the map
+      std::string html_content = g_endpoint_html_map["html_files/home.html"];
+
+      // Construct and send the HTTP response
+      send_response(client_fd, 200, "OK", "text/html", html_content);
     }
     // GET: rendering reset-password page
     else if (html_request_map["uri"] == "/reset-password" && html_request_map["method"] == "GET")
     {
-      // Serve the reset password page HTML
-      ifstream file("html_files/reset_password.html");
-      string content((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-      file.close();
-      string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
-      send(client_fd, response.c_str(), response.length(), 0);
+      // Retrieve HTML content from the map
+      std::string html_content = g_endpoint_html_map["html_files/reset_password.html"];
+
+      // Construct and send the HTTP response
+      send_response(client_fd, 200, "OK", "text/html", html_content);
     }
     // POST: reset password
     else if (html_request_map["uri"] == "/reset-password" && html_request_map["method"] == "POST")
@@ -391,66 +283,23 @@ void *handle_connection(void *arg)
       string oldPassword = form_data["oldPassword"];
       string newPassword = form_data["newPassword"];
 
-      // Send request to backend and receive response
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      int fd = socket(PF_INET, SOCK_STREAM, 0);
-      if (fd == -1)
-      {
-        cerr << "Socket creation failed." << endl;
-        exit(EXIT_FAILURE);
-      }
-
       // Check the response and parse accordingly
+      string backend_serveraddr_str = "127.0.0.1:6000";
+
       F_2_B_Message msg_to_send = construct_msg(4, username + "_info", "password", oldPassword, newPassword, "", 0);
       F_2_B_Message reset_request_response = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
       if (reset_request_response.status == 1 && strip(reset_request_response.errorMessage) == "Rowkey does not exist")
       {
-        // User does not exist
+        // User does not exist - Construct and send the HTTP response
         string content = "{\"error\":\"User does not exist\"}";
-        string content_length = to_string(content.length());
-        string http_response = "HTTP/1.1 404 Not Found\r\n"
-                               "Content-Type: application/json\r\n"
-                               "Content-Length: " +
-                               content_length + "\r\n"
-                                                "\r\n";
-        http_response += content;
-
-        cout << http_response << endl;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          cerr << "Failed to send response" << endl;
-        }
-        else
-        {
-          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-        }
+        send_response(client_fd, 404, "Not Found", "application/json", content);
       }
       else if (reset_request_response.status == 1 && strip(reset_request_response.errorMessage) == "Current value is not v1")
       {
-        // Old password is wrong
+        // Old password is wrong - Construct and send the HTTP response
         string content = "{\"error\":\"Current password is wrong!\"}";
-        string content_length = to_string(content.length());
-        string http_response = "HTTP/1.1 401 Unauthorized\r\n"
-                               "Content-Type: application/json\r\n"
-                               "Content-Length: " +
-                               content_length + "\r\n"
-                                                "\r\n";
-        http_response += content;
-
-        cout << http_response << endl;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          cerr << "Failed to send response" << endl;
-        }
-        else
-        {
-          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-        }
+        send_response(client_fd, 401, "Unauthorized", "application/json", content);
       }
       else if (reset_request_response.status == 0)
       {
@@ -460,34 +309,16 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // Error in fetching user
+        // Error in fetching user - Construct and send the HTTP response
         string content = "{\"error\":\"Error fetching user\"}";
-        string content_length = to_string(content.length());
-        string http_response = "HTTP/1.1 500 Internal Server Error\r\n"
-                               "Content-Type: application/json\r\n"
-                               "Content-Length: " +
-                               content_length + "\r\n"
-                                                "\r\n";
-        http_response += content;
-
-        ssize_t bytes_sent = send(client_fd, http_response.c_str(), http_response.size(), 0);
-        if (bytes_sent < 0)
-        {
-          cerr << "Failed to send response" << endl;
-        }
-        else
-        {
-          cout << "Sent response successfully, bytes sent: " << bytes_sent << endl;
-        }
+        send_response(client_fd, 500, "Internal Server Error", "application/json", content);
       }
     }
     else
     {
-      string response = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";
-      send(client_fd, response.c_str(), response.length(), 0);
+      send_response(client_fd, 405, "Method Not Allowed", "text/html", 0);
     }
   }
-  cout << "Closing connection" << endl;
   close(client_fd);
   return nullptr;
 }
@@ -502,6 +333,9 @@ int main(int argc, char *argv[])
 
   // install sigint handler
   install_sigint_handler();
+
+  // read and save html files
+  g_endpoint_html_map = load_html_files();
 
   // parse commands
   // <ip>:<port> string for future use

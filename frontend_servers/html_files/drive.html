@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive</title>
+</head>
+
+<body>
+    <h1>Drive</h1>
+
+    <!-- Upload File Form -->
+    <h2>Upload File</h2>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="username" value="username_placeholder">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <!-- Delete File Form -->
+    <h2>Delete File</h2>
+    <form id="deleteForm" action="/delete" method="post">
+        <input type="hidden" name="username" value="username_placeholder">
+        <input type="text" name="filename" placeholder="Enter filename">
+        <input type="submit" value="Delete">
+    </form>
+
+    <!-- Download File Form -->
+    <h2>Download File</h2>
+    <form id="downloadForm" action="/download" method="get">
+        <input type="hidden" name="username" value="username_placeholder">
+        <input type="text" name="filename" placeholder="Enter filename">
+        <input type="submit" value="Download">
+    </form>
+
+    <!-- Move/Rename File or Folder Form -->
+    <h2>Move/Rename File or Folder</h2>
+    <form id="moveRenameForm" action="/move-rename" method="post">
+        <input type="hidden" name="username" value="username_placeholder">
+        <input type="text" name="oldName" placeholder="Enter old name">
+        <input type="text" name="newName" placeholder="Enter new name">
+        <input type="submit" value="Move/Rename">
+    </form>
+
+    <!-- Create Folder Form -->
+    <h2>Create Folder</h2>
+    <form id="createFolderForm" action="/create-folder" method="post">
+        <input type="hidden" name="username" value="username_placeholder">
+        <input type="text" name="folderName" placeholder="Enter folder name">
+        <input type="submit" value="Create Folder">
+    </form>
+</body>
+
+</html>
