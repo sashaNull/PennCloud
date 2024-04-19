@@ -4,6 +4,9 @@
 // Includes custom utility functions
 // #include "../utils/utils.h"
 #include "utils.h"
+#include <cmath>
+
+#define NUM_SPLITS 2
 
 // Namespace declaration for convenience
 using namespace std;
@@ -17,6 +20,7 @@ int listen_fd;             // File descriptor for the listening socket
 bool verbose = false;      // Verbosity flag for debugging
 
 unordered_map<string, tablet_data> cache;
+vector<string> server_tablet_ranges;
 
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_address(char *raw_line);
@@ -100,6 +104,49 @@ void initialize_cache(std::unordered_map<std::string, tablet_data> &cache, const
   }
 }
 
+char get_next_char(char start, int offset)
+{
+  char nextChar = char(start + offset);
+  if (nextChar > 'z')
+  {
+    return 'z';
+  }
+  return nextChar;
+}
+
+vector<string> split_range(const string &range, int splits_per_char)
+{
+  char start = range[0];
+  char end = range[2];
+  int total_chars = end - start + 1;
+  int offset_per_range = 26 / splits_per_char;
+
+  vector<string> sub_ranges;
+  for (char i = start; i <= end; i++)
+  {
+    char sub_start = 'a';
+    while (sub_start <= 'z')
+    {
+      char sub_end = get_next_char(sub_start, offset_per_range - 1);
+      // cout << i << " " << sub_start << " " << sub_end << " ";
+      string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end;
+      sub_ranges.push_back(newRange);
+      sub_start = char(sub_end + 1);
+      // cout << newRange << endl;
+    }
+  }
+  return sub_ranges;
+}
+void update_server_tablet_ranges()
+{
+  vector<string> new_ranges;
+  for (const auto &range : server_tablet_ranges)
+  {
+    vector<string> subranges = split_range(range, NUM_SPLITS);
+    new_ranges.insert(new_ranges.end(), subranges.begin(), subranges.end());
+  }
+  server_tablet_ranges = new_ranges; // Update the global variable with the new ranges
+}
 int main(int argc, char *argv[])
 {
   // Check if there are enough command-line arguments
@@ -166,12 +213,18 @@ int main(int argc, char *argv[])
   // Parse configuration file and extract server address and port
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
+  update_server_tablet_ranges();
   if (verbose)
   {
     cout << "Server IP: " << server_ip << ":" << server_port << endl;
     cout << "Server Port: " << ntohs(server_sockaddr.sin_port) << endl;
     cout << "Data Loc:" << data_file_location << endl;
     cout << "Server Index: " << server_index << endl;
+    cout << "Server Tablet Ranges:\n";
+    for (const auto &range : server_tablet_ranges)
+    {
+      cout << range << "\n";
+    }
   }
 
   // Bind the socket to the server address
@@ -277,6 +330,14 @@ sockaddr_in parse_address(char *raw_line)
   // Parse data file location
   data_file_location =
       strtok(NULL, ","); // Assuming `data_file_location` is a global variable
+
+  server_tablet_ranges.clear();
+
+  // Parse tablet ranges and add to the global vector
+  while ((token = strtok(NULL, ",")) != nullptr)
+  {
+    server_tablet_ranges.push_back(string(token));
+  }
 
   return addr;
 }
