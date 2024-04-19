@@ -53,6 +53,7 @@ F_2_B_Message handle_cput(F_2_B_Message message, std::string tablet_name, std::u
 F_2_B_Message handle_delete(F_2_B_Message message, std::string tablet_name, std::unordered_map<std::string, tablet_data> &cache);
 
 std::string get_file_name(std::string row_key);
+std::string get_new_file_name(const std::string &row_key, const std::vector<std::string> &server_tablet_list);
 
 // Function prototype for reading data from client socket
 bool do_read(int client_fd, char *client_buf);

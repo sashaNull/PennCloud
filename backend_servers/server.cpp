@@ -128,15 +128,15 @@ vector<string> split_range(const string &range, int splits_per_char)
     while (sub_start <= 'z')
     {
       char sub_end = get_next_char(sub_start, offset_per_range - 1);
-      // cout << i << " " << sub_start << " " << sub_end << " ";
+
       string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end;
       sub_ranges.push_back(newRange);
       sub_start = char(sub_end + 1);
-      // cout << newRange << endl;
     }
   }
   return sub_ranges;
 }
+
 void update_server_tablet_ranges()
 {
   vector<string> new_ranges;
@@ -482,6 +482,9 @@ void *handle_connection(void *arg)
 
     string tablet_name = get_file_name(f2b_message.rowkey);
     cout << "This row is in file: " << tablet_name << endl;
+
+    string new_tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
+    cout << "This row is in new file: " << new_tablet_name << endl;
 
     // Handle message based on its type
     switch (f2b_message.type)

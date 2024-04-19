@@ -326,6 +326,39 @@ string get_file_name(string row_key)
     }
 }
 
+std::string get_new_file_name(const std::string &row_key, const std::vector<std::string> &server_tablet_list)
+{
+    if (row_key.length() < 2)
+    {
+        throw std::invalid_argument("Row key must be at least two characters long.");
+    }
+
+    // Extract first two characters of the row key
+    std::string row_key_prefix = row_key.substr(0, 2);
+
+    // Iterate over the list of tablet ranges
+    for (const std::string &range : server_tablet_list)
+    {
+        if (range.length() < 5)
+        {             // Must be at least "xx_yy"
+            continue; // Skip invalid ranges
+        }
+
+        // Extract the range start and end substrings
+        std::string range_start = range.substr(0, 2);
+        std::string range_end = range.substr(3, 2);
+
+        // Check if the row key prefix is within the range
+        if (row_key_prefix >= range_start && row_key_prefix <= range_end)
+        {
+            return range + ".txt"; // Assuming you want to return the range as part of the file name
+        }
+    }
+
+    // Default case if no match is found
+    return "Not_Found.txt";
+}
+
 void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location)
 {
     for (auto &entry : cache)
