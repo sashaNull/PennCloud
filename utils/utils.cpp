@@ -114,3 +114,24 @@ std::map<std::string,std::string> parse_json_string_to_map(const std::string jso
   }
   return to_return;
 }
+
+
+sockaddr_in get_socket_address(const string &addr_str)
+{
+  sockaddr_in addr;
+  memset(&addr, 0, sizeof(addr));
+  addr.sin_family = AF_INET;
+  // parse ip and port
+  size_t pos = addr_str.find(':');
+  string ip_str = addr_str.substr(0, pos);
+  int port = stoi(addr_str.substr(pos + 1));
+  // set ip
+  if (inet_pton(AF_INET, ip_str.c_str(), &addr.sin_addr) <= 0)
+  {
+    cerr << "Invalid IP address format." << endl;
+    return addr;
+  }
+  // set port
+  addr.sin_port = htons(static_cast<uint16_t>(port));
+  return addr;
+}

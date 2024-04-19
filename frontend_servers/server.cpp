@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include <netinet/in.h>
 #include <pthread.h>
 #include <signal.h>
@@ -14,12 +15,14 @@
 #include <vector>
 
 #include "../utils/utils.h"
+#include "./client_communication.h"
+#include "./backend_communication.h"
 using namespace std;
 
 bool verbose = false;
 string g_serveraddr_str;
 int g_listen_fd;
-// TODO: global unordered_map {endpoint : html string}
+std::unordered_map<std::string, std::string> g_endpoint_html_map;
 
 void sigint_handler(int signum)
 {
@@ -38,26 +41,6 @@ void install_sigint_handler()
     cerr << "SIGINT handling in main thread failed" << endl;
     exit(EXIT_FAILURE);
   }
-}
-
-sockaddr_in get_socket_address(const string &addr_str)
-{
-  sockaddr_in addr;
-  memset(&addr, 0, sizeof(addr));
-  addr.sin_family = AF_INET;
-  // parse ip and port
-  size_t pos = addr_str.find(':');
-  string ip_str = addr_str.substr(0, pos);
-  int port = stoi(addr_str.substr(pos + 1));
-  // set ip
-  if (inet_pton(AF_INET, ip_str.c_str(), &addr.sin_addr) <= 0)
-  {
-    cerr << "Invalid IP address format." << endl;
-    return addr;
-  }
-  // set port
-  addr.sin_port = htons(static_cast<uint16_t>(port));
-  return addr;
 }
 
 string parse_commands(int argc, char *argv[])
@@ -129,188 +112,44 @@ string parse_commands(int argc, char *argv[])
   return lines[server_index];
 }
 
-// backend
-F_2_B_Message construct_msg(int type, string rowkey, string colkey, string value, string value2, string errmsg, int status)
-{
-  F_2_B_Message msg;
-  msg.type = type;
-  msg.rowkey = rowkey;
-  msg.colkey = colkey;
-  msg.value = value;
-  msg.value2 = value2;
-  msg.errorMessage = errmsg;
-  msg.status = status;
-  return msg;
-}
-
-// backend
-F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message msg)
-{
-  F_2_B_Message msg_to_return;
-  sockaddr_in addr = get_socket_address(addr_str);
-  connect(fd, (struct sockaddr *)&addr,
-          sizeof(addr));
-  string to_send = encode_message(msg);
-  cout << "to send: " << to_send << endl;
-  ssize_t bytes_sent = send(fd, to_send.c_str(), to_send.length(), 0);
-  if (bytes_sent == -1)
-  {
-    cerr << "Sending message failed.\n";
-  }
-  else
-  {
-    cout << "Message sent successfully: " << bytes_sent << " bytes.\n";
-  }
-
-  // Receive response from the server
-  string buffer;
-  while (true)
-  {
-    const unsigned int BUFFER_SIZE = 1024;
-    char temp_buffer[BUFFER_SIZE];
-    memset(temp_buffer, 0, BUFFER_SIZE);
-    ssize_t bytes_received = recv(fd, temp_buffer, BUFFER_SIZE - 1, 0);
-
-    if (bytes_received == -1)
-    {
-      cerr << "Receiving message failed.\n";
-      continue;
-    }
-    else if (bytes_received == 0)
-    {
-      cout << "Server closed the connection.\n";
-      break;
-    }
-    else
-    {
-      temp_buffer[bytes_received] = '\0';
-      buffer += string(temp_buffer);
-    }
-
-    size_t pos;
-    while ((pos = buffer.find("\r\n")) != string::npos)
-    {
-      string line = buffer.substr(0, pos);
-      buffer.erase(0, pos + 2);
-
-      if (!line.empty() && line != "WELCOME TO THE SERVER")
-      {
-        msg_to_return = decode_message(line);
-        return msg_to_return;
-      }
-    }
-  }
-  return msg_to_return;
-}
-
-// frontend
-void redirect(int client_fd, std::string redirect_to)
-{
-  std::string response = "HTTP/1.1 302 Found\r\n";
-  response += "Location: " + redirect_to + "\r\n";
-  response += "Content-Length: 0\r\n";
-  response += "Connection: keep-alive\r\n";
-  response += "\r\n";
-
-  send(client_fd, response.c_str(), response.size(), 0);
-
-  std::cout << "Sent redirection response to " << redirect_to << std::endl;
-}
-
-// Function to handle a connection.
 void *handle_connection(void *arg)
 {
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
-
-  // TODO: frontend function
   // Receive the request
   const unsigned int BUFFER_SIZE = 4096;
   char buffer[BUFFER_SIZE];
 
+  int fd = create_socket();
+
   // Keep listening for requests
   while (true)
   {
-    cout << "Listening..." << endl;
-    memset(buffer, 0, BUFFER_SIZE);
-    ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
-    if (bytes_read <= 0)
-    {
-      if (bytes_read == 0)
-      {
-        cout << "Client closed the connection." << endl;
-      }
-      else
-      {
-        cerr << "Failed to read from socket." << endl;
-      }
-      break;
-    }
-    buffer[bytes_read] = '\0';
-    string request(buffer);
-
-    // Parse the request
-    istringstream request_stream(request);
-    string request_line;
-    getline(request_stream, request_line);
-    cout << request_line << endl;
-    string method, uri, http_version;
-    istringstream request_line_stream(request_line);
-    request_line_stream >> method >> uri >> http_version;
-
-    // Extract the headers
-    map<string, string> headers;
-    string header_line;
-    while (getline(request_stream, header_line) && header_line != "\r")
-    {
-      size_t delimiter_pos = header_line.find(':');
-      if (delimiter_pos != string::npos)
-      {
-        string header_name = header_line.substr(0, delimiter_pos);
-        string header_value = header_line.substr(delimiter_pos + 2, header_line.length() - delimiter_pos - 3);
-        headers[header_name] = header_value;
-      }
-    }
-
-    // Extract the body, if any
-    string body = string(istreambuf_iterator<char>(request_stream), {});
-    cout << "body: " << body << endl;
-
-    // TODO: until here--------------------------------------------
+    unordered_map<string, string> html_request_map = receive_parse_http_request(client_fd, buffer, BUFFER_SIZE);
 
     // GET: rendering signup page
-    if (uri == "/signup" && method == "GET")
+    if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "GET")
     {
-      // TODO: handle_get function in fronend
-      ifstream file("html_files/signup.html");
-      string content((istreambuf_iterator<char>(file)),
-                     istreambuf_iterator<char>());
-      file.close();
-      string response =
-          "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + content;
-      send(client_fd, response.c_str(), response.length(), 0);
+      // Retrieve HTML content from the map
+      std::string html_content = g_endpoint_html_map["html_files/signup.html"];
+      // Construct and send the HTTP response using send_response function
+      send_response(client_fd, 200, "OK", "text/html", html_content);
 
-      // POST: new user signup
+    // POST: new user signup
     }
-    else if (uri == "/signup" && method == "POST")
+    else if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "POST")
     {
       // TODO: handle_post function in frontend
       cout << "POST request from /signup" << endl;
-      cout << request_line << endl;
 
       // Parse out formData
-      map<string, string> form_data = parse_json_string_to_map(body);
+      map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
 
       // check if user exists with get
+      // TODO: create_socket()
       string backend_serveraddr_str = "127.0.0.1:6000";
-      int fd = socket(PF_INET, SOCK_STREAM, 0);
-      if (fd == -1)
-      {
-        cerr << "Socket creation failed.\n"
-             << endl;
-        exit(EXIT_FAILURE);
-      }
+
       F_2_B_Message msg_to_send = construct_msg(1, username + "_info", "password", "", "", "", 0);
       F_2_B_Message get_response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
@@ -323,7 +162,7 @@ void *handle_connection(void *arg)
         string email = form_data["email"];
         string password = form_data["password"];
 
-        // TODO: handle_put in backend
+        // TODO: handle_put() in backend
         msg_to_send = construct_msg(2, username + "_info", "firstName", firstname, "", "", 0);
         F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status != 0)
@@ -402,7 +241,7 @@ void *handle_connection(void *arg)
       }
     }
     // GET: rendering login page
-    else if (uri == "/login" && method == "GET")
+    else if (html_request_map["uri"] == "/login" && html_request_map["method"] == "GET")
     {
       cout << "in render login" << endl;
       ifstream file("html_files/login.html");
@@ -414,13 +253,13 @@ void *handle_connection(void *arg)
       send(client_fd, response.c_str(), response.length(), 0);
     }
     // POST: user login
-    else if (uri == "/login" && method == "POST")
+    else if (html_request_map["uri"] == "/login" && html_request_map["method"] == "POST")
     {
       cout << "POST request to /login" << endl;
-      cout << "body: " << body << endl;
+      cout << "body: " << html_request_map["body"] << endl;
 
       // Parse out formData
-      map<string, string> form_data = parse_json_string_to_map(body);
+      map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
       string password = form_data["password"];
 
@@ -522,7 +361,7 @@ void *handle_connection(void *arg)
       }
     }
     // GET: rendering home page
-    else if (uri == "/home" && method == "GET")
+    else if (html_request_map["uri"] == "/home" && html_request_map["method"] == "GET")
     {
       cout << "in render home" << endl;
       ifstream file("html_files/home.html");
@@ -534,7 +373,7 @@ void *handle_connection(void *arg)
       send(client_fd, response.c_str(), response.length(), 0);
     }
     // GET: rendering reset-password page
-    else if (uri == "/reset-password" && method == "GET")
+    else if (html_request_map["uri"] == "/reset-password" && html_request_map["method"] == "GET")
     {
       // Serve the reset password page HTML
       ifstream file("html_files/reset_password.html");
@@ -544,10 +383,10 @@ void *handle_connection(void *arg)
       send(client_fd, response.c_str(), response.length(), 0);
     }
     // POST: reset password
-    else if (uri == "/reset-password" && method == "POST")
+    else if (html_request_map["uri"] == "/reset-password" && html_request_map["method"] == "POST")
     {
       // Parse out formData
-      map<string, string> form_data = parse_json_string_to_map(body);
+      map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
       string oldPassword = form_data["oldPassword"];
       string newPassword = form_data["newPassword"];

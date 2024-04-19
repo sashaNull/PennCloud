@@ -4,12 +4,21 @@
 #include <cctype>
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <cstring>
 #include <sys/file.h>
 #include <fcntl.h>
+#include <arpa/inet.h>
+#include <dirent.h>
+#include <netinet/in.h>
+#include <pthread.h>
+#include <signal.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 
 struct F_2_B_Message
@@ -38,5 +47,7 @@ std::vector<std::string> split(const std::string& s, const std::string& delimite
 std::string strip(const std::string& str, const std::string& chars = " \t\n\r\f\v");
 
 std::map<std::string,std::string> parse_json_string_to_map(const std::string json_str);
+
+sockaddr_in get_socket_address(const string &addr_str);
 
 #endif // UTILS_H
