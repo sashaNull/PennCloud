@@ -286,46 +286,6 @@ void checkpoint_tablet(tablet_data &checkpoint_tablet_data, string tablet_name, 
     clearLogFile(data_file_location, tablet_log_file);
 }
 
-string get_file_name(string row_key)
-{
-    if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c')
-    {
-        return "a_c.txt";
-    }
-    else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f')
-    {
-        return "d_f.txt";
-    }
-    else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i')
-    {
-        return "g_i.txt";
-    }
-    else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l')
-    {
-        return "j_l.txt";
-    }
-    else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o')
-    {
-        return "m_o.txt";
-    }
-    else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r')
-    {
-        return "p_r.txt";
-    }
-    else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
-    {
-        return "s_u.txt";
-    }
-    else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u')
-    {
-        return "v_x.txt";
-    }
-    else
-    {
-        return "y_z.txt";
-    }
-}
-
 std::string get_new_file_name(const std::string &row_key, const std::vector<std::string> &server_tablet_list)
 {
     if (row_key.length() < 2)
@@ -351,7 +311,7 @@ std::string get_new_file_name(const std::string &row_key, const std::vector<std:
         // Check if the row key prefix is within the range
         if (row_key_prefix >= range_start && row_key_prefix <= range_end)
         {
-            return range + ".txt"; // Assuming you want to return the range as part of the file name
+            return range; // Assuming you want to return the range as part of the file name
         }
     }
 
@@ -379,9 +339,9 @@ void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string
     }
 }
 
-void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_Message f2b_message)
+void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_Message f2b_message, vector<string> &server_tablet_ranges)
 {
-    string tablet_name = get_file_name(f2b_message.rowkey);
+    string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     // cout << "This row is in file: " << tablet_name << endl;
 
     switch (f2b_message.type)
@@ -407,7 +367,7 @@ void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_M
     }
 }
 
-void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location)
+void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location, vector<string> &server_tablet_ranges)
 {
     // Loop over the cache
     for (auto &entry : cache)
@@ -435,11 +395,55 @@ void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &d
                 // Decode the message
                 F_2_B_Message message = decode_message(line);
                 // Replay the message
-                replay_message(cache, message);
+                replay_message(cache, message, server_tablet_ranges);
             }
         }
 
         // Close the log file
         log_file.close();
     }
+}
+
+char get_next_char(char start, int offset)
+{
+    char nextChar = char(start + offset);
+    if (nextChar > 'z')
+    {
+        return 'z';
+    }
+    return nextChar;
+}
+
+vector<string> split_range(const string &range, int splits_per_char)
+{
+    char start = range[0];
+    char end = range[2];
+    int total_chars = end - start + 1;
+    int offset_per_range = 26 / splits_per_char;
+
+    vector<string> sub_ranges;
+    for (char i = start; i <= end; i++)
+    {
+        char sub_start = 'a';
+        while (sub_start <= 'z')
+        {
+            char sub_end = get_next_char(sub_start, offset_per_range - 1);
+
+            string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end + ".txt";
+            sub_ranges.push_back(newRange);
+            sub_start = char(sub_end + 1);
+        }
+    }
+    return sub_ranges;
+}
+
+void update_server_tablet_ranges(vector<string> &server_tablet_ranges)
+{
+    vector<string> new_ranges;
+    for (const auto &range : server_tablet_ranges)
+    {
+        vector<string> subranges = split_range(range, NUM_SPLITS);
+        new_ranges.insert(new_ranges.end(), subranges.begin(), subranges.end());
+    }
+    server_tablet_ranges = new_ranges; // Update the global variable with the new ranges
 }

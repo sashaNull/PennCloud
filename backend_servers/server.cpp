@@ -6,8 +6,6 @@
 #include "utils.h"
 #include <cmath>
 
-#define NUM_SPLITS 2
-
 // Namespace declaration for convenience
 using namespace std;
 
@@ -50,103 +48,19 @@ void save_cache()
   }
 }
 
-void printPrefixToFileMap(
-    const std::map<std::string, fileRange> &prefix_to_file)
+void initialize_cache(std::unordered_map<std::string, tablet_data> &cache)
 {
-  for (const auto &entry : prefix_to_file)
+  // Iterate over each tablet range provided in the server_tablet_ranges
+  for (const std::string &tablet_range : server_tablet_ranges)
   {
-    std::cout << "Prefix: " << entry.first << std::endl;
-    std::cout << "  Range Start: " << entry.second.range_start << std::endl;
-    std::cout << "  Range End: " << entry.second.range_end << std::endl;
-    std::cout << "  Filename: " << entry.second.filename << std::endl;
+    // Initialize a new tablet data instance for each range
+    tablet_data new_tablet;
+
+    // Insert the new tablet data into the cache using the tablet range as the key
+    cache[tablet_range] = new_tablet;
   }
 }
 
-void initialize_cache(std::unordered_map<std::string, tablet_data> &cache, const std::string &data_file_location)
-{
-  // Open the directory
-  DIR *dir = opendir(data_file_location.c_str());
-  if (dir)
-  {
-    struct dirent *entry;
-    struct stat entry_stat;
-
-    // Iterate over each entry in the directory
-    while ((entry = readdir(dir)) != nullptr)
-    {
-      std::string file_name = entry->d_name;
-      std::string full_path = data_file_location + "/" + file_name;
-
-      // Skip "." and ".." entries
-      if (file_name != "." && file_name != "..")
-      {
-        // Use stat to check if the entry is a file
-        if (stat(full_path.c_str(), &entry_stat) == 0)
-        {
-          if (S_ISREG(entry_stat.st_mode)) // Check if it is a regular file
-          {
-            tablet_data new_tablet;
-            cache[file_name] = new_tablet;
-          }
-        }
-        else
-        {
-          std::cerr << "Failed to get stats for " << full_path << std::endl;
-        }
-      }
-    }
-    // Close the directory
-    closedir(dir);
-  }
-  else
-  {
-    std::cerr << "Failed to open directory: " << data_file_location << std::endl;
-  }
-}
-
-char get_next_char(char start, int offset)
-{
-  char nextChar = char(start + offset);
-  if (nextChar > 'z')
-  {
-    return 'z';
-  }
-  return nextChar;
-}
-
-vector<string> split_range(const string &range, int splits_per_char)
-{
-  char start = range[0];
-  char end = range[2];
-  int total_chars = end - start + 1;
-  int offset_per_range = 26 / splits_per_char;
-
-  vector<string> sub_ranges;
-  for (char i = start; i <= end; i++)
-  {
-    char sub_start = 'a';
-    while (sub_start <= 'z')
-    {
-      char sub_end = get_next_char(sub_start, offset_per_range - 1);
-
-      string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end;
-      sub_ranges.push_back(newRange);
-      sub_start = char(sub_end + 1);
-    }
-  }
-  return sub_ranges;
-}
-
-void update_server_tablet_ranges()
-{
-  vector<string> new_ranges;
-  for (const auto &range : server_tablet_ranges)
-  {
-    vector<string> subranges = split_range(range, NUM_SPLITS);
-    new_ranges.insert(new_ranges.end(), subranges.begin(), subranges.end());
-  }
-  server_tablet_ranges = new_ranges; // Update the global variable with the new ranges
-}
 int main(int argc, char *argv[])
 {
   // Check if there are enough command-line arguments
@@ -213,7 +127,7 @@ int main(int argc, char *argv[])
   // Parse configuration file and extract server address and port
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
-  update_server_tablet_ranges();
+  update_server_tablet_ranges(server_tablet_ranges);
   if (verbose)
   {
     cout << "Server IP: " << server_ip << ":" << server_port << endl;
@@ -247,20 +161,16 @@ int main(int argc, char *argv[])
   }
 
   // INIT the cache.
-  initialize_cache(cache, data_file_location);
+  initialize_cache(cache);
 
   // Load data to cache
   load_cache(cache, data_file_location);
 
   // Perform Recovery
-  recover(cache, data_file_location);
+  recover(cache, data_file_location, server_tablet_ranges);
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
-
-  // Create map from filenames
-  // createPrefixToFileMap(data_file_location, prefix_to_file);
-  // printPrefixToFileMap(prefix_to_file);
 
   // Accept and handle incoming connections
   while (true)
@@ -480,11 +390,8 @@ void *handle_connection(void *arg)
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
 
-    string tablet_name = get_file_name(f2b_message.rowkey);
-    cout << "This row is in file: " << tablet_name << endl;
-
-    string new_tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
-    cout << "This row is in new file: " << new_tablet_name << endl;
+    string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
+    cout << "This row is in new file: " << tablet_name << endl;
 
     // Handle message based on its type
     switch (f2b_message.type)
