@@ -38,6 +38,9 @@ F_2_B_Message decode_message(const string &serialized)
   getline(iss, token, '|');
   message.status = stoi(token);
 
+  getline(iss, token, '|');
+  message.isFromBackend = stoi(token);
+
   // errorMessage might contain '|' characters, but since it's the last field,
   // we use the remainder of the string.
   getline(iss, message.errorMessage);
@@ -50,7 +53,7 @@ std::string encode_message(F_2_B_Message f2b_message)
   ostringstream oss;
   oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
       << f2b_message.colkey << "|" << f2b_message.value << "|"
-      << f2b_message.value2 << "|" << f2b_message.status << "|"
+      << f2b_message.value2 << "|" << f2b_message.status << "|" << f2b_message.isFromBackend << "|"
       << f2b_message.errorMessage << "\r\n";
   string serialized = oss.str();
   return serialized;
@@ -64,29 +67,39 @@ void print_message(const F_2_B_Message &message)
   std::cout << "Value: " << message.value << std::endl;
   std::cout << "Value2: " << message.value2 << std::endl;
   std::cout << "Status: " << message.status << std::endl;
+  std::cout << "From Backend: " << message.isFromBackend << std::endl;
   std::cout << "ErrorMessage: " << message.errorMessage << std::endl;
 }
 
-std::vector<std::string> split(const std::string& s, const std::string& delimiter) {
+std::vector<std::string> split(const std::string &s, const std::string &delimiter)
+{
   std::vector<std::string> tokens;
   std::string token;
   size_t start = 0, end = 0;
-  if (delimiter == " ") {
+  if (delimiter == " ")
+  {
     std::istringstream stream(s);
-    while (stream >> token) {
+    while (stream >> token)
+    {
       tokens.push_back(token);
     }
-  } else {
-    while ((end = s.find(delimiter, start)) != std::string::npos) {
+  }
+  else
+  {
+    while ((end = s.find(delimiter, start)) != std::string::npos)
+    {
       token = s.substr(start, end - start);
-      if (!token.empty()) {
+      if (!token.empty())
+      {
         tokens.push_back(token);
       }
       start = end + delimiter.length();
     }
-    if (start < s.length()) {
+    if (start < s.length())
+    {
       token = s.substr(start);
-      if (!token.empty()) {
+      if (!token.empty())
+      {
         tokens.push_back(token);
       }
     }
@@ -94,19 +107,23 @@ std::vector<std::string> split(const std::string& s, const std::string& delimite
   return tokens;
 }
 
-std::string strip(const std::string& str, const std::string& chars) {
+std::string strip(const std::string &str, const std::string &chars)
+{
   size_t start = str.find_first_not_of(chars);
-  if (start == std::string::npos) return "";
+  if (start == std::string::npos)
+    return "";
   size_t end = str.find_last_not_of(chars);
   return str.substr(start, end - start + 1);
 }
 
-std::map<std::string,std::string> parse_json_string_to_map(const std::string json_str) {
-  std::map<std::string,std::string> to_return;
+std::map<std::string, std::string> parse_json_string_to_map(const std::string json_str)
+{
+  std::map<std::string, std::string> to_return;
   std::string to_strip = "{}";
   std::string stripped_str = strip(json_str, to_strip);
   std::vector<std::string> pairs = split(stripped_str, ",");
-  for (const auto& s : pairs) {
+  for (const auto &s : pairs)
+  {
     std::vector<std::string> key_value = split(s, ":");
     std::string key = strip(key_value[0], "\"");
     std::string value = strip(key_value[1], "\"");
@@ -114,7 +131,6 @@ std::map<std::string,std::string> parse_json_string_to_map(const std::string jso
   }
   return to_return;
 }
-
 
 sockaddr_in get_socket_address(const string &addr_str)
 {

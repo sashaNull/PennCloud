@@ -10,8 +10,10 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-  if (argc != 3) {
+int main(int argc, char *argv[])
+{
+  if (argc != 3)
+  {
     cerr << "Usage: " << argv[0] << " <Server IP> <Port>" << endl;
     return 1;
   }
@@ -21,7 +23,8 @@ int main(int argc, char *argv[]) {
 
   // Create a socket
   int sock = socket(AF_INET, SOCK_STREAM, 0);
-  if (sock < 0) {
+  if (sock < 0)
+  {
     cerr << "Error in socket creation" << endl;
     return 1;
   }
@@ -30,12 +33,14 @@ int main(int argc, char *argv[]) {
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = htons(server_port);
 
-  if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) <= 0) {
+  if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) <= 0)
+  {
     cerr << "Invalid address/ Address not supported" << endl;
     return 1;
   }
 
-  if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+  if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
+  {
     cerr << "Connection Failed" << endl;
     return 1;
   }
@@ -43,27 +48,36 @@ int main(int argc, char *argv[]) {
   cout << "Connected to the server. Type 'quit' to exit." << endl;
   bool readFromConnection = true;
 
-  while (true) {
-    if (readFromConnection) {
+  while (true)
+  {
+    if (readFromConnection)
+    {
       char buffer[1024] = {0};
       int bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
-      if (bytes_received <= 0) {
+      if (bytes_received <= 0)
+      {
         cout << "Server closed the connection or error occurred." << endl;
         break;
       }
       string buffer_str(buffer);
-      if (buffer_str.find('|') != string::npos) {
+      if (buffer_str.find('|') != string::npos)
+      {
         cout << "\nServer: " << endl;
         F_2_B_Message received_message = decode_message(buffer_str);
         print_message(received_message);
-      } else {
+      }
+      else
+      {
         cout << "\nServer: " << buffer << endl;
       }
-    } else {
+    }
+    else
+    {
       string input;
       cout << "> ";
       getline(cin, input);
-      if (input == "quit") {
+      if (input == "quit")
+      {
         input = input + "\r\n";
         cout << "Closing the connection" << endl;
         send(sock, input.c_str(), input.length(), 0);
@@ -78,21 +92,31 @@ int main(int argc, char *argv[]) {
       message.colkey = colkey;
       message.type = 0;
       message.status = 0;
+      message.isFromBackend = 0;
 
-      if (command == "get") {
+      if (command == "get")
+      {
         message.type = 1;
-      } else if (command == "put") {
+      }
+      else if (command == "put")
+      {
         iss >> value;
         message.value = value;
         message.type = 2;
-      } else if (command == "delete") {
+      }
+      else if (command == "delete")
+      {
         message.type = 3;
-      } else if (command == "cput") {
+      }
+      else if (command == "cput")
+      {
         iss >> value >> value2;
         message.value = value;
         message.value2 = value2;
         message.type = 4;
-      } else {
+      }
+      else
+      {
         cerr << "Unknown command" << endl;
         continue;
       }
