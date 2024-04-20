@@ -23,27 +23,9 @@ void send_response(int client_fd, int status_code, const std::string &status_mes
     }
 }
 
-unordered_map<string, string> receive_parse_http_request(int client_fd, char *buffer, unsigned int buffer_size)
+
+unordered_map<string, string> parse_http_request(const string &request)
 {
-    cout << "Listening..." << endl;
-    memset(buffer, 0, buffer_size);
-    ssize_t bytes_read = recv(client_fd, buffer, buffer_size - 1, 0);
-    if (bytes_read <= 0)
-    {
-        if (bytes_read == 0)
-        {
-            cout << "Client closed the connection." << endl;
-        }
-        else
-        {
-            cerr << "Failed to read from socket." << endl;
-        }
-        throw runtime_error("Connection closed or failed.");
-    }
-
-    buffer[bytes_read] = '\0';
-    string request(buffer);
-
     istringstream request_stream(request);
     string request_line;
     getline(request_stream, request_line);

@@ -20,6 +20,8 @@
 using namespace std;
 
 bool verbose = false;
+string g_coordinator_addr_str = "127.0.0.1:7070";
+sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
 string g_serveraddr_str;
 int g_listen_fd;
 std::unordered_map<std::string, std::string> g_endpoint_html_map;
@@ -125,7 +127,19 @@ void *handle_connection(void *arg)
   // Keep listening for requests
   while (true)
   {
-    unordered_map<string, string> html_request_map = receive_parse_http_request(client_fd, buffer, BUFFER_SIZE);
+    cout << "Listening..." << endl;
+    memset(buffer, 0, BUFFER_SIZE);
+    ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
+    if (bytes_read == -1) {
+        cerr << "Failed to read from socket." << endl;
+        continue;
+    } else if (bytes_read == 0) {
+        cout << "Client closed the connection." << endl;
+        break;
+    }
+    buffer[bytes_read] = '\0';
+    string request(buffer);
+    unordered_map<string, string> html_request_map = parse_http_request(request);
 
     // GET: rendering signup page
     if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "GET")
@@ -143,7 +157,9 @@ void *handle_connection(void *arg)
       // Parse out formData
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
-
+      
+      // TODO: coordinator
+      //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // check if user exists with get
       string backend_serveraddr_str = "127.0.0.1:6000";
 
@@ -220,6 +236,9 @@ void *handle_connection(void *arg)
       string username = form_data["username"];
       string password = form_data["password"];
 
+
+      // TODO: coordinator
+      //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check if user exists
       string backend_serveraddr_str = "127.0.0.1:6000";
 
@@ -284,6 +303,8 @@ void *handle_connection(void *arg)
       string oldPassword = form_data["oldPassword"];
       string newPassword = form_data["newPassword"];
 
+      // TODO: coordinator
+      //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check the response and parse accordingly
       string backend_serveraddr_str = "127.0.0.1:6000";
 
@@ -314,6 +335,11 @@ void *handle_connection(void *arg)
         string content = "{\"error\":\"Error fetching user\"}";
         send_response(client_fd, 500, "Internal Server Error", "application/json", content);
       }
+    }
+    else if (html_request_map["uri"] == "/" && html_request_map["method"] == "GET")
+    {
+      string redirect_to = "http://" + g_serveraddr_str + "/login";
+      redirect(client_fd, redirect_to);
     }
     else
     {
@@ -393,11 +419,10 @@ int main(int argc, char *argv[])
     {
       if ((errno == EINTR) || (errno == EAGAIN) || (errno == EWOULDBLOCK))
       {
-        // Retry if interrupted or non-blocking operation would block
         continue;
       }
       cerr << "Failed to accept new connection: " << strerror(errno) << endl;
-      break; // Break the loop on other errors
+      break;
     }
 
     pthread_t thd;
