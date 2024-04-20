@@ -23,6 +23,7 @@ Planned Deadline: 22nd April
 
 Method:
 Coordinator
+- Change the range to be dynamic inside coordinator.
 - Modify the coordinator to randomly choose a primary if the current primary is down on heartbeat.
 - If the currently primary is alive, dont change anything.
 - If coordinator has a get request, forward to any random active server for that tablet

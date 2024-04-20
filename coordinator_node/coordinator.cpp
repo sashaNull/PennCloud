@@ -19,6 +19,7 @@ int listen_fd;
 
 // Contains the mapping of which range of rownames is in what servers
 unordered_map<string, vector<server_info *>> range_to_server_map;
+unordered_map<string, server_info *> range_to_primary_map;
 pthread_mutex_t map_and_list_mutex;
 
 // Vector containing one struct per server in the config file.
@@ -52,6 +53,8 @@ void *handle_heartbeat(void *arg)
                 close(sock);
             }
         }
+        update_primary(range_to_primary_map, range_to_server_map, map_and_list_mutex);
+        print_primaries(range_to_primary_map);
         // Wait for 5 seconds before next check
         sleep(5);
     }
@@ -146,10 +149,9 @@ int main(int argc, char *argv[])
         close(listen_fd);
         exit(EXIT_FAILURE);
     }
-
-    populate_list_of_servers(config_file_location, list_of_all_servers, range_to_server_map);
-
     pthread_mutex_init(&map_and_list_mutex, NULL);
+    populate_list_of_servers(config_file_location, list_of_all_servers, range_to_server_map);
+    initialize_primaries(range_to_primary_map, range_to_server_map, map_and_list_mutex);
 
     // Add a sigint handler
     signal(SIGINT, exit_handler);
@@ -203,9 +205,9 @@ int main(int argc, char *argv[])
                 else
                 {
                     string reqType(type);
-                    string range = get_range_from_rowname(string(row_key));
+                    string range = get_range_from_rowname(string(row_key), range_to_server_map);
                     pthread_mutex_lock(&map_and_list_mutex);
-                    string server_with_range = get_active_server_from_range(range_to_server_map, range, reqType);
+                    string server_with_range = get_active_server_from_range(range_to_server_map, range, reqType, range_to_primary_map);
                     pthread_mutex_unlock(&map_and_list_mutex);
 
                     if (server_with_range == "")

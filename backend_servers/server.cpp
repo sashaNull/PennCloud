@@ -474,9 +474,3 @@ void *handle_connection(void *arg)
   }
   return nullptr;
 }
-
-/*
-TODO: a function that recovers from failure.
-This function should run on startup.
-Load cache from checkpoint file,  and replay any logged entries.
-*/

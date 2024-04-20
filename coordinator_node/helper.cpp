@@ -119,38 +119,38 @@ bool do_read(int client_fd, char *client_buf)
     return true;                            // Return true indicating successful reading
 }
 
-std::string get_range_from_rowname(const std::string &rowname)
+std::string get_range_from_rowname(const std::string &rowname, const std::unordered_map<std::string, std::vector<server_info *>> &range_to_server_map)
 {
     if (rowname.empty())
     {
         throw std::invalid_argument("Rowname cannot be empty.");
     }
+
     char first_char = tolower(rowname[0]);
-    if (first_char >= 'a' && first_char <= 'e')
+
+    for (const auto &range_pair : range_to_server_map)
     {
-        return "a_e";
+        // Extract range start and end from the key assuming the format "x_y"
+        size_t dash_pos = range_pair.first.find('_');
+        if (dash_pos == std::string::npos || dash_pos + 1 >= range_pair.first.size())
+        {
+            continue; // Skip malformed entries
+        }
+
+        char range_start = tolower(range_pair.first[0]);
+        char range_end = tolower(range_pair.first[dash_pos + 1]);
+
+        if (first_char >= range_start && first_char <= range_end)
+        {
+            return range_pair.first;
+        }
     }
-    else if (first_char >= 'f' && first_char <= 'j')
-    {
-        return "f_j";
-    }
-    else if (first_char >= 'k' && first_char <= 'o')
-    {
-        return "k_o";
-    }
-    else if (first_char >= 'p' && first_char <= 't')
-    {
-        return "p_t";
-    }
-    else if (first_char >= 'u' && first_char <= 'z')
-    {
-        return "u_z";
-    }
+
+    // No matching range found
     return "";
 }
 
-std::string get_active_server_from_range(const std::unordered_map<std::string, std::vector<server_info *>> &range_to_server_map,
-                                         const std::string &range, string type)
+std::string get_active_server_from_range(const std::unordered_map<std::string, std::vector<server_info *>> &range_to_server_map, const std::string &range, const std::string &type, std::unordered_map<std::string, server_info *> &range_to_primary_map)
 {
     auto it = range_to_server_map.find(range);
     if (it == range_to_server_map.end() || it->second.empty())
@@ -174,10 +174,122 @@ std::string get_active_server_from_range(const std::unordered_map<std::string, s
         return "";
     }
 
-    // Randomly select an active server
-    srand(time(NULL)); // Initialize random seed
-    size_t index = rand() % active_servers.size();
+    if (type == "get")
+    {
+        // Randomly select an active server if type is "get"
+        srand(time(NULL)); // Initialize random seed
+        size_t index = rand() % active_servers.size();
+        server_info *selected_server = active_servers[index];
+        return selected_server->ip + ":" + std::to_string(selected_server->port);
+    }
+    else
+    {
+        // Return the primary server for other types
+        server_info *primary_server = range_to_primary_map[range];
+        if (primary_server && primary_server->is_active)
+        {
+            return primary_server->ip + ":" + std::to_string(primary_server->port);
+        }
+        else
+        {
+            // If primary is not active, return an error or a random active server as fallback
+            std::cerr << "Primary server for range " << range << " is not active. Providing a random active server." << std::endl;
+            srand(time(NULL)); // Initialize random seed
+            size_t index = rand() % active_servers.size();
+            server_info *selected_server = active_servers[index];
+            return selected_server->ip + ":" + std::to_string(selected_server->port);
+        }
+    }
+}
 
-    server_info *selected_server = active_servers[index];
-    return selected_server->ip + ":" + std::to_string(selected_server->port);
+void print_primaries(unordered_map<string, server_info *> &range_to_primary_map)
+{
+    std::cout << "Listing primary servers for each range:" << std::endl;
+    for (const auto &entry : range_to_primary_map)
+    {
+        const std::string &range = entry.first;
+        server_info *primary_server = entry.second;
+        if (primary_server)
+        { // Check if the primary server pointer is not null
+            std::cout << "Range: " << range
+                      << " -> Primary Server: " << primary_server->ip
+                      << ":" << primary_server->port
+                      << ", Active: " << (primary_server->is_active ? "Yes" : "No") << std::endl;
+        }
+        else
+        {
+            std::cout << "Range: " << range << " -> No primary server assigned." << std::endl;
+        }
+    }
+}
+
+server_info *get_random_server_for_range(const string &range, unordered_map<string, vector<server_info *>> range_to_server_map)
+{
+    const auto it = range_to_server_map.find(range);
+    if (it != range_to_server_map.end() && !it->second.empty())
+    {
+        vector<server_info *> active_servers;
+        for (server_info *server : it->second)
+        {
+            if (server->is_active)
+                active_servers.push_back(server);
+        }
+
+        if (!active_servers.empty())
+        {
+            srand(time(NULL)); // Initialize random seed
+            size_t index = rand() % active_servers.size();
+            return active_servers[index];
+        }
+    }
+    return nullptr; // Return nullptr if no active server is found
+}
+
+void update_primary(unordered_map<string, server_info *> &range_to_primary_map, unordered_map<string, vector<server_info *>> range_to_server_map, pthread_mutex_t &map_and_list_mutex)
+{
+    pthread_mutex_lock(&map_and_list_mutex);
+    for (auto &entry : range_to_primary_map)
+    {
+        const string &range = entry.first;
+        server_info *current_primary = entry.second;
+
+        if (!current_primary->is_active)
+        {
+            server_info *new_primary = get_random_server_for_range(range, range_to_server_map);
+            if (new_primary)
+            {
+                entry.second = new_primary;
+                cout << "Updated primary for range " << range << " to server " << new_primary->ip << ":" << new_primary->port << endl;
+            }
+            else
+            {
+                cerr << "No active servers available for range " << range << endl;
+            }
+        }
+    }
+    pthread_mutex_unlock(&map_and_list_mutex);
+}
+
+void initialize_primaries(unordered_map<string, server_info *> &range_to_primary_map, unordered_map<string, vector<server_info *>> range_to_server_map, pthread_mutex_t &map_and_list_mutex)
+{
+    pthread_mutex_lock(&map_and_list_mutex); // Ensure thread safety
+
+    range_to_primary_map.clear(); // Clear existing entries to avoid duplicates
+
+    for (const auto &entry : range_to_server_map)
+    {
+        const std::string &range = entry.first;
+        const std::vector<server_info *> &servers = entry.second;
+
+        if (!servers.empty())
+        {
+            range_to_primary_map[range] = servers[0]; // Set the first server as primary
+        }
+        else
+        {
+            range_to_primary_map[range] = nullptr; // Set nullptr if no servers are available
+        }
+    }
+
+    pthread_mutex_unlock(&map_and_list_mutex);
 }
