@@ -364,25 +364,22 @@ void exit_handler(int sig)
 
 string get_tablet_range_from_row_key (string row_key)
 {
-  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c') {
-    return "a_c";
-  } else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f') {
-    return "d_f";
-  } else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i') {
-    return "g_i";
-  } else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l') {
-    return "j_l";
-  } else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o') {
-    return "m_o";
-  } else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r') {
-    return "p_r";
-  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
-    return "s_u";
-  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
-    return "v_x";
-  } else {
-    return "y_z";
+  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'b') {
+    return "a_b";
+  } else if (row_key.at(0) >= 'c' && row_key.at(0) <= 'd') {
+    return "c_d";
+  } else if (row_key.at(0) >= 'f' && row_key.at(0) <= 'j') {
+    return "f_j";
+  } else if (row_key.at(0) >= 'k' && row_key.at(0) <= 'o') {
+    return "k_o";
+  } else if (row_key.at(0) >= 'p' && row_key.at(0) <= 't') {
+    return "p_t";
+  } else if (row_key.at(0) >= 'u' && row_key.at(0) <= 'w') {
+    return "u_w";
+  } else if (row_key.at(0) >= 'x' && row_key.at(0) <= 'z') {
+    return "x_z";
   }
+  return "fasf";
 }
 
 /**
@@ -490,33 +487,26 @@ void *handle_connection(void *arg)
       cache[tablet_name].requests_since_checkpoint = 0;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
-    cout << f2b_message_for_other_server.isFromBackend << " " << f2b_message_for_other_server.type << endl;
 
     if (f2b_message_for_other_server.isFromBackend == 0 && f2b_message_for_other_server.type != 1)
     {
-      cout << "FFJASIUFJASIOJFIOAS" << endl;
       f2b_message_for_other_server.isFromBackend = 1;
       string tablet_range = get_tablet_range_from_row_key(f2b_message_for_other_server.rowkey);
-      cout << tablet_range << endl;
       for (auto other_addr : tablet_ranges_to_other_addr[tablet_range])
       {
-        char ip4[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET, &(other_addr.sin_addr), ip4, INET_ADDRSTRLEN);
-        cout << ip4 << " " << ntohs(other_addr.sin_port) << endl;
-
-
         string serialized_to_backend = encode_message(f2b_message_for_other_server);
 
         int sock = socket(AF_INET, SOCK_STREAM, 0);
         if (sock < 0)
         {
           cerr << "Error in socket creation" << endl;
+          break;
         }
-
 
         if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
         {
           cerr << "Connection Failed" << endl;
+          break;
         }
 
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
@@ -542,7 +532,7 @@ void *handle_connection(void *arg)
         {
           if (verbose)
           {
-            cout << "[" << client_fd << ", " << sock << "] S: " << "Received Response";
+            cout << "[" << client_fd << ", " << sock << "] S: " << "Received Response" << endl;
           }
         }
       
