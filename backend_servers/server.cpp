@@ -17,11 +17,12 @@ int server_index;          // Index of the server
 int listen_fd;             // File descriptor for the listening socket
 bool verbose = false;      // Verbosity flag for debugging
 
+unordered_map<string, vector<sockaddr_in>> tablet_ranges_to_other_addr{};
 unordered_map<string, tablet_data> cache;
 vector<string> server_tablet_ranges;
 
 // Function prototypes for parsing and initializing server configuration
-sockaddr_in parse_address(char *raw_line);
+sockaddr_in parse_current_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
 
 // Signal handler function for clean exit
@@ -220,7 +221,7 @@ int main(int argc, char *argv[])
  * @return sockaddr_in The parsed sockaddr_in structure representing the
  * address.
  */
-sockaddr_in parse_address(char *raw_line)
+sockaddr_in parse_current_address(char *raw_line)
 {
   // Initialize sockaddr_in structure
   sockaddr_in addr;
@@ -252,6 +253,29 @@ sockaddr_in parse_address(char *raw_line)
   return addr;
 }
 
+void parse_other_addresses(char *raw_line)
+{
+  sockaddr_in addr;
+  bzero(&addr, sizeof(addr));
+  addr.sin_family = AF_INET;
+
+  // Parse IP address
+  char *token = strtok(raw_line, ":");
+  inet_pton(AF_INET, token, &addr.sin_addr);
+
+  // Parse port number
+  token = strtok(NULL, ",");
+  addr.sin_port = htons(atoi(token));
+
+  // Parse data file location
+  strtok(NULL, ","); 
+
+  while ((token = strtok(NULL, ",")) != nullptr)
+  {
+    tablet_ranges_to_other_addr[string(token)].push_back(addr);
+  }
+}
+
 /**
  * Parses the configuration file to extract server address information.
  *
@@ -271,14 +295,18 @@ sockaddr_in parse_config_file(string config_file)
   // Read each line of the configuration file
   while (getline(config_stream, line))
   {
+    // Convert string line to C-style string
+    char raw_line[line.length() + 1];
+    strcpy(raw_line, line.c_str());
     // Check if current line corresponds to the server index
     if (i == server_index)
     {
-      // Convert string line to C-style string
-      char raw_line[line.length() + 1];
-      strcpy(raw_line, line.c_str());
       // Parse address from the line
-      server_sockaddr = parse_address(raw_line);
+      server_sockaddr = parse_current_address(raw_line);
+    }
+    else
+    {
+      parse_other_addresses(raw_line);
     }
     // Increment index counter
     i++;
@@ -332,6 +360,29 @@ void exit_handler(int sig)
   }
   // Exit the server process with success status
   exit(EXIT_SUCCESS);
+}
+
+string get_tablet_range_from_row_key (string row_key)
+{
+  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'c') {
+    return "a_c";
+  } else if (row_key.at(0) >= 'd' && row_key.at(0) <= 'f') {
+    return "d_f";
+  } else if (row_key.at(0) >= 'g' && row_key.at(0) <= 'i') {
+    return "g_i";
+  } else if (row_key.at(0) >= 'j' && row_key.at(0) <= 'l') {
+    return "j_l";
+  } else if (row_key.at(0) >= 'm' && row_key.at(0) <= 'o') {
+    return "m_o";
+  } else if (row_key.at(0) >= 'p' && row_key.at(0) <= 'r') {
+    return "p_r";
+  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
+    return "s_u";
+  } else if (row_key.at(0) >= 's' && row_key.at(0) <= 'u') {
+    return "v_x";
+  } else {
+    return "y_z";
+  }
 }
 
 /**
@@ -389,6 +440,7 @@ void *handle_connection(void *arg)
 
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
+    F_2_B_Message f2b_message_for_other_server = f2b_message; 
 
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     cout << "This row is in new file: " << tablet_name << endl;
@@ -437,6 +489,64 @@ void *handle_connection(void *arg)
       checkpoint_tablet(cache[tablet_name], tablet_name, data_file_location);
       cache[tablet_name].requests_since_checkpoint = 0;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
+    }
+    cout << f2b_message_for_other_server.isFromBackend << " " << f2b_message_for_other_server.type << endl;
+
+    if (f2b_message_for_other_server.isFromBackend == 0 && f2b_message_for_other_server.type != 1)
+    {
+      cout << "FFJASIUFJASIOJFIOAS" << endl;
+      f2b_message_for_other_server.isFromBackend = 1;
+      string tablet_range = get_tablet_range_from_row_key(f2b_message_for_other_server.rowkey);
+      cout << tablet_range << endl;
+      for (auto other_addr : tablet_ranges_to_other_addr[tablet_range])
+      {
+        char ip4[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &(other_addr.sin_addr), ip4, INET_ADDRSTRLEN);
+        cout << ip4 << " " << ntohs(other_addr.sin_port) << endl;
+
+
+        string serialized_to_backend = encode_message(f2b_message_for_other_server);
+
+        int sock = socket(AF_INET, SOCK_STREAM, 0);
+        if (sock < 0)
+        {
+          cerr << "Error in socket creation" << endl;
+        }
+
+
+        if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
+        {
+          cerr << "Connection Failed" << endl;
+        }
+
+        bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
+        if (bytes_sent < 0)
+        {
+          cerr << "Error in send(). Exiting" << endl;
+          break;
+        }
+
+        if (verbose)
+        {
+          cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_backend;
+        }
+
+        char buffer[1024] = {0};
+        size_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
+        if (bytes_received <= 0)
+        {
+          cout << "Does not receive response from other servers." << endl;
+          break;
+        }
+        else
+        {
+          if (verbose)
+          {
+            cout << "[" << client_fd << ", " << sock << "] S: " << "Received Response";
+          }
+        }
+      
+      }
     }
 
     // Encode response message
