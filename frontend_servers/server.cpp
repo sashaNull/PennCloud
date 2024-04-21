@@ -13,6 +13,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <vector>
+#include <algorithm>
 
 #include "../utils/utils.h"
 #include "./client_communication.h"
@@ -25,6 +26,18 @@ sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
 string g_serveraddr_str;
 int g_listen_fd;
 std::unordered_map<std::string, std::string> g_endpoint_html_map;
+
+std::vector<std::string> parse_items_list(const std::string &items_str)
+{
+  std::vector<std::string> items;
+  std::istringstream iss(items_str);
+  std::string item;
+  while (std::getline(iss, item, ','))
+  {
+    items.push_back(item);
+  }
+  return items;
+}
 
 void sigint_handler(int signum)
 {
@@ -130,12 +143,15 @@ void *handle_connection(void *arg)
     cout << "Listening..." << endl;
     memset(buffer, 0, BUFFER_SIZE);
     ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
-    if (bytes_read == -1) {
-        cerr << "Failed to read from socket." << endl;
-        continue;
-    } else if (bytes_read == 0) {
-        cout << "Client closed the connection." << endl;
-        break;
+    if (bytes_read == -1)
+    {
+      cerr << "Failed to read from socket." << endl;
+      continue;
+    }
+    else if (bytes_read == 0)
+    {
+      cout << "Client closed the connection." << endl;
+      break;
     }
     buffer[bytes_read] = '\0';
     string request(buffer);
@@ -157,7 +173,10 @@ void *handle_connection(void *arg)
       // Parse out formData
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string username = form_data["username"];
-      
+
+      // Convert username to lowercase
+      transform(username.begin(), username.end(), username.begin(), ::tolower);
+
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // check if user exists with get
@@ -236,6 +255,8 @@ void *handle_connection(void *arg)
       string username = form_data["username"];
       string password = form_data["password"];
 
+      // Convert username to lowercase
+      transform(username.begin(), username.end(), username.begin(), ::tolower);
 
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
@@ -303,6 +324,9 @@ void *handle_connection(void *arg)
       string oldPassword = form_data["oldPassword"];
       string newPassword = form_data["newPassword"];
 
+      // Convert username to lowercase
+      transform(username.begin(), username.end(), username.begin(), ::tolower);
+
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check the response and parse accordingly
@@ -340,6 +364,82 @@ void *handle_connection(void *arg)
     {
       string redirect_to = "http://" + g_serveraddr_str + "/login";
       redirect(client_fd, redirect_to);
+    }
+    // GET: display drive page
+    else if (html_request_map["uri"] == "/drive" && html_request_map["method"] == "GET")
+    {
+      // Retrieve HTML content from the map
+      std::string html_content = g_endpoint_html_map["drive"];
+
+      // Process the HTML content and embed dynamic data as needed
+      std::string uri_path = html_request_map["uri"];
+
+      // Extract foldername from the URI path
+      std::string foldername = uri_path.substr(1 + uri_path.find_first_of("/"));
+
+      // Construct the row key by appending "user_" to the foldername
+      std::string row_key = "user_" + foldername;
+
+      // Fetch items for the foldername from the backend
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      F_2_B_Message msg_to_send = construct_msg(1, row_key, "items", "", "", "", 0);
+      F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      if (response_msg.status == 0)
+      {
+        // Parse the response to get the list of items
+        std::vector<std::string> items = parse_items_list(response_msg.value);
+
+        // Serialize the list of items into JSON format
+        std::stringstream json_data;
+        json_data << "{";
+        json_data << "\"foldername\": \"" << foldername << "\",";
+        json_data << "\"items\": [";
+        for (size_t i = 0; i < items.size(); ++i)
+        {
+          if (i > 0)
+          {
+            json_data << ",";
+          }
+          json_data << "\"" << items[i] << "\"";
+        }
+        json_data << "]";
+        json_data << "}";
+
+        // Construct the HTML content with embedded JSON data
+        std::stringstream embedded_script;
+        embedded_script << "<script>";
+        embedded_script << "var folderData = " << json_data.str() << ";";
+        embedded_script << "function displayFolderContents() {";
+        embedded_script << "document.getElementById('folderName').innerText = folderData.foldername;";
+        embedded_script << "var itemsList = document.getElementById('itemsList');";
+        embedded_script << "itemsList.innerHTML = '';";
+        embedded_script << "folderData.items.forEach(function(item) {";
+        embedded_script << "var li = document.createElement('li');";
+        embedded_script << "var itemType = item.substring(0, 2);";
+        embedded_script << "var itemName = item.substring(2);";
+        embedded_script << "if (itemType === 'D@') {";
+        embedded_script << "li.innerHTML = '<img src=\"folder-icon.png\" alt=\"Folder\" width=\"20\" height=\"20\">' + itemName;";
+        embedded_script << "} else if (itemType === 'F@') {";
+        embedded_script << "li.innerHTML = '<img src=\"file-icon.png\" alt=\"File\" width=\"20\" height=\"20\">' + itemName;";
+        embedded_script << "}";
+        embedded_script << "itemsList.appendChild(li);";
+        embedded_script << "});";
+        embedded_script << "}";
+        embedded_script << "</script>";
+
+        // Append the embedded JavaScript to the HTML content
+        html_content << embedded_script.str();
+
+        // Send the HTTP response with the modified HTML content
+        send_response(client_fd, 200, "OK", "text/html", html_content);
+      }
+      else
+      {
+        // Error handling: send appropriate error response to the client
+        std::string error_message = "Failed to fetch items for folder " + foldername;
+        send_response(client_fd, 500, "Internal Server Error", "text/plain", error_message);
+      }
     }
     else
     {

@@ -23,7 +23,6 @@ void send_response(int client_fd, int status_code, const std::string &status_mes
     }
 }
 
-
 unordered_map<string, string> parse_http_request(const string &request)
 {
     istringstream request_stream(request);
@@ -70,7 +69,7 @@ std::unordered_map<std::string, std::string> load_html_files()
         {"login", "html_files/login.html"},
         {"home", "html_files/home.html"},
         {"reset-password", "html_files/reset_password.html"},
-    };
+        {"drive", "html_files/drive.html"}};
 
     for (const auto &pair : endpoints_html_files)
     {

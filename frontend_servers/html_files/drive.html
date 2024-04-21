@@ -5,6 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drive</title>
+    <style>
+        .folder {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .folder img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .file {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .file img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,42 +37,71 @@
     <h2>Upload File</h2>
     <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="username" value="username_placeholder">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
+        <input type="file" name="file" id="fileInput">
+        <input type="submit" value="Upload" id="uploadBtn">
     </form>
 
-    <!-- Delete File Form -->
-    <h2>Delete File</h2>
-    <form id="deleteForm" action="/delete" method="post">
-        <input type="hidden" name="username" value="username_placeholder">
-        <input type="text" name="filename" placeholder="Enter filename">
-        <input type="submit" value="Delete">
-    </form>
-
-    <!-- Download File Form -->
-    <h2>Download File</h2>
-    <form id="downloadForm" action="/download" method="get">
-        <input type="hidden" name="username" value="username_placeholder">
-        <input type="text" name="filename" placeholder="Enter filename">
-        <input type="submit" value="Download">
-    </form>
-
-    <!-- Move/Rename File or Folder Form -->
-    <h2>Move/Rename File or Folder</h2>
-    <form id="moveRenameForm" action="/move-rename" method="post">
-        <input type="hidden" name="username" value="username_placeholder">
-        <input type="text" name="oldName" placeholder="Enter old name">
-        <input type="text" name="newName" placeholder="Enter new name">
-        <input type="submit" value="Move/Rename">
-    </form>
-
-    <!-- Create Folder Form -->
+    <!-- Create Folder Button -->
     <h2>Create Folder</h2>
-    <form id="createFolderForm" action="/create-folder" method="post">
-        <input type="hidden" name="username" value="username_placeholder">
-        <input type="text" name="folderName" placeholder="Enter folder name">
-        <input type="submit" value="Create Folder">
-    </form>
+    <button id="createFolderBtn">Create Folder</button>
+
+    <!-- Folder and File Container -->
+    <div id="itemContainer"></div>
+
+    <script>
+        // Function to display popup for creating folder
+        function showCreateFolderPopup() {
+            var folderName = prompt("Enter the name of the folder:");
+            if (folderName) {
+                createFolder(folderName);
+            }
+        }
+
+        // Function to create folder icon and display on the page
+        function createFolder(folderName) {
+            var folderContainer = document.getElementById("itemContainer");
+            var folderDiv = document.createElement("div");
+            folderDiv.className = "folder";
+            var folderIcon = document.createElement("img");
+            folderIcon.src = "folder_icon.png"; // Path to folder icon image
+            folderIcon.alt = "Folder";
+            var folderNameText = document.createElement("p");
+            folderNameText.textContent = folderName;
+            folderDiv.appendChild(folderIcon);
+            folderDiv.appendChild(folderNameText);
+            folderContainer.appendChild(folderDiv);
+        }
+
+        // Function to create file icon and display on the page
+        function createFile(fileName) {
+            var fileContainer = document.getElementById("itemContainer");
+            var fileDiv = document.createElement("div");
+            fileDiv.className = "file";
+            var fileIcon = document.createElement("img");
+            fileIcon.src = "file_icon.png"; // Path to file icon image
+            fileIcon.alt = "File";
+            var fileNameText = document.createElement("p");
+            fileNameText.textContent = fileName;
+            fileDiv.appendChild(fileIcon);
+            fileDiv.appendChild(fileNameText);
+            fileContainer.appendChild(fileDiv);
+        }
+
+        // Event listener for Create Folder button
+        document.getElementById("createFolderBtn").addEventListener("click", showCreateFolderPopup);
+
+        // Event listener for Upload File button
+        document.getElementById("uploadBtn").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            var fileInput = document.getElementById("fileInput");
+            var file = fileInput.files[0];
+            if (file) {
+                // Assuming file name is unique, use it to create file on the page
+                createFile(file.name);
+            }
+        });
+    </script>
 </body>
 
 </html>
