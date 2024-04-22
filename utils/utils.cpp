@@ -48,7 +48,7 @@ F_2_B_Message decode_message(const string &serialized)
   return message;
 }
 
-std::string encode_message(F_2_B_Message f2b_message)
+string encode_message(F_2_B_Message f2b_message)
 {
   ostringstream oss;
   oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
@@ -61,24 +61,24 @@ std::string encode_message(F_2_B_Message f2b_message)
 
 void print_message(const F_2_B_Message &message)
 {
-  std::cout << "Type: " << message.type << std::endl;
-  std::cout << "Rowkey: " << message.rowkey << std::endl;
-  std::cout << "Colkey: " << message.colkey << std::endl;
-  std::cout << "Value: " << message.value << std::endl;
-  std::cout << "Value2: " << message.value2 << std::endl;
-  std::cout << "Status: " << message.status << std::endl;
-  std::cout << "From Backend: " << message.isFromBackend << std::endl;
-  std::cout << "ErrorMessage: " << message.errorMessage << std::endl;
+  cout << "Type: " << message.type << endl;
+  cout << "Rowkey: " << message.rowkey << endl;
+  cout << "Colkey: " << message.colkey << endl;
+  cout << "Value: " << message.value << endl;
+  cout << "Value2: " << message.value2 << endl;
+  cout << "Status: " << message.status << endl;
+  cout << "From Backend: " << message.isFromBackend << endl;
+  cout << "ErrorMessage: " << message.errorMessage << endl;
 }
 
-std::vector<std::string> split(const std::string &s, const std::string &delimiter)
+vector<string> split(const string &s, const string &delimiter)
 {
-  std::vector<std::string> tokens;
-  std::string token;
+  vector<string> tokens;
+  string token;
   size_t start = 0, end = 0;
   if (delimiter == " ")
   {
-    std::istringstream stream(s);
+    istringstream stream(s);
     while (stream >> token)
     {
       tokens.push_back(token);
@@ -86,7 +86,7 @@ std::vector<std::string> split(const std::string &s, const std::string &delimite
   }
   else
   {
-    while ((end = s.find(delimiter, start)) != std::string::npos)
+    while ((end = s.find(delimiter, start)) != string::npos)
     {
       token = s.substr(start, end - start);
       if (!token.empty())
@@ -107,29 +107,59 @@ std::vector<std::string> split(const std::string &s, const std::string &delimite
   return tokens;
 }
 
-std::string strip(const std::string &str, const std::string &chars)
+string strip(const string &str, const string &chars)
 {
   size_t start = str.find_first_not_of(chars);
-  if (start == std::string::npos)
+  if (start == string::npos)
     return "";
   size_t end = str.find_last_not_of(chars);
   return str.substr(start, end - start + 1);
 }
 
-std::map<std::string, std::string> parse_json_string_to_map(const std::string json_str)
+map<string, string> parse_json_string_to_map(const string json)
 {
-  std::map<std::string, std::string> to_return;
-  std::string to_strip = "{}";
-  std::string stripped_str = strip(json_str, to_strip);
-  std::vector<std::string> pairs = split(stripped_str, ",");
-  for (const auto &s : pairs)
-  {
-    std::vector<std::string> key_value = split(s, ":");
-    std::string key = strip(key_value[0], "\"");
-    std::string value = strip(key_value[1], "\"");
-    to_return[key] = value;
-  }
-  return to_return;
+    map<string, string> resultMap;
+    size_t i = 0;
+    size_t n = json.length();
+    auto skipWhitespace = [&]() {
+        while (i < n && isspace(json[i])) i++;
+    };
+    auto extractString = [&]() -> string {
+        skipWhitespace();
+        if (json[i] != '"') throw runtime_error("Expected '\"'");
+        size_t start = ++i;
+        while (i < n && json[i] != '"') {
+            if (json[i] == '\\') {
+                i++;
+            }
+            i++;
+        }
+        if (i >= n) throw runtime_error("Unterminated string");
+        string result = json.substr(start, i - start);
+        i++;
+        return result;
+    };
+    skipWhitespace();
+    if (json[i] != '{') throw runtime_error("Expected '{'");
+    i++;
+    while (true) {
+        skipWhitespace();
+        if (json[i] == '}') break;
+        string key = extractString();
+        skipWhitespace();
+        if (json[i] != ':') throw runtime_error("Expected ':' after key");
+        i++;
+        string value = extractString();
+        resultMap[key] = value;
+        skipWhitespace();
+        if (json[i] == ',') {
+            i++;
+        } else if (json[i] != '}') {
+            throw runtime_error("Expected ',' or '}'");
+        }
+    }
+    i++;
+    return resultMap;
 }
 
 sockaddr_in get_socket_address(const string &addr_str)
@@ -150,4 +180,20 @@ sockaddr_in get_socket_address(const string &addr_str)
   // set port
   addr.sin_port = htons(static_cast<uint16_t>(port));
   return addr;
+}
+
+string compute_md5_hash(const string& to_hash) {
+  MD5_CTX c;
+  MD5_Init(&c);
+  MD5_Update(&c, to_hash.c_str(), to_hash.size());
+  unsigned char digest_buffer[MD5_DIGEST_LENGTH];
+  MD5_Final(digest_buffer, &c);
+  // Convert digest to hexadecimal representation
+  string message_uid;
+  char hex_buffer[3];
+  for (int i = 0; i < MD5_DIGEST_LENGTH; ++i) {
+      sprintf(hex_buffer, "%02x", digest_buffer[i]);
+      message_uid += hex_buffer;
+  }
+  return message_uid;
 }

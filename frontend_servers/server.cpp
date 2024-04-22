@@ -18,6 +18,7 @@
 #include "../utils/utils.h"
 #include "./client_communication.h"
 #include "./backend_communication.h"
+#include "./webmail.h"
 using namespace std;
 
 bool verbose = false;
@@ -220,10 +221,14 @@ void *handle_connection(void *arg)
         {
           cerr << "Error in PUT to backend" << endl;
         }
-
         // if successful, ask browser to redirect to /login
         std::string redirect_to = "http://" + g_serveraddr_str + "/login";
         redirect(client_fd, redirect_to);
+        // TODO: put user's fields for mail and drive
+        msg_to_send = construct_msg(2, username + "_email", "inbox_items", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        msg_to_send = construct_msg(2, username + "_email", "sentbox_items", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       }
       else if (get_response_msg.status == 0)
       {
@@ -365,82 +370,209 @@ void *handle_connection(void *arg)
       string redirect_to = "http://" + g_serveraddr_str + "/login";
       redirect(client_fd, redirect_to);
     }
-    // GET: display drive page
-    else if (html_request_map["uri"] == "/drive" && html_request_map["method"] == "GET")
-    {
-      // Retrieve HTML content from the map
-      std::string html_content = g_endpoint_html_map["drive"];
-
-      // Process the HTML content and embed dynamic data as needed
-      std::string uri_path = html_request_map["uri"];
-
-      // Extract foldername from the URI path
-      std::string foldername = uri_path.substr(1 + uri_path.find_first_of("/"));
-
-      // Construct the row key by appending "user_" to the foldername
-      std::string row_key = "user_" + foldername;
-
-      // Fetch items for the foldername from the backend
+    // STARTMAIL
+    else if (html_request_map["uri"] == "/inbox" && html_request_map["method"] == "GET") {
+      F_2_B_Message msg_to_send, response_msg;
       string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send = construct_msg(1, row_key, "items", "", "", "", 0);
-      F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      if (response_msg.status == 0)
-      {
-        // Parse the response to get the list of items
-        std::vector<std::string> items = parse_items_list(response_msg.value);
-
-        // Serialize the list of items into JSON format
-        std::stringstream json_data;
-        json_data << "{";
-        json_data << "\"foldername\": \"" << foldername << "\",";
-        json_data << "\"items\": [";
-        for (size_t i = 0; i < items.size(); ++i)
-        {
-          if (i > 0)
-          {
-            json_data << ",";
-          }
-          json_data << "\"" << items[i] << "\"";
-        }
-        json_data << "]";
-        json_data << "}";
-
-        // Construct the HTML content with embedded JSON data
-        std::stringstream embedded_script;
-        embedded_script << "<script>";
-        embedded_script << "var folderData = " << json_data.str() << ";";
-        embedded_script << "function displayFolderContents() {";
-        embedded_script << "document.getElementById('folderName').innerText = folderData.foldername;";
-        embedded_script << "var itemsList = document.getElementById('itemsList');";
-        embedded_script << "itemsList.innerHTML = '';";
-        embedded_script << "folderData.items.forEach(function(item) {";
-        embedded_script << "var li = document.createElement('li');";
-        embedded_script << "var itemType = item.substring(0, 2);";
-        embedded_script << "var itemName = item.substring(2);";
-        embedded_script << "if (itemType === 'D@') {";
-        embedded_script << "li.innerHTML = '<img src=\"folder-icon.png\" alt=\"Folder\" width=\"20\" height=\"20\">' + itemName;";
-        embedded_script << "} else if (itemType === 'F@') {";
-        embedded_script << "li.innerHTML = '<img src=\"file-icon.png\" alt=\"File\" width=\"20\" height=\"20\">' + itemName;";
-        embedded_script << "}";
-        embedded_script << "itemsList.appendChild(li);";
-        embedded_script << "});";
-        embedded_script << "}";
-        embedded_script << "</script>";
-
-        // Append the embedded JavaScript to the HTML content
-        html_content << embedded_script.str();
-
-        // Send the HTTP response with the modified HTML content
-        send_response(client_fd, 200, "OK", "text/html", html_content);
-      }
-      else
-      {
-        // Error handling: send appropriate error response to the client
-        std::string error_message = "Failed to fetch items for folder " + foldername;
-        send_response(client_fd, 500, "Internal Server Error", "text/plain", error_message);
-      }
+      // TODO: get username from cookie
+      string username = "emmajin";
+      msg_to_send = construct_msg(1, username + "_email", "inbox_items", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string inbox_emails_str = response_msg.value;
+      string html_content = generate_inbox_html(inbox_emails_str);
+      send_response(client_fd, 200, "OK", "text/html", html_content);
     }
+    else if (html_request_map["uri"] == "/sentbox" && html_request_map["method"] == "GET") {
+      F_2_B_Message msg_to_send, response_msg;
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      // TODO: get username from cookie
+      string username = "emmajin";
+      msg_to_send = construct_msg(1, username + "_email", "sentbox_items", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string sentbox_emails_str = response_msg.value;
+      string html_content = generate_sentbox_html(sentbox_emails_str);
+      send_response(client_fd, 200, "OK", "text/html", html_content);
+    }
+    else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "GET") {
+      // /compose?mode=reply&email_id=123
+      F_2_B_Message msg_to_send, response_msg;
+      // TODO: 
+      string username = "emmajin";
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      string prefill_to = "";
+      string prefill_subject = "";
+      string prefill_body = "";
+      if (html_request_map["uri"] != "/compose") {
+        string mode, uid;
+        vector<string> params = split(html_request_map["uri"].substr(9), "&");
+        mode = split(params[0], "=")[1];
+        uid = split(params[1], "=")[1];
+        // look up email with uid in backend
+        msg_to_send = construct_msg(1, username + "_email/" + uid, "subject", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        string subject = response_msg.value;
+        msg_to_send = construct_msg(1, username + "_email/" + uid, "body", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        string body = response_msg.value;
+        // if reply, prefill_to = from, prefill_subject = RE:subject, prefill_body = content
+        if (mode == "reply") {
+          msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
+          response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+          prefill_to = response_msg.value;
+          prefill_subject = "RE: " + subject;
+          prefill_body = body;
+        } else {
+          // if forward, prefill_subject = FWD:subject, prefill body = content (with headers)
+          prefill_subject = "FWD: " + subject;
+          prefill_body = body;
+        }
+      }
+      string html_content = generate_compose_html(prefill_to, prefill_subject, prefill_body);
+      send_response(client_fd, 200, "OK", "text/html", html_content);
+    }
+    else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "POST") {
+      cout << "uri: " << html_request_map["uri"] << endl;
+      string ts_sentbox = get_timestamp();
+      map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
+      string subject = form_data["subject"];
+      string body = form_data["body"];
+      cout << "subject: " << subject << endl;
+      cout << "to: " << form_data["to"] << endl;
+      cout << "body: " << body << endl;
+      vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
+      // TODO: get from field from cookies
+      string from = "emmajin@localhost";
+      string from_username = "emmajin";
+      // format to_display
+      string for_display = format_mail_for_display(subject, from, form_data["to"], ts_sentbox, body);
+      // compute uid of email
+      string uid = compute_md5_hash(for_display);
+      cout << "uid: " << uid << endl;
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      // TODO: forward to SMTP client for each external recipient
+      F_2_B_Message msg_to_send, response_msg;
+      for (const auto &r: recipients[1]) {
+        // header: from, to, date, subject; + content
+        // from || to || date || subject || content
+      }
+      // local recipients
+      for (const auto &usrname : recipients[0]) {
+        // put in inbox
+        cout << "local username: " << usrname << endl;
+        deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, body);
+      }
+
+      put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, subject, body);
+      std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
+      redirect(client_fd, redirect_to);
+    }
+    else if (html_request_map["uri"].substr(0, 11) == "/view_email" && html_request_map["method"] == "GET") {
+      F_2_B_Message msg_to_send, response_msg;
+      // TODO: get username from cookies
+      string username = "emmajin";
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      // view_email?id=xxx
+      string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];
+      cout << "uid: " << uid << endl;
+      // fetch email with corresponding uid (subject, from, to, timestamp, body) from backend
+      msg_to_send = construct_msg(1, username + "_email/" + uid, "subject", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string subject = response_msg.value;
+      msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string from = response_msg.value;
+      msg_to_send = construct_msg(1, username + "_email/" + uid, "to", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string to = response_msg.value;
+      msg_to_send = construct_msg(1, username + "_email/" + uid, "timestamp", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string timestamp = response_msg.value;
+      msg_to_send = construct_msg(1, username + "_email/" + uid, "body", "", "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+      string body = response_msg.value;
+      // display the email content
+      string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid);
+      send_response(client_fd, 200, "OK", "text/html", html_content);
+      // reply / forward button should take us to pre-filled compose??
+    }
+    // ENDMAIL
+
+    // GET: display drive page
+    // else if (html_request_map["uri"] == "/drive" && html_request_map["method"] == "GET")
+    // {
+    //   // Retrieve HTML content from the map
+    //   std::string html_content = g_endpoint_html_map["drive"];
+
+    //   // Process the HTML content and embed dynamic data as needed
+    //   std::string uri_path = html_request_map["uri"];
+
+    //   // Extract foldername from the URI path
+    //   std::string foldername = uri_path.substr(1 + uri_path.find_first_of("/"));
+
+    //   // Construct the row key by appending "user_" to the foldername
+    //   std::string row_key = "user_" + foldername;
+
+    //   // Fetch items for the foldername from the backend
+    //   string backend_serveraddr_str = "127.0.0.1:6000";
+    //   F_2_B_Message msg_to_send = construct_msg(1, row_key, "items", "", "", "", 0);
+    //   F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+    //   if (response_msg.status == 0)
+    //   {
+    //     // Parse the response to get the list of items
+    //     std::vector<std::string> items = parse_items_list(response_msg.value);
+
+    //     // Serialize the list of items into JSON format
+    //     std::stringstream json_data;
+    //     json_data << "{";
+    //     json_data << "\"foldername\": \"" << foldername << "\",";
+    //     json_data << "\"items\": [";
+    //     for (size_t i = 0; i < items.size(); ++i)
+    //     {
+    //       if (i > 0)
+    //       {
+    //         json_data << ",";
+    //       }
+    //       json_data << "\"" << items[i] << "\"";
+    //     }
+    //     json_data << "]";
+    //     json_data << "}";
+
+    //     // Construct the HTML content with embedded JSON data
+    //     std::stringstream embedded_script;
+    //     embedded_script << "<script>";
+    //     embedded_script << "var folderData = " << json_data.str() << ";";
+    //     embedded_script << "function displayFolderContents() {";
+    //     embedded_script << "document.getElementById('folderName').innerText = folderData.foldername;";
+    //     embedded_script << "var itemsList = document.getElementById('itemsList');";
+    //     embedded_script << "itemsList.innerHTML = '';";
+    //     embedded_script << "folderData.items.forEach(function(item) {";
+    //     embedded_script << "var li = document.createElement('li');";
+    //     embedded_script << "var itemType = item.substring(0, 2);";
+    //     embedded_script << "var itemName = item.substring(2);";
+    //     embedded_script << "if (itemType === 'D@') {";
+    //     embedded_script << "li.innerHTML = '<img src=\"folder-icon.png\" alt=\"Folder\" width=\"20\" height=\"20\">' + itemName;";
+    //     embedded_script << "} else if (itemType === 'F@') {";
+    //     embedded_script << "li.innerHTML = '<img src=\"file-icon.png\" alt=\"File\" width=\"20\" height=\"20\">' + itemName;";
+    //     embedded_script << "}";
+    //     embedded_script << "itemsList.appendChild(li);";
+    //     embedded_script << "});";
+    //     embedded_script << "}";
+    //     embedded_script << "</script>";
+
+    //     // Append the embedded JavaScript to the HTML content
+    //     html_content << embedded_script.str();
+
+    //     // Send the HTTP response with the modified HTML content
+    //     send_response(client_fd, 200, "OK", "text/html", html_content);
+    //   }
+    //   else
+    //   {
+    //     // Error handling: send appropriate error response to the client
+    //     std::string error_message = "Failed to fetch items for folder " + foldername;
+    //     send_response(client_fd, 500, "Internal Server Error", "text/plain", error_message);
+    //   }
+    // }
     else
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");

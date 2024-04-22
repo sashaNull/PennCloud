@@ -19,6 +19,8 @@
 #include <signal.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <stdexcept>
+#include <openssl/md5.h>
 
 struct F_2_B_Message
 {
@@ -46,8 +48,10 @@ std::vector<std::string> split(const std::string &s, const std::string &delimite
 
 std::string strip(const std::string &str, const std::string &chars = " \t\n\r\f\v");
 
-std::map<std::string, std::string> parse_json_string_to_map(const std::string json_str);
+std::map<std::string, std::string> parse_json_string_to_map(const std::string json);
 
 sockaddr_in get_socket_address(const std::string &addr_str);
+
+std::string compute_md5_hash(const std::string& to_hash);
 
 #endif // UTILS_H
