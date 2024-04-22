@@ -20,6 +20,7 @@ bool verbose = false;      // Verbosity flag for debugging
 unordered_map<string, vector<sockaddr_in>> tablet_ranges_to_other_addr{};
 unordered_map<string, tablet_data> cache;
 vector<string> server_tablet_ranges;
+vector<string> all_unique_tablet_ranges;
 
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_current_address(char *raw_line);
@@ -128,6 +129,21 @@ int main(int argc, char *argv[])
   // Parse configuration file and extract server address and port
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
+
+  set<string> unique_ranges_set {};
+
+  for (const auto s : server_tablet_ranges)
+  {
+    unique_ranges_set.insert(s);
+  }
+
+  for (const auto e : tablet_ranges_to_other_addr)
+  {
+    unique_ranges_set.insert(e.first);
+  }
+
+  all_unique_tablet_ranges = vector<string>(unique_ranges_set.begin(), unique_ranges_set.end());
+
   update_server_tablet_ranges(server_tablet_ranges);
   if (verbose)
   {
@@ -135,6 +151,11 @@ int main(int argc, char *argv[])
     cout << "Server Port: " << ntohs(server_sockaddr.sin_port) << endl;
     cout << "Data Loc:" << data_file_location << endl;
     cout << "Server Index: " << server_index << endl;
+    cout << "All Unique Ranges:\n";
+    for (const auto &range : all_unique_tablet_ranges)
+    {
+      cout << range << "\n";
+    }
     cout << "Server Tablet Ranges:\n";
     for (const auto &range : server_tablet_ranges)
     {
@@ -364,22 +385,14 @@ void exit_handler(int sig)
 
 string get_tablet_range_from_row_key (string row_key)
 {
-  if (row_key.at(0) >= 'a' && row_key.at(0) <= 'b') {
-    return "a_b";
-  } else if (row_key.at(0) >= 'c' && row_key.at(0) <= 'd') {
-    return "c_d";
-  } else if (row_key.at(0) >= 'f' && row_key.at(0) <= 'j') {
-    return "f_j";
-  } else if (row_key.at(0) >= 'k' && row_key.at(0) <= 'o') {
-    return "k_o";
-  } else if (row_key.at(0) >= 'p' && row_key.at(0) <= 't') {
-    return "p_t";
-  } else if (row_key.at(0) >= 'u' && row_key.at(0) <= 'w') {
-    return "u_w";
-  } else if (row_key.at(0) >= 'x' && row_key.at(0) <= 'z') {
-    return "x_z";
+  for (const string s : all_unique_tablet_ranges)
+  {
+    if (row_key.at(0) >= s.at(0) && row_key.at(0) <= s.back())
+    {
+      return s;
+    }
   }
-  return "fasf";
+  return "-ERR";
 }
 
 /**

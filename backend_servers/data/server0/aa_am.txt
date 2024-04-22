@@ -1,0 +1,2 @@
+adwait pass hello
+adwait name adwait
