@@ -69,7 +69,7 @@ std::unordered_map<std::string, std::string> load_html_files()
         {"login", "html_files/login.html"},
         {"home", "html_files/home.html"},
         {"reset-password", "html_files/reset_password.html"},
-        {"drive", "html_files/drive.html"}};
+    };
 
     for (const auto &pair : endpoints_html_files)
     {
