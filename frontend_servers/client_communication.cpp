@@ -100,4 +100,5 @@ void redirect(int client_fd, std::string redirect_to)
     send(client_fd, response.c_str(), response.size(), 0);
 
     std::cout << "Sent redirection response to " << redirect_to << std::endl;
+    std::cout << "redirect response: " << response << std::endl;
 }

@@ -1,2 +1,21 @@
-adwait pass hello
-adwait name adwait
+adwait_drive/test.txt content data:text/plain;base64,aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK
+adwait_drive/hw3/12 items []
+adwait_drive/hw2/hw2 items []
+adwait_drive/rr5 items []
+adwait_info email mb@qw.compass
+adwait_info password 123
+adwait_info lastName Agashe
+adwait_info firstName Adwait
+adwait_drive/hw5 items []
+adwait_email sentbox_items 
+adwait_email inbox_items 
+adwait_drive items [D@hw2,D@hw3,D@hw4,D@hw5,D@hw6,D@work,D@work_2,D@khy,D@kjhgf,D@h344,D@rr5,F@test.txt]
+adwait_drive/hw2 items [D@hw2]
+adwait_drive/hw3 items [D@12,F@test.txt]
+adwait_drive/hw4 items []
+adwait_drive/hw6 items []
+adwait_drive/kjhgf items []
+adwait_drive/work_2 items []
+adwait_drive/khy items []
+adwait_drive/work items []
+adwait_drive/h344 items []

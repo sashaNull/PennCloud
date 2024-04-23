@@ -1,0 +1,1 @@
+2|adwait_drive/hw3/test.txt|content|data:text/plain;base64,aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
