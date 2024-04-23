@@ -164,9 +164,9 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
     return to_return;
 }
 
-string format_mail_for_display(const string &subject, const string &from, const string &to, const string &timestamp, const string &body)
+string format_mail_for_display(const string &subject, const string &from, const string &timestamp, const string &body)
 {
-    return "Subject: " + subject + "\n" + "From: " + from + "\n" + "To: " + to + "\n" + "Date: " + timestamp + "\n" + body;
+    return "Subject: " + subject + "\n" + "From: " + from + "\n" + "Date: " + timestamp + "\n" + body;
 }
 
 string get_timestamp()
@@ -208,6 +208,10 @@ void deliver_local_email(const string &backend_serveraddr_str, int fd, const str
     msg_to_send = construct_msg(2, recipient + "_email/" + uid, "subject", subject, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
     msg_to_send = construct_msg(2, recipient + "_email/" + uid, "body", body, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+    string display_email = format_mail_for_display(subject, from, received_ts, body);
+    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "display", display_email, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 }
 

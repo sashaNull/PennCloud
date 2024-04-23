@@ -21,6 +21,9 @@
 #include "./webmail.h"
 using namespace std;
 
+// TODO: take away later
+string g_username;
+
 bool verbose = false;
 string g_coordinator_addr_str = "127.0.0.1:7070";
 sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
@@ -323,7 +326,8 @@ void *handle_connection(void *arg)
 
       // Convert username to lowercase
       transform(username.begin(), username.end(), username.begin(), ::tolower);
-
+      // TODO: take out
+      g_username = username;
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check if user exists
@@ -437,7 +441,7 @@ void *handle_connection(void *arg)
       F_2_B_Message msg_to_send, response_msg;
       string backend_serveraddr_str = "127.0.0.1:6000";
       // TODO: get username from cookie
-      string username = "emmajin";
+      string username = g_username;
       msg_to_send = construct_msg(1, username + "_email", "inbox_items", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string inbox_emails_str = response_msg.value;
@@ -449,7 +453,7 @@ void *handle_connection(void *arg)
       F_2_B_Message msg_to_send, response_msg;
       string backend_serveraddr_str = "127.0.0.1:6000";
       // TODO: get username from cookie
-      string username = "emmajin";
+      string username = g_username;
       msg_to_send = construct_msg(1, username + "_email", "sentbox_items", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string sentbox_emails_str = response_msg.value;
@@ -461,7 +465,7 @@ void *handle_connection(void *arg)
       // /compose?mode=reply&email_id=123
       F_2_B_Message msg_to_send, response_msg;
       // TODO:
-      string username = "emmajin";
+      string username = g_username;
       string backend_serveraddr_str = "127.0.0.1:6000";
       string prefill_to = "";
       string prefill_subject = "";
@@ -476,23 +480,24 @@ void *handle_connection(void *arg)
         msg_to_send = construct_msg(1, username + "_email/" + uid, "subject", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string subject = response_msg.value;
-        msg_to_send = construct_msg(1, username + "_email/" + uid, "body", "", "", "", 0);
+        msg_to_send = construct_msg(1, username + "_email/" + uid, "display", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-        string body = response_msg.value;
-        // if reply, prefill_to = from, prefill_subject = RE:subject, prefill_body = content
+        string display = response_msg.value;
+        msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        string sender = response_msg.value;
+
         if (mode == "reply")
         {
-          msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
-          response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-          prefill_to = response_msg.value;
+          prefill_to = sender;
           prefill_subject = "RE: " + subject;
-          prefill_body = body;
+          prefill_body = "\n--------------- REPLYING TO MSG ---------------\n" + display;
         }
         else
         {
           // if forward, prefill_subject = FWD:subject, prefill body = content (with headers)
           prefill_subject = "FWD: " + subject;
-          prefill_body = body;
+          prefill_body = "\n--------------- FORWARDING MSG ---------------\n" + display;
         }
       }
       string html_content = generate_compose_html(prefill_to, prefill_subject, prefill_body);
@@ -510,10 +515,10 @@ void *handle_connection(void *arg)
       cout << "body: " << body << endl;
       vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
       // TODO: get from field from cookies
-      string from = "emmajin@localhost";
-      string from_username = "emmajin";
+      string from = g_username + "@localhost";
+      string from_username = g_username;
       // format to_display
-      string for_display = format_mail_for_display(subject, from, form_data["to"], ts_sentbox, body);
+      string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
       // compute uid of email
       string uid = compute_md5_hash(for_display);
       cout << "uid: " << uid << endl;
@@ -541,7 +546,7 @@ void *handle_connection(void *arg)
     {
       F_2_B_Message msg_to_send, response_msg;
       // TODO: get username from cookies
-      string username = "emmajin";
+      string username = g_username;
       string backend_serveraddr_str = "127.0.0.1:6000";
       // view_email?id=xxx
       string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];

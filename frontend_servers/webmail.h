@@ -23,7 +23,7 @@ std::string generate_compose_html(const std::string& prefill_to, const std::stri
 
 std::vector<std::vector<std::string>> parse_recipients_str_to_vec(const std::string& recipients_str);
 
-std::string format_mail_for_display(const std::string& subject, const std::string& from, const std::string& to, const std::string& timestamp, const std::string& body);
+std::string format_mail_for_display(const std::string& subject, const std::string& from, const std::string& timestamp, const std::string& body);
 
 std::string get_timestamp();
 
