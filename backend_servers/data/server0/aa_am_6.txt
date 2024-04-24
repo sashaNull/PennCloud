@@ -1,0 +1,15 @@
+adwaita_email/b24e10ebcb4534a237a544aa9194b53a to adwaita@penncloud
+adwaita_drive items []
+adwaita_email sentbox_items b24e10ebcb4534a237a544aa9194b53a##adwaita@penncloud##Hi##Wed Apr 24 18:28:14 2024&&&
+adwaita_email inbox_items 
+adwaita_info email agasheadwait24@gmail.com
+adwaita_info password 123
+adwaita_info lastName adwait
+adwaita_info firstName adwait
+adwait hehee huhuhu
+adwait onana whatsmaname
+adwait hehe huhu
+adwait nana nanana
+adwait surname adwait
+adwait name adwait
+adwait_drive/hw3/test.txt content data:text/plain;base64,aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK

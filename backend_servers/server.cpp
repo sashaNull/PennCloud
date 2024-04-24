@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
   server_index = atoi(argv[optind]);
   sockaddr_in server_sockaddr = parse_config_file(config_file);
 
-  set<string> unique_ranges_set {};
+  set<string> unique_ranges_set{};
 
   for (const auto s : server_tablet_ranges)
   {
@@ -186,6 +186,11 @@ int main(int argc, char *argv[])
   initialize_cache(cache);
 
   // Load data to cache
+  load_cache(cache, data_file_location);
+
+  // TODO: Get the latest tablet and log files from the primary
+
+  // Reload data to cache
   load_cache(cache, data_file_location);
 
   // Perform Recovery
@@ -289,7 +294,7 @@ void parse_other_addresses(char *raw_line)
   addr.sin_port = htons(atoi(token));
 
   // Parse data file location
-  strtok(NULL, ","); 
+  strtok(NULL, ",");
 
   while ((token = strtok(NULL, ",")) != nullptr)
   {
@@ -383,7 +388,7 @@ void exit_handler(int sig)
   exit(EXIT_SUCCESS);
 }
 
-string get_tablet_range_from_row_key (string row_key)
+string get_tablet_range_from_row_key(string row_key)
 {
   for (const string s : all_unique_tablet_ranges)
   {
@@ -450,7 +455,7 @@ void *handle_connection(void *arg)
 
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
-    F_2_B_Message f2b_message_for_other_server = f2b_message; 
+    F_2_B_Message f2b_message_for_other_server = f2b_message;
 
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     cout << "This row is in new file: " << tablet_name << endl;
@@ -545,10 +550,10 @@ void *handle_connection(void *arg)
         {
           if (verbose)
           {
-            cout << "[" << client_fd << ", " << sock << "] S: " << "Received Response" << endl;
+            cout << "[" << client_fd << ", " << sock << "] S: "
+                 << "Received Response" << endl;
           }
         }
-      
       }
     }
 

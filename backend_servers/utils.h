@@ -28,18 +28,22 @@
 extern const int MAX_BUFFER_SIZE;
 // Global variables for server configuration and state
 
-struct fileRange {
+struct fileRange
+{
   std::string range_start;
   std::string range_end;
   std::string filename;
 };
 
-struct tablet_data {
+struct tablet_data
+{
   std::unordered_map<std::string, std::unordered_map<std::string, std::string>>
       row_to_kv;
   pthread_mutex_t tablet_lock;
   int requests_since_checkpoint = 0;
-  tablet_data() : requests_since_checkpoint(0) {
+  int tablet_version;
+  tablet_data() : requests_since_checkpoint(0)
+  {
     // Initialize the mutex
     pthread_mutex_init(&tablet_lock, NULL);
   }
