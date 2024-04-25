@@ -248,34 +248,42 @@ void save_tablet(tablet_data &checkpoint_tablet_data, const std::string &tablet_
     // Ensure the directory exists
     mkdir(data_file_location.c_str(), 0777);
 
-    // Construct file paths
-    std::string temp_file_path = data_file_location + "/temp_" + tablet_name;
-    std::string final_file_path = data_file_location + "/" + tablet_name;
+    // Increment the version number for the new save
+    int current_version = checkpoint_tablet_data.tablet_version;
+    int new_version = current_version + 1;
 
-    // Create and open the temporary file
-    std::ofstream temp_file(temp_file_path);
-    if (!temp_file.is_open())
+    // Construct file paths with version numbers
+    std::string base_filename = tablet_name.substr(0, tablet_name.find_last_of('.'));
+    std::string old_file_path = data_file_location + "/" + base_filename + "_" + std::to_string(current_version) + ".txt";
+    std::string new_file_path = data_file_location + "/" + base_filename + "_" + std::to_string(new_version) + ".txt";
+
+    // Create and open the new version of the file
+    std::ofstream new_file(new_file_path);
+    if (!new_file.is_open())
     {
-        std::cerr << "Failed to open file: " << temp_file_path << std::endl;
+        std::cerr << "Failed to open file: " << new_file_path << std::endl;
         return;
     }
 
-    // Write the data to the temporary file
+    // Write the data to the new version of the file
     for (const auto &row : checkpoint_tablet_data.row_to_kv)
     {
         for (const auto &kv : row.second)
         {
-            temp_file << row.first << " " << kv.first << " " << kv.second << "\n";
+            new_file << row.first << " " << kv.first << " " << kv.second << "\n";
         }
     }
 
-    // Close the temporary file
-    temp_file.close();
+    // Close the new file
+    new_file.close();
 
-    // Rename the temporary file to the final file name
-    if (std::rename(temp_file_path.c_str(), final_file_path.c_str()) != 0)
+    // Update the current version number
+    checkpoint_tablet_data.tablet_version = new_version;
+
+    // Remove the old version of the file if it exists
+    if (std::remove(old_file_path.c_str()) != 0)
     {
-        std::cerr << "Error renaming file from " << temp_file_path << " to " << final_file_path << std::endl;
+        std::cerr << "Error deleting old file: " << old_file_path << std::endl;
     }
 }
 
@@ -321,28 +329,96 @@ std::string get_new_file_name(const std::string &row_key, const std::vector<std:
 
 void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location)
 {
+    // Iterate through each entry in the cache map
     for (auto &entry : cache)
     {
-        ifstream file(data_file_location + "/" + entry.first);
-        string line;
+        entry.second.tablet_version = 0;
+        // Create the base filename from entry.first by removing the extension
+        std::string base_filename = entry.first.substr(0, entry.first.find_last_of('.'));
 
-        while (getline(file, line))
+        // Directory reading objects
+        DIR *dir;
+        struct dirent *ent;
+        std::string dir_path = data_file_location;
+        bool file_found = false;
+
+        // Open the directory
+        if ((dir = opendir(dir_path.c_str())) != NULL)
         {
-            stringstream ss(line);
-            string key, inner_key, value;
+            // Read all the files and directories within the directory
+            while ((ent = readdir(dir)) != NULL)
+            {
+                std::string file_name = std::string(ent->d_name);
 
-            ss >> key >> inner_key >> value;
-            entry.second.row_to_kv[key][inner_key] = value;
+                // Check if the file starts with the base_filename and ends with ".txt"
+                if (file_name.find(base_filename + "_") == 0 && file_name.rfind(".txt") == file_name.length() - 4)
+                {
+                    file_found = true;
+
+                    // Extract the version number from the filename
+                    std::string version_str = file_name.substr(base_filename.length() + 1, file_name.rfind(".txt") - base_filename.length() - 1);
+                    int version_number = std::stoi(version_str);
+
+                    // Update the tablet version to the maximum version found
+                    if (version_number > entry.second.tablet_version)
+                    {
+                        entry.second.tablet_version = version_number;
+                    }
+
+                    // Construct the full path to the file
+                    std::string file_path = dir_path + "/" + file_name;
+
+                    // Open the file
+                    std::ifstream file(file_path);
+                    std::string line;
+
+                    // Read each line of the file
+                    if (file.is_open())
+                    {
+                        while (getline(file, line))
+                        {
+                            std::stringstream ss(line);
+                            std::string key, inner_key, value;
+
+                            ss >> key >> inner_key >> value;
+                            entry.second.row_to_kv[key][inner_key] = value;
+                        }
+                        file.close();
+                    }
+                }
+            }
+            // Close the directory
+            closedir(dir);
+        }
+        else
+        {
+            // Could not open directory
+            std::cerr << "Could not open directory: " << dir_path << std::endl;
         }
 
-        file.close();
+        // If no files were found, create an initial file with version 0
+        if (!file_found)
+        {
+            std::string initial_file_path = dir_path + "/" + base_filename + "_0.txt";
+            std::ofstream new_file(initial_file_path);
+            if (!new_file.is_open())
+            {
+                std::cerr << "Failed to create initial file: " << initial_file_path << std::endl;
+            }
+            else
+            {
+                // Optionally write some initial data or just close the file
+                new_file.close();
+                entry.second.tablet_version = 0; // Initialize the version to 0
+            }
+        }
     }
 }
 
 void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_Message f2b_message, vector<string> &server_tablet_ranges)
 {
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
-    // cout << "This row is in file: " << tablet_name << endl;
+    cout << "This row is in file: " << tablet_name << endl;
 
     switch (f2b_message.type)
     {
@@ -372,34 +448,25 @@ void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &d
     // Loop over the cache
     for (auto &entry : cache)
     {
-        // Generate log file name for each tablet
-        std::string log_file_name = get_log_file_name(entry.first);
-
-        // Construct the full path to the log file
+        std::string base_filename = entry.first.substr(0, entry.first.find_last_of('.'));
+        std::string versioned_filename = base_filename + "_" + std::to_string(entry.second.tablet_version);
+        std::string log_file_name = get_log_file_name(base_filename);
         std::string full_log_file_path = data_file_location + "/" + log_file_name;
-
-        // Open the log file
         std::ifstream log_file(full_log_file_path);
         if (!log_file.is_open())
         {
             std::cerr << "Failed to open log file: " << full_log_file_path << std::endl;
             continue;
         }
-
-        // Read each line from the log file
         std::string line;
         while (std::getline(log_file, line))
         {
             if (!line.empty())
             {
-                // Decode the message
                 F_2_B_Message message = decode_message(line);
-                // Replay the message
                 replay_message(cache, message, server_tablet_ranges);
             }
         }
-
-        // Close the log file
         log_file.close();
     }
 }
@@ -429,7 +496,7 @@ vector<string> split_range(const string &range, int splits_per_char)
         {
             char sub_end = get_next_char(sub_start, offset_per_range - 1);
 
-            string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end + ".txt";
+            string newRange = string(1, i) + sub_start + "_" + string(1, i) + sub_end;
             sub_ranges.push_back(newRange);
             sub_start = char(sub_end + 1);
         }
