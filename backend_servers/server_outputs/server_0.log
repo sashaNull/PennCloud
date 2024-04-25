@@ -2,70 +2,33 @@ Server IP: 127.0.0.1:6000
 Server Port: 6000
 Data Loc:./data/server0
 Server Index: 0
+All Unique Ranges:
+a_b
+c_e
+f_j
+k_o
+p_t
+u_w
+x_z
 Server Tablet Ranges:
-aa_am.txt
-an_az.txt
-ba_bm.txt
-bn_bz.txt
-ca_cm.txt
-cn_cz.txt
-da_dm.txt
-dn_dz.txt
-ea_em.txt
-en_ez.txt
-fa_fm.txt
-fn_fz.txt
-ga_gm.txt
-gn_gz.txt
-ha_hm.txt
-hn_hz.txt
-ia_im.txt
-in_iz.txt
-ja_jm.txt
-jn_jz.txt
-ua_um.txt
-un_uz.txt
-va_vm.txt
-vn_vz.txt
-wa_wm.txt
-wn_wz.txt
-xa_xm.txt
-xn_xz.txt
-ya_ym.txt
-yn_yz.txt
-za_zm.txt
-zn_zz.txt
-Failed to open log file: ./data/server0/logs/zn_zz_logs.txt
-Failed to open log file: ./data/server0/logs/za_zm_logs.txt
-Failed to open log file: ./data/server0/logs/fn_fz_logs.txt
-Failed to open log file: ./data/server0/logs/ua_um_logs.txt
-Failed to open log file: ./data/server0/logs/aa_am_logs.txt
-Failed to open log file: ./data/server0/logs/yn_yz_logs.txt
-Failed to open log file: ./data/server0/logs/ba_bm_logs.txt
-Failed to open log file: ./data/server0/logs/ga_gm_logs.txt
-Failed to open log file: ./data/server0/logs/dn_dz_logs.txt
-Failed to open log file: ./data/server0/logs/un_uz_logs.txt
-Failed to open log file: ./data/server0/logs/ya_ym_logs.txt
-Failed to open log file: ./data/server0/logs/ea_em_logs.txt
-Failed to open log file: ./data/server0/logs/bn_bz_logs.txt
-Failed to open log file: ./data/server0/logs/ca_cm_logs.txt
-Failed to open log file: ./data/server0/logs/da_dm_logs.txt
-Failed to open log file: ./data/server0/logs/xa_xm_logs.txt
-Failed to open log file: ./data/server0/logs/gn_gz_logs.txt
+aa_am
+an_az
+ba_bm
+bn_bz
+ca_cm
+cn_cz
+da_dm
+dn_dz
+ea_em
+en_ez
 Failed to open log file: ./data/server0/logs/en_ez_logs.txt
-Failed to open log file: ./data/server0/logs/ha_hm_logs.txt
+Failed to open log file: ./data/server0/logs/ea_em_logs.txt
+Failed to open log file: ./data/server0/logs/dn_dz_logs.txt
+Failed to open log file: ./data/server0/logs/da_dm_logs.txt
 Failed to open log file: ./data/server0/logs/cn_cz_logs.txt
-Failed to open log file: ./data/server0/logs/wn_wz_logs.txt
-Failed to open log file: ./data/server0/logs/hn_hz_logs.txt
+Failed to open log file: ./data/server0/logs/ca_cm_logs.txt
+Failed to open log file: ./data/server0/logs/bn_bz_logs.txt
+Failed to open log file: ./data/server0/logs/ba_bm_logs.txt
 Failed to open log file: ./data/server0/logs/an_az_logs.txt
-Failed to open log file: ./data/server0/logs/ia_im_logs.txt
-Failed to open log file: ./data/server0/logs/wa_wm_logs.txt
-Failed to open log file: ./data/server0/logs/in_iz_logs.txt
-Failed to open log file: ./data/server0/logs/jn_jz_logs.txt
-Failed to open log file: ./data/server0/logs/ja_jm_logs.txt
-Failed to open log file: ./data/server0/logs/va_vm_logs.txt
-Failed to open log file: ./data/server0/logs/fa_fm_logs.txt
-Failed to open log file: ./data/server0/logs/vn_vz_logs.txt
-Failed to open log file: ./data/server0/logs/xn_xz_logs.txt
-[4] New connection
-[4] Connection closed!
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  stoi

@@ -13,6 +13,8 @@ From Coordinator:
 #include "helper.h"
 using namespace std;
 
+#define HEARTBEAT_TIME 5
+
 string config_file_location;
 bool verbose;
 int listen_fd;
@@ -55,8 +57,8 @@ void *handle_heartbeat(void *arg)
         }
         update_primary(range_to_primary_map, range_to_server_map, map_and_list_mutex);
         print_primaries(range_to_primary_map);
-        // Wait for 5 seconds before next check
-        sleep(5);
+        // Wait for 2 seconds before next check
+        sleep(HEARTBEAT_TIME);
     }
     return NULL;
 }
@@ -207,6 +209,7 @@ int main(int argc, char *argv[])
                     string reqType(type);
                     string range = get_range_from_rowname(string(row_key), range_to_server_map);
                     pthread_mutex_lock(&map_and_list_mutex);
+                    cout << range << endl;
                     string server_with_range = get_active_server_from_range(range_to_server_map, range, reqType, range_to_primary_map);
                     pthread_mutex_unlock(&map_and_list_mutex);
 
@@ -229,6 +232,46 @@ int main(int argc, char *argv[])
             else
             {
                 // Command param not implemented
+                string message = "-ERR Command parameter not implemented\r\n";
+                size_t n = send(client_fd, message.c_str(), message.length(), 0);
+                if (n < 0)
+                {
+                    cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+                    break;
+                }
+            }
+        }
+        else if (strncmp(buffer, "PGET ", 5) == 0)
+        {
+            char tablet[MAX_BUFFER_SIZE];
+            memset(tablet, 0, MAX_BUFFER_SIZE);
+            tablet[MAX_BUFFER_SIZE - 1] = '\0';
+            if (sscanf(buffer, "PGET %1023s\r\n", tablet) != -1)
+            {
+                string range = get_range_from_rowname(string(tablet), range_to_server_map);
+                pthread_mutex_lock(&map_and_list_mutex);
+                server_info *primary_server = range_to_primary_map[range];
+                pthread_mutex_unlock(&map_and_list_mutex);
+
+                string response;
+                if (primary_server != nullptr && primary_server->is_active)
+                {
+                    response = "+OK " + primary_server->ip + ":" + to_string(primary_server->port) + "\r\n";
+                }
+                else
+                {
+                    response = "-ERR No primary server for this range\r\n";
+                }
+
+                size_t n = send(client_fd, response.c_str(), response.length(), 0);
+                if (n < 0)
+                {
+                    cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+                    break;
+                }
+            }
+            else
+            {
                 string message = "-ERR Command parameter not implemented\r\n";
                 size_t n = send(client_fd, message.c_str(), message.length(), 0);
                 if (n < 0)
