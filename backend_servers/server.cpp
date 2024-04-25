@@ -8,6 +8,7 @@
 
 // Namespace declaration for convenience
 using namespace std;
+#define COORDINATOR_PORT 7070
 
 vector<int> client_fds{};  // All client file descriptors
 string server_ip;          // Server IP address
@@ -21,6 +22,7 @@ unordered_map<string, vector<sockaddr_in>> tablet_ranges_to_other_addr{};
 unordered_map<string, tablet_data> cache;
 vector<string> server_tablet_ranges;
 vector<string> all_unique_tablet_ranges;
+unordered_map<string, string> range_to_primary_map;
 
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_current_address(char *raw_line);
@@ -61,6 +63,50 @@ void initialize_cache(std::unordered_map<std::string, tablet_data> &cache)
     // Insert the new tablet data into the cache using the tablet range as the key
     cache[tablet_range] = new_tablet;
   }
+}
+
+void update_primary(const string &range)
+{
+  int sock;
+  struct sockaddr_in serv_addr;
+  char buffer[1024] = {0};
+
+  if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+  {
+    cerr << "Socket creation error" << endl;
+    return;
+  }
+
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_port = htons(COORDINATOR_PORT);
+  if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
+  {
+    cerr << "Invalid address/ Address not supported" << endl;
+    return;
+  }
+
+  if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+  {
+    cerr << "Connection Failed" << endl;
+    return;
+  }
+
+  string request = "PGET " + range + "\r\n";
+  send(sock, request.c_str(), request.length(), 0);
+  read(sock, buffer, 1024);
+  string response(buffer);
+
+  // Parse response
+  if (response.substr(0, 3) == "+OK")
+  {
+    range_to_primary_map[range] = response.substr(4);
+  }
+  else
+  {
+    range_to_primary_map[range] = "No primary available";
+  }
+
+  close(sock);
 }
 
 int main(int argc, char *argv[])
@@ -189,6 +235,20 @@ int main(int argc, char *argv[])
   load_cache(cache, data_file_location);
 
   // TODO: Get the latest tablet and log files from the primary
+
+  // Get primary for every tablet.
+  for (const auto &range : server_tablet_ranges)
+  {
+    update_primary(range);
+  }
+  if (verbose)
+  {
+    cout << "Range to Primary Map:" << endl;
+    for (const auto &entry : range_to_primary_map)
+    {
+      cout << "Range: " << entry.first << " - Primary: " << entry.second << endl;
+    }
+  }
 
   // Reload data to cache
   load_cache(cache, data_file_location);
