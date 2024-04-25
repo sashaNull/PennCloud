@@ -10,6 +10,7 @@
 #include <sstream>
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 #include <sys/file.h>
 #include <fcntl.h>
 #include <arpa/inet.h>
@@ -53,5 +54,7 @@ std::map<std::string, std::string> parse_json_string_to_map(const std::string js
 sockaddr_in get_socket_address(const std::string &addr_str);
 
 std::string compute_md5_hash(const std::string& to_hash);
+
+std::string lower_case(const std::string& str);
 
 #endif // UTILS_H

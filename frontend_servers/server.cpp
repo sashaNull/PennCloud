@@ -27,6 +27,8 @@ string g_username;
 bool verbose = false;
 string g_coordinator_addr_str = "127.0.0.1:7070";
 sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
+// TODO: coordinator map: row key -> backend server address
+
 string g_serveraddr_str;
 int g_listen_fd;
 std::unordered_map<std::string, std::string> g_endpoint_html_map;
@@ -477,13 +479,13 @@ void *handle_connection(void *arg)
         mode = split(params[0], "=")[1];
         uid = split(params[1], "=")[1];
         // look up email with uid in backend
-        msg_to_send = construct_msg(1, username + "_email/" + uid, "subject", "", "", "", 0);
+        msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string subject = response_msg.value;
-        msg_to_send = construct_msg(1, username + "_email/" + uid, "display", "", "", "", 0);
+        msg_to_send = construct_msg(1, "email/" + uid, "display", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string display = response_msg.value;
-        msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
+        msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string sender = response_msg.value;
 
@@ -505,14 +507,11 @@ void *handle_connection(void *arg)
     }
     else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "POST")
     {
-      cout << "uri: " << html_request_map["uri"] << endl;
       string ts_sentbox = get_timestamp();
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string subject = form_data["subject"];
       string body = form_data["body"];
-      cout << "subject: " << subject << endl;
-      cout << "to: " << form_data["to"] << endl;
-      cout << "body: " << body << endl;
+      // TODO: hash email body base 64
       vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
       // TODO: get from field from cookies
       string from = g_username + "@localhost";
@@ -521,12 +520,13 @@ void *handle_connection(void *arg)
       string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
       // compute uid of email
       string uid = compute_md5_hash(for_display);
-      cout << "uid: " << uid << endl;
+      // TODO:
       string backend_serveraddr_str = "127.0.0.1:6000";
       // TODO: forward to SMTP client for each external recipient
       F_2_B_Message msg_to_send, response_msg;
       for (const auto &r : recipients[1])
       {
+        // TODO: create thread with thread function smtp_client
         // header: from, to, date, subject; + content
         // from || to || date || subject || content
       }
@@ -534,7 +534,6 @@ void *handle_connection(void *arg)
       for (const auto &usrname : recipients[0])
       {
         // put in inbox
-        cout << "local username: " << usrname << endl;
         deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, body);
       }
 
@@ -548,29 +547,40 @@ void *handle_connection(void *arg)
       // TODO: get username from cookies
       string username = g_username;
       string backend_serveraddr_str = "127.0.0.1:6000";
-      // view_email?id=xxx
-      string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];
-      cout << "uid: " << uid << endl;
+      ///view_email/?source=inbox&id=
+      string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
+      string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
       // fetch email with corresponding uid (subject, from, to, timestamp, body) from backend
-      msg_to_send = construct_msg(1, username + "_email/" + uid, "subject", "", "", "", 0);
+      msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string subject = response_msg.value;
-      msg_to_send = construct_msg(1, username + "_email/" + uid, "from", "", "", "", 0);
+      msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string from = response_msg.value;
-      msg_to_send = construct_msg(1, username + "_email/" + uid, "to", "", "", "", 0);
+      msg_to_send = construct_msg(1, "email/" + uid, "to", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string to = response_msg.value;
-      msg_to_send = construct_msg(1, username + "_email/" + uid, "timestamp", "", "", "", 0);
+      msg_to_send = construct_msg(1, "email/" + uid, "timestamp", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string timestamp = response_msg.value;
-      msg_to_send = construct_msg(1, username + "_email/" + uid, "body", "", "", "", 0);
+      msg_to_send = construct_msg(1, "email/" + uid, "body", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string body = response_msg.value;
       // display the email content
-      string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid);
+      string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid, source);
       send_response(client_fd, 200, "OK", "text/html", html_content);
-      // reply / forward button should take us to pre-filled compose??
+    }
+    else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET") {
+      string username = g_username;
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      // /delete_email?source=" << source << "&id=" << uid << "
+      string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
+      string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
+      cout << "delete email with uid: " << uid << " from " << source << endl;
+      delete_email(backend_serveraddr_str, fd, username, uid, source);
+
+      std::string redirect_to = "http://" + g_serveraddr_str + "/" + source;
+      redirect(client_fd, redirect_to);
     }
     // ENDMAIL
 

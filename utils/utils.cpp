@@ -53,8 +53,8 @@ string encode_message(F_2_B_Message f2b_message)
   ostringstream oss;
   oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
       << f2b_message.colkey << "|" << f2b_message.value << "|"
-      << f2b_message.value2 << "|" << f2b_message.status << "|" << f2b_message.isFromBackend << "|"
-      << f2b_message.errorMessage << "\r\n";
+      << f2b_message.value2 << "|" << f2b_message.status << "|"
+      << f2b_message.isFromBackend << "|" << f2b_message.errorMessage << "\r\n";
   string serialized = oss.str();
   return serialized;
 }
@@ -196,4 +196,10 @@ string compute_md5_hash(const string& to_hash) {
       message_uid += hex_buffer;
   }
   return message_uid;
+}
+
+string lower_case(const string& str) {
+  string result = str;
+  transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return tolower(c); });
+  return result;
 }

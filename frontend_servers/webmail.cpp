@@ -39,7 +39,7 @@ string generate_inbox_html(const string &emails_str)
     html << "<h1>Inbox</h1><table>";
     for (const auto &email : emails)
     {
-        html << "<tr onclick=\"location.href='/view_email?id=" << email.uid << "'\" style='cursor:pointer;'>";
+        html << "<tr onclick=\"location.href='/view_email/?source=inbox&id=" << email.uid << "'\" style='cursor:pointer;'>";
         html << "<td>" << email.to_from << "</td>";
         html << "<td>" << email.subject << "</td>";
         html << "<td>" << email.timestamp << "</td>";
@@ -67,7 +67,7 @@ string generate_sentbox_html(const string &emails_str)
     html << "<h1>Sent</h1><table>";
     for (const auto &email : emails)
     {
-        html << "<tr onclick=\"location.href='/view_email?id=" << email.uid << "'\" style='cursor:pointer;'>";
+        html << "<tr onclick=\"location.href='/view_email/?source=sentbox&id=" << email.uid << "'\" style='cursor:pointer;'>";
         html << "<td>" << email.to_from << "</td>";
         html << "<td>" << email.subject << "</td>";
         html << "<td>" << email.timestamp << "</td>";
@@ -144,20 +144,24 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
 
 vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
 {
+    cout << "recipients str: " << recipients_str << endl;
     vector<vector<string>> to_return;
     vector<string> local, external;
     to_return.push_back(local);
     to_return.push_back(external);
     vector<string> recipients = split(recipients_str, ";");
     for (const auto &r : recipients)
-    {
+    {   
+        cout << "recipient: " << r << endl;
         if (split(r, "@")[1] == "localhost")
         {
             // just push back the username
+            cout << "in local if: " << split(r, "@")[0] << endl;
             to_return[0].push_back(split(r, "@")[0]);
         }
         else
         {
+            cout << "in external if" << endl;
             to_return[1].push_back("<" + r + ">");
         }
     }
@@ -178,10 +182,15 @@ string get_timestamp()
     return formatted_time.str();
 }
 
-void deliver_local_email(const string &backend_serveraddr_str, int fd, const string &recipient, const string &uid, const string &from, const string &subject, const string &body)
+int deliver_local_email(const string &backend_serveraddr_str, int fd, const string &recipient, const string &uid, const string &from, const string &subject, const string &body)
 {
+    cout << "delivering to " << recipient << endl;
     F_2_B_Message msg_to_send = construct_msg(1, recipient + "_email", "inbox_items", "", "", "", 0);
     F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        cerr << response_msg.errorMessage << endl;
+        return 1;
+    }
     string usr_inbox_str = response_msg.value;
     // try cput until success
     string received_ts, to_cput;
@@ -201,18 +210,19 @@ void deliver_local_email(const string &backend_serveraddr_str, int fd, const str
         usr_inbox_str = response_msg.value;
     }
     // put from || timestamp || subject || body
-    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "from", from, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "timestamp", received_ts, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "timestamp", received_ts, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "subject", subject, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "body", body, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "body", body, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
     string display_email = format_mail_for_display(subject, from, received_ts, body);
-    msg_to_send = construct_msg(2, recipient + "_email/" + uid, "display", display_email, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "display", display_email, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    return response_msg.status;
 }
 
 void put_in_sentbox(const string &backend_serveraddr_str, int fd, const string &username, const string &uid, const string &to, const string &ts, const string &subject, const string &body)
@@ -239,7 +249,7 @@ void put_in_sentbox(const string &backend_serveraddr_str, int fd, const string &
     }
 
     // put to || timestamp || subject || body
-    msg_to_send = construct_msg(2, username + "_email/" + uid, "to", to, "", "", 0);
+    msg_to_send = construct_msg(2, "email/" + uid, "to", to, "", "", 0);
     response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 }
 
@@ -262,7 +272,7 @@ string newline_to_br(const string &text)
     return converted;
 }
 
-string construct_view_email_html(const string &subject, const string &from, const string &to, const string &timestamp, const string &body, const string &uid)
+string construct_view_email_html(const string &subject, const string &from, const string &to, const string &timestamp, const string &body, const string &uid, const string &source)
 {
     string formatted_body = newline_to_br(body);
     stringstream html;
@@ -276,12 +286,62 @@ string construct_view_email_html(const string &subject, const string &from, cons
          << "<h1>" << subject << "</h1>"
          << "<p><label>From:</label> " << from << "</p>"
          << "<p><label>To:</label> " << to << "</p>"
-         << "<p><label>Timestamp:</label> " << timestamp << "</p>"
+         << "<p><label>Date:</label> " << timestamp << "</p>"
          << "<h2>Message</h2>"
-         << "<p>" << formatted_body << "</p>" // Use the formatted body
+         << "<p>" << formatted_body << "</p>"
          << "<button onclick=\"window.location.href='/compose?mode=reply&email_id=" << uid << "'\">Reply</button>"
          << "<button onclick=\"window.location.href='/compose?mode=forward&email_id=" << uid << "'\">Forward</button>"
-         << "</body></html>";
+         << "<button onclick=\"if(confirm('Are you sure you want to delete this email from " << source << "?')) window.location.href='/delete_email?source=" << source << "&id=" << uid << "';\">Delete</button>";
 
     return html.str();
+}
+
+string delete_email_from_box_string(const string& input, const string& uid, const string& delimiter) {
+    size_t uid_pos = input.find(uid);
+    
+    if (uid_pos == std::string::npos) {
+        std::cout << "UID not found." << std::endl;
+        return input;
+    }
+
+    size_t start_pos = input.rfind(delimiter, uid_pos);
+    if (start_pos == std::string::npos) {
+        start_pos = 0;
+    }
+
+    size_t end_pos = input.find(delimiter, uid_pos + uid.length());
+    if (end_pos != std::string::npos) {
+        end_pos += delimiter.length();
+    } else {
+        end_pos = input.length();
+    }
+
+    std::string modified_string = input;
+    modified_string.erase(start_pos, end_pos - start_pos);
+
+    return modified_string;
+}
+
+
+void delete_email(const string& backend_serveraddr_str, int fd, const string& username, const string& uid, const string& source) {
+    F_2_B_Message msg_to_send = construct_msg(1, username + "_email", source + "_items", "", "", "", 0);
+    F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    string usr_box_str = response_msg.value;
+
+    // try cput until success
+    string received_ts, to_cput;
+    while (true)
+    {
+        // uid##to##subject##timestamp&&&...
+        to_cput = delete_email_from_box_string(usr_box_str, uid, "&&&");
+        msg_to_send = construct_msg(4, username + "_email", source + "_items", usr_box_str, to_cput, "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        if (response_msg.status == 0)
+        {
+            break;
+        }
+        msg_to_send = construct_msg(1, username + "_email", source + "_items", "", "", "", 0);
+        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+        usr_box_str = response_msg.value;
+    }
 }
