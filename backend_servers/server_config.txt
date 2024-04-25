@@ -1,3 +1,9 @@
-127.0.0.1:6000,./data/server0,a_b,c_e,f_j,u_w
-127.0.0.1:6001,./data/server1,f_j,k_o
-127.0.0.1:6002,./data/server2,k_o,p_t,u_w,x_z
+127.0.0.1:6000,./data/server0,a_b,c_e,f_j
+127.0.0.1:6001,./data/server1,a_b,c_e,f_j
+127.0.0.1:6002,./data/server2,a_b,c_e,f_j
+127.0.0.1:6003,./data/server3,k_m,n_p
+127.0.0.1:6004,./data/server4,k_m,n_p
+127.0.0.1:6005,./data/server5,k_m,n_p
+127.0.0.1:6006,./data/server6,q_s,t_v,w_z
+127.0.0.1:6007,./data/server7,q_s,t_v,w_z
+127.0.0.1:6008,./data/server8,q_s,t_v,w_z
