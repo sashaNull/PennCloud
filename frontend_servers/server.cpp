@@ -330,6 +330,7 @@ void *handle_connection(void *arg)
       transform(username.begin(), username.end(), username.begin(), ::tolower);
       // TODO: take out
       g_username = username;
+      cout << "g_username in login: " << g_username << endl;
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check if user exists
@@ -372,6 +373,7 @@ void *handle_connection(void *arg)
     // GET: rendering home page
     else if (html_request_map["uri"] == "/home" && html_request_map["method"] == "GET")
     {
+      cout << "g_username home: " << g_username;
       // Retrieve HTML content from the map
       std::string html_content = g_endpoint_html_map["home"];
 
@@ -444,6 +446,7 @@ void *handle_connection(void *arg)
       string backend_serveraddr_str = "127.0.0.1:6000";
       // TODO: get username from cookie
       string username = g_username;
+      cout << "username in inbox" << username << endl;
       msg_to_send = construct_msg(1, username + "_email", "inbox_items", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string inbox_emails_str = response_msg.value;
