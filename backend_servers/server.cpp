@@ -8,6 +8,7 @@
 
 // Namespace declaration for convenience
 using namespace std;
+#define COORDINATOR_PORT 7070
 
 vector<int> client_fds{};  // All client file descriptors
 string server_ip;          // Server IP address
@@ -21,6 +22,7 @@ unordered_map<string, vector<sockaddr_in>> tablet_ranges_to_other_addr{};
 unordered_map<string, tablet_data> cache;
 vector<string> server_tablet_ranges;
 vector<string> all_unique_tablet_ranges;
+unordered_map<string, string> range_to_primary_map;
 
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_current_address(char *raw_line);
@@ -60,6 +62,229 @@ void initialize_cache(std::unordered_map<std::string, tablet_data> &cache)
 
     // Insert the new tablet data into the cache using the tablet range as the key
     cache[tablet_range] = new_tablet;
+  }
+}
+
+void update_primary(const string &range)
+{
+  int sock;
+  struct sockaddr_in serv_addr;
+  char buffer[1024] = {0};
+
+  if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+  {
+    cerr << "Socket creation error" << endl;
+    return;
+  }
+
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_port = htons(COORDINATOR_PORT);
+  if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
+  {
+    cerr << "Invalid address/ Address not supported" << endl;
+    return;
+  }
+
+  if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+  {
+    cerr << "Connection Failed" << endl;
+    return;
+  }
+
+  string request = "PGET " + range + "\r\n";
+  send(sock, request.c_str(), request.length(), 0);
+  read(sock, buffer, 1024);
+  string response(buffer);
+
+  // Parse response
+  if (response.substr(0, 3) == "+OK")
+  {
+    range_to_primary_map[range] = response.substr(4);
+  }
+  else
+  {
+    range_to_primary_map[range] = "No primary available";
+  }
+
+  close(sock);
+}
+
+void get_latest_tablet_and_log()
+{
+  for (const auto &range : server_tablet_ranges)
+  {
+    update_primary(range);
+    auto it = range_to_primary_map.find(range);
+    if (it != range_to_primary_map.end() && it->second != "No primary available" && it->second != server_ip + ":" + to_string(server_port))
+    {
+      string primary = it->second;
+      size_t colon_pos = primary.find(':');
+      string primary_ip = primary.substr(0, colon_pos);
+      int primary_port = stoi(primary.substr(colon_pos + 1));
+
+      int sock;
+      struct sockaddr_in serv_addr;
+      if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+      {
+        cerr << "Socket creation error" << endl;
+        continue;
+      }
+
+      serv_addr.sin_family = AF_INET;
+      serv_addr.sin_port = htons(primary_port);
+      if (inet_pton(AF_INET, primary_ip.c_str(), &serv_addr.sin_addr) <= 0)
+      {
+        cerr << "Invalid address/ Address not supported" << endl;
+        close(sock);
+        continue;
+      }
+
+      if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+      {
+        cerr << "Connection Failed with " << primary_ip << ":" << primary_port << endl;
+        close(sock);
+        continue;
+      }
+
+      // Read and ignore the welcome message from the server
+      char welcome_buffer[1024] = {0};
+      read(sock, welcome_buffer, 1024);
+      // cout << "Ignored message: " << welcome_buffer << endl; // Optionally log the ignored message
+      bool runLogGet = false;
+      // Send GET command
+      string get_command = "GET " + range + "\r\n";
+      send(sock, get_command.c_str(), get_command.length(), 0);
+      char buffer[1024] = {0};
+      read(sock, buffer, 1024);
+      cout << "GET Response from primary: " << range << " " << buffer << endl;
+
+      // Check version response and possibly send TABGET
+      string response(buffer);
+      string response_prefix = "VER ";
+      size_t ver_pos = response.find(response_prefix);
+      if (ver_pos != string::npos)
+      {
+        int received_version = stoi(response.substr(ver_pos + response_prefix.length()));
+        if (received_version != cache[range].tablet_version)
+        {
+          runLogGet = true;
+          string tabget_command = "TABGET " + range + "\r\n";
+          send(sock, tabget_command.c_str(), tabget_command.length(), 0);
+
+          string new_file = data_file_location + "/" + range + "_" + to_string(received_version) + ".txt";
+          ofstream out(new_file);
+          string accumulatedData; // To store incomplete data that may not end with a newline
+          bool reading = true;
+
+          while (reading)
+          {
+            char buffer[1024] = {0};
+            int bytesRead = read(sock, buffer, sizeof(buffer) - 1);
+            if (bytesRead <= 0)
+            {
+              reading = false; // Connection closed or error
+              continue;
+            }
+
+            accumulatedData.append(buffer, bytesRead);
+            size_t pos;
+            // Process complete lines
+            while ((pos = accumulatedData.find('\n')) != string::npos)
+            {
+              string line = accumulatedData.substr(0, pos + 1); // Include the newline
+              accumulatedData.erase(0, pos + 1);
+              if (line.find("##########\n") != string::npos)
+              {
+                cout << "End-of-data marker received, stopping read." << endl;
+                reading = false;
+                break;
+              }
+              out << line; // Write the complete line to file
+              cout << "READ THE LINE: " << line;
+            }
+          }
+          if (!accumulatedData.empty())
+          {
+            out << accumulatedData; // Write any remaining data that didn't end with a newline
+          }
+          out.close();
+
+          // Delete old version file
+          string old_file = data_file_location + "/" + range + "_" + to_string(cache[range].tablet_version) + ".txt";
+          cache[range].tablet_version = received_version;
+          remove(old_file.c_str());
+        }
+      }
+
+      // Send LGET command
+      string lget_command = "LGET " + range + "\r\n";
+      send(sock, lget_command.c_str(), lget_command.length(), 0);
+      memset(buffer, 0, sizeof(buffer));
+      read(sock, buffer, 1024);
+      cout << "LGET Response from primary: " << range << " " << buffer << endl;
+
+      // Check requests_since_checkpoint response and possibly send LOGGET
+      string lget_response(buffer);
+      size_t checkpoint_pos = lget_response.find("VER ");
+      if (checkpoint_pos != string::npos)
+      {
+        int received_checkpoint = stoi(lget_response.substr(checkpoint_pos + 4));
+        if (received_checkpoint != cache[range].requests_since_checkpoint || runLogGet)
+        {
+
+          string logget_command = "LOGGET " + range + "\r\n";
+          send(sock, logget_command.c_str(), logget_command.length(), 0);
+
+          string tempLogFile = data_file_location + "/logs/" + range + "_log_temp.txt";
+          ofstream tempOut(tempLogFile);
+          string accumulatedData;
+          bool reading = true;
+          while (reading)
+          {
+            char buffer[1024] = {0};
+            int bytesRead = read(sock, buffer, sizeof(buffer) - 1);
+            if (bytesRead <= 0)
+            {
+              reading = false;
+              continue;
+            }
+
+            accumulatedData.append(buffer, bytesRead);
+            size_t pos;
+            while ((pos = accumulatedData.find('\n')) != string::npos)
+            {
+              string line = accumulatedData.substr(0, pos + 1);
+              accumulatedData.erase(0, pos + 1);
+              if (line.find("##########\n") != string::npos)
+              {
+                cout << "End-of-data marker received, stopping read." << endl;
+                reading = false;
+                break;
+              }
+              tempOut << line;
+            }
+          }
+          if (!accumulatedData.empty())
+          {
+            tempOut << accumulatedData; // Write any remaining data that didn't end with a newline
+          }
+          tempOut.close();
+
+          // Rename the temporary log file to the old log file location
+          string oldLogFile = data_file_location + "/logs/" + range + "_logs.txt";
+          remove(oldLogFile.c_str());                      // Remove the old file
+          rename(tempLogFile.c_str(), oldLogFile.c_str()); // Rename temp to old
+          cout << "Log file updated for " << range << endl;
+        }
+      }
+
+      // Send quit command at the end of all interactions
+      string quit_command = "quit\r\n";
+      send(sock, quit_command.c_str(), quit_command.length(), 0);
+
+      // Close the socket
+      close(sock);
+    }
   }
 }
 
@@ -187,14 +412,35 @@ int main(int argc, char *argv[])
 
   // Load data to cache
   load_cache(cache, data_file_location);
+  recover(cache, data_file_location, server_tablet_ranges);
+  cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
+  cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
 
   // TODO: Get the latest tablet and log files from the primary
+
+  // Get primary for every tablet.
+  for (const auto &range : server_tablet_ranges)
+  {
+    update_primary(range);
+  }
+  // if (verbose)
+  // {
+  //   cout << "Range to Primary Map:" << endl;
+  //   for (const auto &entry : range_to_primary_map)
+  //   {
+  //     cout << "Range: " << entry.first << " - Primary: " << entry.second << endl;
+  //   }
+  // }
+  get_latest_tablet_and_log();
 
   // Reload data to cache
   load_cache(cache, data_file_location);
 
   // Perform Recovery
   recover(cache, data_file_location, server_tablet_ranges);
+
+  cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
+  cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
@@ -422,6 +668,8 @@ void *handle_connection(void *arg)
     return nullptr;
   }
 
+  string lockedTablet = "";
+  bool isLocked = false;
   char buffer[MAX_BUFFER_SIZE];
   // Continue reading client messages until quit command received
   while (do_read(client_fd, buffer))
@@ -436,6 +684,11 @@ void *handle_connection(void *arg)
     // Check for quit command
     if (message == "quit\r\n")
     {
+      if (isLocked)
+      {
+        pthread_mutex_unlock(&cache[lockedTablet].tablet_lock);
+        isLocked = false;
+      }
       string goodbye = "Quit command received. Server goodbye!\r\n";
       bytes_sent = send(client_fd, goodbye.c_str(), goodbye.length(), 0);
       // Check for send errors
@@ -451,6 +704,94 @@ void *handle_connection(void *arg)
         cout << "[" << client_fd << "] S: " << goodbye;
       }
       break;
+    }
+    if (message.substr(0, 4) == "GET " && !isLocked)
+    {
+      size_t endpos = message.find_last_not_of("\r\n");
+      if (endpos != string::npos)
+      {
+        message = message.substr(0, endpos + 1);
+      }
+      lockedTablet = message.substr(4);
+      pthread_mutex_lock(&cache[lockedTablet].tablet_lock);
+      isLocked = true;
+
+      int version_number = cache[lockedTablet].tablet_version;
+      response = "VER " + to_string(version_number) + "\r\n";
+      cout << lockedTablet << endl;
+      cout
+          << "GET Response:" << response << endl;
+      send(client_fd, response.c_str(), response.length(), 0);
+      continue;
+    }
+    else if (message.substr(0, 5) == "LGET " && isLocked)
+    {
+      size_t endpos = message.find_last_not_of("\r\n");
+      if (endpos != string::npos)
+      {
+        message = message.substr(0, endpos + 1);
+      }
+      int requests_since_checkpoint = cache[lockedTablet].requests_since_checkpoint;
+      response = "VER " + to_string(requests_since_checkpoint) + "\r\n";
+      cout << "LGET Response:" << response << endl;
+      send(client_fd, response.c_str(), response.length(), 0);
+      continue;
+    }
+    else if (message.substr(0, 7) == "LOGGET " && isLocked)
+    {
+      size_t endpos = message.find_last_not_of("\r\n");
+      if (endpos != string::npos)
+      {
+        message = message.substr(0, endpos + 1);
+      }
+      string logFilename = data_file_location + "/logs/" + lockedTablet + "_logs.txt"; // Assume log files are named like this
+      ifstream logFile(logFilename);
+      if (!logFile.is_open())
+      {
+        cerr << "Failed to open log file: " << logFilename << endl;
+        send(client_fd, "##########\n", 11, 0); // Send end-of-data marker even if file fails to open
+      }
+      else
+      {
+        string line;
+        while (getline(logFile, line))
+        {
+          line += "\n"; // Ensure each line ends with a newline for consistent transmission
+          send(client_fd, line.c_str(), line.length(), 0);
+        }
+        logFile.close();
+        send(client_fd, "##########\n", 11, 0); // Send the special end-of-data marker
+      }
+      continue;
+    }
+    else if (message.substr(0, 7) == "TABGET " && isLocked)
+    {
+      size_t endpos = message.find_last_not_of("\r\n");
+      if (endpos != string::npos)
+      {
+        message = message.substr(0, endpos + 1);
+      }
+
+      string filename = data_file_location + "/" + lockedTablet + "_" + to_string(cache[lockedTablet].tablet_version) + ".txt";
+      ifstream file(filename);
+      if (!file.is_open())
+      {
+        cerr << "Failed to open file: " << filename << endl;
+        send(client_fd, "##########\n", 11, 0);
+      }
+      else
+      {
+        string line;
+        while (getline(file, line))
+        {
+          line += "\n";
+          cout << "SENT LINE: " << line << endl;
+          send(client_fd, line.c_str(), line.length(), 0);
+        }
+        file.close();
+        send(client_fd, "##########\n", 11, 0);
+      }
+      continue;
     }
 
     // Decode received message into F_2_B_Message

@@ -453,6 +453,7 @@ void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &d
         std::string log_file_name = get_log_file_name(base_filename);
         std::string full_log_file_path = data_file_location + "/" + log_file_name;
         std::ifstream log_file(full_log_file_path);
+        entry.second.requests_since_checkpoint = 0;
         if (!log_file.is_open())
         {
             std::cerr << "Failed to open log file: " << full_log_file_path << std::endl;
