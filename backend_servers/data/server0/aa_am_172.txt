@@ -1,0 +1,13 @@
+adwait_drive/hw3 items []
+adwait_drive/hw2/test.txt content hola hola
+this is a test file
+
+adwait_drive/hw2 items [F@test.txt]
+adwait_drive/hw1 items []
+adwait_email sentbox_items 
+adwait_email inbox_items 
+adwait_drive items [D@hw1,D@hw2,D@hw3]
+adwait_info email mb@qw.compass
+adwait_info password 123
+adwait_info lastName Agashe
+adwait_info firstName Adwait
