@@ -231,11 +231,50 @@ void get_latest_tablet_and_log()
         int received_checkpoint = stoi(lget_response.substr(checkpoint_pos + 4));
         if (received_checkpoint != cache[range].requests_since_checkpoint || runLogGet)
         {
+
           string logget_command = "LOGGET " + range + "\r\n";
           send(sock, logget_command.c_str(), logget_command.length(), 0);
-          memset(buffer, 0, sizeof(buffer));
-          read(sock, buffer, 1024);
-          cout << "LOGGET Response from primary: " << range << " " << buffer << endl;
+
+          string tempLogFile = data_file_location + "/logs/" + range + "_log_temp.txt";
+          ofstream tempOut(tempLogFile);
+          string accumulatedData;
+          bool reading = true;
+          while (reading)
+          {
+            char buffer[1024] = {0};
+            int bytesRead = read(sock, buffer, sizeof(buffer) - 1);
+            if (bytesRead <= 0)
+            {
+              reading = false;
+              continue;
+            }
+
+            accumulatedData.append(buffer, bytesRead);
+            size_t pos;
+            while ((pos = accumulatedData.find('\n')) != string::npos)
+            {
+              string line = accumulatedData.substr(0, pos + 1);
+              accumulatedData.erase(0, pos + 1);
+              if (line.find("##########\n") != string::npos)
+              {
+                cout << "End-of-data marker received, stopping read." << endl;
+                reading = false;
+                break;
+              }
+              tempOut << line;
+            }
+          }
+          if (!accumulatedData.empty())
+          {
+            tempOut << accumulatedData; // Write any remaining data that didn't end with a newline
+          }
+          tempOut.close();
+
+          // Rename the temporary log file to the old log file location
+          string oldLogFile = data_file_location + "/logs/" + range + "_logs.txt";
+          remove(oldLogFile.c_str());                      // Remove the old file
+          rename(tempLogFile.c_str(), oldLogFile.c_str()); // Rename temp to old
+          cout << "Log file updated for " << range << endl;
         }
       }
 
@@ -705,8 +744,24 @@ void *handle_connection(void *arg)
       {
         message = message.substr(0, endpos + 1);
       }
-      response = "HEHEHE\r\n";
-      send(client_fd, response.c_str(), response.length(), 0);
+      string logFilename = data_file_location + "/logs/" + lockedTablet + "_logs.txt"; // Assume log files are named like this
+      ifstream logFile(logFilename);
+      if (!logFile.is_open())
+      {
+        cerr << "Failed to open log file: " << logFilename << endl;
+        send(client_fd, "##########\n", 11, 0); // Send end-of-data marker even if file fails to open
+      }
+      else
+      {
+        string line;
+        while (getline(logFile, line))
+        {
+          line += "\n"; // Ensure each line ends with a newline for consistent transmission
+          send(client_fd, line.c_str(), line.length(), 0);
+        }
+        logFile.close();
+        send(client_fd, "##########\n", 11, 0); // Send the special end-of-data marker
+      }
       continue;
     }
     else if (message.substr(0, 7) == "TABGET " && isLocked)
