@@ -134,7 +134,7 @@ map<string, string> parse_mail_data(vector<string> maildata) {
     else if (line == "\r\n" && body_started == false) {
       body_started = true;
     } else if (body_started) {
-      body += strip(line, "\r");
+      body += strip(line) + "\n";
     }
   }
   to_return["body"] = body;
@@ -157,6 +157,7 @@ void read_and_handle_data(int* fd, bool debug_mode) {
   string mail_from; // external user
   vector<string> mail_to; // local users
   vector<string> mail_data;
+  int backend_fd = create_socket();
   // # keep repeating:
   while (true) {
     if (quit) {
@@ -183,19 +184,40 @@ void read_and_handle_data(int* fd, bool debug_mode) {
       if (state_num == 3) {
         if (command_to_check == ".\r\n") {
           // for each recipient...
+          string ts = get_timestamp();
           string uid = compute_md5_hash(flatten_vector(mail_data));
           map<string, string> maildata_map = parse_mail_data(mail_data);
+          string from = maildata_map["from"];
+          string subject = maildata_map["subject"];
+          string body = maildata_map["body"];
+          string encoded_body = base_64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), body.length());
+          string for_display = format_mail_for_display(subject, from, ts, body);
+          string encoded_display = base_64_encode(reinterpret_cast<const unsigned char*>(for_display.c_str()), for_display.length());
           bool atleast_one_sent = false;
           for (const auto& recipient : mail_to) {
-            // TODO: open fd for backend?
-            int backend_fd = create_socket();
-            // TODO: write to backend, subject, body, uid, from
             string backend_serveraddr_str = "127.0.0.1:6000";
             string username = get_receiver_username(recipient);
             if (deliver_local_email(backend_serveraddr_str, backend_fd, username, uid,
-                maildata_map["from"], maildata_map["subject"], maildata_map["body"]) == 0) {
+                from, subject, encoded_body, encoded_display) == 0) {
               atleast_one_sent = true;
             }
+          F_2_B_Message msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
+          F_2_B_Message response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
+          
+          msg_to_send = construct_msg(2, "email/" + uid, "to", username + "@localhost", "", "", 0);
+          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
+
+          msg_to_send = construct_msg(2, "email/" + uid, "timestamp", ts, "", "", 0);
+          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
+
+          msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
+          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
+
+          msg_to_send = construct_msg(2, "email/" + uid, "body", encoded_body, "", "", 0);
+          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
+
+          msg_to_send = construct_msg(2, "email/" + uid, "display", encoded_display, "", "", 0);
+          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
           }
           // send response
           string response;

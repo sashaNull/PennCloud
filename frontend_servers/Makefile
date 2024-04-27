@@ -1,7 +1,7 @@
 TARGETS = server
 
 # Add -lssl and -lcrypto to link against OpenSSL libraries
-LDFLAGS = -lpthread -lssl -lcrypto -g
+LDFLAGS = -lpthread -lssl -lcrypto -lresolv -g
 
 all: $(TARGETS)
 

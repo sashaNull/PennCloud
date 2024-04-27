@@ -27,6 +27,8 @@ string g_username;
 bool verbose = false;
 string g_coordinator_addr_str = "127.0.0.1:7070";
 sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
+
+map<string, string> g_map_rowkey_to_server;
 // TODO: coordinator map: row key -> backend server address
 
 string g_serveraddr_str;
@@ -494,6 +496,10 @@ void *handle_connection(void *arg)
       transform(username.begin(), username.end(), username.begin(), ::tolower);
 
       // TODO: coordinator
+      // if (g_map_rowkey_to_server.find(username + "_info") != g_map_rowkey_to_server.end()){
+      //   string backend_serveraddr_str = g_map_rowkey_to_server[username + "_info"];
+      // }
+      // check backend connection. If can't connect, ask coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // check if user exists with get
       string backend_serveraddr_str = "127.0.0.1:6000";
@@ -583,7 +589,6 @@ void *handle_connection(void *arg)
       transform(username.begin(), username.end(), username.begin(), ::tolower);
       // TODO: take out
       g_username = username;
-      cout << "g_username in login: " << g_username << endl;
       // TODO: coordinator
       //  string backend_serveraddr_str = ask_coordinator(fd, g_coordinator_addr, username + "_info", 1);
       // Check if user exists
@@ -626,7 +631,6 @@ void *handle_connection(void *arg)
     // GET: rendering home page
     else if (html_request_map["uri"] == "/home" && html_request_map["method"] == "GET")
     {
-      cout << "g_username home: " << g_username;
       // Retrieve HTML content from the map
       std::string html_content = g_endpoint_html_map["home"];
 
@@ -699,7 +703,6 @@ void *handle_connection(void *arg)
       string backend_serveraddr_str = "127.0.0.1:6000";
       // TODO: get username from cookie
       string username = g_username;
-      cout << "username in inbox" << username << endl;
       msg_to_send = construct_msg(1, username + "_email", "inbox_items", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string inbox_emails_str = response_msg.value;
@@ -738,9 +741,12 @@ void *handle_connection(void *arg)
         msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string subject = response_msg.value;
+
         msg_to_send = construct_msg(1, "email/" + uid, "display", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-        string display = response_msg.value;
+        string encoded_display = response_msg.value;
+        string display = base_64_decode(encoded_display);
+
         msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         string sender = response_msg.value;
@@ -753,7 +759,6 @@ void *handle_connection(void *arg)
         }
         else
         {
-          // if forward, prefill_subject = FWD:subject, prefill body = content (with headers)
           prefill_subject = "FWD: " + subject;
           prefill_body = "\n--------------- FORWARDING MSG ---------------\n" + display;
         }
@@ -767,14 +772,14 @@ void *handle_connection(void *arg)
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string subject = form_data["subject"];
       string body = form_data["body"];
-      // TODO: hash email body base 64
+      string encoded_body = base_64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), body.length());
       vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
       // TODO: get from field from cookies
       string from = g_username + "@localhost";
       string from_username = g_username;
       // format to_display
       string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-      // compute uid of email
+      string encoded_display = base_64_encode(reinterpret_cast<const unsigned char*>(for_display.c_str()), for_display.length());
       string uid = compute_md5_hash(for_display);
       // TODO:
       string backend_serveraddr_str = "127.0.0.1:6000";
@@ -782,18 +787,46 @@ void *handle_connection(void *arg)
       F_2_B_Message msg_to_send, response_msg;
       for (const auto &r : recipients[1])
       {
-        // TODO: create thread with thread function smtp_client
-        // header: from, to, date, subject; + content
-        // from || to || date || subject || content
+        pthread_t thread_id;
+        // Dynamically allocate data for each thread
+        auto* data = new std::map<std::string, std::string>{
+            {"to", r},
+            {"from", from},
+            {"subject", subject},
+            {"content", encoded_body}
+        };
+        // Create a thread for each recipient
+        if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0) {
+            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+            delete data; // Clean up data if thread creation fails
+        } else {
+            pthread_detach(thread_id); // Optionally detach the thread
+        }
       }
       // local recipients
       for (const auto &usrname : recipients[0])
       {
-        // put in inbox
-        deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, body);
+        deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, encoded_body, encoded_display);
       }
+      msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
-      put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, subject, body);
+      msg_to_send = construct_msg(2, "email/" + uid, "to", form_data["to"], "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      msg_to_send = construct_msg(2, "email/" + uid, "timestamp", ts_sentbox, "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      msg_to_send = construct_msg(2, "email/" + uid, "body", encoded_body, "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      msg_to_send = construct_msg(2, "email/" + uid, "display", encoded_display, "", "", 0);
+      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+      put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, subject, encoded_body);
       std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
       redirect(client_fd, redirect_to);
     }
@@ -810,18 +843,24 @@ void *handle_connection(void *arg)
       msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string subject = response_msg.value;
+
       msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string from = response_msg.value;
+
       msg_to_send = construct_msg(1, "email/" + uid, "to", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string to = response_msg.value;
+
       msg_to_send = construct_msg(1, "email/" + uid, "timestamp", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string timestamp = response_msg.value;
+
       msg_to_send = construct_msg(1, "email/" + uid, "body", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string body = response_msg.value;
+      string encoded_body = response_msg.value;
+      string body = base_64_decode(encoded_body);
+
       // display the email content
       string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid, source);
       send_response(client_fd, 200, "OK", "text/html", html_content);

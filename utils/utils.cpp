@@ -2,6 +2,11 @@
 
 using namespace std;
 
+static const string base64_chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "abcdefghijklmnopqrstuvwxyz"
+    "0123456789+/";
+
 bool filepath_is_valid(string filepath)
 {
   FILE *file = fopen(filepath.c_str(), "r");
@@ -118,48 +123,62 @@ string strip(const string &str, const string &chars)
 
 map<string, string> parse_json_string_to_map(const string json)
 {
-    map<string, string> resultMap;
-    size_t i = 0;
-    size_t n = json.length();
-    auto skipWhitespace = [&]() {
-        while (i < n && isspace(json[i])) i++;
-    };
-    auto extractString = [&]() -> string {
-        skipWhitespace();
-        if (json[i] != '"') throw runtime_error("Expected '\"'");
-        size_t start = ++i;
-        while (i < n && json[i] != '"') {
-            if (json[i] == '\\') {
-                i++;
-            }
-            i++;
+  map<string, string> result_map;
+  size_t index = 0;
+  size_t length = json.length();
+  
+  auto skip_whitespace = [&]() {
+      while (index < length && isspace(json[index])) index++;
+  };
+
+  auto extract_string = [&]() -> string {
+    skip_whitespace();
+    if (json[index] != '"') throw runtime_error("Expected '\"'");
+    size_t start = ++index;
+    string result;
+    while (index < length && json[index] != '"') {
+      if (json[index] == '\\') {
+        index++;
+        if (index >= length) throw runtime_error("Escape sequence not terminated");
+        switch (json[index]) {
+          case 'n': result += '\n'; break;
+          case 't': result += '\t'; break;
+          case 'r': result += '\r'; break;
+          case '\\': result += '\\'; break;
+          case '"': result += '"'; break;
+          default: throw runtime_error("Invalid escape sequence");
         }
-        if (i >= n) throw runtime_error("Unterminated string");
-        string result = json.substr(start, i - start);
-        i++;
-        return result;
-    };
-    skipWhitespace();
-    if (json[i] != '{') throw runtime_error("Expected '{'");
-    i++;
-    while (true) {
-        skipWhitespace();
-        if (json[i] == '}') break;
-        string key = extractString();
-        skipWhitespace();
-        if (json[i] != ':') throw runtime_error("Expected ':' after key");
-        i++;
-        string value = extractString();
-        resultMap[key] = value;
-        skipWhitespace();
-        if (json[i] == ',') {
-            i++;
-        } else if (json[i] != '}') {
-            throw runtime_error("Expected ',' or '}'");
-        }
+      } else {
+        result += json[index];
+      }
+      index++;
     }
-    i++;
-    return resultMap;
+    if (index >= length) throw runtime_error("Unterminated string");
+    index++;
+    return result;
+  };
+
+  skip_whitespace();
+  if (json[index] != '{') throw runtime_error("Expected '{'");
+  index++;
+  while (true) {
+      skip_whitespace();
+      if (json[index] == '}') break;
+      string key = extract_string();
+      skip_whitespace();
+      if (json[index] != ':') throw runtime_error("Expected ':' after key");
+      index++;
+      string value = extract_string();
+      result_map[key] = value;
+      skip_whitespace();
+      if (json[index] == ',') {
+          index++;
+      } else if (json[index] != '}') {
+          throw runtime_error("Expected ',' or '}'");
+      }
+  }
+  index++;
+  return result_map;
 }
 
 sockaddr_in get_socket_address(const string &addr_str)
@@ -202,4 +221,89 @@ string lower_case(const string& str) {
   string result = str;
   transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return tolower(c); });
   return result;
+}
+
+string base_64_encode(const unsigned char* buf, unsigned int bufLen) {
+  string base64;
+  int i = 0;
+  int j = 0;
+  unsigned char char_array_3[3];
+  unsigned char char_array_4[4];
+
+  while (bufLen--) {
+    char_array_3[i++] = *(buf++);
+    if (i == 3) {
+      char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+      char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+      char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+      char_array_4[3] = char_array_3[2] & 0x3f;
+
+      for(i = 0; (i <4) ; i++)
+        base64 += base64_chars[char_array_4[i]];
+      i = 0;
+    }
+  }
+
+  if (i)
+  {
+    for(j = i; j < 3; j++)
+      char_array_3[j] = '\0';
+
+    char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+    char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+    char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+
+    for (j = 0; (j < i + 1); j++)
+      base64 += base64_chars[char_array_4[j]];
+
+    while((i++ < 3))
+      base64 += '=';
+  }
+
+  return base64;
+}
+
+string base_64_decode(const string& encoded_string) {
+    auto base64_char_value = [](char c) -> int {
+      if (c >= 'A' && c <= 'Z') return c - 'A';
+      if (c >= 'a' && c <= 'z') return c - 'a' + 26;
+      if (c >= '0' && c <= '9') return c - '0' + 52;
+      if (c == '+') return 62;
+      if (c == '/') return 63;
+      return -1;
+    };
+
+    int length = encoded_string.size();
+    int i = 0, j = 0;
+    int in_ = 0;
+    unsigned char char_array_4[4], char_array_3[3];
+    string ret;
+
+    while (length-- && (encoded_string[in_] != '=') && base64_char_value(encoded_string[in_]) != -1) {
+      char_array_4[i++] = encoded_string[in_]; in_++;
+      if (i == 4) {
+        for (i = 0; i < 4; i++)
+          char_array_4[i] = base64_char_value(char_array_4[i]);
+
+        char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+        char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
+        char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+
+        for (i = 0; (i < 3); i++)
+          ret += char_array_3[i];
+        i = 0;
+      }
+    }
+
+    if (i) {
+      for (j = 0; j < i; j++)
+        char_array_4[j] = base64_char_value(char_array_4[j]);
+
+      char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+      char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
+
+      for (j = 0; (j < i - 1); j++) ret += char_array_3[j];
+    }
+
+    return ret;
 }

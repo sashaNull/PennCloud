@@ -98,8 +98,6 @@ string replace_escaped_newlines(const string &input)
 
 string generate_compose_html(const string &prefill_to, const string &prefill_subject, const string &prefill_body)
 {
-    // /compose?mode=reply&email_id=123
-    string prefill_body_edited = replace_escaped_newlines(prefill_body);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Compose Email</title><style>"
          << "input, textarea { width: 95%; margin: 10px; padding: 8px; }"
@@ -135,7 +133,7 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
          << "<form id='emailForm'>"
          << "<label for='to'>To:</label><input type='text' id='to' name='to' placeholder='Enter recipients, separated by semicolons' value='" << prefill_to << "'><br>"
          << "<label for='subject'>Subject:</label><input type='text' id='subject' name='subject' placeholder='Subject' value='" << prefill_subject << "'><br>"
-         << "<label for='body'>Body:</label><textarea id='body' name='body' placeholder='Write your email here...'>" << prefill_body_edited << "</textarea><br>"
+         << "<label for='body'>Body:</label><textarea id='body' name='body' placeholder='Write your email here...'>" << prefill_body << "</textarea><br>"
          << "<button type='submit'>Send Email</button>"
          << "</form></body></html>";
 
@@ -162,7 +160,7 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
         else
         {
             cout << "in external if" << endl;
-            to_return[1].push_back("<" + r + ">");
+            to_return[1].push_back(r);
         }
     }
     return to_return;
@@ -170,7 +168,7 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
 
 string format_mail_for_display(const string &subject, const string &from, const string &timestamp, const string &body)
 {
-    return "Subject: " + subject + "\n" + "From: " + from + "\n" + "Date: " + timestamp + "\n" + body;
+    return "Subject: " + subject + "\n" + "From: " + from + "\n" + "Date: " + timestamp + "\n\n" + body;
 }
 
 string get_timestamp()
@@ -182,7 +180,7 @@ string get_timestamp()
     return formatted_time.str();
 }
 
-int deliver_local_email(const string &backend_serveraddr_str, int fd, const string &recipient, const string &uid, const string &from, const string &subject, const string &body)
+int deliver_local_email(const string &backend_serveraddr_str, int fd, const string &recipient, const string &uid, const string &from, const string &subject, const string &encoded_body, const string &encoded_display)
 {
     cout << "delivering to " << recipient << endl;
     F_2_B_Message msg_to_send = construct_msg(1, recipient + "_email", "inbox_items", "", "", "", 0);
@@ -209,19 +207,7 @@ int deliver_local_email(const string &backend_serveraddr_str, int fd, const stri
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         usr_inbox_str = response_msg.value;
     }
-    // put from || timestamp || subject || body
-    msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, "email/" + uid, "timestamp", received_ts, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    msg_to_send = construct_msg(2, "email/" + uid, "body", body, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
-    string display_email = format_mail_for_display(subject, from, received_ts, body);
-    msg_to_send = construct_msg(2, "email/" + uid, "display", display_email, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
     return response_msg.status;
 }
 
@@ -247,29 +233,19 @@ void put_in_sentbox(const string &backend_serveraddr_str, int fd, const string &
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         usr_sentbox_str = response_msg.value;
     }
-
-    // put to || timestamp || subject || body
-    msg_to_send = construct_msg(2, "email/" + uid, "to", to, "", "", 0);
-    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 }
 
-string newline_to_br(const string &text)
+string newline_to_br(const string &input)
 {
-    string converted;
-    converted.reserve(text.size() * 1.1);
-    for (size_t i = 0; i < text.length(); ++i)
-    {
-        if (text[i] == '\\' && i + 1 < text.length() && text[i + 1] == 'n')
-        {
-            converted += "<br>";
-            ++i;
-        }
-        else
-        {
-            converted += text[i];
+    string output;
+    for (char ch : input) {
+        if (ch == '\n') {
+            output += "<br>";
+        } else {
+            output += ch;
         }
     }
-    return converted;
+    return output;
 }
 
 string construct_view_email_html(const string &subject, const string &from, const string &to, const string &timestamp, const string &body, const string &uid, const string &source)
@@ -299,24 +275,24 @@ string construct_view_email_html(const string &subject, const string &from, cons
 string delete_email_from_box_string(const string& input, const string& uid, const string& delimiter) {
     size_t uid_pos = input.find(uid);
     
-    if (uid_pos == std::string::npos) {
-        std::cout << "UID not found." << std::endl;
+    if (uid_pos == string::npos) {
+        cout << "UID not found." << endl;
         return input;
     }
 
     size_t start_pos = input.rfind(delimiter, uid_pos);
-    if (start_pos == std::string::npos) {
+    if (start_pos == string::npos) {
         start_pos = 0;
     }
 
     size_t end_pos = input.find(delimiter, uid_pos + uid.length());
-    if (end_pos != std::string::npos) {
+    if (end_pos != string::npos) {
         end_pos += delimiter.length();
     } else {
         end_pos = input.length();
     }
 
-    std::string modified_string = input;
+    string modified_string = input;
     modified_string.erase(start_pos, end_pos - start_pos);
 
     return modified_string;
@@ -344,4 +320,136 @@ void delete_email(const string& backend_serveraddr_str, int fd, const string& us
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         usr_box_str = response_msg.value;
     }
+}
+
+SSL_CTX* create_ssl_context() {
+    const SSL_METHOD* method = TLS_client_method();
+    if (!method) {
+        std::cerr << "Unable to get SSL method" << std::endl;
+        ERR_print_errors_fp(stderr);
+        exit(EXIT_FAILURE);
+    }
+    SSL_CTX* ctx = SSL_CTX_new(method);
+    if (!ctx) {
+        std::cerr << "Unable to create SSL context" << std::endl;
+        ERR_print_errors_fp(stderr);
+        exit(EXIT_FAILURE);
+    }
+    SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1); // Only allow TLSv1.2 and above
+    return ctx;
+}
+
+void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl) {
+    if (ssl) {
+        SSL_free(ssl);
+        std::cout << "SSL freed" << std::endl;
+    }
+    if (sock != -1) {
+        close(sock);
+        std::cout << "Socket closed" << std::endl;
+    }
+    if (ctx) {
+        SSL_CTX_free(ctx);
+        std::cout << "SSL context freed" << std::endl;
+    }
+    ERR_free_strings();
+}
+
+void send_smtp_command(SSL* ssl, const char* cmd) {
+    std::cout << "Sending command: " << cmd;
+    if (SSL_write(ssl, cmd, strlen(cmd)) <= 0) {
+        ERR_print_errors_fp(stderr);
+        throw std::runtime_error("Failed to send command");
+    }
+    char buffer[1024];
+    if (SSL_read(ssl, buffer, sizeof(buffer)) <= 0) {
+        ERR_print_errors_fp(stderr);
+        throw std::runtime_error("Failed to read response");
+    }
+    std::cout << "Received: " << buffer << std::endl;
+}
+
+void* smtp_client(void* arg) {
+    auto data = static_cast<std::map<std::string, std::string>*>(arg);
+    std::string to = (*data)["to"];
+    std::string from = (*data)["from"];
+    std::string subject = (*data)["subject"];
+    std::string content = (*data)["content"];
+    std::string domain = to.substr(to.find('@') + 1);
+    delete data;  // Clean up data as it's no longer needed
+
+
+    // Lookup MX record
+    unsigned char query_buffer[NS_PACKETSZ];
+    int response = res_query(domain.c_str(), ns_c_in, ns_t_mx, query_buffer, sizeof(query_buffer));
+    if (response < 0) {
+        std::cerr << "DNS query failed" << std::endl;
+        return nullptr;
+    }
+
+    ns_msg handle;
+    ns_initparse(query_buffer, response, &handle);
+    ns_rr record;
+    char mx_host[NS_MAXDNAME];
+    if (ns_parserr(&handle, ns_s_an, 0, &record) == 0) {
+        dn_expand(ns_msg_base(handle), ns_msg_end(handle), ns_rr_rdata(record) + NS_INT16SZ, mx_host, sizeof(mx_host));
+        std::cout << "MX Record found: " << mx_host << std::endl;
+    } else {
+        std::cerr << "Failed to parse MX record" << std::endl;
+        return nullptr;
+    }
+
+    // Resolve IP address of MX host
+    std::cout << "Resolving IP address for: " << mx_host << std::endl;
+    struct hostent* host = gethostbyname(mx_host);
+    if (!host) {
+        std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
+        return nullptr;
+    }
+    struct in_addr* address = (struct in_addr*)host->h_addr;
+    std::cout << "IP Address: " << inet_ntoa(*address) << std::endl;
+
+    // Create socket and establish a connection
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in dest;
+    dest.sin_family = AF_INET;
+    dest.sin_port = htons(576);
+    memcpy(&dest.sin_addr.s_addr, host->h_addr, host->h_length);
+
+    std::cout << "Connecting to server: " << mx_host << " on port 576" << std::endl;
+    if (connect(sock, (struct sockaddr*)&dest, sizeof(dest)) != 0) {
+        std::cerr << "Failed to connect to the server: " << strerror(errno) << std::endl;
+        ssl_cleanup(nullptr, sock, nullptr);
+        return nullptr;
+    }
+
+    // Initialize SSL
+    SSL_CTX* ctx = create_ssl_context();
+    SSL* ssl = SSL_new(ctx);
+    SSL_set_fd(ssl, sock);
+    if (SSL_connect(ssl) != 1) {
+        std::cerr << "SSL connection failed" << std::endl;
+        ssl_cleanup(ctx, sock, ssl);
+        return nullptr;
+    }
+
+    std::cout << "SSL connection established" << std::endl;
+
+    try {
+        send_smtp_command(ssl, "HELO seas.upenn.edu\r\n");
+        // send_smtp_command(ssl, ("MAIL FROM: <" + from + ">\r\n").c_str());
+        send_smtp_command(ssl, "MAIL FROM: <mqjin@seas.upenn.edu>\r\n");
+        send_smtp_command(ssl, ("RCPT TO: <" + to + ">\r\n").c_str());
+        send_smtp_command(ssl, "DATA\r\n");
+        send_smtp_command(ssl, ("Subject: " + subject + "\r\n" + content + "\r\n.\r\n").c_str());
+        send_smtp_command(ssl, "QUIT\r\n");
+    } catch (const std::exception& e) {
+        std::cerr << "Error during SMTP communication: " << e.what() << std::endl;
+        ssl_cleanup(ctx, sock, ssl);
+        return nullptr;
+    }
+
+    ssl_cleanup(ctx, sock, ssl);
+
+    return nullptr;
 }

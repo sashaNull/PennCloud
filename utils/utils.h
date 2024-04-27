@@ -57,4 +57,8 @@ std::string compute_md5_hash(const std::string& to_hash);
 
 std::string lower_case(const std::string& str);
 
+std::string base_64_encode(const unsigned char* buf, unsigned int bufLen);
+
+std::string base_64_decode(const std::string& encoded_string);
+
 #endif // UTILS_H
