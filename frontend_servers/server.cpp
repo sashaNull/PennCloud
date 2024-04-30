@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 #include "../utils/utils.h"
 #include "./client_communication.h"
@@ -34,6 +36,20 @@ map<string, string> g_map_rowkey_to_server;
 string g_serveraddr_str;
 int g_listen_fd;
 std::unordered_map<std::string, std::string> g_endpoint_html_map;
+
+// Function to generate a random session ID
+string generateSessionID()
+{
+  const string charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const int length = 32; // You can adjust the length of the session ID
+  string sessionID;
+  srand(time(nullptr)); // Seed the random number generator
+  for (int i = 0; i < length; ++i)
+  {
+    sessionID.push_back(charset[rand() % charset.length()]);
+  }
+  return sessionID;
+}
 
 // Function to decode base64 string to binary data
 std::vector<unsigned char> base64_decode(const std::string &encoded_string)
@@ -131,6 +147,7 @@ void send_response_with_headers(int client_fd, int status_code, const std::strin
   response << "Content-Type: " << content_type << "\r\n";
   response << "Content-Disposition: " << content_disposition << "\r\n";
   response << "Content-Length: " << content.size() << "\r\n";
+  // response << "Set-Cookie: sid=" << sessionID << "\r\n"; // Set the session ID cookie
   response << "\r\n"; // End of headers
 
   // Send the response headers
@@ -772,14 +789,14 @@ void *handle_connection(void *arg)
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string subject = form_data["subject"];
       string body = form_data["body"];
-      string encoded_body = base_64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), body.length());
+      string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()), body.length());
       vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
       // TODO: get from field from cookies
       string from = g_username + "@localhost";
       string from_username = g_username;
       // format to_display
       string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-      string encoded_display = base_64_encode(reinterpret_cast<const unsigned char*>(for_display.c_str()), for_display.length());
+      string encoded_display = base_64_encode(reinterpret_cast<const unsigned char *>(for_display.c_str()), for_display.length());
       string uid = compute_md5_hash(for_display);
       // TODO:
       string backend_serveraddr_str = "127.0.0.1:6000";
@@ -790,18 +807,20 @@ void *handle_connection(void *arg)
         // TODO: check if recipient exits, if not throw error in browser
         pthread_t thread_id;
         // Dynamically allocate data for each thread
-        auto* data = new std::map<std::string, std::string>{
+        auto *data = new std::map<std::string, std::string>{
             {"to", r},
             {"from", from},
             {"subject", subject},
-            {"content", encoded_body}
-        };
+            {"content", encoded_body}};
         // Create a thread for each recipient
-        if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0) {
-            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-            delete data;
-        } else {
-            pthread_detach(thread_id);
+        if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
+        {
+          std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+          delete data; // Clean up data if thread creation fails
+        }
+        else
+        {
+          pthread_detach(thread_id); // Optionally detach the thread
         }
       }
       // local recipients
@@ -824,7 +843,7 @@ void *handle_connection(void *arg)
       // TODO: get username from cookies
       string username = g_username;
       string backend_serveraddr_str = "127.0.0.1:6000";
-      ///view_email/?source=inbox&id=
+      /// view_email/?source=inbox&id=
       string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
       string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
       // fetch email with corresponding uid (subject, from, to, timestamp, body) from backend
@@ -853,7 +872,8 @@ void *handle_connection(void *arg)
       string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid, source);
       send_response(client_fd, 200, "OK", "text/html", html_content);
     }
-    else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET") {
+    else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET")
+    {
       string username = g_username;
       string backend_serveraddr_str = "127.0.0.1:6000";
       // /delete_email?source=" << source << "&id=" << uid << "
@@ -903,7 +923,7 @@ void *handle_connection(void *arg)
         html_content << "<button onclick=\"uploadFile()\">Upload File</button>";
         html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
 
-        // Generate JavaScript functions for upload and create folder actions
+        // JavaScript functions for upload and create folder actions
         html_content << "<script>";
         html_content << "function uploadFile(path) { "; // Accept path as parameter
         html_content << "var input = document.createElement('input');";
@@ -928,7 +948,7 @@ void *handle_connection(void *arg)
         html_content << "var jsonData = JSON.stringify({";
         html_content << "'fileContent': fileContent,"; // Include file content in JSON data
         html_content << "'filename': filename,";       // Include filename in JSON data
-        html_content << "path: '" << path << "'";      // Path of parent folder
+        html_content << "'path': '" << path << "'";    // Path of parent folder
         html_content << "});";
         html_content << "fetch('/upload_file', {"; // Send POST request to upload_file endpoint
         html_content << "method: 'POST',";
@@ -939,13 +959,19 @@ void *handle_connection(void *arg)
         html_content << "})";
         html_content << ".then(response => {";
         html_content << "if (response.ok) {";
-        html_content << "window.location.reload();"; // Refresh the page after successful upload
-        html_content << "}";                         // Close if (response.ok)
-        html_content << "})";                        // Close .then()
+        html_content << "window.location.reload(true);"; // Refresh the page after successful upload
+        html_content << "} else {";
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to upload file: ' + data.error)});";
+        html_content << "}";
+        html_content << "})";
         html_content << ".catch(error => {";
-        html_content << "console.error('Error:', error);";
+        html_content << "console.error('Error:', error);"; // Log error to console
         html_content << "});";
-        html_content << "}"; // Close uploadFileRequest function
+        html_content << "}";
+        html_content << "</script>";
+
+        html_content << "<script>";
         html_content << "function createFolder() { ";
         html_content << "var folderName = prompt('Enter folder name:');"; // Display a prompt to enter folder name
         html_content << "if (folderName) {";                              // Check if folder name is provided
@@ -964,16 +990,18 @@ void *handle_connection(void *arg)
         html_content << "})";
         html_content << "})";
         html_content << ".then(response => {";
+        html_content << "console.log(response);";
         html_content << "if (response.ok) {";
-        html_content << "window.location.reload();"; // Refresh the page after successful create folder request
+        html_content << "window.location.reload(true);"; // Refresh the page after successful create folder request
         html_content << "} else {";
-        html_content << "console.error('Failed to create folder:', response.statusText);"; // Log error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to create folder: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
-        html_content << "console.error('Error:', error);";
+        html_content << "console.error('Error:', error);"; // Log error to console
         html_content << "});";
-        html_content << "}"; // Close createFolderRequest function
+        html_content << "}";
         html_content << "</script>";
 
         // Check if the response contains a list of items (folders)
@@ -1048,7 +1076,8 @@ void *handle_connection(void *arg)
         html_content << "alert('Folder deleted successfully');"; // Show success message
         html_content << "window.location.reload(true);";         // Refresh the page after successful deletion
         html_content << "} else {";
-        html_content << "alert('Failed to delete folder');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to delete folder: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1075,7 +1104,8 @@ void *handle_connection(void *arg)
         html_content << "alert('Folder renamed successfully');"; // Show success message
         html_content << "window.location.reload(true);";         // Refresh the page after successful renaming
         html_content << "} else {";
-        html_content << "alert('Failed to rename folder');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to rename folder: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1102,7 +1132,8 @@ void *handle_connection(void *arg)
         html_content << "alert('Folder moved successfully');"; // Show success message
         html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
         html_content << "} else {";
-        html_content << "alert('Failed to move folder');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to move folder: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1111,7 +1142,6 @@ void *handle_connection(void *arg)
         html_content << "}";
         html_content << "</script>";
 
-        // JavaScript function for showing file options
         // JavaScript function for showing file options
         html_content << "<script>";
         html_content << "function showFileOptions(filePath) {";
@@ -1160,7 +1190,8 @@ void *handle_connection(void *arg)
         html_content << "alert('File deleted successfully');"; // Show success message
         html_content << "window.location.reload(true);";       // Refresh the page after successful deletion
         html_content << "} else {";
-        html_content << "alert('Failed to delete file');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to delete file: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1187,7 +1218,8 @@ void *handle_connection(void *arg)
         html_content << "alert('File moved successfully');"; // Show success message
         html_content << "window.location.reload(true);";     // Refresh the page after successful move
         html_content << "} else {";
-        html_content << "alert('Failed to move file');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to move file: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1214,7 +1246,8 @@ void *handle_connection(void *arg)
         html_content << "alert('File renamed successfully');"; // Show success message
         html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
         html_content << "} else {";
-        html_content << "alert('Failed to rename file');"; // Show error message
+        html_content << "response.json().then(data => {"; // Show error message
+        html_content << "alert('Failed to rename file: ' + data.error)});";
         html_content << "}";
         html_content << "})";
         html_content << ".catch(error => {";
@@ -1240,7 +1273,7 @@ void *handle_connection(void *arg)
       {
         // Error handling: send appropriate error response to the client
         std::string error_message = "Failed to fetch items for folder ";
-        send_response(client_fd, 500, "Internal Server Error", "text/plain", error_message);
+        send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
       }
     }
     // Handle POST request to create a new folder
@@ -1297,7 +1330,7 @@ void *handle_connection(void *arg)
           {
             success = true;
           }
-          if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+          else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
           {
             // Parent folder does not exist - Construct and send the HTTP response
             string content = "{\"error\":\"Parent folder does not exist\"}";
@@ -1334,7 +1367,7 @@ void *handle_connection(void *arg)
 
       if (response_msg_put.status == 0)
       {
-        // If folder creation is successful, send a response with a script to reload the page
+        // Success response
         string refresh_script = "<script>window.location.reload(true);</script>";
         send_response(client_fd, 200, "OK", "text/html", refresh_script);
       }
@@ -1366,91 +1399,106 @@ void *handle_connection(void *arg)
 
       std::cout << "parent row key: " << parentRowKey << std::endl;
 
-      // Loop till success: GET the parent folder
-      bool success = false;
-      while (!success)
-      {
-        // GET request for the parent folder
-        string backend_serveraddr_str = "127.0.0.1:6000";
-        F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-        F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
-
-        if (response_msg_get.status == 0)
-        {
-          std::string newValue;
-
-          if (response_msg_get.value == "[]")
-          {
-            // If the list is empty, simply add the new value with square brackets
-            newValue = "[F@" + filename + "]";
-          }
-          else
-          {
-            // Find the position of the last closing bracket
-            size_t last_bracket_pos = response_msg_get.value.find_last_of(']');
-
-            // Extract the substring up to the last closing bracket (excluding)
-            std::string existing_values = response_msg_get.value.substr(0, last_bracket_pos);
-
-            // Concatenate the new value with a comma
-            newValue = existing_values + ",F@" + filename + "]";
-          }
-
-          // CPUT the parent folder
-          string backend_serveraddr_str = "127.0.0.1:6000";
-          F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-          F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
-
-          if (response_msg_cput.status == 0)
-          {
-            success = true;
-          }
-          if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
-          {
-            // Parent folder does not exist - Construct and send the HTTP response
-            string content = "{\"error\":\"Parent folder does not exist\"}";
-            send_response(client_fd, 404, "Not Found", "application/json", content);
-          }
-          else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
-          {
-            // Old value is wrong - Construct and send the HTTP response
-            string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
-            send_response(client_fd, 401, "Unauthorized", "application/json", content);
-          }
-          else
-          {
-            // Error in fetching user - Construct and send the HTTP response
-            string content = "{\"error\":\"Error fetching user\"}";
-            send_response(client_fd, 500, "Internal Server Error", "application/json", content);
-          }
-        }
-        else
-        {
-          // Error in fetching user - Construct and send the HTTP response
-          string content = "{\"error\":\"Error fetching user\"}";
-          send_response(client_fd, 500, "Internal Server Error", "application/json", content);
-        }
-      }
-
       // Construct the row key for the new file
       std::string file_row_key = parentRowKey + "/" + filename;
 
-      // PUT for the content of the file
-      std::string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send_put = construct_msg(2, file_row_key, "content", fileContent, "", "", 0);
-      F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+      // Check whether file already exists in this directory
+      string backend_serveraddr_str = "127.0.0.1:6000";
+      F_2_B_Message msg_to_send_get = construct_msg(1, file_row_key, "content", "", "", "", 0);
+      F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-      if (response_msg_put.status == 0)
+      std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
+
+      if (response_msg_get.status == 0)
       {
-        // Construct and send a success response to the client
-        std::string success_response = "{\"message\":\"File uploaded successfully\"}";
-        send_response(client_fd, 200, "OK", "application/json", success_response);
+        // file already exists
+        string content = "{\"error\":\"File already exists!!\"}";
+        send_response(client_fd, 409, "Conflict", "application/json", content);
+      }
+      else if (response_msg_get.status == 1)
+      {
+        // Loop till success: GET the parent folder
+        bool success = false;
+        while (!success)
+        {
+          // GET request for the parent folder
+          F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
+          F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+
+          if (response_msg_get.status == 0)
+          {
+            std::string newValue;
+
+            if (response_msg_get.value == "[]")
+            {
+              // If the list is empty, simply add the new value with square brackets
+              newValue = "[F@" + filename + "]";
+            }
+            else
+            {
+              // Find the position of the last closing bracket
+              size_t last_bracket_pos = response_msg_get.value.find_last_of(']');
+
+              // Extract the substring up to the last closing bracket (excluding)
+              std::string existing_values = response_msg_get.value.substr(0, last_bracket_pos);
+
+              // Concatenate the new value with a comma
+              newValue = existing_values + ",F@" + filename + "]";
+            }
+
+            // CPUT the parent folder
+            string backend_serveraddr_str = "127.0.0.1:6000";
+            F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
+            F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+
+            if (response_msg_cput.status == 0)
+            {
+              success = true;
+            }
+            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+            {
+              // Parent folder does not exist - Construct and send the HTTP response
+              string content = "{\"error\":\"Parent folder does not exist\"}";
+              send_response(client_fd, 404, "Not Found", "application/json", content);
+            }
+            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+            {
+              // Old value is wrong - Construct and send the HTTP response
+              string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
+              send_response(client_fd, 401, "Unauthorized", "application/json", content);
+            }
+            else
+            {
+              // Error in fetching user - Construct and send the HTTP response
+              string content = "{\"error\":\"Error fetching user\"}";
+              send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+            }
+          }
+        }
+
+        // PUT for the content of the file
+        std::string backend_serveraddr_str = "127.0.0.1:6000";
+        F_2_B_Message msg_to_send_put = construct_msg(2, file_row_key, "content", fileContent, "", "", 0);
+        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+
+        if (response_msg_put.status == 0)
+        {
+          // Construct and send a success response to the client
+          std::string success_response = "{\"message\":\"File uploaded successfully\"}";
+          send_response(client_fd, 200, "OK", "application/json", success_response);
+        }
+        else
+        {
+          // Error handling: send appropriate error response to the client
+          std::string error_message = "Failed to upload file";
+          send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+        }
       }
       else
       {
-        // Error handling: send appropriate error response to the client
-        std::string error_message = "Failed to upload file";
-        send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+        // Error in fetching user - Construct and send the HTTP response
+        string content = "{\"error\":\"Operation failed\"}";
+        send_response(client_fd, 500, "Internal Server Error", "application/json", content);
       }
     }
     // Handle GET request for downloading a file
@@ -2109,103 +2157,117 @@ void *handle_connection(void *arg)
         std::string new_row_key = "adwait_" + parentFolderPath + "/" + newFileName;
         std::string old_row_key = "adwait_" + filePath;
 
-        // GET and PUT new file contents
+        // Check whether file already exists in this directory
         string backend_serveraddr_str = "127.0.0.1:6000";
-
-        F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
+        F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
         F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-        F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
-        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+        std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
 
-        if (response_msg_put.status != 0)
+        if (response_msg_get.status == 0)
         {
-          // Error handling: send appropriate error response to the client
-          string error_message = "Failed to create new file path";
-          send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+          // file already exists
+          string content = "{\"error\":\"File with same name already exists!!\"}";
+          send_response(client_fd, 409, "Conflict", "application/json", content);
         }
-
-        std::cout << "Parent directory to update: " << parentRowKey << std::endl;
-
-        // Loop until success: GET the parent folder
-        bool success = false;
-
-        while (!success)
+        else if (response_msg_get.status == 1)
         {
-          // Get current directory items
-          F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
+          // GET and PUT new file contents
+          F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
           F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-          if (response_msg_get.status == 0)
+          F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
+          F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+
+          if (response_msg_put.status != 0)
           {
-            // Parse items list
-            vector<string> items = parse_items_list(response_msg_get.value);
+            // Error handling: send appropriate error response to the client
+            string error_message = "Failed to create new file path";
+            send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+          }
 
-            // Replace the old file name with the new file name
-            for (auto &item : items)
+          std::cout << "Parent directory to update: " << parentRowKey << std::endl;
+
+          // Loop until success: GET the parent folder
+          bool success = false;
+
+          while (!success)
+          {
+            // Get current directory items
+            F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
+            F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+
+            if (response_msg_get.status == 0)
             {
-              if (item == "F@" + fileName)
+              // Parse items list
+              vector<string> items = parse_items_list(response_msg_get.value);
+
+              // Replace the old file name with the new file name
+              for (auto &item : items)
               {
-                item = "F@" + newFileName;
-                break;
+                if (item == "F@" + fileName)
+                {
+                  item = "F@" + newFileName;
+                  break;
+                }
               }
-            }
 
-            // Concatenate remaining items to form the new value
-            string newValue = "[";
-            bool firstItem = true;
-            for (const auto &item : items)
-            {
-              if (!firstItem)
+              // Concatenate remaining items to form the new value
+              string newValue = "[";
+              bool firstItem = true;
+              for (const auto &item : items)
               {
-                newValue += ",";
+                if (!firstItem)
+                {
+                  newValue += ",";
+                }
+                newValue += item;
+                firstItem = false;
               }
-              newValue += item;
-              firstItem = false;
-            }
-            newValue += "]";
+              newValue += "]";
 
-            std::cout << "New value to update: " << newValue << std::endl;
+              std::cout << "New value to update: " << newValue << std::endl;
 
-            // CPUT the current directory items with the renamed file
-            F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-            F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+              // CPUT the current directory items with the renamed file
+              F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
+              F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
 
-            if (response_msg_cput.status == 0)
-            {
-              // Delete file content
-              F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
-              F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
-
-              if (response_msg_delete_content.status == 0)
+              if (response_msg_cput.status == 0)
               {
-                // Set success flag to true to exit the loop
-                success = true;
-                // Success response
-                std::string refresh_script = "<script>window.location.reload(true);</script>";
-                send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                // Delete file content
+                F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
+                F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
+
+                if (response_msg_delete_content.status == 0)
+                {
+                  // Set success flag to true to exit the loop
+                  success = true;
+                  // Success response
+                  std::string refresh_script = "<script>window.location.reload(true);</script>";
+                  send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                }
+                else
+                {
+                  // Error handling: send appropriate error response to the client
+                  string error_message = "Failed to delete file content";
+                  send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+                }
               }
               else
               {
                 // Error handling: send appropriate error response to the client
-                string error_message = "Failed to delete file content";
+                std::string error_message = "Failed to update parent folder";
                 send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+                break;
               }
             }
             else
             {
               // Error handling: send appropriate error response to the client
-              std::string error_message = "Failed to update parent folder";
+              std::string error_message = "Failed to fetch directory items";
               send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
               break;
             }
-          }
-          else
-          {
-            // Error handling: send appropriate error response to the client
-            std::string error_message = "Failed to fetch directory items";
-            send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-            break;
           }
         }
       }
@@ -2231,124 +2293,138 @@ void *handle_connection(void *arg)
         std::string old_row_key = "adwait_" + filePath;
         std::string new_parent_row_key = "adwait_" + newFilePath;
 
-        // GET and PUT new file contents
+        // Check whether file already exists in this directory
         string backend_serveraddr_str = "127.0.0.1:6000";
-
-        F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
+        F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
         F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-        F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
-        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+        std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
 
-        if (response_msg_put.status != 0)
+        if (response_msg_get.status == 0)
         {
-          // Error handling: send appropriate error response to the client
-          string error_message = "Failed to create new file path";
-          send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+          // file already exists
+          string content = "{\"error\":\"File already exists in new directory!!\"}";
+          send_response(client_fd, 409, "Conflict", "application/json", content);
         }
-
-        std::cout << "Parent directory to update: " << parentRowKey << std::endl;
-
-        // Loop until success: GET the parent folder
-        bool success = false;
-
-        while (!success)
+        else if (response_msg_get.status == 1)
         {
-          // Get new directory items
-          F_2_B_Message msg_to_send_get = construct_msg(1, new_parent_row_key, "items", "", "", "", 0);
+          // GET and PUT new file contents
+          F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
           F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-          // Get old directory items
-          F_2_B_Message msg_to_send_get_old = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-          F_2_B_Message response_msg_get_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get_old);
+          F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
+          F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
 
-          if (response_msg_get.status == 0 && msg_to_send_get_old.status == 0)
+          if (response_msg_put.status != 0)
           {
-            // For new directory: Parse items list
-            vector<string> items = parse_items_list(response_msg_get.value);
+            // Error handling: send appropriate error response to the client
+            string error_message = "Failed to create new file path";
+            send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+          }
 
-            // Append the new file name to the existing items list
-            items.push_back("F@" + fileName);
+          std::cout << "Parent directory to update: " << parentRowKey << std::endl;
 
-            // Concatenate remaining items to form the new value
-            string newValue = "[";
-            bool firstItem = true;
-            for (const auto &item : items)
+          // Loop until success: GET the parent folder
+          bool success = false;
+
+          while (!success)
+          {
+            // Get new directory items
+            F_2_B_Message msg_to_send_get = construct_msg(1, new_parent_row_key, "items", "", "", "", 0);
+            F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+
+            // Get old directory items
+            F_2_B_Message msg_to_send_get_old = construct_msg(1, parentRowKey, "items", "", "", "", 0);
+            F_2_B_Message response_msg_get_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get_old);
+
+            if (response_msg_get.status == 0 && msg_to_send_get_old.status == 0)
             {
-              if (!firstItem)
+              // For new directory: Parse items list
+              vector<string> items = parse_items_list(response_msg_get.value);
+
+              // Append the new file name to the existing items list
+              items.push_back("F@" + fileName);
+
+              // Concatenate remaining items to form the new value
+              string newValue = "[";
+              bool firstItem = true;
+              for (const auto &item : items)
               {
-                newValue += ",";
+                if (!firstItem)
+                {
+                  newValue += ",";
+                }
+                newValue += item;
+                firstItem = false;
               }
-              newValue += item;
-              firstItem = false;
-            }
-            newValue += "]";
+              newValue += "]";
 
-            std::cout << "New value to update: " << newValue << std::endl;
+              std::cout << "New value to update: " << newValue << std::endl;
 
-            // For old directory: Parse items list
-            vector<string> old_items = parse_items_list(response_msg_get_old.value);
+              // For old directory: Parse items list
+              vector<string> old_items = parse_items_list(response_msg_get_old.value);
 
-            // Remove the old file from the directory items
-            old_items.erase(remove(old_items.begin(), old_items.end(), "F@" + fileName), old_items.end());
+              // Remove the old file from the directory items
+              old_items.erase(remove(old_items.begin(), old_items.end(), "F@" + fileName), old_items.end());
 
-            // Concatenate remaining items to form the new value
-            string newValue_old = "[";
-            bool firstItem_old = true;
-            for (const auto &item : old_items)
-            {
-              if (!firstItem_old)
+              // Concatenate remaining items to form the new value
+              string newValue_old = "[";
+              bool firstItem_old = true;
+              for (const auto &item : old_items)
               {
-                newValue_old += ",";
+                if (!firstItem_old)
+                {
+                  newValue_old += ",";
+                }
+                newValue_old += item;
+                firstItem_old = false;
               }
-              newValue_old += item;
-              firstItem_old = false;
-            }
-            newValue_old += "]";
+              newValue_old += "]";
 
-            // CPUT the new directory items with the new file
-            F_2_B_Message msg_to_send_cput = construct_msg(4, new_parent_row_key, "items", response_msg_get.value, newValue, "", 0);
-            F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+              // CPUT the new directory items with the new file
+              F_2_B_Message msg_to_send_cput = construct_msg(4, new_parent_row_key, "items", response_msg_get.value, newValue, "", 0);
+              F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
 
-            // CPUT the old directory items without the new file
-            F_2_B_Message msg_to_send_cput_old = construct_msg(4, parentRowKey, "items", response_msg_get_old.value, newValue_old, "", 0);
-            F_2_B_Message response_msg_cput_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput_old);
+              // CPUT the old directory items without the new file
+              F_2_B_Message msg_to_send_cput_old = construct_msg(4, parentRowKey, "items", response_msg_get_old.value, newValue_old, "", 0);
+              F_2_B_Message response_msg_cput_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput_old);
 
-            if (response_msg_cput.status == 0 && response_msg_cput_old.status == 0)
-            {
-              // Delete file content
-              F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
-              F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
-
-              if (response_msg_delete_content.status == 0)
+              if (response_msg_cput.status == 0 && response_msg_cput_old.status == 0)
               {
-                // Set success flag to true to exit the loop
-                success = true;
-                // Success response
-                std::string refresh_script = "<script>window.location.reload(true);</script>";
-                send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                // Delete file content
+                F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
+                F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
+
+                if (response_msg_delete_content.status == 0)
+                {
+                  // Set success flag to true to exit the loop
+                  success = true;
+                  // Success response
+                  std::string refresh_script = "<script>window.location.reload(true);</script>";
+                  send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                }
+                else
+                {
+                  // Error handling: send appropriate error response to the client
+                  string error_message = "Failed to delete file content";
+                  send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+                }
               }
               else
               {
                 // Error handling: send appropriate error response to the client
-                string error_message = "Failed to delete file content";
+                std::string error_message = "Failed to update parent folder";
                 send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+                break;
               }
             }
             else
             {
               // Error handling: send appropriate error response to the client
-              std::string error_message = "Failed to update parent folder";
+              std::string error_message = "Failed to fetch directory items";
               send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
               break;
             }
-          }
-          else
-          {
-            // Error handling: send appropriate error response to the client
-            std::string error_message = "Failed to fetch directory items";
-            send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-            break;
           }
         }
       }
