@@ -783,10 +783,11 @@ void *handle_connection(void *arg)
       string uid = compute_md5_hash(for_display);
       // TODO:
       string backend_serveraddr_str = "127.0.0.1:6000";
-      // TODO: forward to SMTP client for each external recipient
+
       F_2_B_Message msg_to_send, response_msg;
       for (const auto &r : recipients[1])
       {
+        // TODO: check if recipient exits, if not throw error in browser
         pthread_t thread_id;
         // Dynamically allocate data for each thread
         auto* data = new std::map<std::string, std::string>{
@@ -798,35 +799,22 @@ void *handle_connection(void *arg)
         // Create a thread for each recipient
         if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0) {
             std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-            delete data; // Clean up data if thread creation fails
+            delete data;
         } else {
-            pthread_detach(thread_id); // Optionally detach the thread
+            pthread_detach(thread_id);
         }
       }
       // local recipients
       for (const auto &usrname : recipients[0])
       {
+        // TODO: check if recipient exits, if not throw error in browser
+        // ? should we still deliver for other recipients even if one user doesn't exist? probably not
         deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, encoded_body, encoded_display);
       }
-      msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
 
-      msg_to_send = construct_msg(2, "email/" + uid, "to", form_data["to"], "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      msg_to_send = construct_msg(2, "email/" + uid, "timestamp", ts_sentbox, "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      msg_to_send = construct_msg(2, "email/" + uid, "body", encoded_body, "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      msg_to_send = construct_msg(2, "email/" + uid, "display", encoded_display, "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
+      put_email_to_backend(fd, backend_serveraddr_str, uid, from, form_data["to"], ts_sentbox, subject, encoded_body, encoded_display);
       put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, subject, encoded_body);
+
       std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
       redirect(client_fd, redirect_to);
     }
