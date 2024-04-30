@@ -757,7 +757,8 @@ void *handle_connection(void *arg)
         // look up email with uid in backend
         msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-        string subject = response_msg.value;
+        string encoded_subject = response_msg.value;
+        string subject = base_64_decode(encoded_subject);
 
         msg_to_send = construct_msg(1, "email/" + uid, "display", "", "", "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
@@ -788,6 +789,7 @@ void *handle_connection(void *arg)
       string ts_sentbox = get_timestamp();
       map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
       string subject = form_data["subject"];
+      string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char *>(subject.c_str()), subject.length());
       string body = form_data["body"];
       string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()), body.length());
       vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
@@ -804,14 +806,15 @@ void *handle_connection(void *arg)
       F_2_B_Message msg_to_send, response_msg;
       for (const auto &r : recipients[1])
       {
+        string dummy_from = g_username + "@seas.upenn.edu";
         // TODO: check if recipient exits, if not throw error in browser
         pthread_t thread_id;
         // Dynamically allocate data for each thread
         auto *data = new std::map<std::string, std::string>{
             {"to", r},
-            {"from", from},
+            {"from", dummy_from},
             {"subject", subject},
-            {"content", encoded_body}};
+            {"content", body}};
         // Create a thread for each recipient
         if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
         {
@@ -828,11 +831,11 @@ void *handle_connection(void *arg)
       {
         // TODO: check if recipient exits, if not throw error in browser
         // ? should we still deliver for other recipients even if one user doesn't exist? probably not
-        deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, subject, encoded_body, encoded_display);
+        deliver_local_email(backend_serveraddr_str, fd, usrname, uid, from, encoded_subject, encoded_body, encoded_display);
       }
 
-      put_email_to_backend(fd, backend_serveraddr_str, uid, from, form_data["to"], ts_sentbox, subject, encoded_body, encoded_display);
-      put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, subject, encoded_body);
+      put_email_to_backend(fd, backend_serveraddr_str, uid, from, form_data["to"], ts_sentbox, encoded_subject, encoded_body, encoded_display);
+      put_in_sentbox(backend_serveraddr_str, fd, from_username, uid, form_data["to"], ts_sentbox, encoded_subject, encoded_body);
 
       std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
       redirect(client_fd, redirect_to);
@@ -849,7 +852,8 @@ void *handle_connection(void *arg)
       // fetch email with corresponding uid (subject, from, to, timestamp, body) from backend
       msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string subject = response_msg.value;
+      string encoded_subject = response_msg.value;
+      string subject = base_64_decode(encoded_subject);
 
       msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
@@ -862,6 +866,7 @@ void *handle_connection(void *arg)
       msg_to_send = construct_msg(1, "email/" + uid, "timestamp", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
       string timestamp = response_msg.value;
+      cout << "!!!!!!TS: " << timestamp << endl;
 
       msg_to_send = construct_msg(1, "email/" + uid, "body", "", "", "", 0);
       response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);

@@ -8,6 +8,7 @@ void send_response(int client_fd, int status_code, const std::string &status_mes
     response_stream << "HTTP/1.1 " << status_code << " " << status_message << "\r\n";
     response_stream << "Content-Type: " << content_type << "\r\n";
     response_stream << "Content-Length: " << body.length() << "\r\n";
+    // response_stream << "Set-Cookie: sid=" << sessionID << "\r\n"; // Set the session ID cookie
     response_stream << "\r\n";
     response_stream << body;
 
