@@ -49,14 +49,18 @@ std::string newline_to_br(const std::string& input);
 
 std::string construct_view_email_html(const std::string& subject, const std::string& from, const std::string& to, const std::string& timestamp, const std::string& body, const std::string& uid, const std::string &source);
 
+int put_email_to_backend(int fd, const std::string &backend_serveraddr_str, const std::string &uid, const std::string &from, const std::string &to, const std::string &ts, const std::string &subject, const std::string &encoded_body, const std::string &encoded_display);
+
 std::string delete_email_from_box_string(const std::string& input, const std::string& uid, const std::string& delimiter);
 
 void delete_email(const std::string& backend_serveraddr_str, int fd, const std::string& username, const std::string& uid, const std::string& source);
 
-SSL_CTX* create_ssl_context();
+// SSL_CTX* create_ssl_context();
 
-void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl);
+// void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl);
 
-void send_smtp_command(SSL* ssl, const char* cmd);
+// void send_smtp_command(SSL* ssl, const char* cmd);
+
+void cleanup(int sock);
 
 void* smtp_client(void* arg);

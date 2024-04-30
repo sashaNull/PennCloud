@@ -7,14 +7,14 @@ using namespace std;
 vector<DisplayEmail> parse_emails_str(const string &emails_str)
 {
     vector<DisplayEmail> to_return;
-    vector<string> email_strs_vector = split(emails_str, "&&&");
+    vector<string> email_strs_vector = split(emails_str, ",");
     for (const auto &email_str : email_strs_vector)
     {
         vector<string> email_fields = split(email_str, "##");
         DisplayEmail email_item;
         email_item.uid = email_fields[0];
         email_item.to_from = email_fields[1];
-        email_item.subject = email_fields[2];
+        email_item.subject = base_64_decode(email_fields[2]);
         email_item.timestamp = email_fields[3];
         to_return.push_back(email_item);
     }
@@ -196,7 +196,7 @@ int deliver_local_email(const string &backend_serveraddr_str, int fd, const stri
     {
         // uid##sender##subject##timestamp&&&
         received_ts = get_timestamp();
-        to_cput = uid + "##" + from + "##" + subject + "##" + received_ts + "&&&" + usr_inbox_str;
+        to_cput = uid + "##" + from + "##" + subject + "##" + received_ts + "," + usr_inbox_str;
         msg_to_send = construct_msg(4, recipient + "_email", "inbox_items", usr_inbox_str, to_cput, "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status == 0)
@@ -222,7 +222,7 @@ void put_in_sentbox(const string &backend_serveraddr_str, int fd, const string &
     while (true)
     {
         // uid##to##subject##timestamp&&&
-        to_cput = uid + "##" + to + "##" + subject + "##" + ts + "&&&" + usr_sentbox_str;
+        to_cput = uid + "##" + to + "##" + subject + "##" + ts + "," + usr_sentbox_str;
         msg_to_send = construct_msg(4, username + "_email", "sentbox_items", usr_sentbox_str, to_cput, "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status == 0)
@@ -250,6 +250,9 @@ string newline_to_br(const string &input)
 
 string construct_view_email_html(const string &subject, const string &from, const string &to, const string &timestamp, const string &body, const string &uid, const string &source)
 {
+    cout << "!!!!!!TS: " << timestamp << endl;
+    string formatted_to = strip(to, "<>");
+    string formatted_from = strip(from, "<>");
     string formatted_body = newline_to_br(body);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>" << subject << "</title><style>"
@@ -260,8 +263,8 @@ string construct_view_email_html(const string &subject, const string &from, cons
          << "button { margin: 10px; padding: 5px 10px; font-size: 16px; cursor: pointer; }"
          << "</style></head><body>"
          << "<h1>" << subject << "</h1>"
-         << "<p><label>From:</label> " << from << "</p>"
-         << "<p><label>To:</label> " << to << "</p>"
+         << "<p><label>From:</label> " << formatted_from << "</p>"
+         << "<p><label>To:</label> " << formatted_to << "</p>"
          << "<p><label>Date:</label> " << timestamp << "</p>"
          << "<h2>Message</h2>"
          << "<p>" << formatted_body << "</p>"
@@ -270,6 +273,43 @@ string construct_view_email_html(const string &subject, const string &from, cons
          << "<button onclick=\"if(confirm('Are you sure you want to delete this email from " << source << "?')) window.location.href='/delete_email?source=" << source << "&id=" << uid << "';\">Delete</button>";
 
     return html.str();
+}
+
+int put_email_to_backend(int fd, const string &backend_serveraddr_str, const string &uid, const string &from, const string &to, const string &ts, const string &subject, const string &encoded_body, const string &encoded_display) {
+    F_2_B_Message msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
+    F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+    msg_to_send = construct_msg(2, "email/" + uid, "to", to, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        return 1;
+    }
+    cout << "!!!!!!TS put: " << ts << endl;
+    msg_to_send = construct_msg(2, "email/" + uid, "timestamp", ts, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        return 1;
+    }
+
+    msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        return 1;
+    }
+
+    msg_to_send = construct_msg(2, "email/" + uid, "body", encoded_body, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        return 1;
+    }
+
+    msg_to_send = construct_msg(2, "email/" + uid, "display", encoded_display, "", "", 0);
+    response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+    if (response_msg.status != 0) {
+        return 1;
+    }
+    
+    return 0;
 }
 
 string delete_email_from_box_string(const string& input, const string& uid, const string& delimiter) {
@@ -309,7 +349,7 @@ void delete_email(const string& backend_serveraddr_str, int fd, const string& us
     while (true)
     {
         // uid##to##subject##timestamp&&&...
-        to_cput = delete_email_from_box_string(usr_box_str, uid, "&&&");
+        to_cput = delete_email_from_box_string(usr_box_str, uid, ",");
         msg_to_send = construct_msg(4, username + "_email", source + "_items", usr_box_str, to_cput, "", 0);
         response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
         if (response_msg.status == 0)
@@ -322,51 +362,157 @@ void delete_email(const string& backend_serveraddr_str, int fd, const string& us
     }
 }
 
-SSL_CTX* create_ssl_context() {
-    const SSL_METHOD* method = TLS_client_method();
-    if (!method) {
-        std::cerr << "Unable to get SSL method" << std::endl;
-        ERR_print_errors_fp(stderr);
-        exit(EXIT_FAILURE);
-    }
-    SSL_CTX* ctx = SSL_CTX_new(method);
-    if (!ctx) {
-        std::cerr << "Unable to create SSL context" << std::endl;
-        ERR_print_errors_fp(stderr);
-        exit(EXIT_FAILURE);
-    }
-    SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1); // Only allow TLSv1.2 and above
-    return ctx;
-}
+// SSL_CTX* create_ssl_context() {
+//     const SSL_METHOD* method = TLS_client_method();
+//     if (!method) {
+//         std::cerr << "Unable to get SSL method" << std::endl;
+//         ERR_print_errors_fp(stderr);
+//         exit(EXIT_FAILURE);
+//     }
+//     SSL_CTX* ctx = SSL_CTX_new(method);
+//     if (!ctx) {
+//         std::cerr << "Unable to create SSL context" << std::endl;
+//         ERR_print_errors_fp(stderr);
+//         exit(EXIT_FAILURE);
+//     }
+//     // SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1);
+//     SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv3);
+//     return ctx;
+// }
 
-void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl) {
-    if (ssl) {
-        SSL_free(ssl);
-        std::cout << "SSL freed" << std::endl;
-    }
-    if (sock != -1) {
-        close(sock);
-        std::cout << "Socket closed" << std::endl;
-    }
-    if (ctx) {
-        SSL_CTX_free(ctx);
-        std::cout << "SSL context freed" << std::endl;
-    }
-    ERR_free_strings();
-}
+// void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl) {
+//     if (ssl) {
+//         SSL_free(ssl);
+//         std::cout << "SSL freed" << std::endl;
+//     }
+//     if (sock != -1) {
+//         close(sock);
+//         std::cout << "Socket closed" << std::endl;
+//     }
+//     if (ctx) {
+//         SSL_CTX_free(ctx);
+//         std::cout << "SSL context freed" << std::endl;
+//     }
+//     ERR_free_strings();
+// }
 
-void send_smtp_command(SSL* ssl, const char* cmd) {
+// void send_smtp_command(SSL* ssl, const char* cmd) {
+//     std::cout << "Sending command: " << cmd;
+//     if (SSL_write(ssl, cmd, strlen(cmd)) <= 0) {
+//         ERR_print_errors_fp(stderr);
+//         throw std::runtime_error("Failed to send command");
+//     }
+//     char buffer[1024];
+//     if (SSL_read(ssl, buffer, sizeof(buffer)) <= 0) {
+//         ERR_print_errors_fp(stderr);
+//         throw std::runtime_error("Failed to read response");
+//     }
+//     std::cout << "Received: " << buffer << std::endl;
+// }
+
+// void* smtp_client(void* arg) {
+//     auto data = static_cast<std::map<std::string, std::string>*>(arg);
+//     std::string to = (*data)["to"];
+//     std::string from = (*data)["from"];
+//     std::string subject = (*data)["subject"];
+//     std::string content = (*data)["content"];
+//     std::string domain = to.substr(to.find('@') + 1);
+//     delete data;
+
+//     // Lookup MX record
+//     unsigned char query_buffer[NS_PACKETSZ];
+//     int response = res_query(domain.c_str(), ns_c_in, ns_t_mx, query_buffer, sizeof(query_buffer));
+//     if (response < 0) {
+//         std::cerr << "DNS query failed" << std::endl;
+//         return nullptr;
+//     }
+
+//     ns_msg handle;
+//     ns_initparse(query_buffer, response, &handle);
+//     ns_rr record;
+//     char mx_host[NS_MAXDNAME];
+//     if (ns_parserr(&handle, ns_s_an, 0, &record) == 0) {
+//         dn_expand(ns_msg_base(handle), ns_msg_end(handle), ns_rr_rdata(record) + NS_INT16SZ, mx_host, sizeof(mx_host));
+//         std::cout << "MX Record found: " << mx_host << std::endl;
+//     } else {
+//         std::cerr << "Failed to parse MX record" << std::endl;
+//         return nullptr;
+//     }
+
+//     // Resolve IP address of MX host
+//     std::cout << "Resolving IP address for: " << mx_host << std::endl;
+//     struct hostent* host = gethostbyname(mx_host);
+//     if (!host) {
+//         std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
+//         return nullptr;
+//     }
+//     struct in_addr* address = (struct in_addr*)host->h_addr;
+//     std::cout << "IP Address: " << inet_ntoa(*address) << std::endl;
+
+//     // Create socket and establish a connection
+//     int sock = socket(AF_INET, SOCK_STREAM, 0);
+//     struct sockaddr_in dest;
+//     dest.sin_family = AF_INET;
+//     dest.sin_port = htons(25);
+//     memcpy(&dest.sin_addr.s_addr, host->h_addr, host->h_length);
+
+//     std::cout << "Connecting to server: " << mx_host << " on port 587" << std::endl;
+//     if (connect(sock, (struct sockaddr*)&dest, sizeof(dest)) != 0) {
+//         std::cerr << "Failed to connect to the server: " << strerror(errno) << std::endl;
+//         ssl_cleanup(nullptr, sock, nullptr);
+//         return nullptr;
+//     }
+
+//     // Initialize SSL
+//     SSL_CTX* ctx = create_ssl_context();
+//     SSL* ssl = SSL_new(ctx);
+//     SSL_set_fd(ssl, sock);
+//     if (SSL_connect(ssl) != 1) {
+//         std::cerr << "SSL connection failed" << std::endl;
+//         ssl_cleanup(ctx, sock, ssl);
+//         return nullptr;
+//     }
+
+//     std::cout << "SSL connection established" << std::endl;
+
+//     try {
+//         send_smtp_command(ssl, "HELO seas.upenn.edu\r\n");
+//         // send_smtp_command(ssl, ("MAIL FROM: <" + from + ">\r\n").c_str());
+//         send_smtp_command(ssl, "MAIL FROM: <mqjin@seas.upenn.edu>\r\n");
+//         send_smtp_command(ssl, ("RCPT TO: <" + to + ">\r\n").c_str());
+//         send_smtp_command(ssl, "DATA\r\n");
+//         send_smtp_command(ssl, ("Subject: " + subject + "\r\n" + content + "\r\n.\r\n").c_str());
+//         send_smtp_command(ssl, "QUIT\r\n");
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error during SMTP communication: " << e.what() << std::endl;
+//         ssl_cleanup(ctx, sock, ssl);
+//         return nullptr;
+//     }
+
+//     ssl_cleanup(ctx, sock, ssl);
+
+//     return nullptr;
+// }
+
+void send_smtp_command(int fd, const char* cmd) {
     std::cout << "Sending command: " << cmd;
-    if (SSL_write(ssl, cmd, strlen(cmd)) <= 0) {
-        ERR_print_errors_fp(stderr);
+    if (send(fd, cmd, strlen(cmd), 0) <= 0) {
+        perror("Failed to send command");
         throw std::runtime_error("Failed to send command");
     }
-    char buffer[1024];
-    if (SSL_read(ssl, buffer, sizeof(buffer)) <= 0) {
-        ERR_print_errors_fp(stderr);
+    char buffer[1024] = {0};  // Clear buffer
+    if (recv(fd, buffer, sizeof(buffer), 0) <= 0) {
+        perror("Failed to read response");
         throw std::runtime_error("Failed to read response");
     }
     std::cout << "Received: " << buffer << std::endl;
+}
+
+void cleanup(int fd) {
+    if (fd != -1) {
+        close(fd);
+        std::cout << "Socket closed" << std::endl;
+    }
 }
 
 void* smtp_client(void* arg) {
@@ -376,10 +522,8 @@ void* smtp_client(void* arg) {
     std::string subject = (*data)["subject"];
     std::string content = (*data)["content"];
     std::string domain = to.substr(to.find('@') + 1);
-    delete data;  // Clean up data as it's no longer needed
+    delete data;
 
-
-    // Lookup MX record
     unsigned char query_buffer[NS_PACKETSZ];
     int response = res_query(domain.c_str(), ns_c_in, ns_t_mx, query_buffer, sizeof(query_buffer));
     if (response < 0) {
@@ -389,67 +533,60 @@ void* smtp_client(void* arg) {
 
     ns_msg handle;
     ns_initparse(query_buffer, response, &handle);
-    ns_rr record;
-    char mx_host[NS_MAXDNAME];
-    if (ns_parserr(&handle, ns_s_an, 0, &record) == 0) {
+    int count = ns_msg_count(handle, ns_s_an);
+
+    for (int i = 0; i < count; i++) {
+        ns_rr record;
+        if (ns_parserr(&handle, ns_s_an, i, &record) != 0) {
+            std::cerr << "Failed to parse MX record" << std::endl;
+            continue;
+        }
+
+        char mx_host[NS_MAXDNAME];
         dn_expand(ns_msg_base(handle), ns_msg_end(handle), ns_rr_rdata(record) + NS_INT16SZ, mx_host, sizeof(mx_host));
-        std::cout << "MX Record found: " << mx_host << std::endl;
-    } else {
-        std::cerr << "Failed to parse MX record" << std::endl;
-        return nullptr;
+
+        struct addrinfo hints, *res, *result;
+        memset(&hints, 0, sizeof(hints));
+        hints.ai_family = AF_INET;  // Use AF_INET6 to force IPv6
+        hints.ai_socktype = SOCK_STREAM;
+
+        if (getaddrinfo(mx_host, NULL, &hints, &result) != 0) {
+            std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
+            continue;
+        } else {
+            cout << "Resolved MX host: " << mx_host << std::endl;
+        }
+
+        // Try each address until we successfully connect
+        for (res = result; res != NULL; res = res->ai_next) {
+            int fd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+            cout << "fd: " << fd << endl;
+            if (fd == -1) continue;
+
+            ((struct sockaddr_in*)res->ai_addr)->sin_port = htons(25);
+
+            if (connect(fd, res->ai_addr, res->ai_addrlen) == 0) {
+                std::cout << "Connected to " << mx_host << std::endl;
+
+                send_smtp_command(fd, ("HELO " + domain + "\r\n").c_str());
+                send_smtp_command(fd, ("MAIL FROM: <" + from + ">\r\n").c_str());
+                // send_smtp_command(fd, ("MAIL FROM: <mqjin@seas.upenn.edu>\r\n"));
+                send_smtp_command(fd, ("RCPT TO: <" + to + ">\r\n").c_str());
+                send_smtp_command(fd, "DATA\r\n");
+                send_smtp_command(fd, ("Subject: " + subject + "\r\n" + content + "\r\n.\r\n").c_str());
+                send_smtp_command(fd, "QUIT\r\n");
+
+                cleanup(fd);
+                freeaddrinfo(result);
+                return nullptr;
+            } else {
+                cout << "Can't connect to " << mx_host << endl;
+            }
+            cleanup(fd);
+        }
+        freeaddrinfo(result);
     }
 
-    // Resolve IP address of MX host
-    std::cout << "Resolving IP address for: " << mx_host << std::endl;
-    struct hostent* host = gethostbyname(mx_host);
-    if (!host) {
-        std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
-        return nullptr;
-    }
-    struct in_addr* address = (struct in_addr*)host->h_addr;
-    std::cout << "IP Address: " << inet_ntoa(*address) << std::endl;
-
-    // Create socket and establish a connection
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    struct sockaddr_in dest;
-    dest.sin_family = AF_INET;
-    dest.sin_port = htons(576);
-    memcpy(&dest.sin_addr.s_addr, host->h_addr, host->h_length);
-
-    std::cout << "Connecting to server: " << mx_host << " on port 576" << std::endl;
-    if (connect(sock, (struct sockaddr*)&dest, sizeof(dest)) != 0) {
-        std::cerr << "Failed to connect to the server: " << strerror(errno) << std::endl;
-        ssl_cleanup(nullptr, sock, nullptr);
-        return nullptr;
-    }
-
-    // Initialize SSL
-    SSL_CTX* ctx = create_ssl_context();
-    SSL* ssl = SSL_new(ctx);
-    SSL_set_fd(ssl, sock);
-    if (SSL_connect(ssl) != 1) {
-        std::cerr << "SSL connection failed" << std::endl;
-        ssl_cleanup(ctx, sock, ssl);
-        return nullptr;
-    }
-
-    std::cout << "SSL connection established" << std::endl;
-
-    try {
-        send_smtp_command(ssl, "HELO seas.upenn.edu\r\n");
-        // send_smtp_command(ssl, ("MAIL FROM: <" + from + ">\r\n").c_str());
-        send_smtp_command(ssl, "MAIL FROM: <mqjin@seas.upenn.edu>\r\n");
-        send_smtp_command(ssl, ("RCPT TO: <" + to + ">\r\n").c_str());
-        send_smtp_command(ssl, "DATA\r\n");
-        send_smtp_command(ssl, ("Subject: " + subject + "\r\n" + content + "\r\n.\r\n").c_str());
-        send_smtp_command(ssl, "QUIT\r\n");
-    } catch (const std::exception& e) {
-        std::cerr << "Error during SMTP communication: " << e.what() << std::endl;
-        ssl_cleanup(ctx, sock, ssl);
-        return nullptr;
-    }
-
-    ssl_cleanup(ctx, sock, ssl);
-
+    std::cerr << "Failed to connect to any MX hosts" << std::endl;
     return nullptr;
 }
