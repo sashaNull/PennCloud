@@ -380,7 +380,10 @@ void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string
                             std::stringstream ss(line);
                             std::string key, inner_key, value;
 
-                            ss >> key >> inner_key >> value;
+                            ss >> key >> inner_key;
+                            std::getline(ss, value);
+
+                            value = std::regex_replace(value, std::regex("^ +| +$|( ) +"), "$1");
                             entry.second.row_to_kv[key][inner_key] = value;
                         }
                         file.close();
