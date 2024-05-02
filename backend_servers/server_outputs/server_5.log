@@ -1,0 +1,79 @@
+Server IP: 127.0.0.1:6005
+Server Port: 6005
+Data Loc:./data/server5
+Server Index: 5
+All Unique Ranges:
+a_b
+c_e
+f_j
+k_m
+n_p
+q_s
+t_v
+w_z
+Server Tablet Ranges:
+ka_km
+kn_kz
+la_lm
+ln_lz
+ma_mm
+mn_mz
+na_nm
+nn_nz
+oa_om
+on_oz
+pa_pm
+pn_pz
+Failed to open log file: ./data/server5/logs/pa_pm_logs.txt
+Failed to open log file: ./data/server5/logs/pn_pz_logs.txt
+Failed to open log file: ./data/server5/logs/nn_nz_logs.txt
+Failed to open log file: ./data/server5/logs/mn_mz_logs.txt
+Failed to open log file: ./data/server5/logs/on_oz_logs.txt
+Failed to open log file: ./data/server5/logs/ma_mm_logs.txt
+Failed to open log file: ./data/server5/logs/ln_lz_logs.txt
+Failed to open log file: ./data/server5/logs/la_lm_logs.txt
+Failed to open log file: ./data/server5/logs/na_nm_logs.txt
+Failed to open log file: ./data/server5/logs/kn_kz_logs.txt
+Failed to open log file: ./data/server5/logs/oa_om_logs.txt
+Failed to open log file: ./data/server5/logs/ka_km_logs.txt
+PRINTING: 0
+PRINTING: 0
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Failed to open log file: ./data/server5/logs/aa_am_logs.txt
+Failed to open log file: ./data/server5/logs/pa_pm_logs.txt
+Failed to open log file: ./data/server5/logs/pn_pz_logs.txt
+Failed to open log file: ./data/server5/logs/nn_nz_logs.txt
+Failed to open log file: ./data/server5/logs/mn_mz_logs.txt
+Failed to open log file: ./data/server5/logs/on_oz_logs.txt
+Failed to open log file: ./data/server5/logs/ma_mm_logs.txt
+Failed to open log file: ./data/server5/logs/ln_lz_logs.txt
+Failed to open log file: ./data/server5/logs/la_lm_logs.txt
+Failed to open log file: ./data/server5/logs/na_nm_logs.txt
+Failed to open log file: ./data/server5/logs/kn_kz_logs.txt
+Failed to open log file: ./data/server5/logs/oa_om_logs.txt
+Failed to open log file: ./data/server5/logs/ka_km_logs.txt
+PRINTING: 0
+PRINTING: 0

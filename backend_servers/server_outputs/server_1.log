@@ -6,11 +6,22 @@ All Unique Ranges:
 a_b
 c_e
 f_j
-k_o
-p_t
-u_w
-x_z
+k_m
+n_p
+q_s
+t_v
+w_z
 Server Tablet Ranges:
+aa_am
+an_az
+ba_bm
+bn_bz
+ca_cm
+cn_cz
+da_dm
+dn_dz
+ea_em
+en_ez
 fa_fm
 fn_fz
 ga_gm
@@ -21,138 +32,85 @@ ia_im
 in_iz
 ja_jm
 jn_jz
-ka_km
-kn_kz
-la_lm
-ln_lz
-ma_mm
-mn_mz
-na_nm
-nn_nz
-oa_om
-on_oz
-Failed to open log file: ./data/server1/logs/nn_nz_logs.txt
-Failed to open log file: ./data/server1/logs/na_nm_logs.txt
-Failed to open log file: ./data/server1/logs/ma_mm_logs.txt
-Failed to open log file: ./data/server1/logs/ga_gm_logs.txt
-Failed to open log file: ./data/server1/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server1/logs/in_iz_logs.txt
-Failed to open log file: ./data/server1/logs/fn_fz_logs.txt
-Failed to open log file: ./data/server1/logs/ja_jm_logs.txt
 Failed to open log file: ./data/server1/logs/hn_hz_logs.txt
-Failed to open log file: ./data/server1/logs/gn_gz_logs.txt
+Failed to open log file: ./data/server1/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server1/logs/ia_im_logs.txt
-Failed to open log file: ./data/server1/logs/la_lm_logs.txt
-Failed to open log file: ./data/server1/logs/oa_om_logs.txt
+Failed to open log file: ./data/server1/logs/gn_gz_logs.txt
+This row is in file: aa_am
+Failed to open log file: ./data/server1/logs/ba_bm_logs.txt
+Failed to open log file: ./data/server1/logs/bn_bz_logs.txt
+Failed to open log file: ./data/server1/logs/ca_cm_logs.txt
+Failed to open log file: ./data/server1/logs/cn_cz_logs.txt
+Failed to open log file: ./data/server1/logs/da_dm_logs.txt
+Failed to open log file: ./data/server1/logs/ga_gm_logs.txt
+Failed to open log file: ./data/server1/logs/dn_dz_logs.txt
+Failed to open log file: ./data/server1/logs/ea_em_logs.txt
 Failed to open log file: ./data/server1/logs/jn_jz_logs.txt
-Failed to open log file: ./data/server1/logs/ln_lz_logs.txt
-Failed to open log file: ./data/server1/logs/ka_km_logs.txt
-Failed to open log file: ./data/server1/logs/on_oz_logs.txt
-Failed to open log file: ./data/server1/logs/mn_mz_logs.txt
-Failed to open log file: ./data/server1/logs/kn_kz_logs.txt
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
-[5] New connection
-[5] Connection closed!
-[4] New connection
-[4] Connection closed!
+Failed to open log file: ./data/server1/logs/en_ez_logs.txt
+Failed to open log file: ./data/server1/logs/ja_jm_logs.txt
+This row is in file: an_az
+Failed to open log file: ./data/server1/logs/fn_fz_logs.txt
+PRINTING: 1
+PRINTING: 3
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Failed to open log file: ./data/server1/logs/in_iz_logs.txt
+Failed to open log file: ./data/server1/logs/hn_hz_logs.txt
+Failed to open log file: ./data/server1/logs/ha_hm_logs.txt
+Failed to open log file: ./data/server1/logs/ia_im_logs.txt
+Failed to open log file: ./data/server1/logs/gn_gz_logs.txt
+This row is in file: aa_am
+Failed to open log file: ./data/server1/logs/ba_bm_logs.txt
+Failed to open log file: ./data/server1/logs/bn_bz_logs.txt
+Failed to open log file: ./data/server1/logs/ca_cm_logs.txt
+Failed to open log file: ./data/server1/logs/cn_cz_logs.txt
+Failed to open log file: ./data/server1/logs/da_dm_logs.txt
+Failed to open log file: ./data/server1/logs/ga_gm_logs.txt
+Failed to open log file: ./data/server1/logs/dn_dz_logs.txt
+Failed to open log file: ./data/server1/logs/ea_em_logs.txt
+Failed to open log file: ./data/server1/logs/jn_jz_logs.txt
+Failed to open log file: ./data/server1/logs/en_ez_logs.txt
+Failed to open log file: ./data/server1/logs/ja_jm_logs.txt
+This row is in file: an_az
+Failed to open log file: ./data/server1/logs/fn_fz_logs.txt
+PRINTING: 1
+PRINTING: 3

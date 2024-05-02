@@ -24,6 +24,9 @@ vector<string> server_tablet_ranges;
 vector<string> all_unique_tablet_ranges;
 unordered_map<string, string> range_to_primary_map;
 
+bool suspended = false;                                    // Global variable to control suspension
+pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for suspended variable
+
 // Function prototypes for parsing and initializing server configuration
 sockaddr_in parse_current_address(char *raw_line);
 sockaddr_in parse_config_file(string config_file);
@@ -476,7 +479,7 @@ int main(int argc, char *argv[])
     // Create a new thread to handle the connection
     pthread_t thd;
     pthread_create(&thd, nullptr, handle_connection, new int(client_fd));
-    pthread_detach(thd);
+    // pthread_detach(thd);
   }
 
   // Close the listening socket and exit
@@ -797,6 +800,68 @@ void *handle_connection(void *arg)
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
     F_2_B_Message f2b_message_for_other_server = f2b_message;
+
+    if (suspended && f2b_message.type != 6)
+    {
+      f2b_message.status = 2;
+      f2b_message.errorMessage = "Server Suspended";
+      string serialized = encode_message(f2b_message);
+      bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
+      if (bytes_sent < 0)
+      {
+        cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+        break;
+      }
+      if (verbose)
+      {
+        cout << "[" << client_fd << "] S: " << serialized;
+      }
+      break;
+    }
+    else if (suspended && f2b_message.type == 6)
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      get_latest_tablet_and_log();
+      load_cache(cache, data_file_location);
+      recover(cache, data_file_location, server_tablet_ranges);
+      suspended = false;
+      pthread_mutex_unlock(&suspend_mutex);
+      f2b_message.status = 0;
+      f2b_message.errorMessage = "Server back online";
+      string serialized = encode_message(f2b_message);
+      bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
+      if (bytes_sent < 0)
+      {
+        cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+        break;
+      }
+      if (verbose)
+      {
+        cout << "[" << client_fd << "] S: " << serialized;
+      }
+
+      break;
+    }
+    else if (f2b_message.type == 5)
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      suspended = true;
+      pthread_mutex_unlock(&suspend_mutex);
+      f2b_message.status = 0;
+      f2b_message.errorMessage = "Server successfully Suspended";
+      string serialized = encode_message(f2b_message);
+      bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
+      if (bytes_sent < 0)
+      {
+        cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+        break;
+      }
+      if (verbose)
+      {
+        cout << "[" << client_fd << "] S: " << serialized;
+      }
+      break;
+    }
 
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     cout << "This row is in new file: " << tablet_name << endl;

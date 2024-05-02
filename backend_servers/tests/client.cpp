@@ -115,6 +115,14 @@ int main(int argc, char *argv[])
         message.value2 = value2;
         message.type = 4;
       }
+      else if (command == "sus")
+      {
+        message.type = 5;
+      }
+      else if (command == "rev")
+      {
+        message.type = 6;
+      }
       else
       {
         cerr << "Unknown command" << endl;

@@ -1,0 +1,119 @@
+Server IP: 127.0.0.1:6007
+Server Port: 6007
+Data Loc:./data/server7
+Server Index: 7
+All Unique Ranges:
+a_b
+c_e
+f_j
+k_m
+n_p
+q_s
+t_v
+w_z
+Server Tablet Ranges:
+qa_qm
+qn_qz
+ra_rm
+rn_rz
+sa_sm
+sn_sz
+ta_tm
+tn_tz
+ua_um
+un_uz
+va_vm
+vn_vz
+wa_wm
+wn_wz
+xa_xm
+xn_xz
+ya_ym
+yn_yz
+za_zm
+zn_zz
+Failed to open log file: ./data/server7/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server7/logs/za_zm_logs.txt
+Failed to open log file: ./data/server7/logs/yn_yz_logs.txt
+Failed to open log file: ./data/server7/logs/ya_ym_logs.txt
+Failed to open log file: ./data/server7/logs/xn_xz_logs.txt
+Failed to open log file: ./data/server7/logs/xa_xm_logs.txt
+Failed to open log file: ./data/server7/logs/wn_wz_logs.txt
+Failed to open log file: ./data/server7/logs/ra_rm_logs.txt
+Failed to open log file: ./data/server7/logs/va_vm_logs.txt
+Failed to open log file: ./data/server7/logs/rn_rz_logs.txt
+Failed to open log file: ./data/server7/logs/sn_sz_logs.txt
+Failed to open log file: ./data/server7/logs/qa_qm_logs.txt
+Failed to open log file: ./data/server7/logs/qn_qz_logs.txt
+Failed to open log file: ./data/server7/logs/ua_um_logs.txt
+Failed to open log file: ./data/server7/logs/ta_tm_logs.txt
+Failed to open log file: ./data/server7/logs/sa_sm_logs.txt
+Failed to open log file: ./data/server7/logs/tn_tz_logs.txt
+Failed to open log file: ./data/server7/logs/un_uz_logs.txt
+Failed to open log file: ./data/server7/logs/vn_vz_logs.txt
+Failed to open log file: ./data/server7/logs/wa_wm_logs.txt
+PRINTING: 0
+PRINTING: 2054578030
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Failed to open log file: ./data/server7/logs/aa_am_logs.txt
+Failed to open log file: ./data/server7/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server7/logs/za_zm_logs.txt
+Failed to open log file: ./data/server7/logs/yn_yz_logs.txt
+Failed to open log file: ./data/server7/logs/ya_ym_logs.txt
+Failed to open log file: ./data/server7/logs/xn_xz_logs.txt
+Failed to open log file: ./data/server7/logs/xa_xm_logs.txt
+Failed to open log file: ./data/server7/logs/wn_wz_logs.txt
+Failed to open log file: ./data/server7/logs/ra_rm_logs.txt
+Failed to open log file: ./data/server7/logs/va_vm_logs.txt
+Failed to open log file: ./data/server7/logs/rn_rz_logs.txt
+Failed to open log file: ./data/server7/logs/sn_sz_logs.txt
+Failed to open log file: ./data/server7/logs/qa_qm_logs.txt
+Failed to open log file: ./data/server7/logs/qn_qz_logs.txt
+Failed to open log file: ./data/server7/logs/ua_um_logs.txt
+Failed to open log file: ./data/server7/logs/ta_tm_logs.txt
+Failed to open log file: ./data/server7/logs/sa_sm_logs.txt
+Failed to open log file: ./data/server7/logs/tn_tz_logs.txt
+Failed to open log file: ./data/server7/logs/un_uz_logs.txt
+Failed to open log file: ./data/server7/logs/vn_vz_logs.txt
+Failed to open log file: ./data/server7/logs/wa_wm_logs.txt
+PRINTING: 0
+PRINTING: 0

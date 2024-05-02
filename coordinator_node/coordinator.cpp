@@ -50,8 +50,31 @@ void *handle_heartbeat(void *arg)
             }
             else
             {
-                cout << "Server " << server->ip << ":" << server->port << " is up." << endl;
-                server->is_active = true;
+                char welcome_buffer[1024] = {0};
+                read(sock, welcome_buffer, 1024);
+                // cout << "Ignored message: " << welcome_buffer << endl;
+
+                F_2_B_Message message;
+                message.type = 1;
+                message.rowkey = "test_row";
+                message.colkey = "test_col";
+                std::string serialized_message = encode_message(message);
+                send(sock, serialized_message.c_str(), serialized_message.length(), 0);
+                char response_buffer[1024] = {0};
+                read(sock, response_buffer, 1024);
+                std::string response_str(response_buffer);
+                // cout << response_buffer << endl;
+                F_2_B_Message response = decode_message(response_str);
+                if (response.status == 2)
+                {
+                    cout << "Server " << server->ip << ":" << server->port << " is down." << endl;
+                    server->is_active = false;
+                }
+                else
+                {
+                    cout << "Server " << server->ip << ":" << server->port << " is up." << endl;
+                    server->is_active = true;
+                }
                 close(sock);
             }
         }

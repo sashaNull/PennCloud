@@ -1,0 +1,119 @@
+Server IP: 127.0.0.1:6008
+Server Port: 6008
+Data Loc:./data/server8
+Server Index: 8
+All Unique Ranges:
+a_b
+c_e
+f_j
+k_m
+n_p
+q_s
+t_v
+w_z
+Server Tablet Ranges:
+qa_qm
+qn_qz
+ra_rm
+rn_rz
+sa_sm
+sn_sz
+ta_tm
+tn_tz
+ua_um
+un_uz
+va_vm
+vn_vz
+wa_wm
+wn_wz
+xa_xm
+xn_xz
+ya_ym
+yn_yz
+za_zm
+zn_zz
+Failed to open log file: ./data/server8/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server8/logs/za_zm_logs.txt
+Failed to open log file: ./data/server8/logs/yn_yz_logs.txt
+Failed to open log file: ./data/server8/logs/ya_ym_logs.txt
+Failed to open log file: ./data/server8/logs/xn_xz_logs.txt
+Failed to open log file: ./data/server8/logs/xa_xm_logs.txt
+Failed to open log file: ./data/server8/logs/wn_wz_logs.txt
+Failed to open log file: ./data/server8/logs/ra_rm_logs.txt
+Failed to open log file: ./data/server8/logs/va_vm_logs.txt
+Failed to open log file: ./data/server8/logs/rn_rz_logs.txt
+Failed to open log file: ./data/server8/logs/sn_sz_logs.txt
+Failed to open log file: ./data/server8/logs/qa_qm_logs.txt
+Failed to open log file: ./data/server8/logs/qn_qz_logs.txt
+Failed to open log file: ./data/server8/logs/ua_um_logs.txt
+Failed to open log file: ./data/server8/logs/ta_tm_logs.txt
+Failed to open log file: ./data/server8/logs/sa_sm_logs.txt
+Failed to open log file: ./data/server8/logs/tn_tz_logs.txt
+Failed to open log file: ./data/server8/logs/un_uz_logs.txt
+Failed to open log file: ./data/server8/logs/vn_vz_logs.txt
+Failed to open log file: ./data/server8/logs/wa_wm_logs.txt
+PRINTING: 0
+PRINTING: 0
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Connection Failed
+Failed to open log file: ./data/server8/logs/aa_am_logs.txt
+Failed to open log file: ./data/server8/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server8/logs/za_zm_logs.txt
+Failed to open log file: ./data/server8/logs/yn_yz_logs.txt
+Failed to open log file: ./data/server8/logs/ya_ym_logs.txt
+Failed to open log file: ./data/server8/logs/xn_xz_logs.txt
+Failed to open log file: ./data/server8/logs/xa_xm_logs.txt
+Failed to open log file: ./data/server8/logs/wn_wz_logs.txt
+Failed to open log file: ./data/server8/logs/ra_rm_logs.txt
+Failed to open log file: ./data/server8/logs/va_vm_logs.txt
+Failed to open log file: ./data/server8/logs/rn_rz_logs.txt
+Failed to open log file: ./data/server8/logs/sn_sz_logs.txt
+Failed to open log file: ./data/server8/logs/qa_qm_logs.txt
+Failed to open log file: ./data/server8/logs/qn_qz_logs.txt
+Failed to open log file: ./data/server8/logs/ua_um_logs.txt
+Failed to open log file: ./data/server8/logs/ta_tm_logs.txt
+Failed to open log file: ./data/server8/logs/sa_sm_logs.txt
+Failed to open log file: ./data/server8/logs/tn_tz_logs.txt
+Failed to open log file: ./data/server8/logs/un_uz_logs.txt
+Failed to open log file: ./data/server8/logs/vn_vz_logs.txt
+Failed to open log file: ./data/server8/logs/wa_wm_logs.txt
+PRINTING: 0
+PRINTING: 0
