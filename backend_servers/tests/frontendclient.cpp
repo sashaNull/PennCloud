@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         message.colkey = colkey;
         message.type = 0;
         message.status = 0;
-        message.isFromBackend = 0;
+        message.isFromPrimary = 0;
 
         if (command == "get")
         {

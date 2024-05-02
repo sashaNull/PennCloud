@@ -31,7 +31,7 @@ struct F_2_B_Message
     std::string value;
     std::string value2;
     int status;
-    int isFromBackend;
+    int isFromPrimary;
     std::string errorMessage;
 };
 

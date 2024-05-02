@@ -118,7 +118,7 @@ F_2_B_Message construct_msg(int type, const std::string &rowkey, const std::stri
   msg.value2 = value2;
   msg.errorMessage = errmsg;
   msg.status = status;
-  msg.isFromBackend = 0;
+  msg.isFromPrimary = 0;
   return msg;
 }
 
