@@ -52,49 +52,6 @@ Failed to open log file: ./data/server6/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server6/logs/wa_wm_logs.txt
-PRINTING: 0
-PRINTING: 0
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Failed to open log file: ./data/server6/logs/aa_am_logs.txt
 Failed to open log file: ./data/server6/logs/zn_zz_logs.txt
 Failed to open log file: ./data/server6/logs/za_zm_logs.txt
 Failed to open log file: ./data/server6/logs/yn_yz_logs.txt
@@ -115,5 +72,23 @@ Failed to open log file: ./data/server6/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server6/logs/wa_wm_logs.txt
-PRINTING: 0
-PRINTING: 0
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
