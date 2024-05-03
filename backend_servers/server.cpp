@@ -26,6 +26,8 @@ unordered_map<string, string> range_to_primary_map;
 
 pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 bool suspended = false;                                    // Global variable to control suspension
 pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for suspended variable
 
@@ -107,14 +109,10 @@ void update_primary(const string &range)
     while (!response.empty() && (response.back() == '\n' || response.back() == '\r'))
     {
       response.pop_back();
-      while (!response.empty() && (response.back() == '\n' || response.back() == '\r'))
-      {
-        response.pop_back();
-      }
-      pthread_mutex_lock(&primary_mutex);
-      range_to_primary_map[range] = response.substr(4);
-      pthread_mutex_unlock(&primary_mutex);
     }
+    pthread_mutex_lock(&primary_mutex);
+    range_to_primary_map[range] = response.substr(4);
+    pthread_mutex_unlock(&primary_mutex);
   }
   else
   {
@@ -942,6 +940,7 @@ void *handle_connection(void *arg)
     pthread_mutex_unlock(&primary_mutex);
     string curr_ip_port = server_ip + ":" + to_string(server_port);
     bool amIPrimary = primary_ip_port == curr_ip_port;
+    cout << amIPrimary << " " << curr_ip_port << " " << primary_ip_port << endl;
 
     // if req not from primary and I am not the primary and the type of req is not get
     // FOrward to primary
@@ -949,7 +948,7 @@ void *handle_connection(void *arg)
     // Fotward response to sender
     // continue
 
-    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary && f2b_message_for_other_server.type != 10)
+    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary)
     {
 
       string serialized_to_primary = encode_message(f2b_message);
@@ -993,16 +992,7 @@ void *handle_connection(void *arg)
       }
 
       string buffer_str(buffer);
-      F_2_B_Message received_message{};
-
-      if (buffer_str.find('|') != string::npos)
-      {
-        cout << "\nServer: " << endl;
-        F_2_B_Message received_message = decode_message(buffer_str);
-      }
-
-      string client_response = encode_message(received_message);
-      bytes_sent = send(client_fd, client_response.c_str(), client_response.length(), 0);
+      bytes_sent = send(client_fd, buffer_str.c_str(), buffer_str.length(), 0);
 
       if (bytes_sent < 0)
       {
@@ -1012,7 +1002,7 @@ void *handle_connection(void *arg)
 
       if (verbose)
       {
-        cout << "[" << client_fd << "] S: " << client_response;
+        cout << "[" << client_fd << "] S: " << buffer_str;
       }
       close(sock);
       continue;
@@ -1081,25 +1071,21 @@ void *handle_connection(void *arg)
           cerr << "Error in socket creation" << endl;
           break;
         }
-
         if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
         {
           cerr << "Connection Failed" << endl;
           break;
         }
-
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
         {
           cerr << "Error in send(). Exiting" << endl;
           break;
         }
-
         if (verbose)
         {
           cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_backend;
         }
-
         char buffer[1024] = {0};
         ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (bytes_received <= 0)
@@ -1121,6 +1107,8 @@ void *handle_connection(void *arg)
     // Encode response message
     string serialized = encode_message(f2b_message);
     // Send response to client
+    cout << "PRINTING SPECIAL: " << serialized << endl;
+
     bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
     // Check for send errors
     if (bytes_sent < 0)
