@@ -1,0 +1,212 @@
+Verbose: 1
+Config File: ../frontend_servers/server_config.txt
+SERVER: 127.0.0.1 8000 0
+SERVER: 127.0.0.1 8001 0
+SERVER: 127.0.0.1 8002 0
+
++++++++ Waiting for new connection ++++++++
+
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+GET / HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+
+
++++++++ Waiting for new connection ++++++++
+
+GET /favicon.ico HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://localhost:8080/
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+ch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+
+
++++++++ Waiting for new connection ++++++++
+
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+GET /favicon.ico HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://localhost:8080/
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+ch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+
+
++++++++ Waiting for new connection ++++++++
+
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+GET / HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: cross-site
+
+h-User: ?1
+
+
+
++++++++ Waiting for new connection ++++++++
+
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
+Server 127.0.0.1:8000 is down.
+Server 127.0.0.1:8001 is down.
+Server 127.0.0.1:8002 is down.
