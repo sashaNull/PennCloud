@@ -1,0 +1,205 @@
+Server IP: 127.0.0.1:6002
+Server Port: 6002
+Data Loc:./data/server2
+Server Index: 2
+All Unique Ranges:
+a_b
+c_e
+f_j
+k_m
+n_p
+q_s
+t_v
+w_z
+Server Tablet Ranges:
+aa_am
+an_az
+ba_bm
+bn_bz
+ca_cm
+cn_cz
+da_dm
+dn_dz
+ea_em
+en_ez
+fa_fm
+fn_fz
+ga_gm
+gn_gz
+ha_hm
+hn_hz
+ia_im
+in_iz
+ja_jm
+jn_jz
+Failed to open log file: ./data/server2/logs/in_iz_logs.txt
+Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
+Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
+Failed to open log file: ./data/server2/logs/ia_im_logs.txt
+Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
+Failed to open log file: ./data/server2/logs/aa_am_logs.txt
+Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
+Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
+Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
+Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
+Failed to open log file: ./data/server2/logs/cn_cz_logs.txt
+Failed to open log file: ./data/server2/logs/da_dm_logs.txt
+Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
+Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
+Failed to open log file: ./data/server2/logs/ea_em_logs.txt
+Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
+Failed to open log file: ./data/server2/logs/en_ez_logs.txt
+Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
+Failed to open log file: ./data/server2/logs/an_az_logs.txt
+Failed to open log file: ./data/server2/logs/fn_fz_logs.txt
+Range to Primary Map:
+Range: in_iz - Primary: No primary available
+Range: hn_hz - Primary: No primary available
+Range: ha_hm - Primary: No primary available
+Range: ia_im - Primary: No primary available
+Range: gn_gz - Primary: No primary available
+Range: aa_am - Primary: No primary available
+Range: fa_fm - Primary: No primary available
+Range: ba_bm - Primary: No primary available
+Range: bn_bz - Primary: No primary available
+Range: ca_cm - Primary: No primary available
+Range: cn_cz - Primary: No primary available
+Range: da_dm - Primary: No primary available
+Range: ga_gm - Primary: No primary available
+Range: dn_dz - Primary: No primary available
+Range: ea_em - Primary: No primary available
+Range: jn_jz - Primary: No primary available
+Range: en_ez - Primary: No primary available
+Range: ja_jm - Primary: No primary available
+Range: an_az - Primary: No primary available
+Range: fn_fz - Primary: No primary available
+Failed to open log file: ./data/server2/logs/in_iz_logs.txt
+Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
+Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
+Failed to open log file: ./data/server2/logs/ia_im_logs.txt
+Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
+Failed to open log file: ./data/server2/logs/aa_am_logs.txt
+Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
+Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
+Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
+Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
+Failed to open log file: ./data/server2/logs/cn_cz_logs.txt
+Failed to open log file: ./data/server2/logs/da_dm_logs.txt
+Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
+Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
+Failed to open log file: ./data/server2/logs/ea_em_logs.txt
+Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
+Failed to open log file: ./data/server2/logs/en_ez_logs.txt
+Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
+Failed to open log file: ./data/server2/logs/an_az_logs.txt
+Failed to open log file: ./data/server2/logs/fn_fz_logs.txt
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 No primary available
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
