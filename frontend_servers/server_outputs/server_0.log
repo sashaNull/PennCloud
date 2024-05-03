@@ -5,6 +5,72 @@ Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
+GET / HTTP/1.1
+end of parse
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /login HTTP/1.1
+end of parse
+Sent response successfully, bytes sent: 2544
+Listening...
+Listening...
+Client closed the connection.
+GET / HTTP/1.1
+end of parse
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /login HTTP/1.1
+end of parse
+Sent response successfully, bytes sent: 2544
+Listening...
+Listening...
+Client closed the connection.
+GET / HTTP/1.1
+end of parse
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /login HTTP/1.1
+end of parse
+Sent response successfully, bytes sent: 2544
+Listening...
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+GET / HTTP/1.1
+end of parse
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /login HTTP/1.1
+end of parse
+Sent response successfully, bytes sent: 2544
+Listening...
+Listening...
+Client closed the connection.
 Client closed the connection.
 Listening...
 Client closed the connection.
