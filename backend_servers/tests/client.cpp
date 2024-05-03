@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         message.type = 10;
         message.rowkey = "adw";
         message.colkey = "adw";
-        message.isFromBackend = 0;
+        message.isFromPrimary = 0;
 
         string serialized = encode_message(message);
         send(sock, serialized.c_str(), serialized.length(), 0);

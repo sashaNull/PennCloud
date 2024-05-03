@@ -26,8 +26,6 @@ unordered_map<string, string> range_to_primary_map;
 
 pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
-
 bool suspended = false;                                    // Global variable to control suspension
 pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for suspended variable
 
@@ -948,7 +946,7 @@ void *handle_connection(void *arg)
     // Fotward response to sender
     // continue
 
-    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary)
+    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary && f2b_message_for_other_server.type != 10)
     {
 
       string serialized_to_primary = encode_message(f2b_message);
