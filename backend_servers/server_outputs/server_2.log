@@ -53,7 +53,7 @@ Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
 This row is in file: an_az
 Failed to open log file: ./data/server2/logs/fn_fz_logs.txt
 PRINTING: 1
-PRINTING: 9
+PRINTING: 17
 Range to Primary Map:
 Range: in_iz - Primary: No primary available
 Range: hn_hz - Primary: No primary available
@@ -96,17 +96,213 @@ Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
 This row is in file: an_az
 Failed to open log file: ./data/server2/logs/fn_fz_logs.txt
 PRINTING: 1
-PRINTING: 9
+PRINTING: 17
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 No primary available
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: Not_Found.txt
+0 127.0.0.1:6002 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
-[5] C: 2|adwait|one|two||0|0|
+[5] C: 2|adwait|hello|from||0|0|
 This row is in new file: aa_am
+0 127.0.0.1:6002 127.0.0.1:6000
+Primary Port:6000
+Ignored message: WELCOME TO THE SERVER
+
+[5, 4] S: 2|adwait|hello|from||0|0|
+[6] New connection
+[6] C: 2|adwait|hello|from||0|1|
+This row is in new file: aa_am
+[5] S: 2|adwait|hello|from||0|0|Data written successfully
+1 127.0.0.1:6000 127.0.0.1:6000
+PRINTING SPECIAL: 2|adwait|hello|from||0|1|Data written successfully
+
+[6] S: 2|adwait|hello|from||0|1|Data written successfully
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 2|assh|ash|ash||0|1|
+This row is in new file: an_az
+1 127.0.0.1:6000 127.0.0.1:6000
+PRINTING SPECIAL: 2|assh|ash|ash||0|1|Data written successfully
+
+[4] S: 2|assh|ash|ash||0|1|Data written successfully
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[7] New connection
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[7] Connection closed!
+[8] New connection
+[8] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[8] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[8] Connection closed!
+[5] New connection
+[5] C: 2|adww|ee|ee||0|1|
+This row is in new file: aa_am
+1 127.0.0.1:6000 127.0.0.1:6000
+Checkpointing the file: aa_am 3
+Logs cleared successfully.
+PRINTING SPECIAL: 2|adww|ee|ee||0|1|Data written successfully
+
+[5] S: 2|adww|ee|ee||0|1|Data written successfully
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[8] New connection
+[8] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[8] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[8] Connection closed!
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+0 127.0.0.1:6000 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[6] S: Server shutting down!
+[6] Connection closed
+[4] S: Server shutting down!
+[4] Connection closed
+[5] S: Server shutting down!
+[5] Connection closed

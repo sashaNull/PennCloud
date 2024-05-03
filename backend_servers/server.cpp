@@ -899,7 +899,6 @@ void *handle_connection(void *arg)
     string curr_ip_port = server_ip + ":" + to_string(server_port);
     bool amIPrimary = primary_ip_port == curr_ip_port;
     cout << amIPrimary << " " << curr_ip_port << " " << primary_ip_port << endl;
-    cout << "Hello 1" << endl;
 
     // if req not from primary and I am not the primary and the type of req is not get
     // FOrward to primary
@@ -909,7 +908,6 @@ void *handle_connection(void *arg)
 
     if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary)
     {
-      cout << "Hello 2" << endl;
 
       string serialized_to_primary = encode_message(f2b_message);
 
@@ -952,17 +950,7 @@ void *handle_connection(void *arg)
       }
 
       string buffer_str(buffer);
-      F_2_B_Message received_message{};
-      cout << "Printing: " << buffer_str << " HELoOOOOO" << endl;
-
-      if (buffer_str.find('|') != string::npos)
-      {
-        cout << "\nServer: " << endl;
-        F_2_B_Message received_message = decode_message(buffer_str);
-      }
-
-      string client_response = encode_message(received_message);
-      bytes_sent = send(client_fd, client_response.c_str(), client_response.length(), 0);
+      bytes_sent = send(client_fd, buffer_str.c_str(), buffer_str.length(), 0);
 
       if (bytes_sent < 0)
       {
@@ -972,14 +960,13 @@ void *handle_connection(void *arg)
 
       if (verbose)
       {
-        cout << "[" << client_fd << "] S: " << client_response;
+        cout << "[" << client_fd << "] S: " << buffer_str;
       }
       close(sock);
       continue;
     }
 
     // Handle message based on its type
-    cout << "Hello 3" << endl;
     switch (f2b_message.type)
     {
     case 1:
@@ -1015,7 +1002,6 @@ void *handle_connection(void *arg)
       cout << "Unknown command type received" << endl;
       break;
     }
-    cout << "Hello 4" << endl;
     if (cache[tablet_name].requests_since_checkpoint > CHECKPOINT_SIZE)
     {
       cout << "Checkpointing the file: " << tablet_name << " "
@@ -1025,14 +1011,12 @@ void *handle_connection(void *arg)
       cache[tablet_name].requests_since_checkpoint = 0;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
-    cout << "Hello 5" << endl;
     if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && amIPrimary)
     {
       f2b_message_for_other_server.isFromPrimary = 1;
       string tablet_range = get_tablet_range_from_row_key(f2b_message_for_other_server.rowkey);
       for (auto other_addr : tablet_ranges_to_other_addr[tablet_range])
       {
-        cout << "Hello 6" << endl;
         string serialized_to_backend = encode_message(f2b_message_for_other_server);
 
         int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -1041,25 +1025,21 @@ void *handle_connection(void *arg)
           cerr << "Error in socket creation" << endl;
           break;
         }
-        cout << "Hello 7" << endl;
         if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
         {
           cerr << "Connection Failed" << endl;
           break;
         }
-        cout << "Hello 8" << endl;
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
         {
           cerr << "Error in send(). Exiting" << endl;
           break;
         }
-        cout << "Hello 9" << endl;
         if (verbose)
         {
           cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_backend;
         }
-        cout << "Hello 10" << endl;
         char buffer[1024] = {0};
         ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (bytes_received <= 0)
