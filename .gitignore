@@ -1,1 +1,9 @@
 .vscode
+backend_servers/server
+backend_servers/data/
+logger/
+backend_servers/server_outputs
+frontend_servers/server_outputs
+coordinator_node/coordinator
+load_balancer/loadbalancer
+frontend_servers/server
