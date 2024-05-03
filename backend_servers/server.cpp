@@ -24,6 +24,8 @@ vector<string> server_tablet_ranges;
 vector<string> all_unique_tablet_ranges;
 unordered_map<string, string> range_to_primary_map;
 
+pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 bool suspended = false;                                    // Global variable to control suspension
 pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for suspended variable
 
@@ -105,12 +107,20 @@ void update_primary(const string &range)
     while (!response.empty() && (response.back() == '\n' || response.back() == '\r'))
     {
       response.pop_back();
+      while (!response.empty() && (response.back() == '\n' || response.back() == '\r'))
+      {
+        response.pop_back();
+      }
+      pthread_mutex_lock(&primary_mutex);
+      range_to_primary_map[range] = response.substr(4);
+      pthread_mutex_unlock(&primary_mutex);
     }
-    range_to_primary_map[range] = response.substr(4);
   }
   else
   {
+    pthread_mutex_lock(&primary_mutex);
     range_to_primary_map[range] = "No primary available";
+    pthread_mutex_unlock(&primary_mutex);
   }
 
   close(sock);
@@ -926,7 +936,10 @@ void *handle_connection(void *arg)
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     cout << "This row is in new file: " << tablet_name << endl;
 
+    update_primary(tablet_name);
+    pthread_mutex_lock(&primary_mutex);
     string primary_ip_port = range_to_primary_map[tablet_name];
+    pthread_mutex_unlock(&primary_mutex);
     string curr_ip_port = server_ip + ":" + to_string(server_port);
     bool amIPrimary = primary_ip_port == curr_ip_port;
 
@@ -981,7 +994,6 @@ void *handle_connection(void *arg)
 
       string buffer_str(buffer);
       F_2_B_Message received_message{};
-      cout << buffer_str << " HELoOOOOO" << endl;
 
       if (buffer_str.find('|') != string::npos)
       {
