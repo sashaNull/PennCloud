@@ -649,6 +649,46 @@ string get_tablet_range_from_row_key(string row_key)
   return "-ERR";
 }
 
+F_2_B_Message handle_list(int client_fd)
+{
+  for (auto &entry : cache)
+  {
+    const string &tablet_name = entry.first;
+    tablet_data &data = entry.second;
+    pthread_mutex_lock(&data.tablet_lock);
+    for (auto &row_pair : data.row_to_kv)
+    {
+      for (auto &col_pair : row_pair.second)
+      {
+        cout << row_pair.first << " " << col_pair.first << " " << col_pair.second << endl;
+        F_2_B_Message list_message;
+        list_message.type = 10;
+        list_message.rowkey = row_pair.first;
+        list_message.colkey = col_pair.first;
+        list_message.status = 0;
+        list_message.value = col_pair.second;
+        list_message.errorMessage = "";
+        list_message.value2 = "";
+        string serialized = encode_message(list_message);
+        send(client_fd, serialized.c_str(), serialized.length(), 0);
+        sleep(0.01);
+      }
+    }
+
+    // Unlock the tablet
+    pthread_mutex_unlock(&data.tablet_lock);
+  }
+
+  // Send a final success message
+  F_2_B_Message success_message;
+  success_message.status = 0; // Indicate success
+  success_message.errorMessage = "success";
+  success_message.rowkey = "terminate";
+  success_message.colkey = "terminate";
+  success_message.type = 10;
+  return success_message;
+}
+
 /**
  * Function to handle client connections.
  *
@@ -898,6 +938,9 @@ void *handle_connection(void *arg)
       cache[tablet_name].requests_since_checkpoint++;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
+    case 10:
+      f2b_message = handle_list(client_fd);
+      break;
     default:
       cout << "Unknown command type received" << endl;
       break;
@@ -912,7 +955,7 @@ void *handle_connection(void *arg)
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
 
-    if (f2b_message_for_other_server.isFromBackend == 0 && f2b_message_for_other_server.type != 1)
+    if (f2b_message_for_other_server.isFromBackend == 0 && f2b_message_for_other_server.type != 1 && f2b_message_for_other_server.type != 10)
     {
       f2b_message_for_other_server.isFromBackend = 1;
       string tablet_range = get_tablet_range_from_row_key(f2b_message_for_other_server.rowkey);

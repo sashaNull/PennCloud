@@ -83,6 +83,38 @@ int main(int argc, char *argv[])
         send(sock, input.c_str(), input.length(), 0);
         break;
       }
+      if (input == "list")
+      {
+        F_2_B_Message message;
+        message.type = 10;
+        message.rowkey = "adw";
+        message.colkey = "adw";
+        message.isFromBackend = 0;
+
+        string serialized = encode_message(message);
+        send(sock, serialized.c_str(), serialized.length(), 0);
+        while (true)
+        {
+          char buffer[1024] = {0};
+          int bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
+          if (bytes_received <= 0)
+          {
+            cout << "Server closed the connection or error occurred." << endl;
+            break;
+          }
+          string response(buffer);
+          F_2_B_Message received_message = decode_message(response);
+          if (received_message.rowkey == "terminate")
+          {
+            cout << "End of list." << endl;
+            print_message(received_message);
+            break;
+          }
+          cout << "Server: " << endl;
+          print_message(received_message);
+        }
+        continue;
+      }
       istringstream iss(input);
       string command, rowkey, colkey, value, value2;
       iss >> command >> rowkey >> colkey;
