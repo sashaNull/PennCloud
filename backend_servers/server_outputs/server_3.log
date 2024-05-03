@@ -36,33 +36,6 @@ Failed to open log file: ./data/server3/logs/na_nm_logs.txt
 Failed to open log file: ./data/server3/logs/kn_kz_logs.txt
 Failed to open log file: ./data/server3/logs/oa_om_logs.txt
 Failed to open log file: ./data/server3/logs/ka_km_logs.txt
-PRINTING: 0
-PRINTING: 0
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Connection Failed
-Failed to open log file: ./data/server3/logs/aa_am_logs.txt
 Failed to open log file: ./data/server3/logs/pa_pm_logs.txt
 Failed to open log file: ./data/server3/logs/pn_pz_logs.txt
 Failed to open log file: ./data/server3/logs/nn_nz_logs.txt
@@ -75,5 +48,23 @@ Failed to open log file: ./data/server3/logs/na_nm_logs.txt
 Failed to open log file: ./data/server3/logs/kn_kz_logs.txt
 Failed to open log file: ./data/server3/logs/oa_om_logs.txt
 Failed to open log file: ./data/server3/logs/ka_km_logs.txt
-PRINTING: 0
-PRINTING: 0
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: Not_Found.txt
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!

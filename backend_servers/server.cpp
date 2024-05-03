@@ -416,8 +416,8 @@ int main(int argc, char *argv[])
   // Load data to cache
   load_cache(cache, data_file_location);
   recover(cache, data_file_location, server_tablet_ranges);
-  cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
-  cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
+  // cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
+  // cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
 
   // TODO: Get the latest tablet and log files from the primary
 
@@ -442,8 +442,8 @@ int main(int argc, char *argv[])
   // Perform Recovery
   recover(cache, data_file_location, server_tablet_ranges);
 
-  cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
-  cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
+  // cout << "PRINTING: " << cache["aa_am"].requests_since_checkpoint << endl;
+  // cout << "PRINTING: " << cache["aa_am"].tablet_version << endl;
 
   // Register signal handler for clean exit
   signal(SIGINT, exit_handler);
