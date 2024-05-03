@@ -324,7 +324,7 @@ std::string get_new_file_name(const std::string &row_key, const std::vector<std:
     }
 
     // Default case if no match is found
-    return "Not_Found.txt";
+    return server_tablet_list[0];
 }
 
 void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location)
