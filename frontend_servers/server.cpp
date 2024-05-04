@@ -1117,19 +1117,19 @@ void *handle_connection(void *arg)
         cookie_user_map.erase(cookie);
 
         // Send a message to the backend to delete the cookie
-      
+
         string delete_response_value;
         string delete_response_error_msg;
         int delete_response_status;
-        
+
         rowkey = "cookie";
         colkey = cookie;
         type = "delete";
         F_2_B_Message msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0); // Assuming '3' is the DELETE operation
-        
+
         int response_code = send_msg_to_backend(fd, msg_to_send, delete_response_value, delete_response_status,
-                                              delete_response_error_msg, rowkey, colkey,
-                                              g_map_rowkey_to_server, g_coordinator_addr, type);
+                                                delete_response_error_msg, rowkey, colkey,
+                                                g_map_rowkey_to_server, g_coordinator_addr, type);
         if (response_code == 1)
         {
           cerr << "ERROR in communicating with coordinator" << endl;
@@ -1140,10 +1140,10 @@ void *handle_connection(void *arg)
           cerr << "ERROR in communicating with backend" << endl;
           continue;
         }
-        
+
         cout << "Delete response status: " << delete_response_status << endl;
         cout << "Delete response error msg: " << delete_response_error_msg << endl;
-      
+
         // Redirect to the login page and delete the cookie
         std::string response_stream = "HTTP/1.1 302 Found\r\n";
         response_stream += "Location: http://" + g_serveraddr_str + "/login\r\n";                                     // Correct redirect URL
@@ -3740,35 +3740,40 @@ void *handle_connection(void *arg)
 
       std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
       int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
-
-      // Get the list of servers from the coordinator
       std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
-
-      // Format the output to send back to the browser
       std::string response_content = get_admin_html_from_vector(servers);
-
-      // Send the formatted response to the client
       send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
-      // ?? get status of all frontend servers (from load balancer??)
-      // onclick of a server: /admin?server=<addr>
-      // ontoggle of a server:
-      // if toggle is already on: /admin?toggle=suspend&server=<addr>
-      // else: /admin?toggle=activate&server=<addr>
     }
 
     // GET: /admin/<addr>
     else if (html_request_map["uri"].substr(0, 7) == "/admin/" && html_request_map["method"] == "GET")
     {
-      std::string server_addr = html_request_map["uri"].substr(7); // Extract server address directly from the URI
-      if (server_addr.empty() || server_addr.find('/') != std::string::npos)
+      std::string server_addr = html_request_map["uri"].substr(7);
+      size_t colon_pos = server_addr.find(':');
+      if (colon_pos == std::string::npos || colon_pos == server_addr.length() - 1)
       {
-        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid server address");
+        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid server address format.");
+        continue;
       }
-      else
+      std::string ip = server_addr.substr(0, colon_pos);
+      std::string port_str = server_addr.substr(colon_pos + 1);
+      int port;
+
+      if (!safe_stoi(port_str, port))
       {
-        std::string response_html = handle_show_data_request(server_addr);
-        send_response(client_fd, 200, "OK", "text/html", response_html);
+        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid port number.");
+        continue;
       }
+
+      auto data = fetch_data_from_server(ip, port);
+      if (data.empty())
+      {
+        send_response(client_fd, 500, "Internal Server Error", "text/html", "Failed to fetch data from the server.");
+        continue;
+      }
+
+      std::string html = generate_html_from_data(data, ip, port);
+      send_response(client_fd, 200, "OK", "text/html", html);
     }
 
     // POST: /admin?toggle=suspend&server=<addr>     or    /admin?toggle=activate&server=<addr>

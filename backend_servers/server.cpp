@@ -695,6 +695,7 @@ F_2_B_Message handle_list(int client_fd)
         list_message.value = col_pair.second;
         list_message.errorMessage = "";
         list_message.value2 = "";
+        list_message.isFromPrimary = 0;
         string serialized = encode_message(list_message);
         send(client_fd, serialized.c_str(), serialized.length(), 0);
         sleep(0.01);
