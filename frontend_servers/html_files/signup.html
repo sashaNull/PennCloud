@@ -24,7 +24,7 @@
         <button type="submit">Sign Up</button>
     </form>
 
-    <p>Already have an account? <a href="http://127.0.0.1:8000/login">Login</a></p>
+    <p>Already have an account? <a href="/login">Login</a></p>
 
     <script>
         document.getElementById("signupForm").addEventListener("submit", function (event) {
@@ -36,7 +36,7 @@
                 email: document.getElementById("email").value,
                 password: document.getElementById("password").value
             };
-            fetch("http://127.0.0.1:8000/signup", {
+            fetch("/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -45,7 +45,7 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = "http://127.0.0.1:8000/login"; // Redirect to the login page
+                        window.location.href = "/login"; // Redirect to the login page
                         return;
                     }
                     // Not a 2XX response, so parse the JSON and handle it

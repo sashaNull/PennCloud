@@ -21,6 +21,7 @@
 #include "./client_communication.h"
 #include "./backend_communication.h"
 #include "./webmail.h"
+#include "./admin.h"
 using namespace std;
 
 // TODO: take away later
@@ -293,7 +294,6 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
     return;
   }
 
-
   std::cout << "row key for delete: " << row_key << std::endl;
 
   if (response_status == 0)
@@ -318,8 +318,8 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
         type = "delete";
         msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                response_error_msg, row_key, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1)
         {
           cerr << "ERROR in communicating with coordinator" << endl;
@@ -345,8 +345,8 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
         type = "delete";
         msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                response_error_msg, row_key, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1)
         {
           cerr << "ERROR in communicating with coordinator" << endl;
@@ -900,6 +900,7 @@ void *handle_connection(void *arg)
       {
         // Retrieve HTML content from the map
         std::string html_content = g_endpoint_html_map["login"];
+        cout << html_content << endl;
 
         // Construct and send the HTTP response
         send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -1108,20 +1109,44 @@ void *handle_connection(void *arg)
     // GET: logout
     else if (html_request_map["uri"] == "/logout" && html_request_map["method"] == "GET")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
       std::string cookie = get_cookie_from_header(request);
+
       if (!cookie.empty())
       {
         // Remove the cookie from local map
         cookie_user_map.erase(cookie);
 
         // Send a message to the backend to delete the cookie
-        F_2_B_Message msg_to_send = construct_msg(3, "cookie", cookie, "", "", "", 0); // Assuming '3' is the DELETE operation
-        send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
+      
+        string delete_response_value;
+        string delete_response_error_msg;
+        int delete_response_status;
+        
+        rowkey = "cookie";
+        colkey = cookie;
+        type = "delete";
+        F_2_B_Message msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0); // Assuming '3' is the DELETE operation
+        
+        int response_code = send_msg_to_backend(fd, msg_to_send, delete_response_value, delete_response_status,
+                                              delete_response_error_msg, rowkey, colkey,
+                                              g_map_rowkey_to_server, g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
+        
+        cout << "Delete response status: " << delete_response_status << endl;
+        cout << "Delete response error msg: " << delete_response_error_msg << endl;
+      
         // Redirect to the login page and delete the cookie
         std::string response_stream = "HTTP/1.1 302 Found\r\n";
-        response_stream += "Location: http://127.0.0.1:8000/login\r\n";                                     // Correct redirect URL
+        response_stream += "Location: http://" + g_serveraddr_str + "/login\r\n";                                     // Correct redirect URL
         response_stream += "Set-Cookie: sid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly\r\n"; // Delete the cookie
         response_stream += "Content-Length: 0\r\n";                                                         // Optional, generally not needed for redirects
         response_stream += "Connection: close\r\n";                                                         // Ensure connection is not kept alive
@@ -3229,7 +3254,7 @@ void *handle_connection(void *arg)
 
             while (!success)
             {
-              // Get current directory items    
+              // Get current directory items
               F_2_B_Message msg_to_send;
               string get_response_value, get_response_error_msg;
               int get_response_status, response_code;
@@ -3558,7 +3583,7 @@ void *handle_connection(void *arg)
             std::string new_row_key = username + "_" + newFilePath + "/" + fileName;
             std::string old_row_key = username + "_" + filePath;
             std::string new_parent_row_key = username + "_" + newFilePath;
-            
+
             // Check whether file already exists in this directory
             F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
             F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
@@ -3706,28 +3731,63 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/admin" && html_request_map["method"] == "GET")
     {
       // LIST: get status of all backend servers
+      size_t colon_pos = g_coordinator_addr_str.find(':');
+      if (colon_pos == std::string::npos)
+      {
+        send_response(client_fd, 500, "Internal Server Error", "text/html", "Server configuration error.");
+        continue;
+      }
+
+      std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
+      int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
+
+      // Get the list of servers from the coordinator
+      std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
+
+      // Format the output to send back to the browser
+      std::string response_content = get_admin_html_from_vector(servers);
+
+      // Send the formatted response to the client
+      send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
       // ?? get status of all frontend servers (from load balancer??)
       // onclick of a server: /admin?server=<addr>
-      // ontoggle of a server: 
+      // ontoggle of a server:
       // if toggle is already on: /admin?toggle=suspend&server=<addr>
       // else: /admin?toggle=activate&server=<addr>
     }
 
-    // GET: /admin?server=<addr>
-    else if (html_request_map["uri"].substr(0, 13) == "/admin?server" && html_request_map["method"] == "GET") 
+    // GET: /admin/<addr>
+    else if (html_request_map["uri"].substr(0, 7) == "/admin/" && html_request_map["method"] == "GET")
     {
-      // to see raw data of server x: send F_2_B msg of type 10 to server x
-      // while loop to keep receiving F_2_B msgs until both rowkey and colkey is "terminate"
-      // html: probably a table, see inbox code
+      std::string server_addr = html_request_map["uri"].substr(7); // Extract server address directly from the URI
+      if (server_addr.empty() || server_addr.find('/') != std::string::npos)
+      {
+        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid server address");
+      }
+      else
+      {
+        std::string response_html = handle_show_data_request(server_addr);
+        send_response(client_fd, 200, "OK", "text/html", response_html);
+      }
     }
 
     // POST: /admin?toggle=suspend&server=<addr>     or    /admin?toggle=activate&server=<addr>
-    else if (html_request_map["uri"].substr(0, 13) == "/admin?toggle" && html_request_map["method"] == "POST") 
+    else if (html_request_map["uri"].substr(0, 13) == "/admin?toggle" && html_request_map["method"] == "POST")
     {
-    // 
-    // suspend: 5; activate: 6
-    }
+      std::string query = html_request_map["uri"].substr(6);
 
+      std::string result = handle_toggle_request(query);
+
+      if (result.empty())
+      {
+        std::string redirect_html = "<html><head><meta http-equiv='refresh' content='0;url=/admin'></head></html>";
+        send_response(client_fd, 302, "Found", "text/html", redirect_html);
+      }
+      else
+      {
+        send_response(client_fd, 400, "Bad Request", "text/html", result);
+      }
+    }
     else
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
