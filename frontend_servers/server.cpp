@@ -273,18 +273,33 @@ std::vector<std::string> parse_items_list(const std::string &items_str)
 void deleteFolderContents(const string &folderPath, int client_fd, int fd, const string &username)
 {
   // Get items for the folder
-  string backend_serveraddr_str = "127.0.0.1:6000";
+  string response_value, response_error_msg;
+  int response_status;
   string row_key = username + "_" + folderPath;
+  string colkey = "items";
+  string type = "get";
+  F_2_B_Message msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
+  int response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                          response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+  if (response_code == 1)
+  {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return;
+  }
+  else if (response_code == 2)
+  {
+    cerr << "ERROR in communicating with backend" << endl;
+    return;
+  }
+
 
   std::cout << "row key for delete: " << row_key << std::endl;
 
-  F_2_B_Message msg_to_send_get = construct_msg(1, row_key, "items", "", "", "", 0);
-  F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
-
-  if (response_msg_get.status == 0)
+  if (response_status == 0)
   {
     // Parse items list
-    vector<string> items = parse_items_list(response_msg_get.value);
+    vector<string> items = parse_items_list(response_value);
 
     // Iterate through items
     for (const auto &item : items)
@@ -298,27 +313,52 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
         deleteFolderContents(folderPath + "/" + itemName, client_fd, fd, username);
 
         // Delete folder item
-        string backend_serveraddr_str = "127.0.0.1:6000";
-        string row_key = username + "_" + folderPath + "/" + itemName;
+        row_key = username + "_" + folderPath + "/" + itemName;
+        colkey = "items";
+        type = "delete";
+        msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
 
         std::cout << "Sending delete for: " << row_key << std::endl;
-
-        F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "items", "", "", "", 0);
-        F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
       }
       // Delete files
       else if (itemType == "F@")
       {
         // Delete file content
-        string backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + folderPath + "/" + itemName;
 
         std::cout << "row key for delete file: " << row_key << std::endl;
+        row_key = username + "_" + folderPath + "/" + itemName;
+        colkey = "content";
+        type = "delete";
+        msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
 
-        F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "content", "", "", "", 0);
-        F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
-
-        if (response_msg_delete.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to delete file";
@@ -334,20 +374,36 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
 void renameFolder(const string &oldFolderPath, const string &newFolderPath, int client_fd, int fd, const string &username)
 {
   // Get items for the folder
-  string backend_serveraddr_str = "127.0.0.1:6000";
   string row_key = username + "_" + oldFolderPath;
   string new_row_key = username + "_" + newFolderPath;
+
+  string response_value, response_error_msg;
+  int response_status, response_code;
 
   std::cout << "new row key for rename: " << new_row_key << std::endl;
 
   // GET items from original folder
-  F_2_B_Message msg_to_send_get = construct_msg(1, row_key, "items", "", "", "", 0);
-  F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+  string colkey = "items";
+  string type = "get";
+  F_2_B_Message msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
+  response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                      response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                      g_coordinator_addr, type);
+  if (response_code == 1)
+  {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return;
+  }
+  else if (response_code == 2)
+  {
+    cerr << "ERROR in communicating with backend" << endl;
+    return;
+  }
 
-  if (response_msg_get.status == 0)
+  if (response_status == 0)
   {
     // Parse items list
-    vector<string> items = parse_items_list(response_msg_get.value);
+    vector<string> items = parse_items_list(response_value);
 
     // Iterate through items
     for (const auto &item : items)
@@ -361,31 +417,54 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         renameFolder(oldFolderPath + "/" + itemName, newFolderPath + "/" + itemName, client_fd, fd, username);
 
         // GET old folder contents and PUT folder path with new folder name
-        string backend_serveraddr_str = "127.0.0.1:6000";
         row_key = username + "_" + oldFolderPath + "/" + itemName;
         new_row_key = username + "_" + newFolderPath + "/" + itemName;
 
-        F_2_B_Message msg_to_send_get = construct_msg(1, row_key, "items", "", "", "", 0);
-        F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+        msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
 
         std::cout << "Row key for get: " << row_key << std::endl;
-        std::cout << "Value of get: " << response_msg_get.value << std::endl;
+        std::cout << "Value of get: " << response_value << std::endl;
 
-        if (response_msg_get.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to fetch old folder";
           send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
           return; // Stop processing if there's an error
         }
-
-        F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "items", response_msg_get.value, "", "", 0);
-        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+        string type = "put";
+        F_2_B_Message msg_to_send = construct_msg(2, new_row_key, colkey, response_value, "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, new_row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
 
         std::cout << "New Row key for put: " << new_row_key << std::endl;
-        std::cout << "Value of put: " << response_msg_get.value << std::endl;
+        std::cout << "Value of put: " << response_value << std::endl;
 
-        if (response_msg_put.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to create new path";
@@ -395,11 +474,22 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
 
         // Delete folder item
         std::cout << "Sending delete for: " << row_key << std::endl;
-
-        F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "items", "", "", "", 0);
-        F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
-
-        if (response_msg_delete.status != 0)
+        type = "delete";
+        msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to delete folder";
@@ -412,31 +502,54 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
       {
 
         // GET old file contents and PUT folder path with new folder name
-        string backend_serveraddr_str = "127.0.0.1:6000";
         row_key = username + "_" + oldFolderPath + "/" + itemName;
         new_row_key = username + "_" + newFolderPath + "/" + itemName;
 
-        F_2_B_Message msg_to_send_get = construct_msg(1, row_key, "content", "", "", "", 0);
-        F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
-
+        colkey = "content";
+        type = "get";
+        msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
         std::cout << "Row key for get: " << row_key << std::endl;
-        std::cout << "Value of get: " << response_msg_get.value << std::endl;
+        std::cout << "Value of get: " << response_value << std::endl;
 
-        if (response_msg_get.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to fetch old file";
           send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
           return; // Stop processing if there's an error
         }
-
-        F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
-        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
-
+        type = "put";
+        msg_to_send = construct_msg(2, new_row_key, colkey, response_value, "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, new_row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
         std::cout << "New Row key for put: " << new_row_key << std::endl;
-        std::cout << "Value of put: " << response_msg_get.value << std::endl;
+        std::cout << "Value of put: " << response_value << std::endl;
 
-        if (response_msg_put.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to create new path";
@@ -445,15 +558,27 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         // Delete file content
-        backend_serveraddr_str = "127.0.0.1:6000";
+        // backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + oldFolderPath + "/" + itemName;
 
         std::cout << "row key for delete file: " << row_key << std::endl;
+        type = "delete";
+        msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          return;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          return;
+        }
 
-        F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "content", "", "", "", 0);
-        F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
-
-        if (response_msg_delete.status != 0)
+        if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to delete file";
@@ -794,7 +919,7 @@ void *handle_connection(void *arg)
       string password = form_data["password"];
       transform(username.begin(), username.end(), username.begin(), ::tolower);
       // TODO: take out
-      g_username = username;
+      // g_username = username;
       // START COORDINATOR
       string response_value, get_response_value;
       string response_error_msg, get_response_error_msg;
@@ -3063,7 +3188,7 @@ void *handle_connection(void *arg)
     // Handle POST request to delete a file
     else if (html_request_map["uri"] == "/delete_file" && html_request_map["method"] == "POST")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
+      // string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
@@ -3104,15 +3229,32 @@ void *handle_connection(void *arg)
 
             while (!success)
             {
-              // Get current directory items
-              F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-              F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+              // Get current directory items    
+              F_2_B_Message msg_to_send;
+              string get_response_value, get_response_error_msg;
+              int get_response_status, response_code;
+              type = "get";
+              colkey = "items";
+              msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status,
+                                                  get_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code == 1)
+              {
+                cerr << "ERROR in communicating with coordinator" << endl;
+                continue;
+              }
+              else if (response_code == 2)
+              {
+                cerr << "ERROR in communicating with backend" << endl;
+                continue;
+              }
 
-              if (response_msg_get.status == 0)
+              if (get_response_status == 0)
               {
 
                 // Parse items list
-                vector<string> items = parse_items_list(response_msg_get.value);
+                vector<string> items = parse_items_list(get_response_value);
 
                 // Remove the file from the items list
                 items.erase(remove(items.begin(), items.end(), "F@" + fileName), items.end());
@@ -3134,16 +3276,48 @@ void *handle_connection(void *arg)
                 std::cout << "new value to update: " << newValue << std::endl;
 
                 // CPUT the current directory items without the file
-                F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-                F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+                string cput_response_value, cput_response_error_msg;
+                int cput_response_status, response_code;
+                type = "cput";
+                colkey = "items";
+                msg_to_send = construct_msg(4, parentRowKey, colkey, get_response_value, newValue, "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
+                                                    cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
+                if (response_code == 1)
+                {
+                  cerr << "ERROR in communicating with coordinator" << endl;
+                  continue;
+                }
+                else if (response_code == 2)
+                {
+                  cerr << "ERROR in communicating with backend" << endl;
+                  continue;
+                }
 
-                if (response_msg_cput.status == 0)
+                if (cput_response_status == 0)
                 {
                   // Delete file content
-                  F_2_B_Message msg_to_send_delete_content = construct_msg(3, row_key, "content", "", "", "", 0);
-                  F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
+                  string delete_response_value, delete_response_error_msg;
+                  int delete_response_status, response_code;
+                  type = "delete";
+                  colkey = "content";
+                  msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send, delete_response_value, delete_response_status,
+                                                      delete_response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+                  if (response_code == 1)
+                  {
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
+                  }
+                  else if (response_code == 2)
+                  {
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
 
-                  if (response_msg_delete_content.status == 0)
+                  if (delete_response_status == 0)
                   {
                     // Set success flag to true to exit the loop
                     success = true;
@@ -3158,13 +3332,13 @@ void *handle_connection(void *arg)
                     send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
                   }
                 }
-                else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
                 {
                   // Parent folder does not exist - Construct and send the HTTP response
                   std::string content = "{\"error\":\"Parent folder does not exist\"}";
                   send_response(client_fd, 404, "Not Found", "application/json", content);
                 }
-                else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
                 {
                   // Old value is wrong - Construct and send the HTTP response
                   std::string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
@@ -3384,7 +3558,7 @@ void *handle_connection(void *arg)
             std::string new_row_key = username + "_" + newFilePath + "/" + fileName;
             std::string old_row_key = username + "_" + filePath;
             std::string new_parent_row_key = username + "_" + newFilePath;
-
+            
             // Check whether file already exists in this directory
             F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
             F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
