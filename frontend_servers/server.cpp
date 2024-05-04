@@ -184,7 +184,7 @@ std::string get_cookie_from_header(const std::string &request)
   return "";
 }
 
-std::string get_username_from_cookie(const std::string &cookie, int backend_fd, const std::string &backend_serveraddr_str)
+std::string get_username_from_cookie(const std::string &cookie, int backend_fd)
 {
   // Check if cookie exists in the map
   // Lock the mutex before accessing the map
@@ -203,12 +203,30 @@ std::string get_username_from_cookie(const std::string &cookie, int backend_fd, 
   else
   {
     // Cookie not found in local map, make a GET request to backend
-    F_2_B_Message msg_to_send = construct_msg(1, "cookie", cookie, "", "", "", 0);
-    F_2_B_Message response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-
-    if (response_msg.status == 0)
+    F_2_B_Message msg_to_send;
+    string response_value, response_error_msg;
+    int response_status, response_code;
+    string rowkey = "cookie";
+    string type = "get";
+    string colkey = cookie;
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(backend_fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
     {
-      std::string username = response_msg.value;
+      cerr << "ERROR in communicating with coordinator" << endl;
+      return "";
+    }
+    else if (response_code == 2)
+    {
+      cerr << "ERROR in communicating with backend" << endl;
+      return "";
+    }
+
+    if (response_status == 0)
+    {
+      std::string username = response_value;
       // Lock the mutex before accessing the map
       pthread_mutex_lock(&map_mutex);
 
@@ -827,8 +845,24 @@ void *handle_connection(void *arg)
             pthread_mutex_unlock(&map_mutex);
 
             // PUT this mapping in the backend
-            F_2_B_Message msg_to_send = construct_msg(2, "cookie", cookie, username, "", "", 0);
-            send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
+
+            rowkey = "cookie";
+            colkey = cookie;
+            type = "put";
+            F_2_B_Message msg_to_send = construct_msg(2, rowkey, colkey, username, "", "", 0);
+            int response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                    response_error_msg, rowkey, colkey,
+                                                    g_map_rowkey_to_server, g_coordinator_addr, type);
+            if (response_code == 1)
+            {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
           }
 
           // Redirect to home page with the cookie
@@ -1011,7 +1045,7 @@ void *handle_connection(void *arg)
         F_2_B_Message msg_to_send, response_msg;
         string backend_serveraddr_str = "127.0.0.1:6000";
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str);
+        std::string username = get_username_from_cookie(cookie, fd);
         if (!username.empty())
         {
           string inbox_emails_str, response_error_msg;
@@ -1059,7 +1093,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           string sentbox_emails_str, response_error_msg;
@@ -1110,7 +1144,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           F_2_B_Message msg_to_send;
@@ -1371,7 +1405,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           /// view_email/?source=inbox&id=
@@ -1499,7 +1533,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // /delete_email?source=" << source << "&id=" << uid << "
@@ -1534,7 +1568,7 @@ void *handle_connection(void *arg)
       {
         // get username from cookie
         std::cout << "username: " << cookie_user_map[cookie] << " " << cookie << std::endl;
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           std::string uri_path = html_request_map["uri"];
@@ -1956,7 +1990,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Construct the row key by appending "user_" to the foldername
@@ -2147,7 +2181,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract file, file name and path from the request body
@@ -2350,7 +2384,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract the file path from the request URI
@@ -2438,7 +2472,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract folder path from the request body
@@ -2448,7 +2482,7 @@ void *handle_connection(void *arg)
           std::cout << "folder path for delete: " << folderPath << std::endl;
 
           // Recursively delete folder contents
-          deleteFolderContents(folderPath, client_fd, fd);
+          deleteFolderContents(folderPath, client_fd, fd, username);
 
           // Delete folder item
           string row_key = "adwait_" + folderPath;
@@ -2632,7 +2666,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract folder path and new folder name from the request body
@@ -2826,7 +2860,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract folder path and new folder name from the request body
@@ -3041,7 +3075,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract file path from the request body
@@ -3174,7 +3208,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract file path and new file name from the request body
@@ -3332,7 +3366,7 @@ void *handle_connection(void *arg)
       else
       {
         // get username from cookie
-        std::string username = get_username_from_cookie(cookie, fd, backend_serveraddr_str); // TO DO: backend address
+        std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
           // Extract file path and new file name from the request body
