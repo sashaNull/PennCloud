@@ -2,13 +2,16 @@
 
 using namespace std;
 
-void send_response(int client_fd, int status_code, const std::string &status_message, const std::string &content_type, const std::string &body)
+void send_response(int client_fd, int status_code, const std::string &status_message, const std::string &content_type, const std::string &body, const std::string &cookie)
 {
     std::ostringstream response_stream;
     response_stream << "HTTP/1.1 " << status_code << " " << status_message << "\r\n";
     response_stream << "Content-Type: " << content_type << "\r\n";
     response_stream << "Content-Length: " << body.length() << "\r\n";
-    // response_stream << "Set-Cookie: sid=" << sessionID << "\r\n"; // Set the session ID cookie
+    if (!cookie.empty())
+    {
+        response_stream << "Set-Cookie: sid=" << cookie << "; Path=/; HttpOnly\r\n";
+    }
     response_stream << "\r\n";
     response_stream << body;
 
@@ -102,4 +105,29 @@ void redirect(int client_fd, std::string redirect_to)
 
     std::cout << "Sent redirection response to " << redirect_to << std::endl;
     std::cout << "redirect response: " << response << std::endl;
+}
+
+void redirect_with_cookie(int client_fd, std::string redirect_url, std::string cookie)
+{
+    std::string response_stream = "HTTP/1.1 302 Found\r\n";
+    response_stream += "Location: " + redirect_url + "\r\n";
+    response_stream += "Content-Length: 0\r\n";
+    response_stream += "Connection: keep-alive\r\n";
+    if (!cookie.empty())
+    {
+        response_stream += "Set-Cookie: sid=" + cookie + "; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly\r\n";
+    }
+    response_stream += "\r\n"; // End of headers
+
+    ssize_t bytes_sent = send(client_fd, response_stream.c_str(), response_stream.length(), 0);
+    if (bytes_sent < 0)
+    {
+        std::cerr << "Failed to send response: " << strerror(errno) << std::endl;
+    }
+    else
+    {
+        std::cout << "Response being sent:\n"
+                  << response_stream << std::endl;
+        std::cout << "Redirect with cookie response sent successfully, bytes sent: " << bytes_sent << std::endl;
+    }
 }
