@@ -930,7 +930,6 @@ void *handle_connection(void *arg)
       string from = g_username + "@localhost";
       string from_username = g_username;
 
-      string rowkey, colkey, type;
       F_2_B_Message msg_to_send;
       string response_value, response_error_msg;
       int response_status, response_code;
@@ -1057,33 +1056,92 @@ void *handle_connection(void *arg)
     {
       // TODO: get username from cookies
       string username = g_username;
-      F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
+
       /// view_email/?source=inbox&id=
       string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
       string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
-      // fetch email with corresponding uid (subject, from, to, timestamp, body) from backend
-      msg_to_send = construct_msg(1, "email/" + uid, "subject", "", "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string encoded_subject = response_msg.value;
+  
+      F_2_B_Message msg_to_send;
+      string response_error_msg;
+      int response_status, response_code;
+      rowkey = "email/" + uid;
+      type = "get";
+
+      // get subject
+      string encoded_subject;
+      colkey = "subject";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, encoded_subject, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
       string subject = base_64_decode(encoded_subject);
 
-      msg_to_send = construct_msg(1, "email/" + uid, "from", "", "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string from = response_msg.value;
+      // get from
+      string from;
+      colkey = "from";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, from, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      msg_to_send = construct_msg(1, "email/" + uid, "to", "", "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string to = response_msg.value;
+      // get to
+      string to;
+      colkey = "to";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, to, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      msg_to_send = construct_msg(1, "email/" + uid, "timestamp", "", "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string timestamp = response_msg.value;
-      cout << "!!!!!!TS: " << timestamp << endl;
+      // get timestamp
+      string timestamp;
+      colkey = "timestamp";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, timestamp, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      msg_to_send = construct_msg(1, "email/" + uid, "body", "", "", "", 0);
-      response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-      string encoded_body = response_msg.value;
+      // get body
+      string encoded_body;
+      colkey = "body";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, encoded_body, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
       string body = base_64_decode(encoded_body);
 
       // display the email content
@@ -1093,12 +1151,11 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET")
     {
       string username = g_username;
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      // /delete_email?source=" << source << "&id=" << uid << "
+
       string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
       string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
       cout << "delete email with uid: " << uid << " from " << source << endl;
-      delete_email(backend_serveraddr_str, fd, username, uid, source);
+      delete_email(fd, username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
 
       std::string redirect_to = "http://" + g_serveraddr_str + "/" + source;
       redirect(client_fd, redirect_to);
@@ -1118,21 +1175,29 @@ void *handle_connection(void *arg)
       std::string path = uri_path.substr(1 + uri_path.find_first_of("/"));
 
       // Construct the row key by appending "user_" to the foldername
-      std::string row_key = "adwait_" + path;
 
-      std::cout << "row key: " << row_key << std::endl;
+      F_2_B_Message msg_to_send;
+      string response_value, response_error_msg;
+      int response_status, response_code;
+      rowkey = "adwait_" + path;
+      type = "get";
+      colkey = "items";
+      msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                          response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      // Fetch items for the foldername from the backend
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send = construct_msg(1, row_key, "items", "", "", "", 0);
-      F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
-      std::cout << "response: " << response_msg.status << std::endl;
-
-      if (response_msg.status == 0)
+      if (response_status == 0)
       {
         // Parse the response to get the list of items
-        std::vector<std::string> items = parse_items_list(response_msg.value);
+        std::vector<std::string> items = parse_items_list(response_value);
 
         // Generate HTML for displaying folders and files
         std::stringstream html_content;
@@ -1506,23 +1571,36 @@ void *handle_connection(void *arg)
 
       // Construct the row key by appending "user_" to the foldername
       string parentRowKey = "adwait_" + path;
-
       std::cout << "parent row key: " << parentRowKey << std::endl;
 
       // Loop till success: GET the parent folder
+      F_2_B_Message msg_to_send;
+      string response_value, response_error_msg;
+      int response_status, response_code;
       bool success = false;
+
       while (!success)
       {
+        type = "get";
+        colkey = "items";
+        msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                            response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        } else if (response_code == 2) {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
         // GET request for the parent folder
-        string backend_serveraddr_str = "127.0.0.1:6000";
-        F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-        F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-        if (response_msg_get.status == 0)
+        if (response_status == 0)
         {
           std::string newValue;
 
-          if (response_msg_get.value == "[]")
+          if (response_value == "[]")
           {
             // If the list is empty, simply add the new value with square brackets
             newValue = "[D@" + folderName + "]";
@@ -1530,31 +1608,43 @@ void *handle_connection(void *arg)
           else
           {
             // Find the position of the last closing bracket
-            size_t last_bracket_pos = response_msg_get.value.find_last_of(']');
+            size_t last_bracket_pos = response_value.find_last_of(']');
 
             // Extract the substring up to the last closing bracket (excluding)
-            std::string existing_values = response_msg_get.value.substr(0, last_bracket_pos);
+            std::string existing_values = response_value.substr(0, last_bracket_pos);
 
             // Concatenate the new value with a comma
             newValue = existing_values + ",D@" + folderName + "]";
           }
 
           // CPUT the parent folder
-          string backend_serveraddr_str = "127.0.0.1:6000";
-          F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-          F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+          string cput_response_value, cput_response_error_msg;
+          int cput_response_status;
+          type = "cput";
+          colkey = "items";
+          msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+          response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status, 
+                                              cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+          if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            continue;
+          } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            continue;
+          }
 
-          if (response_msg_cput.status == 0)
+          if (cput_response_status == 0)
           {
             success = true;
           }
-          else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+          else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
           {
             // Parent folder does not exist - Construct and send the HTTP response
             string content = "{\"error\":\"Parent folder does not exist\"}";
             send_response(client_fd, 404, "Not Found", "application/json", content);
           }
-          else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+          else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
           {
             // Old value is wrong - Construct and send the HTTP response
             string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
@@ -1579,11 +1669,21 @@ void *handle_connection(void *arg)
       string newFolderRowKey = parentRowKey + "/" + folderName;
 
       // PUT for new folder item with empty list
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send_put = construct_msg(2, newFolderRowKey, "items", "[]", "", "", 0);
-      F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+      type = "put";
+      colkey = "items";
+      msg_to_send = construct_msg(2, newFolderRowKey, colkey, "[]", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                          response_error_msg, newFolderRowKey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      if (response_msg_put.status == 0)
+      if (response_status == 0)
       {
         // Success response
         string refresh_script = "<script>window.location.reload(true);</script>";
@@ -1620,34 +1720,62 @@ void *handle_connection(void *arg)
       // Construct the row key for the new file
       std::string file_row_key = parentRowKey + "/" + filename;
 
+      F_2_B_Message msg_to_send;
+      string get_response_value, get_response_error_msg;
+      int response_code, get_response_status;
+
       // Check whether file already exists in this directory
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send_get = construct_msg(1, file_row_key, "content", "", "", "", 0);
-      F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+      type = "get";
+      colkey = "content";
+      msg_to_send = construct_msg(1, file_row_key, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status, 
+                                          get_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
+      std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
-      if (response_msg_get.status == 0)
+      if (get_response_status == 0)
       {
         // file already exists
         string content = "{\"error\":\"File already exists!!\"}";
         send_response(client_fd, 409, "Conflict", "application/json", content);
       }
-      else if (response_msg_get.status == 1)
+      else if (get_response_status == 1)
       {
         // Loop till success: GET the parent folder
         bool success = false;
+        string response_value, response_error_msg;
+        int response_code, response_status;
+        
         while (!success)
         {
           // GET request for the parent folder
-          F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-          F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+          type = "get";
+          colkey = "items";
+          msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+          response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                              response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+          if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            continue;
+          } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            continue;
+          }
 
-          if (response_msg_get.status == 0)
+          if (response_status == 0)
           {
             std::string newValue;
 
-            if (response_msg_get.value == "[]")
+            if (response_value == "[]")
             {
               // If the list is empty, simply add the new value with square brackets
               newValue = "[F@" + filename + "]";
@@ -1655,31 +1783,43 @@ void *handle_connection(void *arg)
             else
             {
               // Find the position of the last closing bracket
-              size_t last_bracket_pos = response_msg_get.value.find_last_of(']');
+              size_t last_bracket_pos = response_value.find_last_of(']');
 
               // Extract the substring up to the last closing bracket (excluding)
-              std::string existing_values = response_msg_get.value.substr(0, last_bracket_pos);
+              std::string existing_values = response_value.substr(0, last_bracket_pos);
 
               // Concatenate the new value with a comma
               newValue = existing_values + ",F@" + filename + "]";
             }
 
             // CPUT the parent folder
-            string backend_serveraddr_str = "127.0.0.1:6000";
-            F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-            F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+            string cput_response_value, cput_response_error_msg;
+            int cput_response_status;
+            type = "cput";
+            colkey = "items";
+            msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status, 
+                                                cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+            if (response_code == 1) {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            } else if (response_code == 2) {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
 
-            if (response_msg_cput.status == 0)
+            if (cput_response_status == 0)
             {
               success = true;
             }
-            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+            else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
             {
               // Parent folder does not exist - Construct and send the HTTP response
               string content = "{\"error\":\"Parent folder does not exist\"}";
               send_response(client_fd, 404, "Not Found", "application/json", content);
             }
-            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+            else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
             {
               // Old value is wrong - Construct and send the HTTP response
               string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
@@ -1695,11 +1835,21 @@ void *handle_connection(void *arg)
         }
 
         // PUT for the content of the file
-        std::string backend_serveraddr_str = "127.0.0.1:6000";
-        F_2_B_Message msg_to_send_put = construct_msg(2, file_row_key, "content", fileContent, "", "", 0);
-        F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
+        type = "put";
+        colkey = "content";
+        msg_to_send = construct_msg(2, file_row_key, fileContent, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                            response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        } else if (response_code == 2) {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
 
-        if (response_msg_put.status == 0)
+        if (response_status == 0)
         {
           // Construct and send a success response to the client
           std::string success_response = "{\"message\":\"File uploaded successfully\"}";
@@ -1739,14 +1889,27 @@ void *handle_connection(void *arg)
       std::cout << "file name: " << file_name << std::endl;
 
       // GET the contents of the file
-      string backend_serveraddr_str = "127.0.0.1:6000";
-      F_2_B_Message msg_to_send_get = construct_msg(1, rowKey, "content", "", "", "", 0);
-      F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+      F_2_B_Message msg_to_send;
+      string response_value, response_error_msg;
+      int response_code, response_status;
+      type = "get";
+      colkey = "content";
+      msg_to_send = construct_msg(1, rowKey, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                          response_error_msg, rowKey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
-      if (response_msg_get.status == 0)
+      if (response_status == 0)
       {
         // Convert the byte content to string
-        std::string file_content(response_msg_get.value.begin(), response_msg_get.value.end());
+        std::string file_content(response_value.begin(), response_value.end());
 
         // Construct the HTTP response headers to trigger file download
         std::string content_disposition = "attachment; filename=\"" + file_name + "\"";
@@ -1786,15 +1949,27 @@ void *handle_connection(void *arg)
       deleteFolderContents(folderPath, client_fd, fd);
 
       // Delete folder item
-      string backend_serveraddr_str = "127.0.0.1:6000";
       string row_key = "adwait_" + folderPath;
+      F_2_B_Message msg_to_send;
+      string response_value, response_error_msg;
+      int response_code, response_status;
+      type = "delete";
+      colkey = "items";
+      msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
+      response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                          response_error_msg, row_key, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+      if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        continue;
+      } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        continue;
+      }
 
       std::cout << "Sending delete for: " << row_key << std::endl;
 
-      F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "items", "", "", "", 0);
-      F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
-
-      if (response_msg_delete.status != 0)
+      if (response_status != 0)
       {
         // Error handling: send appropriate error response to the client
         string error_message = "Failed to delete folder";
@@ -1817,14 +1992,25 @@ void *handle_connection(void *arg)
         while (!success)
         {
           // GET request for the parent folder
-          F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-          F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+          type = "get";
+          colkey = "items";
+          msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+          response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
+                                              response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+          if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            continue;
+          } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            continue;
+          }
 
-          if (response_msg_get.status == 0)
+          if (response_status == 0)
           {
             std::string newValue;
 
-            if (response_msg_get.value == "[]")
+            if (response_value == "[]")
             {
               // No items in parent folder
               newValue = "[]";
@@ -1832,7 +2018,7 @@ void *handle_connection(void *arg)
             else
             {
               // Remove the deleted folder from parent folder's items
-              vector<string> parentItems = parse_items_list(response_msg_get.value);
+              vector<string> parentItems = parse_items_list(response_value);
 
               // Define the item to be removed (folderPath preceded by "D@" for directories)
               string itemToRemove = "D@" + folderName;
@@ -1858,24 +2044,37 @@ void *handle_connection(void *arg)
             }
 
             // CPUT the parent folder
-            F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-            F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+            string cput_response_value, cput_response_error_msg;
+            int cput_response_status;
+            type = "cput";
+            colkey = "items";
+            msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status, 
+                                                cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+            if (response_code == 1) {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            } else if (response_code == 2) {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
 
-            if (response_msg_cput.status == 0)
+            if (cput_response_status == 0)
             {
               success = true;
               // Success response
               string refresh_script = "<script>window.location.reload(true);</script>";
               send_response(client_fd, 200, "OK", "text/html", refresh_script);
             }
-            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+            else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
             {
               // Parent folder does not exist - Construct and send the HTTP response
               string content = "{\"error\":\"Parent folder does not exist\"}";
               send_response(client_fd, 404, "Not Found", "application/json", content);
               break; // Exit loop if parent folder doesn't exist
             }
-            else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+            else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
             {
               // Old value is wrong - Construct and send the HTTP response
               string content = "{\"error\":\"Current items in parent folder are wrong!\"}";

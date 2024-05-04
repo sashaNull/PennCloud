@@ -473,27 +473,65 @@ string delete_email_from_box_string(const string& input, const string& uid, cons
 }
 
 
-void delete_email(const string& backend_serveraddr_str, int fd, const string& username, const string& uid, const string& source) {
-    F_2_B_Message msg_to_send = construct_msg(1, username + "_email", source + "_items", "", "", "", 0);
-    F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-    string usr_box_str = response_msg.value;
+int delete_email(int fd, const string& username, const string& uid, 
+                  const string& source, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+
+    string usr_box_str, response_error_msg;
+    F_2_B_Message msg_to_send;
+    int response_status, response_code;
+    string type = "get";
+    string rowkey = username + "_email";
+    string colkey = source + "_items";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
+    }
 
     // try cput until success
     string received_ts, to_cput;
     while (true)
     {
-        // uid##to##subject##timestamp&&&...
         to_cput = delete_email_from_box_string(usr_box_str, uid, ",");
-        msg_to_send = construct_msg(4, username + "_email", source + "_items", usr_box_str, to_cput, "", 0);
-        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-        if (response_msg.status == 0)
+
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, usr_box_str, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+
+        if (response_status == 0)
         {
             break;
         }
-        msg_to_send = construct_msg(1, username + "_email", source + "_items", "", "", "", 0);
-        response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-        usr_box_str = response_msg.value;
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
     }
+    return 0;
 }
 
 // SSL_CTX* create_ssl_context() {

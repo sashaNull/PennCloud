@@ -54,7 +54,7 @@ int put_email_to_backend(int fd, const std::string &uid, const std::string &from
 
 std::string delete_email_from_box_string(const std::string& input, const std::string& uid, const std::string& delimiter);
 
-void delete_email(const std::string& backend_serveraddr_str, int fd, const std::string& username, const std::string& uid, const std::string& source);
+int delete_email(int fd, const std::string& username, const std::string& uid, const std::string& source, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 // SSL_CTX* create_ssl_context();
 
