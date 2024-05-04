@@ -1472,7 +1472,7 @@ void *handle_connection(void *arg)
       // deliver for local recipients
       for (const auto &usrname : recipients[0])
       {
-        int deliver_success = deliver_local_email(fd, usrname, uid, from, encoded_subject, encoded_body,
+        int deliver_success = deliver_local_email(usrname, uid, from, encoded_subject, encoded_body,
                                                   encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
         if (deliver_success == 0)
         {
@@ -1485,7 +1485,7 @@ void *handle_connection(void *arg)
       }
 
       // store email
-      int store_email_success = put_email_to_backend(fd, uid, from, form_data["to"], ts_sentbox,
+      int store_email_success = put_email_to_backend(uid, from, form_data["to"], ts_sentbox,
                                                      encoded_subject, encoded_body, encoded_display,
                                                      g_map_rowkey_to_server, g_coordinator_addr);
       if (store_email_success == 0)
@@ -1498,7 +1498,7 @@ void *handle_connection(void *arg)
       }
 
       // put in sentbox
-      int sentbox_success = put_in_sentbox(fd, from_username, uid, form_data["to"], ts_sentbox,
+      int sentbox_success = put_in_sentbox(from_username, uid, form_data["to"], ts_sentbox,
                                            encoded_subject, encoded_body, g_map_rowkey_to_server,
                                            g_coordinator_addr);
       if (sentbox_success == 0)
@@ -1665,7 +1665,7 @@ void *handle_connection(void *arg)
           string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
           cout << "delete email with uid: " << uid << " from " << source << endl;
-          delete_email(fd, username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
+          delete_email(username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
           std::string redirect_to = "http://" + g_serveraddr_str + "/" + source;
           redirect(client_fd, redirect_to);
         }

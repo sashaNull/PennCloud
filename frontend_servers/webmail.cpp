@@ -181,10 +181,11 @@ string get_timestamp()
 }
 
 // TODO: make helper function for deliver_local_mail and put_in_sentbox
-int deliver_local_email(int fd, const string &recipient, const string &uid, const string &from,
-                        const string &subject, const string &encoded_body, const string &encoded_display, 
+int deliver_local_email(const string &recipient, const string &uid, const string &from,
+                        const string &encoded_subject, const string &encoded_body, const string &encoded_display, 
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
+    int fd = create_socket();
     string usr_inbox_str, response_error_msg;
     F_2_B_Message msg_to_send;
     int response_status;
@@ -210,7 +211,7 @@ int deliver_local_email(int fd, const string &recipient, const string &uid, cons
     {
         // uid##sender##subject##timestamp,
         received_ts = get_timestamp();
-        to_cput = uid + "##" + from + "##" + subject + "##" + received_ts + "," + usr_inbox_str;
+        to_cput = uid + "##" + from + "##" + encoded_subject + "##" + received_ts + "," + usr_inbox_str;
 
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_inbox_str, to_cput, "", 0);
@@ -248,10 +249,12 @@ int deliver_local_email(int fd, const string &recipient, const string &uid, cons
     return 0;
 }
 
-int put_in_sentbox(int fd, const string &username, const string &uid, const string &to, 
+int put_in_sentbox( const string &username, const string &uid, const string &to, 
                     const string &ts, const string &subject, const string &body,
                     map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
+    int fd = create_socket();
+
     string usr_sentbox_str, response_error_msg;
     F_2_B_Message msg_to_send;
     int response_status;
@@ -349,10 +352,11 @@ string construct_view_email_html(const string &subject, const string &from, cons
     return html.str();
 }
 
-int put_email_to_backend(int fd, const string &uid, const string &from, const string &to, const string &ts, 
+int put_email_to_backend(const string &uid, const string &from, const string &to, const string &ts, 
                         const string &encoded_subject, const string &encoded_body, const string &encoded_display,
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) 
 {
+    int fd = create_socket();
     string response_value, response_error_msg;
     F_2_B_Message msg_to_send;
     int response_status, response_code;
@@ -473,9 +477,10 @@ string delete_email_from_box_string(const string& input, const string& uid, cons
 }
 
 
-int delete_email(int fd, const string& username, const string& uid, 
+int delete_email(const string& username, const string& uid, 
                   const string& source, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
 
+    int fd = create_socket();
     string usr_box_str, response_error_msg;
     F_2_B_Message msg_to_send;
     int response_status, response_code;

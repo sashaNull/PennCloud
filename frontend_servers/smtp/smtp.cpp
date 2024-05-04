@@ -34,6 +34,11 @@ struct ThreadArgs {
 
 map<pthread_t, int> g_thread_args_map;
 
+string g_coordinator_addr_str = "127.0.0.1:7070";
+sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
+
+map<string, string> g_map_rowkey_to_server;
+
 void sigint_handler_smtp(int signum) {
   // Send SIGUSR signal to every user thread
   for (const auto& entry : g_thread_args_map) {
@@ -196,16 +201,15 @@ void read_and_handle_data(int* fd, bool debug_mode) {
           string encoded_display = base_64_encode(reinterpret_cast<const unsigned char*>(for_display.c_str()), for_display.length());
           bool atleast_one_sent = false;
           for (const auto& recipient : mail_to) {
-            string backend_serveraddr_str = "127.0.0.1:6000";
             string username = get_receiver_username(recipient);
-            if (deliver_local_email(backend_serveraddr_str, backend_fd, username, uid,
-                from, encoded_subject, encoded_body, encoded_display) == 0) {
+            if (deliver_local_email(username, uid, from, encoded_subject, encoded_body, encoded_display, 
+                                    g_map_rowkey_to_server, g_coordinator_addr) == 0) {
               atleast_one_sent = true;
             }
           }
           string to = flatten_vector(mail_to);
-          string backend_serveraddr_str = "127.0.0.1:6000";
-          put_email_to_backend(backend_fd, backend_serveraddr_str, uid, from, to, ts, encoded_subject, encoded_body, encoded_display);
+          put_email_to_backend(backend_fd, uid, from, to, ts, encoded_subject, encoded_body, 
+                              encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
           // send response
           string response;
           if (atleast_one_sent) {
