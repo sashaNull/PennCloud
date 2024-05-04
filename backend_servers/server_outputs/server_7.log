@@ -52,6 +52,27 @@ Failed to open log file: ./data/server7/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server7/logs/un_uz_logs.txt
 Failed to open log file: ./data/server7/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server7/logs/wa_wm_logs.txt
+Range to Primary Map:
+Range: zn_zz - Primary: No primary available
+Range: za_zm - Primary: No primary available
+Range: yn_yz - Primary: No primary available
+Range: ya_ym - Primary: No primary available
+Range: xn_xz - Primary: No primary available
+Range: xa_xm - Primary: No primary available
+Range: wn_wz - Primary: No primary available
+Range: ra_rm - Primary: No primary available
+Range: va_vm - Primary: No primary available
+Range: rn_rz - Primary: No primary available
+Range: sn_sz - Primary: No primary available
+Range: qa_qm - Primary: No primary available
+Range: qn_qz - Primary: No primary available
+Range: ua_um - Primary: No primary available
+Range: ta_tm - Primary: No primary available
+Range: sa_sm - Primary: No primary available
+Range: tn_tz - Primary: No primary available
+Range: un_uz - Primary: No primary available
+Range: vn_vz - Primary: No primary available
+Range: wa_wm - Primary: No primary available
 Failed to open log file: ./data/server7/logs/zn_zz_logs.txt
 Failed to open log file: ./data/server7/logs/za_zm_logs.txt
 Failed to open log file: ./data/server7/logs/yn_yz_logs.txt
@@ -75,40 +96,94 @@ Failed to open log file: ./data/server7/logs/wa_wm_logs.txt
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ta_tm
+0 127.0.0.1:6007 127.0.0.1:6006
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+

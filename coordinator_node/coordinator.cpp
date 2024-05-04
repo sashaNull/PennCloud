@@ -225,7 +225,7 @@ int main(int argc, char *argv[])
                 string response;
                 if (type[0] == '\0')
                 {
-                    response = "-ERR type not specified";
+                    response = "-ERR type not specified\r\n";
                 }
                 else
                 {

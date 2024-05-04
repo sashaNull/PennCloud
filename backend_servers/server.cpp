@@ -24,6 +24,8 @@ vector<string> server_tablet_ranges;
 vector<string> all_unique_tablet_ranges;
 unordered_map<string, string> range_to_primary_map;
 
+pthread_mutex_t primary_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 bool suspended = false;                                    // Global variable to control suspension
 pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for suspended variable
 
@@ -102,11 +104,19 @@ void update_primary(const string &range)
   // Parse response
   if (response.substr(0, 3) == "+OK")
   {
+    while (!response.empty() && (response.back() == '\n' || response.back() == '\r'))
+    {
+      response.pop_back();
+    }
+    pthread_mutex_lock(&primary_mutex);
     range_to_primary_map[range] = response.substr(4);
+    pthread_mutex_unlock(&primary_mutex);
   }
   else
   {
+    pthread_mutex_lock(&primary_mutex);
     range_to_primary_map[range] = "No primary available";
+    pthread_mutex_unlock(&primary_mutex);
   }
 
   close(sock);
@@ -426,14 +436,14 @@ int main(int argc, char *argv[])
   {
     update_primary(range);
   }
-  // if (verbose)
-  // {
-  //   cout << "Range to Primary Map:" << endl;
-  //   for (const auto &entry : range_to_primary_map)
-  //   {
-  //     cout << "Range: " << entry.first << " - Primary: " << entry.second << endl;
-  //   }
-  // }
+  if (verbose)
+  {
+    cout << "Range to Primary Map:" << endl;
+    for (const auto &entry : range_to_primary_map)
+    {
+      cout << "Range: " << entry.first << " - Primary: " << entry.second << endl;
+    }
+  }
   get_latest_tablet_and_log();
 
   // Reload data to cache
@@ -485,6 +495,22 @@ int main(int argc, char *argv[])
   // Close the listening socket and exit
   close(listen_fd);
   return EXIT_SUCCESS;
+}
+
+sockaddr_in parse_addr(char *raw_line)
+{
+  sockaddr_in addr;
+  bzero(&addr, sizeof(addr));
+  addr.sin_family = AF_INET;
+
+  char *token = strtok(raw_line, ":");
+  server_ip = string(token); // Assuming `server_ip` is a global variable
+  inet_pton(AF_INET, token, &addr.sin_addr);
+
+  token = strtok(NULL, ":");
+  server_port = atoi(token); // Assuming `server_port` is a global variable
+  addr.sin_port = htons(atoi(token));
+  return addr;
 }
 
 /**
@@ -647,6 +673,46 @@ string get_tablet_range_from_row_key(string row_key)
     }
   }
   return "-ERR";
+}
+
+F_2_B_Message handle_list(int client_fd)
+{
+  for (auto &entry : cache)
+  {
+    const string &tablet_name = entry.first;
+    tablet_data &data = entry.second;
+    pthread_mutex_lock(&data.tablet_lock);
+    for (auto &row_pair : data.row_to_kv)
+    {
+      for (auto &col_pair : row_pair.second)
+      {
+        cout << row_pair.first << " " << col_pair.first << " " << col_pair.second << endl;
+        F_2_B_Message list_message;
+        list_message.type = 10;
+        list_message.rowkey = row_pair.first;
+        list_message.colkey = col_pair.first;
+        list_message.status = 0;
+        list_message.value = col_pair.second;
+        list_message.errorMessage = "";
+        list_message.value2 = "";
+        string serialized = encode_message(list_message);
+        send(client_fd, serialized.c_str(), serialized.length(), 0);
+        sleep(0.01);
+      }
+    }
+
+    // Unlock the tablet
+    pthread_mutex_unlock(&data.tablet_lock);
+  }
+
+  // Send a final success message
+  F_2_B_Message success_message;
+  success_message.status = 0; // Indicate success
+  success_message.errorMessage = "success";
+  success_message.rowkey = "terminate";
+  success_message.colkey = "terminate";
+  success_message.type = 10;
+  return success_message;
 }
 
 /**
@@ -866,6 +932,80 @@ void *handle_connection(void *arg)
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
     cout << "This row is in new file: " << tablet_name << endl;
 
+    update_primary(tablet_name);
+    pthread_mutex_lock(&primary_mutex);
+    string primary_ip_port = range_to_primary_map[tablet_name];
+    pthread_mutex_unlock(&primary_mutex);
+    string curr_ip_port = server_ip + ":" + to_string(server_port);
+    bool amIPrimary = primary_ip_port == curr_ip_port;
+    cout << amIPrimary << " " << curr_ip_port << " " << primary_ip_port << endl;
+
+    // if req not from primary and I am not the primary and the type of req is not get
+    // FOrward to primary
+    // Wait for a response
+    // Fotward response to sender
+    // continue
+
+    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && !amIPrimary && f2b_message_for_other_server.type != 10)
+    {
+
+      string serialized_to_primary = encode_message(f2b_message);
+
+      int sock = socket(AF_INET, SOCK_STREAM, 0);
+      if (sock < 0)
+      {
+        cerr << "Error in socket creation" << endl;
+        break;
+      }
+
+      sockaddr_in primary_sockaddr = parse_addr(const_cast<char *>(primary_ip_port.c_str()));
+      cout << "Primary Port:" << ntohs(primary_sockaddr.sin_port) << endl;
+
+      if (connect(sock, (struct sockaddr *)&primary_sockaddr, sizeof(primary_sockaddr)) < 0)
+      {
+        cerr << "Connection Failed" << endl;
+        break;
+      }
+      char welcome_buffer[1024] = {0};
+      read(sock, welcome_buffer, 1024);
+      cout << "Ignored message: " << welcome_buffer << endl; // Optionally log the ignored message
+      bytes_sent = send(sock, serialized_to_primary.c_str(), serialized_to_primary.length(), 0);
+      if (bytes_sent < 0)
+      {
+        cerr << "Error in send(). Exiting" << endl;
+        break;
+      }
+
+      if (verbose)
+      {
+        cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_primary;
+      }
+
+      char buffer[1024] = {0};
+      ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
+      if (bytes_received <= 0)
+      {
+        cout << "Server closed the connection or error occurred." << endl;
+        break;
+      }
+
+      string buffer_str(buffer);
+      bytes_sent = send(client_fd, buffer_str.c_str(), buffer_str.length(), 0);
+
+      if (bytes_sent < 0)
+      {
+        cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+        break;
+      }
+
+      if (verbose)
+      {
+        cout << "[" << client_fd << "] S: " << buffer_str;
+      }
+      close(sock);
+      continue;
+    }
+
     // Handle message based on its type
     switch (f2b_message.type)
     {
@@ -898,6 +1038,9 @@ void *handle_connection(void *arg)
       cache[tablet_name].requests_since_checkpoint++;
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
       break;
+    case 10:
+      f2b_message = handle_list(client_fd);
+      break;
     default:
       cout << "Unknown command type received" << endl;
       break;
@@ -912,9 +1055,9 @@ void *handle_connection(void *arg)
       pthread_mutex_unlock(&cache[tablet_name].tablet_lock);
     }
 
-    if (f2b_message_for_other_server.isFromBackend == 0 && f2b_message_for_other_server.type != 1)
+    if (f2b_message_for_other_server.isFromPrimary == 0 && f2b_message_for_other_server.type != 1 && amIPrimary && f2b_message_for_other_server.type != 10)
     {
-      f2b_message_for_other_server.isFromBackend = 1;
+      f2b_message_for_other_server.isFromPrimary = 1;
       string tablet_range = get_tablet_range_from_row_key(f2b_message_for_other_server.rowkey);
       for (auto other_addr : tablet_ranges_to_other_addr[tablet_range])
       {
@@ -926,27 +1069,23 @@ void *handle_connection(void *arg)
           cerr << "Error in socket creation" << endl;
           break;
         }
-
         if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
         {
           cerr << "Connection Failed" << endl;
           break;
         }
-
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
         {
           cerr << "Error in send(). Exiting" << endl;
           break;
         }
-
         if (verbose)
         {
           cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_backend;
         }
-
         char buffer[1024] = {0};
-        size_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
+        ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (bytes_received <= 0)
         {
           cout << "Does not receive response from other servers." << endl;
@@ -966,6 +1105,8 @@ void *handle_connection(void *arg)
     // Encode response message
     string serialized = encode_message(f2b_message);
     // Send response to client
+    cout << "PRINTING SPECIAL: " << serialized << endl;
+
     bytes_sent = send(client_fd, serialized.c_str(), serialized.length(), 0);
     // Check for send errors
     if (bytes_sent < 0)

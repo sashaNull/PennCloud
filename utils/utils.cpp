@@ -44,7 +44,7 @@ F_2_B_Message decode_message(const string &serialized)
   message.status = stoi(token);
 
   getline(iss, token, '|');
-  message.isFromBackend = stoi(token);
+  message.isFromPrimary = stoi(token);
 
   // errorMessage might contain '|' characters, but since it's the last field,
   // we use the remainder of the string.
@@ -59,7 +59,7 @@ string encode_message(F_2_B_Message f2b_message)
   oss << f2b_message.type << "|" << f2b_message.rowkey << "|"
       << f2b_message.colkey << "|" << f2b_message.value << "|"
       << f2b_message.value2 << "|" << f2b_message.status << "|"
-      << f2b_message.isFromBackend << "|" << f2b_message.errorMessage << "\r\n";
+      << f2b_message.isFromPrimary << "|" << f2b_message.errorMessage << "\r\n";
   string serialized = oss.str();
   return serialized;
 }
@@ -72,7 +72,7 @@ void print_message(const F_2_B_Message &message)
   cout << "Value: " << message.value << endl;
   cout << "Value2: " << message.value2 << endl;
   cout << "Status: " << message.status << endl;
-  cout << "From Backend: " << message.isFromBackend << endl;
+  cout << "From Backend: " << message.isFromPrimary << endl;
   cout << "ErrorMessage: " << message.errorMessage << endl;
 }
 

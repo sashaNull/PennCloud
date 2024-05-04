@@ -11,25 +11,16 @@ Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
-GET / HTTP/1.1
-end of parse
-Sent redirection response to http://127.0.0.1:8002/login
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/login
-Content-Length: 0
-Connection: keep-alive
-
-
+Client closed the connection.
 Listening...
-GET /login HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 2544
-Listening...
+Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
+Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
-SIGINT received, shutting down.
+Listening...
+Client closed the connection.
