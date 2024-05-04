@@ -900,6 +900,7 @@ void *handle_connection(void *arg)
       {
         // Retrieve HTML content from the map
         std::string html_content = g_endpoint_html_map["login"];
+        cout << html_content << endl;
 
         // Construct and send the HTTP response
         send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -1108,20 +1109,44 @@ void *handle_connection(void *arg)
     // GET: logout
     else if (html_request_map["uri"] == "/logout" && html_request_map["method"] == "GET")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
       std::string cookie = get_cookie_from_header(request);
+
       if (!cookie.empty())
       {
         // Remove the cookie from local map
         cookie_user_map.erase(cookie);
 
         // Send a message to the backend to delete the cookie
-        F_2_B_Message msg_to_send = construct_msg(3, "cookie", cookie, "", "", "", 0); // Assuming '3' is the DELETE operation
-        send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-
+      
+        string delete_response_value;
+        string delete_response_error_msg;
+        int delete_response_status;
+        
+        rowkey = "cookie";
+        colkey = cookie;
+        type = "delete";
+        F_2_B_Message msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0); // Assuming '3' is the DELETE operation
+        
+        int response_code = send_msg_to_backend(fd, msg_to_send, delete_response_value, delete_response_status,
+                                              delete_response_error_msg, rowkey, colkey,
+                                              g_map_rowkey_to_server, g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
+        
+        cout << "Delete response status: " << delete_response_status << endl;
+        cout << "Delete response error msg: " << delete_response_error_msg << endl;
+      
         // Redirect to the login page and delete the cookie
         std::string response_stream = "HTTP/1.1 302 Found\r\n";
-        response_stream += "Location: http://127.0.0.1:8000/login\r\n";                                     // Correct redirect URL
+        response_stream += "Location: http://" + g_serveraddr_str + "/login\r\n";                                     // Correct redirect URL
         response_stream += "Set-Cookie: sid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly\r\n"; // Delete the cookie
         response_stream += "Content-Length: 0\r\n";                                                         // Optional, generally not needed for redirects
         response_stream += "Connection: close\r\n";                                                         // Ensure connection is not kept alive
