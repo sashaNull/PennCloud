@@ -17,6 +17,7 @@
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 #include <openssl/bio.h>
+#include <regex>
 
 struct DisplayEmail {
     std::string uid;
@@ -41,22 +42,28 @@ std::string format_mail_for_display(const std::string& subject, const std::strin
 
 std::string get_timestamp();
 
-int deliver_local_email(const std::string& backend_serveraddr_str, int fd, const std::string& recipient, const std::string& uid, const std::string& from, const std::string& subject, const std::string& encoded_body, const std::string& encoded_display);
+int deliver_local_email(int fd, const std::string& recipient, const std::string& uid, const std::string& from, const std::string& subject, const std::string& encoded_body, const std::string& encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
-void put_in_sentbox(const std::string& backend_serveraddr_str, int fd, const std::string& username, const std::string& uid, const std::string& to, const std::string& ts, const std::string& subject, const std::string& body);
+int put_in_sentbox(int fd, const std::string& username, const std::string& uid, const std::string& to, const std::string& ts, const std::string& subject, const std::string& body, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 std::string newline_to_br(const std::string& input);
 
 std::string construct_view_email_html(const std::string& subject, const std::string& from, const std::string& to, const std::string& timestamp, const std::string& body, const std::string& uid, const std::string &source);
 
+int put_email_to_backend(int fd, const std::string &uid, const std::string &from, const std::string &to, const std::string &ts, const std::string &encoded_subject, const std::string &encoded_body, const std::string &encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+
 std::string delete_email_from_box_string(const std::string& input, const std::string& uid, const std::string& delimiter);
 
-void delete_email(const std::string& backend_serveraddr_str, int fd, const std::string& username, const std::string& uid, const std::string& source);
+int delete_email(int fd, const std::string& username, const std::string& uid, const std::string& source, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
-SSL_CTX* create_ssl_context();
+// SSL_CTX* create_ssl_context();
 
-void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl);
+// void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl);
 
-void send_smtp_command(SSL* ssl, const char* cmd);
+// void send_smtp_command(SSL* ssl, const char* cmd);
+
+void cleanup(int sock);
 
 void* smtp_client(void* arg);
+
+bool is_valid_email(const std::string& email);

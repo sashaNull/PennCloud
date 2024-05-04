@@ -81,7 +81,7 @@ void *heartbeat(void *arg)
             if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
             {
                 server.is_active = false;
-                server.currentLoad = 0;
+                // server.currentLoad = 0;
                 if (verbose)
                     cout << "Server " << server.ip << ":" << server.port << " is down." << endl;
             }

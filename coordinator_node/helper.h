@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "../utils/utils.h"
 
 #define HOST "127.0.0.1"
 #define PORT 7070

@@ -189,6 +189,7 @@ void read_and_handle_data(int* fd, bool debug_mode) {
           map<string, string> maildata_map = parse_mail_data(mail_data);
           string from = maildata_map["from"];
           string subject = maildata_map["subject"];
+          string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char*>(subject.c_str()), subject.length());
           string body = maildata_map["body"];
           string encoded_body = base_64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), body.length());
           string for_display = format_mail_for_display(subject, from, ts, body);
@@ -198,27 +199,13 @@ void read_and_handle_data(int* fd, bool debug_mode) {
             string backend_serveraddr_str = "127.0.0.1:6000";
             string username = get_receiver_username(recipient);
             if (deliver_local_email(backend_serveraddr_str, backend_fd, username, uid,
-                from, subject, encoded_body, encoded_display) == 0) {
+                from, encoded_subject, encoded_body, encoded_display) == 0) {
               atleast_one_sent = true;
             }
-          F_2_B_Message msg_to_send = construct_msg(2, "email/" + uid, "from", from, "", "", 0);
-          F_2_B_Message response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-          
-          msg_to_send = construct_msg(2, "email/" + uid, "to", username + "@localhost", "", "", 0);
-          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-
-          msg_to_send = construct_msg(2, "email/" + uid, "timestamp", ts, "", "", 0);
-          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-
-          msg_to_send = construct_msg(2, "email/" + uid, "subject", subject, "", "", 0);
-          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-
-          msg_to_send = construct_msg(2, "email/" + uid, "body", encoded_body, "", "", 0);
-          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
-
-          msg_to_send = construct_msg(2, "email/" + uid, "display", encoded_display, "", "", 0);
-          response_msg = send_and_receive_msg(backend_fd, backend_serveraddr_str, msg_to_send);
           }
+          string to = flatten_vector(mail_to);
+          string backend_serveraddr_str = "127.0.0.1:6000";
+          put_email_to_backend(backend_fd, backend_serveraddr_str, uid, from, to, ts, encoded_subject, encoded_body, encoded_display);
           // send response
           string response;
           if (atleast_one_sent) {
