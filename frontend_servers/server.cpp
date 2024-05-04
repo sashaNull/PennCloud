@@ -2485,7 +2485,7 @@ void *handle_connection(void *arg)
           deleteFolderContents(folderPath, client_fd, fd, username);
 
           // Delete folder item
-          string row_key = "adwait_" + folderPath;
+          string row_key = username + "_" + folderPath;
           F_2_B_Message msg_to_send;
           string response_value, response_error_msg;
           int response_code, response_status;
@@ -2521,7 +2521,7 @@ void *handle_connection(void *arg)
           {
             string folderName = folderPath.substr(lastSlashPos + 1);      // Extract the folder name
             string parentFolderPath = folderPath.substr(0, lastSlashPos); // Get the parent folder path
-            string parentRowKey = "adwait_" + parentFolderPath;
+            string parentRowKey = username + "_" + parentFolderPath;
 
             std::cout << "parent row key for delete: " << parentRowKey << std::endl;
 
