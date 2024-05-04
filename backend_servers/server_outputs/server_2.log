@@ -37,6 +37,7 @@ Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
 Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server2/logs/ia_im_logs.txt
 Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
+This row is in file: aa_am
 Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
 Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
 Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
@@ -44,6 +45,7 @@ Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
 Failed to open log file: ./data/server2/logs/da_dm_logs.txt
 Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
 Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
+This row is in file: ea_em
 This row is in file: ea_em
 Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
 Failed to open log file: ./data/server2/logs/en_ez_logs.txt
@@ -76,6 +78,7 @@ Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
 Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server2/logs/ia_im_logs.txt
 Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
+This row is in file: aa_am
 Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
 Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
 Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
@@ -83,6 +86,7 @@ Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
 Failed to open log file: ./data/server2/logs/da_dm_logs.txt
 Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
 Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
+This row is in file: ea_em
 This row is in file: ea_em
 Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
 Failed to open log file: ./data/server2/logs/en_ez_logs.txt
@@ -114,76 +118,12 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 2|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|zero||0|1|
+[5] C: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|
 This row is in new file: cn_cz
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 2|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|zero||0|1|Data written successfully
+PRINTING SPECIAL: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|Data written successfully
 
-[5] S: 2|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|zero||0|1|Data written successfully
+[5] S: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|Data written successfully
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
@@ -193,29 +133,21 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 3|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|||0|1|
+[6] C: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|
 This row is in new file: cn_cz
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 3|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|||0|1|Colkey deleted successfully
+PRINTING SPECIAL: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|Colkey deleted successfully
 
-[4] S: 3|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|||0|1|Colkey deleted successfully
-[6] New connection
-[6] C: 2|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|zero||0|1|
+[6] S: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|Colkey deleted successfully
+[4] New connection
+[4] C: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|
 This row is in new file: cn_cz
 0 127.0.0.1:6002 127.0.0.1:6000
 Checkpointing the file: cn_cz 3
 Logs cleared successfully.
-PRINTING SPECIAL: 2|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|zero||0|1|Data written successfully
+PRINTING SPECIAL: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|Data written successfully
 
-[6] S: 2|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|zero||0|1|Data written successfully
+[4] S: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|Data written successfully
 [7] New connection
 [7] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
@@ -225,58 +157,60 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [7] Connection closed!
 [8] New connection
-[8] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[8] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[8] Connection closed!
-[7] New connection
-[7] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[7] Connection closed!
-[8] New connection
-[8] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[8] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[8] Connection closed!
-[7] New connection
-[7] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[7] Connection closed!
-[8] New connection
-[8] C: 3|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|1|
+[8] C: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|
 This row is in new file: cn_cz
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 3|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|1|Colkey deleted successfully
+PRINTING SPECIAL: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|Colkey deleted successfully
 
-[8] S: 3|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|1|Colkey deleted successfully
+[8] S: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|Colkey deleted successfully
 [7] New connection
-[7] C: 2|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|adwait||0|1|
-This row is in new file: cn_cz
+[7] C: 1|test_row|test_col|||0|0|
+This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 2|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|adwait||0|1|Data written successfully
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
-[7] S: 2|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|adwait||0|1|Data written successfully
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
 [9] New connection
-[9] C: 1|adwait_email|inbox_items|||0|0|
+[9] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
-[9] S: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+[9] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[9] Connection closed!
+[7] New connection
+[7] C: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|Data written successfully
+
+[7] S: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|Data written successfully
+[9] New connection
+[9] C: 1|test_row|test_col|||0|0|
+This row is in new file: aa_am
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[9] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[9] Connection closed!
+[10] New connection
+[10] C: 1|test_row|test_col|||0|0|
+This row is in new file: aa_am
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[10] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[10] Connection closed!
+[9] New connection
+[9] C: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
+Checkpointing the file: cn_cz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|Colkey deleted successfully
+
+[9] S: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|Colkey deleted successfully
 [10] New connection
 [10] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
@@ -294,360 +228,46 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [11] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [11] Connection closed!
 [10] New connection
-[10] C: 1|emma_info|email|||0|0|
-This row is in new file: ea_em
+[10] C: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|
+This row is in new file: cn_cz
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_info|email|emmajin@seas.upenn.edu||0|0|
+PRINTING SPECIAL: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|Data written successfully
 
-[10] S: 1|emma_info|email|emmajin@seas.upenn.edu||0|0|
+[10] S: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|Data written successfully
 [11] New connection
-[11] C: 1|emma_email|inbox_items|||0|0|
-This row is in new file: ea_em
+[11] C: 1|test_row|test_col|||0|0|
+This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-
-[11] S: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-[12] New connection
-[12] C: 1|emma_email|inbox_items|||0|0|
-This row is in new file: ea_em
-0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-
-[12] S: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-[13] New connection
-[13] C: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|0|
-This row is in new file: ea_em
-0 127.0.0.1:6002 127.0.0.1:6000
-Primary Port:6000
-Ignored message: WELCOME TO THE SERVER
-
-[13, 15] S: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|0|
-[14] New connection
-[13] S: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|0|Colkey updated successfully
-[14] C: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|1|Colkey updated successfully
-
-[14] S: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|1|Colkey updated successfully
-[16] New connection
-[16] C: 2|email/23d5af93185e98df92149e502a2e1bc8|from|adwait@localhost||0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-Checkpointing the file: ea_em 3
-Logs cleared successfully.
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|from|adwait@localhost||0|1|Data written successfully
-
-[16] S: 2|email/23d5af93185e98df92149e502a2e1bc8|from|adwait@localhost||0|1|Data written successfully
-[15] New connection
-[15] C: 2|email/23d5af93185e98df92149e502a2e1bc8|to|emma@localhost||0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|to|emma@localhost||0|1|Data written successfully
-
-[15] S: 2|email/23d5af93185e98df92149e502a2e1bc8|to|emma@localhost||0|1|Data written successfully
-[17] New connection
-[17] C: 2|email/23d5af93185e98df92149e502a2e1bc8|timestamp|Sat May 04 02:25:02 2024||0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|timestamp|Sat May 04 02:25:02 2024||0|1|Data written successfully
-
-[17] S: 2|email/23d5af93185e98df92149e502a2e1bc8|timestamp|Sat May 04 02:25:02 2024||0|1|Data written successfully
-[18] New connection
-[18] C: 2|email/23d5af93185e98df92149e502a2e1bc8|subject|YXNkYXM=||0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-Checkpointing the file: ea_em 3
-Logs cleared successfully.
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|subject|YXNkYXM=||0|1|Data written successfully
-
-[18] S: 2|email/23d5af93185e98df92149e502a2e1bc8|subject|YXNkYXM=||0|1|Data written successfully
-[22] New connection
-[22] C: 2|email/23d5af93185e98df92149e502a2e1bc8|body|Zmdxd2Z3cWZx||0|1|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|body|Zmdxd2Z3cWZx||0|1|Data written successfully
-
-[22] S: 2|email/23d5af93185e98df92149e502a2e1bc8|body|Zmdxd2Z3cWZx||0|1|Data written successfully
-[23] New connection
-[23] C: 2|email/23d5af93185e98df92149e502a2e1bc8|display|U3ViamVjdDogYXNkYXMKRnJvbTogYWR3YWl0QGxvY2FsaG9zdApEYXRlOiBTYXQgTWF5IDA0IDAyOjI1OjAyIDIwMjQKCmZncXdmd3FmcQ==||0|1|
-This row is in new file: ea_em
-[24] New connection
-[24] C: 1|adwait_email|sentbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 2|email/23d5af93185e98df92149e502a2e1bc8|display|U3ViamVjdDogYXNkYXMKRnJvbTogYWR3YWl0QGxvY2FsaG9zdApEYXRlOiBTYXQgTWF5IDA0IDAyOjI1OjAyIDIwMjQKCmZncXdmd3FmcQ==||0|1|Data written successfully
-
-[23] S: 2|email/23d5af93185e98df92149e502a2e1bc8|display|U3ViamVjdDogYXNkYXMKRnJvbTogYWR3YWl0QGxvY2FsaG9zdApEYXRlOiBTYXQgTWF5IDA0IDAyOjI1OjAyIDIwMjQKCmZncXdmd3FmcQ==||0|1|Data written successfully
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[24] S: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[25] New connection
-[25] C: 1|adwait_email|sentbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[25] S: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[28] New connection
-[28] C: 1|adwait_email|sentbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[28] S: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[29] New connection
-[29] C: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-Sending a message with row key: a_b adwait_email to 6000
-[29, 31] S: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|1|
-[29, 31] S: Received Response
-Sending a message with row key: a_b adwait_email to 6001
-[29, 32] S: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|1|
-[29, 32] S: Received Response
-PRINTING SPECIAL: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|0|Colkey updated successfully
-
-[29] S: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|0|Colkey updated successfully
-[30] New connection
-[30] C: 1|adwait_email|inbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[30] S: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[33] New connection
-[33] C: 1|adwait_email|inbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[33] S: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[34] New connection
-[34] C: 1|adwait_email|inbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[34] S: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[35] New connection
-[35] C: 1|adwait_email|inbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[35] S: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[36] New connection
-[36] C: 1|adwait_email|sentbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[36] S: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[37] New connection
-[37] C: 1|adwait_email|sentbox_items|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-
-[37] S: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
-[38] New connection
-[38] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-
-[38] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-[39] New connection
-[39] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-
-[39] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-[40] New connection
-[40] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-
-[40] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-[41] New connection
-[41] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-
-[41] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-[42] New connection
-[42] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-
-[42] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-[43] New connection
-[43] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-
-[43] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-[44] New connection
-[44] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-
-[44] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-[45] New connection
-[45] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-
-[45] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-[46] New connection
-[46] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-
-[46] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-[47] New connection
-[47] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
-[47] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[47] Connection closed!
-[48] New connection
-[48] C: 3|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|1|
+[11] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[11] Connection closed!
+[12] New connection
+[12] C: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|
 This row is in new file: cn_cz
-1 127.0.0.1:6000 127.0.0.1:6000
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|Colkey deleted successfully
+
+[12] S: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|Colkey deleted successfully
+[11] New connection
+[11] C: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
 Checkpointing the file: cn_cz 3
 Logs cleared successfully.
-PRINTING SPECIAL: 3|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|1|Colkey deleted successfully
+PRINTING SPECIAL: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|Data written successfully
 
-[48] S: 3|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|1|Colkey deleted successfully
-[47] New connection
-[47] C: 1|test_row|test_col|||0|0|
-This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[47] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[47] Connection closed!
-[49] New connection
-[49] C: 1|emma_info|password|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_info|password|123456||0|0|
-
-[49] S: 1|emma_info|password|123456||0|0|
-[47] New connection
-[47] C: 1|emma_info|password|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_info|password|123456||0|0|
-
-[47] S: 1|emma_info|password|123456||0|0|
-[50] New connection
-[50] C: 2|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|emma||0|1|
+[11] S: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|Data written successfully
+[13] New connection
+[13] C: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|
 This row is in new file: cn_cz
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 2|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|emma||0|1|Data written successfully
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|Colkey deleted successfully
 
-[50] S: 2|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|emma||0|1|Data written successfully
-[51] New connection
-[51] C: 1|emma_email|inbox_items|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-
-[51] S: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-[52] New connection
-[52] C: 1|emma_email|inbox_items|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-
-[52] S: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-[53] New connection
-[53] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-
-[53] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-[54] New connection
-[54] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-
-[54] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
-[55] New connection
-[55] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-
-[55] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-[56] New connection
-[56] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-
-[56] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
-[57] New connection
-[57] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-
-[57] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-[58] New connection
-[58] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-
-[58] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
-[59] New connection
-[59] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-
-[59] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-[60] New connection
-[60] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-
-[60] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
-[61] New connection
-[61] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-
-[61] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-[62] New connection
-[62] C: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
-This row is in new file: ea_em
-1 127.0.0.1:6000 127.0.0.1:6000
-PRINTING SPECIAL: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-
-[62] S: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
-[63] New connection
-[63] C: 1|test_row|test_col|||0|0|
+[13] S: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|Colkey deleted successfully
+[14] New connection
+[14] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
-1 127.0.0.1:6000 127.0.0.1:6000
+0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
