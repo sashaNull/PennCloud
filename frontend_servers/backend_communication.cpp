@@ -61,13 +61,13 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
 {
   F_2_B_Message msg_to_return;
   sockaddr_in addr = get_socket_address(addr_str);
-  fd = create_socket();
-  connect(fd, (struct sockaddr *)&addr,
+  int new_fd = create_socket();
+  connect(new_fd, (struct sockaddr *)&addr,
           sizeof(addr));
   string to_send = encode_message(msg);
   cout << "to send: " << to_send << endl;
 
-  send_message(fd, to_send);
+  send_message(new_fd, to_send);
   // Receive response from the server
   string buffer;
   while (true)
@@ -75,7 +75,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
     const unsigned int BUFFER_SIZE = 1024;
     char temp_buffer[BUFFER_SIZE];
     memset(temp_buffer, 0, BUFFER_SIZE);
-    ssize_t bytes_received = recv(fd, temp_buffer, BUFFER_SIZE - 1, 0);
+    ssize_t bytes_received = recv(new_fd, temp_buffer, BUFFER_SIZE - 1, 0);
 
     if (bytes_received == -1)
     {
@@ -109,6 +109,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
       }
     }
   }
+  close(new_fd);
   cout << "before return" << endl;
   return msg_to_return;
 }
@@ -141,6 +142,7 @@ std::string ask_coordinator(sockaddr_in coordinator_addr, const std::string &row
   string buffer;
   string message = receive_one_message(fd, buffer, BUFFER_SIZE);
   cout << "received message from coordinator" << endl;
+  close(fd);
   if (message.empty())
   {
     cerr << "Failed to receive a complete message or connection was closed." << endl;

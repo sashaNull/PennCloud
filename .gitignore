@@ -1,5 +1,6 @@
 .vscode
 backend_servers/server
+backend_servers/tests/client
+frontend_servers/server
 coordinator_node/coordinator
 load_balancer/loadbalancer
-frontend_servers/server

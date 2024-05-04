@@ -15,12 +15,713 @@ Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
-Client closed the connection.
+GET / HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Sent redirection response to http://127.0.0.1:8000/login
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/login
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /login HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 2431
+Listening...
 Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
+POST /login HTTP/1.1
+end of parse
+connected to coordinator
+Message sent successfully: 19 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6007
+asked coordinator: 127.0.0.1:6007
+to send: 1|zero_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+going to decode message: 1|zero_info|password|1234||0|0|
+decoded message
+I am in get cookie handler from the request
+connected to coordinator
+Message sent successfully: 16 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6000
+asked coordinator: 127.0.0.1:6000
+to send: 2|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|zero||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 2|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|zero||0|0|Data written successfully
+decoded message
+Response being sent:
+HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/home
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: sid=RgQv072NAtTp4H8IoAExY4KijNAvXtIy; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+
+
+Redirect with cookie response sent successfully, bytes sent: 210
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RgQv072NAtTp4H8IoAExY4KijNAvXtIy
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RgQv072NAtTp4H8IoAExY4KijNAvXtIy
+Sent response successfully, bytes sent: 1199
+Listening...
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+GET /logout HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RgQv072NAtTp4H8IoAExY4KijNAvXtIy
+to send: 3|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 3|cookie|RgQv072NAtTp4H8IoAExY4KijNAvXtIy|||0|0|Colkey deleted successfully
+decoded message
+Listening...
+Client closed the connection.
+Listening...
+GET /login HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 2431
+Listening...
+POST /login HTTP/1.1
+end of parse
+to send: 1|zero_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+going to decode message: 1|zero_info|password|1234||0|0|
+decoded message
+got response
+to send: 1|zero_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+going to decode message: 1|zero_info|password|1234||0|0|
+decoded message
+I am in get cookie handler from the request
+to send: 1|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 1|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|zero||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 2|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|zero||0|0|Data written successfully
+decoded message
+Response being sent:
+HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/home
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: sid=RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+
+
+Redirect with cookie response sent successfully, bytes sent: 210
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX
+Sent response successfully, bytes sent: 1199
+Listening...
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+GET /logout HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX
+to send: 3|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 3|cookie|RTUjbPmr4M0OFkXBJ6AVOfCyGvLt8ULX|||0|0|Colkey deleted successfully
+decoded message
+Listening...
+Client closed the connection.
+Listening...
+GET /login HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 2431
+Listening...
+POST /login HTTP/1.1
+end of parse
+connected to coordinator
+Message sent successfully: 21 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6000
+asked coordinator: 127.0.0.1:6000
+to send: 1|adwait_info|password|||0|0|
+
+Message sent successfully: 31 bytes.
+going to decode message: 1|adwait_info|password|1234||0|0|
+decoded message
+I am in get cookie handler from the request
+to send: 1|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 1|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|adwait||0|0|
+
+Message sent successfully: 56 bytes.
+going to decode message: 2|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|adwait||0|0|Data written successfully
+decoded message
+Response being sent:
+HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/home
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: sid=ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+
+
+Redirect with cookie response sent successfully, bytes sent: 210
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /inbox HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+connected to coordinator
+Message sent successfully: 22 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6002
+asked coordinator: 127.0.0.1:6002
+to send: 1|adwait_email|inbox_items|||0|0|
+
+Message sent successfully: 35 bytes.
+going to decode message: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+Sent response successfully, bytes sent: 671
+Listening...
+Listening...
+Client closed the connection.
+GET /view_email/?source=inbox&id=52a82c4d29385ecb2455464a18041b3e HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+connected to coordinator
+Message sent successfully: 48 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6000
+asked coordinator: 127.0.0.1:6000
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|subject|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|subject|U2Ruc2FqZG4=||0|0|
+decoded message
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|from|adwait@localhost||0|0|
+decoded message
+got response
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|from|adwait@localhost||0|0|
+decoded message
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|to|adwait@localhost||0|0|
+decoded message
+got response
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|to|adwait@localhost||0|0|
+decoded message
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|timestamp|Sat May 04 01:51:10 2024||0|0|
+decoded message
+got response
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|timestamp|Sat May 04 01:51:10 2024||0|0|
+decoded message
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|body|b2lzZGZnZnNkZ2Fz||0|0|
+decoded message
+got response
+to send: 1|email/52a82c4d29385ecb2455464a18041b3e|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/52a82c4d29385ecb2455464a18041b3e|body|b2lzZGZnZnNkZ2Fz||0|0|
+decoded message
+Sent response successfully, bytes sent: 959
+Listening...
+GET /compose HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+Sent response successfully, bytes sent: 1541
+Listening...
+Listening...
+Client closed the connection.
+POST /compose HTTP/1.1
+end of parse
+recipients str: emma@localhost
+recipient: emma@localhost
+in local if: emma
+connected to coordinator
+Message sent successfully: 19 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6002
+asked coordinator: 127.0.0.1:6002
+to send: 1|emma_info|email|||0|0|
+
+Message sent successfully: 26 bytes.
+going to decode message: 1|emma_info|email|emmajin@seas.upenn.edu||0|0|
+decoded message
+
+connected to coordinator
+Message sent successfully: 20 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6002
+asked coordinator: 127.0.0.1:6002
+to send: 1|emma_email|inbox_items|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
+decoded message
+to send: 1|emma_email|inbox_items|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
+decoded message
+got response
+to send: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|0|
+
+Message sent successfully: 310 bytes.
+going to decode message: 4|emma_email|inbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,|0|0|Colkey updated successfully
+decoded message
+SUCCESS: delivered local mail to emma
+connected to coordinator
+Message sent successfully: 48 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6000
+asked coordinator: 127.0.0.1:6000
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|from|adwait@localhost||0|0|
+
+Message sent successfully: 70 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|from|adwait@localhost||0|0|Data written successfully
+decoded message
+to send: 1|email/23d5af93185e98df92149e502a2e1bc8|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/23d5af93185e98df92149e502a2e1bc8|to|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|to|emma@localhost||0|0|
+
+Message sent successfully: 66 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|to|emma@localhost||0|0|Data written successfully
+decoded message
+to send: 1|email/23d5af93185e98df92149e502a2e1bc8|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/23d5af93185e98df92149e502a2e1bc8|timestamp|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|timestamp|Sat May 04 02:25:02 2024||0|0|
+
+Message sent successfully: 83 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|timestamp|Sat May 04 02:25:02 2024||0|0|Data written successfully
+decoded message
+to send: 1|email/23d5af93185e98df92149e502a2e1bc8|subject|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/23d5af93185e98df92149e502a2e1bc8|subject|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|subject|YXNkYXM=||0|0|
+
+Message sent successfully: 65 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|subject|YXNkYXM=||0|0|Data written successfully
+decoded message
+to send: 1|email/23d5af93185e98df92149e502a2e1bc8|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/23d5af93185e98df92149e502a2e1bc8|body|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|body|Zmdxd2Z3cWZx||0|0|
+
+Message sent successfully: 66 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|body|Zmdxd2Z3cWZx||0|0|Data written successfully
+decoded message
+to send: 1|email/23d5af93185e98df92149e502a2e1bc8|display|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/23d5af93185e98df92149e502a2e1bc8|display|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|email/23d5af93185e98df92149e502a2e1bc8|display|U3ViamVjdDogYXNkYXMKRnJvbTogYWR3YWl0QGxvY2FsaG9zdApEYXRlOiBTYXQgTWF5IDA0IDAyOjI1OjAyIDIwMjQKCmZncXdmd3FmcQ==||0|0|
+
+Message sent successfully: 165 bytes.
+going to decode message: 2|email/23d5af93185e98df92149e502a2e1bc8|display|U3ViamVjdDogYXNkYXMKRnJvbTogYWR3YWl0QGxvY2FsaG9zdApEYXRlOiBTYXQgTWF5IDA0IDAyOjI1OjAyIDIwMjQKCmZncXdmd3FmcQ==||0|0|Data written successfully
+decoded message
+SUCCESS: stored email with uid 23d5af93185e98df92149e502a2e1bc8
+to send: 1|adwait_email|sentbox_items|||0|0|
+
+Message sent successfully: 37 bytes.
+going to decode message: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+got response
+to send: 1|adwait_email|sentbox_items|||0|0|
+
+Message sent successfully: 37 bytes.
+going to decode message: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+to send: 1|adwait_email|sentbox_items|||0|0|
+
+Message sent successfully: 37 bytes.
+going to decode message: 1|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+got response
+to send: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|0|
+
+Message sent successfully: 490 bytes.
+going to decode message: 4|adwait_email|sentbox_items|426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,|0|0|Colkey updated successfully
+decoded message
+SUCCESS: stored email with uid 23d5af93185e98df92149e502a2e1bc8 in sentbox of adwait
+Sent redirection response to http://127.0.0.1:8000/inbox
+redirect response: HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/inbox
+Content-Length: 0
+Connection: keep-alive
+
+
+Listening...
+GET /inbox HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+to send: 1|adwait_email|inbox_items|||0|0|
+
+Message sent successfully: 35 bytes.
+going to decode message: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+got response
+to send: 1|adwait_email|inbox_items|||0|0|
+
+Message sent successfully: 35 bytes.
+going to decode message: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+Sent response successfully, bytes sent: 671
+Listening...
+GET /inbox HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+to send: 1|adwait_email|inbox_items|||0|0|
+
+Message sent successfully: 35 bytes.
+going to decode message: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+got response
+to send: 1|adwait_email|inbox_items|||0|0|
+
+Message sent successfully: 35 bytes.
+going to decode message: 1|adwait_email|inbox_items|52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+Sent response successfully, bytes sent: 671
+Listening...
+GET /sentbox HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+to send: 1|adwait_email|sentbox_items|||0|0|
+
+Message sent successfully: 37 bytes.
+going to decode message: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+got response
+to send: 1|adwait_email|sentbox_items|||0|0|
+
+Message sent successfully: 37 bytes.
+going to decode message: 1|adwait_email|sentbox_items|23d5af93185e98df92149e502a2e1bc8##emma@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##emma@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,52a82c4d29385ecb2455464a18041b3e##adwait@localhost##U2Ruc2FqZG4=##Sat May 04 01:51:10 2024,||0|0|
+decoded message
+Sent response successfully, bytes sent: 1063
+Listening...
+GET /view_email/?source=sentbox&id=426e6577fd0ca11e4c5a23fc5cab1e13 HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+connected to coordinator
+Message sent successfully: 48 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6002
+asked coordinator: 127.0.0.1:6002
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
+decoded message
+Sent response successfully, bytes sent: 969
+Listening...
+Listening...
+Client closed the connection.
+GET /compose HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+Sent response successfully, bytes sent: 1541
+Listening...
+Listening...
+Client closed the connection.
+GET /logout HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ
+to send: 3|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 3|cookie|ZGNAyhaINYGF1p83Rh86N5ziGoKN0xOZ|||0|0|Colkey deleted successfully
+decoded message
+Listening...
+Client closed the connection.
+Listening...
+GET /login HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 2431
+Listening...
+POST /login HTTP/1.1
+end of parse
+to send: 1|emma_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+going to decode message: 1|emma_info|password|123456||0|0|
+decoded message
+got response
+to send: 1|emma_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+going to decode message: 1|emma_info|password|123456||0|0|
+decoded message
+I am in get cookie handler from the request
+to send: 1|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|||0|0|
+
+Message sent successfully: 50 bytes.
+going to decode message: 1|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|||1|0|Colkey does not exist
+decoded message
+got response
+to send: 2|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|emma||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 2|cookie|U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI|emma||0|0|Data written successfully
+decoded message
+Response being sent:
+HTTP/1.1 302 Found
+Location: http://127.0.0.1:8000/home
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: sid=U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+
+
+Redirect with cookie response sent successfully, bytes sent: 210
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /home HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI
+Sent response successfully, bytes sent: 1199
+Listening...
+GET /inbox HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI
+to send: 1|emma_email|inbox_items|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
+decoded message
+got response
+to send: 1|emma_email|inbox_items|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
+decoded message
+Sent response successfully, bytes sent: 868
+Listening...
+GET /view_email/?source=inbox&id=426e6577fd0ca11e4c5a23fc5cab1e13 HTTP/1.1
+end of parse
+I am in get cookie handler from the request
+cookie is: U1qICed7VhtrcRpw6BEOA63R3Nv7qcaI
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|||0|0|
+
+Message sent successfully: 57 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|subject|amZhc2lvamZpb3Fq||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|from|adwait@localhost||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|||0|0|
+
+Message sent successfully: 52 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|to|emma@localhost||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|||0|0|
+
+Message sent successfully: 59 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|timestamp|Sat May 04 01:51:40 2024||0|0|
+decoded message
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
+decoded message
+got response
+to send: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|||0|0|
+
+Message sent successfully: 54 bytes.
+going to decode message: 1|email/426e6577fd0ca11e4c5a23fc5cab1e13|body|anFqaW9qZHNmZ3Nk||0|0|
+decoded message
+Sent response successfully, bytes sent: 965
+Listening...
 Listening...
 Client closed the connection.
