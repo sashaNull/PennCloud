@@ -1062,6 +1062,7 @@ void *handle_connection(void *arg)
       for (auto other_addr : tablet_ranges_to_other_addr[tablet_range])
       {
         string serialized_to_backend = encode_message(f2b_message_for_other_server);
+        cout << "Sending a message with row key: " << tablet_range << " " << f2b_message_for_other_server.rowkey << " to " << htons(other_addr.sin_port) << endl;
 
         int sock = socket(AF_INET, SOCK_STREAM, 0);
         if (sock < 0)

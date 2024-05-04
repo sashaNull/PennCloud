@@ -244,6 +244,7 @@ int main(int argc, char *argv[])
                     {
                         response = "+OK RESP " + server_with_range + "\r\n";
                     }
+                    cout << "Got request: " << row_key << " Gave Response: " << response << endl;
                 }
                 size_t n = send(client_fd, response.c_str(), response.length(), 0);
                 if (n < 0)

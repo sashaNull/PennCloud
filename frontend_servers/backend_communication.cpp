@@ -61,6 +61,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
 {
   F_2_B_Message msg_to_return;
   sockaddr_in addr = get_socket_address(addr_str);
+  fd = create_socket();
   connect(fd, (struct sockaddr *)&addr,
           sizeof(addr));
   string to_send = encode_message(msg);
@@ -133,7 +134,7 @@ std::string ask_coordinator(sockaddr_in coordinator_addr, const std::string &row
           sizeof(coordinator_addr));
   cout << "connected to coordinator" << endl;
   // From Frontend: GET rowname type
-  string to_send = "GET " + rowkey + " " + type +"\r\n";
+  string to_send = "GET " + rowkey + " " + type + "\r\n";
   send_message(fd, to_send);
   cout << "sent message to coordinator" << endl;
   const unsigned int BUFFER_SIZE = 1024;
@@ -162,65 +163,80 @@ std::string ask_coordinator(sockaddr_in coordinator_addr, const std::string &row
   // -ERR Incorrect Command
 }
 
-bool check_backend_connection(int fd, const string &backend_serveraddr_str, const string & rowkey, const string & colkey) {
+bool check_backend_connection(int fd, const string &backend_serveraddr_str, const string &rowkey, const string &colkey)
+{
   F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
   F_2_B_Message get_response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
   cout << "got response" << endl;
-  if (get_response_msg.status == 2) {
+  if (get_response_msg.status == 2)
+  {
     return false;
   }
   return true;
 }
 
-string get_backend_server_addr(int fd, const string &rowkey, const string &colkey, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr, const string &type) {
+string get_backend_server_addr(int fd, const string &rowkey, const string &colkey, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr, const string &type)
+{
   string backend_serveraddr_str;
 
-  if (g_map_rowkey_to_server.find(rowkey) != g_map_rowkey_to_server.end()){
+  if (g_map_rowkey_to_server.find(rowkey) != g_map_rowkey_to_server.end())
+  {
     string serveraddr_str_to_check = g_map_rowkey_to_server[rowkey];
 
-    if (check_backend_connection(fd, serveraddr_str_to_check, rowkey, colkey)) {
+    if (check_backend_connection(fd, serveraddr_str_to_check, rowkey, colkey))
+    {
       backend_serveraddr_str = serveraddr_str_to_check;
-    } else {
+    }
+    else
+    {
       backend_serveraddr_str = ask_coordinator(g_coordinator_addr, rowkey, type);
 
-      if (backend_serveraddr_str.empty()) {
+      if (backend_serveraddr_str.empty())
+      {
         cerr << "ERROR in getting backend server address from coordinator" << endl;
         return "";
       }
     }
-  } else {
+  }
+  else
+  {
     backend_serveraddr_str = ask_coordinator(g_coordinator_addr, rowkey, type);
     cout << "asked coordinator: " << backend_serveraddr_str << endl;
 
-    if (backend_serveraddr_str.empty()) {
+    if (backend_serveraddr_str.empty())
+    {
 
       cerr << "ERROR in getting backend server address from coordinator" << endl;
       return "";
-
     }
   }
-
   return backend_serveraddr_str;
 }
 
 // 1: coordinator error; 2: backend error
 int send_msg_to_backend(int fd, F_2_B_Message msg_to_send, string &value, int &status, string &err_msg,
-                        const string &rowkey, const string &colkey, 
+                        const string &rowkey, const string &colkey,
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr,
-                        const string &type) {
+                        const string &type)
+{
 
   string backend_serveraddr_str = get_backend_server_addr(fd, rowkey, colkey, g_map_rowkey_to_server,
                                                           g_coordinator_addr, type);
-  if (backend_serveraddr_str.empty()) {
+  if (backend_serveraddr_str.empty())
+  {
     return 1;
   }
   g_map_rowkey_to_server[rowkey] = backend_serveraddr_str;
-  try {
+
+  try
+  {
     F_2_B_Message response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
     value = response_msg.value;
     status = response_msg.status;
     err_msg = response_msg.errorMessage;
-  } catch (const std::exception& e) {
+  }
+  catch (const std::exception &e)
+  {
     cerr << "ERROR: " << e.what() << endl;
     return 2;
   }
