@@ -27,6 +27,18 @@ pthread_mutex_t map_and_list_mutex;
 // Vector containing one struct per server in the config file.
 vector<server_info *> list_of_all_servers;
 
+string list_servers_status()
+{
+    string server_list = "+OK ";
+    pthread_mutex_lock(&map_and_list_mutex);
+    for (server_info *server : list_of_all_servers)
+    {
+        server_list += server->ip + ":" + to_string(server->port) + "#" + (server->is_active ? to_string(1) : to_string(0)) + " ";
+    }
+    pthread_mutex_unlock(&map_and_list_mutex);
+    return server_list + "\r\n";
+}
+
 void *handle_heartbeat(void *arg)
 {
     while (true)
@@ -303,6 +315,16 @@ int main(int argc, char *argv[])
                     cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
                     break;
                 }
+            }
+        }
+        else if (strncmp(buffer, "LIST\r\n", 6) == 0)
+        {
+            string response = list_servers_status();
+            size_t n = send(client_fd, response.c_str(), response.length(), 0);
+            if (n < 0)
+            {
+                cerr << "[" << client_fd << "] Error in send(). Exiting" << endl;
+                break;
             }
         }
         else
