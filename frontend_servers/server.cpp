@@ -3726,6 +3726,33 @@ void *handle_connection(void *arg)
         }
       }
     }
+
+    // GET: /admin
+    else if (html_request_map["uri"] == "/admin" && html_request_map["method"] == "GET")
+    {
+      // LIST: get status of all backend servers
+      // ?? get status of all frontend servers (from load balancer??)
+      // onclick of a server: /admin?server=<addr>
+      // ontoggle of a server: 
+      // if toggle is already on: /admin?toggle=suspend&server=<addr>
+      // else: /admin?toggle=activate&server=<addr>
+    }
+
+    // GET: /admin?server=<addr>
+    else if (html_request_map["uri"].substr(0, 13) == "/admin?server" && html_request_map["method"] == "GET") 
+    {
+      // to see raw data of server x: send F_2_B msg of type 10 to server x
+      // while loop to keep receiving F_2_B msgs until both rowkey and colkey is "terminate"
+      // html: probably a table, see inbox code
+    }
+
+    // POST: /admin?toggle=suspend&server=<addr>     or    /admin?toggle=activate&server=<addr>
+    else if (html_request_map["uri"].substr(0, 13) == "/admin?toggle" && html_request_map["method"] == "POST") 
+    {
+    // 
+    // suspend: 5; activate: 6
+    }
+
     else
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
