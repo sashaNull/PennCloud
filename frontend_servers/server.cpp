@@ -57,61 +57,167 @@ string generate_cookie()
   return sessionID;
 }
 
-// Function to decode base64 string to binary data
-std::vector<unsigned char> base64_decode(const std::string &encoded_string)
+// Function to encode files
+std::string base64_encode(const std::string &data)
 {
-  static const std::string base64_chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  BIO *bio, *b64;
+  BUF_MEM *bufferPtr;
 
-  std::vector<unsigned char> decoded_bytes;
-  size_t in_len = encoded_string.size();
-  size_t i = 0;
-  unsigned char char_array_4[4], char_array_3[3];
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new(BIO_s_mem());
+  bio = BIO_push(b64, bio);
 
-  while (in_len-- && (encoded_string[i] != '=') && (isalnum(encoded_string[i]) || (encoded_string[i] == '+') || (encoded_string[i] == '/')))
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+  BIO_write(bio, data.c_str(), data.length());
+  BIO_flush(bio);
+  BIO_get_mem_ptr(bio, &bufferPtr);
+  BIO_set_close(bio, BIO_NOCLOSE);
+
+  std::string output(bufferPtr->data, bufferPtr->length);
+  BIO_free_all(bio);
+
+  return output;
+}
+
+// Function to decode files
+std::string base64_decode(const std::string &encoded_data)
+{
+  BIO *bio, *b64;
+  char inbuf[512];
+  std::string output;
+  int inlen;
+
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
+
+  bio = BIO_push(b64, bio);
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+
+  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
   {
-    char_array_4[i % 4] = static_cast<unsigned char>(base64_chars.find(encoded_string[i]));
-    i++;
-    if (i % 4 == 0)
-    {
-      char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-      char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-      char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+    output.append(inbuf, inlen);
+  }
 
-      for (int j = 0; j < 3; j++)
-        decoded_bytes.push_back(char_array_3[j]);
+  BIO_free_all(bio);
+
+  return output;
+}
+
+struct Part
+{
+  std::map<std::string, std::string> headers;
+  std::vector<char> content;
+};
+
+// Function to extract boundary for form data
+std::string extract_boundary(const std::string &content_type)
+{
+  size_t pos = content_type.find("boundary=");
+  if (pos != std::string::npos)
+  {
+    return content_type.substr(pos + 9); // 9 to skip 'boundary='
+  }
+  return "";
+}
+
+// Function to parse multi-part form data
+std::map<std::string, Part> parse_multipart_form_data(const std::string &body, const std::string &boundary)
+{
+  std::map<std::string, Part> parts;
+  std::string delimiter = "--" + boundary;
+  std::string end_delimiter = delimiter + "--";
+  std::istringstream stream(body);
+  std::string line;
+  bool isHeaderPart = true;
+  Part currentPart;
+  std::string partName;
+
+  while (std::getline(stream, line))
+  {
+    // Remove carriage return at the end if present
+    if (!line.empty() && line.back() == '\r')
+    {
+      line.pop_back();
+    }
+
+    if (line == delimiter || line == end_delimiter)
+    {
+      if (!isHeaderPart)
+      {
+        // Save previous part
+        parts[partName] = std::move(currentPart);
+        currentPart = Part();
+        partName.clear();
+      }
+      if (line == end_delimiter)
+      {
+        break; // No more parts after end delimiter
+      }
+      isHeaderPart = true;
+      continue;
+    }
+
+    if (isHeaderPart)
+    {
+      if (line.empty())
+      {
+        isHeaderPart = false; // End of headers, start reading content next
+        continue;
+      }
+
+      // Parsing headers
+      std::istringstream headerStream(line);
+      std::string headerKey, headerValue;
+      std::getline(headerStream, headerKey, ':');
+      std::getline(headerStream, headerValue);
+      if (!headerValue.empty() && headerValue.front() == ' ')
+      {
+        headerValue.erase(0, 1); // Remove leading space
+      }
+
+      // Identify content disposition to get the field name
+      if (headerKey == "Content-Disposition")
+      {
+        size_t namePos = headerValue.find("name=\"");
+        if (namePos != std::string::npos)
+        {
+          namePos += 6; // Skip past 'name="'
+          size_t nameEnd = headerValue.find('"', namePos);
+          partName = headerValue.substr(namePos, nameEnd - namePos);
+        }
+      }
+      currentPart.headers[headerKey] = headerValue;
+    }
+    else
+    {
+      // Read the content until the next delimiter
+      std::ostringstream contentStream;
+      contentStream << line;
+      std::string contentLine;
+      while (std::getline(stream, contentLine) && contentLine != delimiter && contentLine != end_delimiter)
+      {
+        if (!contentLine.empty() && contentLine.back() == '\r')
+        {
+          contentLine.pop_back(); // Remove carriage return if present
+        }
+        contentStream << "\n"
+                      << contentLine;
+      }
+
+      // Go back one line in the stream if we've hit a delimiter
+      if (contentLine == delimiter || contentLine == end_delimiter)
+      {
+        stream.seekg(-static_cast<int>(contentLine.length() + 1), std::ios_base::cur);
+      }
+
+      // Assign content to the part
+      std::string contentStr = contentStream.str();
+      currentPart.content.assign(contentStr.begin(), contentStr.end());
+      isHeaderPart = true; // Next lines will be headers again
     }
   }
 
-  if (i % 4)
-  {
-    for (size_t j = i % 4; j < 4; j++)
-      char_array_4[j] = 0;
-
-    char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-    char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-
-    for (size_t j = 0; j < (i % 4 - 1); j++)
-      decoded_bytes.push_back(char_array_3[j]);
-  }
-
-  return decoded_bytes;
-}
-
-// Function to extract text content from data URL
-std::string extract_text_content(const std::string &file_content)
-{
-  // Split file content by comma and get the base64-encoded string
-  std::istringstream iss(file_content);
-  std::string base64_string;
-  while (std::getline(iss, base64_string, ','))
-    ;
-
-  // Decode base64 string to obtain binary data
-  std::vector<unsigned char> decoded_bytes = base64_decode(base64_string);
-
-  // Convert binary data to string (assuming UTF-8 encoding)
-  return std::string(decoded_bytes.begin(), decoded_bytes.end());
+  return parts;
 }
 
 std::string url_decode(const std::string &str)
@@ -298,7 +404,6 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
         deleteFolderContents(folderPath + "/" + itemName, client_fd, fd, username);
 
         // Delete folder item
-        string backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + folderPath + "/" + itemName;
 
         std::cout << "Sending delete for: " << row_key << std::endl;
@@ -310,7 +415,6 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
       else if (itemType == "F@")
       {
         // Delete file content
-        string backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + folderPath + "/" + itemName;
 
         std::cout << "row key for delete file: " << row_key << std::endl;
@@ -361,7 +465,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         renameFolder(oldFolderPath + "/" + itemName, newFolderPath + "/" + itemName, client_fd, fd, username);
 
         // GET old folder contents and PUT folder path with new folder name
-        string backend_serveraddr_str = "127.0.0.1:6000";
         row_key = username + "_" + oldFolderPath + "/" + itemName;
         new_row_key = username + "_" + newFolderPath + "/" + itemName;
 
@@ -412,7 +515,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
       {
 
         // GET old file contents and PUT folder path with new folder name
-        string backend_serveraddr_str = "127.0.0.1:6000";
         row_key = username + "_" + oldFolderPath + "/" + itemName;
         new_row_key = username + "_" + newFolderPath + "/" + itemName;
 
@@ -445,7 +547,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         // Delete file content
-        backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + oldFolderPath + "/" + itemName;
 
         std::cout << "row key for delete file: " << row_key << std::endl;
@@ -1043,7 +1144,6 @@ void *handle_connection(void *arg)
       else
       {
         F_2_B_Message msg_to_send, response_msg;
-        string backend_serveraddr_str = "127.0.0.1:6000";
         // get username from cookie
         std::string username = get_username_from_cookie(cookie, fd);
         if (!username.empty())
@@ -1082,7 +1182,6 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/sentbox" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -1132,8 +1231,6 @@ void *handle_connection(void *arg)
     {
       // /compose?mode=reply&email_id=123
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
-
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -1393,7 +1490,6 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"].substr(0, 11) == "/view_email" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
@@ -1522,7 +1618,6 @@ void *handle_connection(void *arg)
     }
     else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -1620,31 +1715,19 @@ void *handle_connection(void *arg)
             html_content << "input.onchange = function(event) {";
             html_content << "var file = event.target.files[0];";
             html_content << "if (file) {";
-            html_content << "readFileContents(file, path);"; // Pass file and path to readFileContents
+            html_content << "uploadFileRequest(file, file.name, path);"; // Pass file, filename, and path directly to uploadFileRequest
             html_content << "}";
             html_content << "};";
             html_content << "input.click();"; // Simulate click event on hidden file input
             html_content << "}";
-            html_content << "function readFileContents(file, path) {"; // Accept file and path as parameters
-            html_content << "var reader = new FileReader();";
-            html_content << "reader.onload = function(event) {";
-            html_content << "var fileContent = event.target.result;";
-            html_content << "uploadFileRequest(fileContent, file.name, path);"; // Pass file content, filename, and path to uploadFileRequest
-            html_content << "};";
-            html_content << "reader.readAsDataURL(file);"; // Read file as data URL
-            html_content << "}";
-            html_content << "function uploadFileRequest(fileContent, filename, path) {"; // Accept file content, filename, and path as parameters
-            html_content << "var jsonData = JSON.stringify({";
-            html_content << "'fileContent': fileContent,"; // Include file content in JSON data
-            html_content << "'filename': filename,";       // Include filename in JSON data
-            html_content << "'path': '" << path << "'";    // Path of parent folder
-            html_content << "});";
-            html_content << "fetch('/upload_file', {"; // Send POST request to upload_file endpoint
+            html_content << "function uploadFileRequest(file, filename, path) {"; // Accept file, filename, and path as parameters
+            html_content << "var formData = new FormData();";                     // Use FormData to handle file upload
+            html_content << "formData.append('file', file);";                     // Append file object
+            html_content << "formData.append('filename', filename);";             // Append filename
+            html_content << "formData.append('path', path);";                     // Append path
+            html_content << "fetch('/upload_file', {";                            // Send POST request to upload_file endpoint
             html_content << "method: 'POST',";
-            html_content << "headers: {";
-            html_content << "'Content-Type': 'application/json'";
-            html_content << "},";
-            html_content << "body: jsonData";
+            html_content << "body: formData"; // Send formData
             html_content << "})";
             html_content << ".then(response => {";
             html_content << "if (response.ok) {";
@@ -2184,70 +2267,163 @@ void *handle_connection(void *arg)
         std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
-          // Extract file, file name and path from the request body
-          map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
+          // Parse the multipart form data from the request
+          std::string contentType = html_request_map["header_Content-Type"];
 
-          string text = post_data["fileContent"];
-          std::string fileContent = extract_text_content(text);
+          std::cout << "I GOT header data content type - " << contentType << std::endl;
 
-          string path = post_data["path"];
-          string filename = post_data["filename"];
+          std::string boundary = extract_boundary(contentType);
 
-          std::cout << "file content: " << fileContent << std::endl;
+          std::cout << "I GOT BOUNDARY - " << boundary << std::endl;
 
-          // Construct the row key by appending "user_" to the foldername
-          string parentRowKey = username + "_" + path;
+          std::cout << "I GOT BODY: " << html_request_map["body"] << std::endl;
 
-          std::cout << "parent row key: " << parentRowKey << std::endl;
+          auto parts = parse_multipart_form_data(html_request_map["body"], boundary);
 
-          // Construct the row key for the new file
-          std::string file_row_key = parentRowKey + "/" + filename;
+          std::cout << "I GOT PARTS OF FORM" << std::endl;
 
-          F_2_B_Message msg_to_send;
-          string get_response_value, get_response_error_msg;
-          int response_code, get_response_status;
-
-          // Check whether file already exists in this directory
-          type = "get";
-          colkey = "content";
-          msg_to_send = construct_msg(1, file_row_key, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status,
-                                              get_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
-                                              g_coordinator_addr, type);
-          if (response_code == 1)
+          // Getting the file from FormData
+          if (parts.find("file") != parts.end())
           {
-            cerr << "ERROR in communicating with coordinator" << endl;
-            continue;
-          }
-          else if (response_code == 2)
-          {
-            cerr << "ERROR in communicating with backend" << endl;
-            continue;
-          }
+            auto &filePart = parts["file"];
+            std::string filename = filePart.headers["filename"];
+            std::string path = filePart.headers["path"];
 
-          std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
+            std::string fileContent = base64_encode(std::string(filePart.content.begin(), filePart.content.end()));
 
-          if (get_response_status == 0)
-          {
-            // file already exists
-            string content = "{\"error\":\"File already exists!!\"}";
-            send_response(client_fd, 409, "Conflict", "application/json", content);
-          }
-          else if (get_response_status == 1)
-          {
-            // Loop till success: GET the parent folder
-            bool success = false;
-            string response_value, response_error_msg;
-            int response_code, response_status;
+            // Construct the row key by appending "user_" to the folder name
+            std::string parentRowKey = username + "_" + path;
+            std::string file_row_key = parentRowKey + "/" + filename;
 
-            while (!success)
+            F_2_B_Message msg_to_send;
+            string get_response_value, get_response_error_msg;
+            int response_code, get_response_status;
+
+            // Check whether file already exists in this directory
+            type = "get";
+            colkey = "content";
+            msg_to_send = construct_msg(1, file_row_key, colkey, "", "", "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status,
+                                                get_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+            if (response_code == 1)
             {
-              // GET request for the parent folder
-              type = "get";
-              colkey = "items";
-              msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
+
+            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
+
+            if (get_response_status == 0)
+            {
+              // file already exists
+              string content = "{\"error\":\"File already exists!!\"}";
+              send_response(client_fd, 409, "Conflict", "application/json", content);
+            }
+            else if (get_response_status == 1)
+            {
+              // Loop till success: GET the parent folder
+              bool success = false;
+              string response_value, response_error_msg;
+              int response_code, response_status;
+
+              while (!success)
+              {
+                // GET request for the parent folder
+                type = "get";
+                colkey = "items";
+                msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                    response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
+                if (response_code == 1)
+                {
+                  cerr << "ERROR in communicating with coordinator" << endl;
+                  continue;
+                }
+                else if (response_code == 2)
+                {
+                  cerr << "ERROR in communicating with backend" << endl;
+                  continue;
+                }
+
+                if (response_status == 0)
+                {
+                  std::string newValue;
+
+                  if (response_value == "[]")
+                  {
+                    // If the list is empty, simply add the new value with square brackets
+                    newValue = "[F@" + filename + "]";
+                  }
+                  else
+                  {
+                    // Find the position of the last closing bracket
+                    size_t last_bracket_pos = response_value.find_last_of(']');
+
+                    // Extract the substring up to the last closing bracket (excluding)
+                    std::string existing_values = response_value.substr(0, last_bracket_pos);
+
+                    // Concatenate the new value with a comma
+                    newValue = existing_values + ",F@" + filename + "]";
+                  }
+
+                  // CPUT the parent folder
+                  string cput_response_value, cput_response_error_msg;
+                  int cput_response_status;
+                  type = "cput";
+                  colkey = "items";
+                  msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
+                                                      cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+                  if (response_code == 1)
+                  {
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
+                  }
+                  else if (response_code == 2)
+                  {
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
+
+                  if (cput_response_status == 0)
+                  {
+                    success = true;
+                  }
+                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
+                  {
+                    // Parent folder does not exist - Construct and send the HTTP response
+                    string content = "{\"error\":\"Parent folder does not exist\"}";
+                    send_response(client_fd, 404, "Not Found", "application/json", content);
+                  }
+                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
+                  {
+                    // Old value is wrong - Construct and send the HTTP response
+                    string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
+                    send_response(client_fd, 401, "Unauthorized", "application/json", content);
+                  }
+                  else
+                  {
+                    // Error in fetching user - Construct and send the HTTP response
+                    string content = "{\"error\":\"Error fetching user\"}";
+                    send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                  }
+                }
+              }
+
+              // PUT for the content of the file
+              type = "put";
+              colkey = "content";
+              msg_to_send = construct_msg(2, file_row_key, fileContent, "", "", "", 0);
               response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                  response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                  response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
                                                   g_coordinator_addr, type);
               if (response_code == 1)
               {
@@ -2262,106 +2438,23 @@ void *handle_connection(void *arg)
 
               if (response_status == 0)
               {
-                std::string newValue;
-
-                if (response_value == "[]")
-                {
-                  // If the list is empty, simply add the new value with square brackets
-                  newValue = "[F@" + filename + "]";
-                }
-                else
-                {
-                  // Find the position of the last closing bracket
-                  size_t last_bracket_pos = response_value.find_last_of(']');
-
-                  // Extract the substring up to the last closing bracket (excluding)
-                  std::string existing_values = response_value.substr(0, last_bracket_pos);
-
-                  // Concatenate the new value with a comma
-                  newValue = existing_values + ",F@" + filename + "]";
-                }
-
-                // CPUT the parent folder
-                string cput_response_value, cput_response_error_msg;
-                int cput_response_status;
-                type = "cput";
-                colkey = "items";
-                msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
-                response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
-                                                    cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
-                if (response_code == 1)
-                {
-                  cerr << "ERROR in communicating with coordinator" << endl;
-                  continue;
-                }
-                else if (response_code == 2)
-                {
-                  cerr << "ERROR in communicating with backend" << endl;
-                  continue;
-                }
-
-                if (cput_response_status == 0)
-                {
-                  success = true;
-                }
-                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
-                {
-                  // Parent folder does not exist - Construct and send the HTTP response
-                  string content = "{\"error\":\"Parent folder does not exist\"}";
-                  send_response(client_fd, 404, "Not Found", "application/json", content);
-                }
-                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
-                {
-                  // Old value is wrong - Construct and send the HTTP response
-                  string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
-                  send_response(client_fd, 401, "Unauthorized", "application/json", content);
-                }
-                else
-                {
-                  // Error in fetching user - Construct and send the HTTP response
-                  string content = "{\"error\":\"Error fetching user\"}";
-                  send_response(client_fd, 500, "Internal Server Error", "application/json", content);
-                }
+                // Construct and send a success response to the client
+                std::string success_response = "{\"message\":\"File uploaded successfully\"}";
+                send_response(client_fd, 200, "OK", "application/json", success_response);
               }
-            }
-
-            // PUT for the content of the file
-            type = "put";
-            colkey = "content";
-            msg_to_send = construct_msg(2, file_row_key, fileContent, "", "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-            if (response_code == 1)
-            {
-              cerr << "ERROR in communicating with coordinator" << endl;
-              continue;
-            }
-            else if (response_code == 2)
-            {
-              cerr << "ERROR in communicating with backend" << endl;
-              continue;
-            }
-
-            if (response_status == 0)
-            {
-              // Construct and send a success response to the client
-              std::string success_response = "{\"message\":\"File uploaded successfully\"}";
-              send_response(client_fd, 200, "OK", "application/json", success_response);
+              else
+              {
+                // Error handling: send appropriate error response to the client
+                std::string error_message = "Failed to upload file";
+                send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              }
             }
             else
             {
-              // Error handling: send appropriate error response to the client
-              std::string error_message = "Failed to upload file";
-              send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              // Error in fetching user - Construct and send the HTTP response
+              string content = "{\"error\":\"Operation failed\"}";
+              send_response(client_fd, 500, "Internal Server Error", "application/json", content);
             }
-          }
-          else
-          {
-            // Error in fetching user - Construct and send the HTTP response
-            string content = "{\"error\":\"Operation failed\"}";
-            send_response(client_fd, 500, "Internal Server Error", "application/json", content);
           }
         }
         else
@@ -3230,7 +3323,6 @@ void *handle_connection(void *arg)
             std::string old_row_key = username + "_" + filePath;
 
             // Check whether file already exists in this directory
-            string backend_serveraddr_str = "127.0.0.1:6000";
             F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
             F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
