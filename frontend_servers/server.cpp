@@ -55,52 +55,6 @@ string generate_cookie()
   return sessionID;
 }
 
-// Function to encode files
-std::string base64_encode(const std::string &data)
-{
-  BIO *bio, *b64;
-  BUF_MEM *bufferPtr;
-
-  b64 = BIO_new(BIO_f_base64());
-  bio = BIO_new(BIO_s_mem());
-  bio = BIO_push(b64, bio);
-
-  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
-  BIO_write(bio, data.c_str(), data.length());
-  BIO_flush(bio);
-  BIO_get_mem_ptr(bio, &bufferPtr);
-  BIO_set_close(bio, BIO_NOCLOSE);
-
-  std::string output(bufferPtr->data, bufferPtr->length);
-  BIO_free_all(bio);
-
-  return output;
-}
-
-// Function to decode files
-std::string base64_decode(const std::string &encoded_data)
-{
-  BIO *bio, *b64;
-  char inbuf[512];
-  std::string output;
-  int inlen;
-
-  b64 = BIO_new(BIO_f_base64());
-  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
-
-  bio = BIO_push(b64, bio);
-  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
-
-  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
-  {
-    output.append(inbuf, inlen);
-  }
-
-  BIO_free_all(bio);
-
-  return output;
-}
-
 struct Part
 {
   std::map<std::string, std::string> headers;
@@ -1454,7 +1408,7 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-            string subject = base_64_decode(encoded_subject);
+            string subject = base64_decode(encoded_subject);
 
             // Get Display Message
             string encoded_display;
@@ -1475,15 +1429,15 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-            string display = base_64_decode(encoded_display);
+            string display = base64_decode(encoded_display);
 
             // Get Sender
-            string sender;
+            string encoded_sender;
             rowkey = "email/" + uid;
             colkey = "from";
             type = "get";
             msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send, sender, response_status,
+            response_code = send_msg_to_backend(fd, msg_to_send, encoded_sender, response_status,
                                                 response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
             if (response_code == 1)
@@ -1496,6 +1450,8 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
+            string sender = base64_decode(encoded_sender);
+
             if (mode == "reply")
             {
               prefill_to = sender;
@@ -1533,13 +1489,16 @@ void *handle_connection(void *arg)
       {
         string from_username = get_username_from_cookie(cookie, fd);
         string from = from_username + "@localhost";
+        string encoded_from = base64_encode(from);
 
         F_2_B_Message msg_to_send;
         string response_value, response_error_msg;
         int response_status, response_code;
 
         map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
-        vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
+        string to = form_data["to"];
+        string encoded_to = base64_encode(to);
+        vector<vector<string>> recipients = parse_recipients_str_to_vec(to);
 
         // TODO: check for invalid recipients
         string invalid_recipients = "";
@@ -1592,18 +1551,16 @@ void *handle_connection(void *arg)
         }
 
         string ts_sentbox = get_timestamp();
+        string encoded_ts = base64_encode(ts_sentbox);
 
         string subject = form_data["subject"];
-        string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char *>(subject.c_str()),
-                                                subject.length());
+        string encoded_subject = base64_encode(subject);
 
         string body = form_data["body"];
-        string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()),
-                                             body.length());
+        string encoded_body = base64_encode(body);
 
         string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-        string encoded_display = base_64_encode(reinterpret_cast<const unsigned char *>(for_display.c_str()),
-                                                for_display.length());
+        string encoded_display = base64_encode(for_display);
 
         string uid = compute_md5_hash(for_display);
 
@@ -1630,7 +1587,7 @@ void *handle_connection(void *arg)
         // deliver for local recipients
         for (const auto &usrname : recipients[0])
         {
-          int deliver_success = deliver_local_email(usrname, uid, from, encoded_subject, encoded_body,
+          int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
                                                     encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
           if (deliver_success == 0)
           {
@@ -1643,7 +1600,7 @@ void *handle_connection(void *arg)
         }
 
         // store email
-        int store_email_success = put_email_to_backend(uid, from, form_data["to"], ts_sentbox,
+        int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
                                                        encoded_subject, encoded_body, encoded_display,
                                                        g_map_rowkey_to_server, g_coordinator_addr);
         if (store_email_success == 0)
@@ -1656,7 +1613,7 @@ void *handle_connection(void *arg)
         }
 
         // put in sentbox
-        int sentbox_success = put_in_sentbox(from_username, uid, form_data["to"], ts_sentbox,
+        int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
                                              encoded_subject, encoded_body, g_map_rowkey_to_server,
                                              g_coordinator_addr);
         if (sentbox_success == 0)
@@ -1718,13 +1675,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-          string subject = base_64_decode(encoded_subject);
+          string subject = base64_decode(encoded_subject);
 
           // get from
-          string from;
+          string encoded_from;
           colkey = "from";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, from, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_from, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1737,12 +1694,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string from = base64_decode(encoded_from);
 
           // get to
-          string to;
+          string encoded_to;
           colkey = "to";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, to, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_to, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1755,12 +1713,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string to = base64_decode(encoded_to);
 
           // get timestamp
-          string timestamp;
+          string encoded_timestamp;
           colkey = "timestamp";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, timestamp, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_timestamp, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1773,6 +1732,7 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string timestamp = base64_decode(encoded_timestamp);
 
           // get body
           string encoded_body;
@@ -1791,7 +1751,7 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-          string body = base_64_decode(encoded_body);
+          string body = base64_decode(encoded_body);
           // display the email content
           string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid, source);
           send_response(client_fd, 200, "OK", "text/html", html_content);
