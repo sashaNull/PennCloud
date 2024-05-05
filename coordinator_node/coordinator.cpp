@@ -13,7 +13,7 @@ From Coordinator:
 #include "helper.h"
 using namespace std;
 
-#define HEARTBEAT_TIME 5
+#define HEARTBEAT_TIME 1
 
 string config_file_location;
 bool verbose;
