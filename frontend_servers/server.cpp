@@ -118,103 +118,131 @@ std::string extract_boundary(const std::string &content_type)
   return "";
 }
 
+// Function to compare two lines after stripping
+bool compare_stripped(const std::string &line1, const std::string &line2)
+{
+  std::string stripped_line1 = strip(line1);
+  std::string stripped_line2 = strip(line2);
+  return stripped_line1 == stripped_line2;
+}
+
 // Function to parse multi-part form data
 std::map<std::string, Part> parse_multipart_form_data(const std::string &body, const std::string &boundary)
 {
   std::map<std::string, Part> parts;
   std::string delimiter = "--" + boundary;
   std::string end_delimiter = delimiter + "--";
-  std::istringstream stream(body);
-  std::string line;
   bool isHeaderPart = true;
   Part currentPart;
   std::string partName;
 
+  // Strip \r from the body content
+  std::string new_body = strip(body, "\r");
+  std::istringstream stream(new_body);
+  std::string line;
+
   while (std::getline(stream, line))
   {
-    // Remove carriage return at the end if present
+    // Normalize the line by removing carriage return
     if (!line.empty() && line.back() == '\r')
     {
       line.pop_back();
     }
 
-    if (line == delimiter || line == end_delimiter)
+    std::cout << "Processing line: " << line << std::endl;
+
+    // Detect boundaries
+    if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
     {
-      if (!isHeaderPart)
+      std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
+      if (!isHeaderPart && !partName.empty())
       {
-        // Save previous part
-        parts[partName] = std::move(currentPart);
-        currentPart = Part();
+        parts[partName] = std::move(currentPart); // Save completed part
+        std::cout << "SAVED PART : " << std::endl;
+        currentPart = Part(); // Reset part
         partName.clear();
       }
-      if (line == end_delimiter)
-      {
-        break; // No more parts after end delimiter
-      }
       isHeaderPart = true;
+      if (compare_stripped(line, end_delimiter))
+      {
+        std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
+        break; // Stop processing after the final boundary
+      }
       continue;
     }
 
+    // Handle headers
     if (isHeaderPart)
     {
       if (line.empty())
       {
-        isHeaderPart = false; // End of headers, start reading content next
+        std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
+        isHeaderPart = false; // Empty line indicates the end of headers
         continue;
       }
 
-      // Parsing headers
-      std::istringstream headerStream(line);
-      std::string headerKey, headerValue;
-      std::getline(headerStream, headerKey, ':');
-      std::getline(headerStream, headerValue);
-      if (!headerValue.empty() && headerValue.front() == ' ')
+      // Parse headers
+      size_t pos = line.find(':');
+      if (pos != std::string::npos)
       {
-        headerValue.erase(0, 1); // Remove leading space
-      }
+        std::string headerKey = line.substr(0, pos);
+        std::cout << "HEADER KEY : " << headerKey << std::endl;
+        std::string headerValue = line.substr(pos + 2); // Skip ': ' after the key
+        std::cout << "HEADER VALUE : " << headerValue << std::endl;
 
-      // Identify content disposition to get the field name
-      if (headerKey == "Content-Disposition")
-      {
-        size_t namePos = headerValue.find("name=\"");
-        if (namePos != std::string::npos)
+        // Check if this is a disposition header containing the part name
+        if (headerKey == "Content-Disposition")
         {
-          namePos += 6; // Skip past 'name="'
-          size_t nameEnd = headerValue.find('"', namePos);
-          partName = headerValue.substr(namePos, nameEnd - namePos);
+          size_t namePos = headerValue.find("name=\"");
+          if (namePos != std::string::npos)
+          {
+            namePos += 6; // Skip past 'name="'
+            size_t nameEnd = headerValue.find('"', namePos);
+            partName = headerValue.substr(namePos, nameEnd - namePos);
+
+            std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
+          }
         }
+        currentPart.headers[headerKey] = headerValue;
       }
-      currentPart.headers[headerKey] = headerValue;
     }
-    else
+    else if (!partName.empty())
     {
-      // Read the content until the next delimiter
+      // Content reading
       std::ostringstream contentStream;
-      contentStream << line;
-      std::string contentLine;
-      while (std::getline(stream, contentLine) && contentLine != delimiter && contentLine != end_delimiter)
+      contentStream << line; // Start with the current line
+      while (std::getline(stream, line) && !compare_stripped(line, delimiter) && !compare_stripped(line, end_delimiter))
       {
-        if (!contentLine.empty() && contentLine.back() == '\r')
+        if (!line.empty() && line.back() == '\r')
         {
-          contentLine.pop_back(); // Remove carriage return if present
+          line.pop_back(); // Normalize the line
         }
+        std::cout << "CONTENT READING LINE : " << line << std::endl;
+
         contentStream << "\n"
-                      << contentLine;
+                      << line; // Append the line to content
       }
 
-      // Go back one line in the stream if we've hit a delimiter
-      if (contentLine == delimiter || contentLine == end_delimiter)
+      if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
       {
-        stream.seekg(-static_cast<int>(contentLine.length() + 1), std::ios_base::cur);
+        stream.seekg(-(long)(line.length() + 2), std::ios_base::cur); // Rewind to handle the delimiter again
+        std::cout << "REWINDED : " << line << std::endl;
       }
 
-      // Assign content to the part
+      // Assign content to the current part
       std::string contentStr = contentStream.str();
+      std::cout << "CONTENT STREAM: " << contentStr << std::endl;
       currentPart.content.assign(contentStr.begin(), contentStr.end());
-      isHeaderPart = true; // Next lines will be headers again
+      isHeaderPart = true; // Prepare for the next part
+      std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
     }
+    std::cout << "GOING TO NEXT LINE: " << std::endl;
+    // if (!std::getline(stream, line))
+    // {
+    //   std::cerr << "Failed to read line, stopping." << std::endl;
+    //   break;
+    // }
   }
-
   return parts;
 }
 
@@ -785,8 +813,8 @@ void *handle_connection(void *arg)
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // Receive the request
-  const unsigned int BUFFER_SIZE = 4096;
-  char buffer[BUFFER_SIZE];
+  const unsigned int BUFFER_SIZE = 1024 * 100;
+  vector<char> buffer(BUFFER_SIZE);
 
   int fd = create_socket();
 
@@ -795,8 +823,8 @@ void *handle_connection(void *arg)
   while (true)
   {
     cout << "Listening..." << endl;
-    memset(buffer, 0, BUFFER_SIZE);
-    ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
+    ssize_t bytes_read = recv(client_fd, buffer.data(), BUFFER_SIZE - 1, 0);
+
     if (bytes_read == -1)
     {
       cerr << "Failed to read from socket." << endl;
@@ -808,7 +836,7 @@ void *handle_connection(void *arg)
       break;
     }
     buffer[bytes_read] = '\0';
-    string request(buffer);
+    string request(buffer.begin(), buffer.end());
     unordered_map<string, string> html_request_map = parse_http_request(request);
 
     // GET: rendering signup page
@@ -1863,7 +1891,7 @@ void *handle_connection(void *arg)
             std::stringstream html_content;
 
             // Append upload file and create folder buttons
-            html_content << "<button onclick=\"uploadFile()\">Upload File</button>";
+            html_content << "<button onclick=\"uploadFile('" << path << "')\">Upload File</button>";
             html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
 
             // JavaScript functions for upload and create folder actions
@@ -1880,11 +1908,12 @@ void *handle_connection(void *arg)
             html_content << "input.click();"; // Simulate click event on hidden file input
             html_content << "}";
             html_content << "function uploadFileRequest(file, filename, path) {"; // Accept file, filename, and path as parameters
-            html_content << "var formData = new FormData();";                     // Use FormData to handle file upload
-            html_content << "formData.append('file', file);";                     // Append file object
-            html_content << "formData.append('filename', filename);";             // Append filename
-            html_content << "formData.append('path', path);";                     // Append path
-            html_content << "fetch('/upload_file', {";                            // Send POST request to upload_file endpoint
+            html_content << "var formData = new FormData();";
+            html_content << "let blobVar = new Blob([file], { type: file.type });";
+            html_content << "formData.append('file', blobVar, file.name);"; // Create a Blob and append file object
+            html_content << "formData.append('filename', filename);";
+            html_content << "formData.append('path', path);";
+            html_content << "fetch('/upload_file', {"; // Send POST request to upload_file endpoint
             html_content << "method: 'POST',";
             html_content << "body: formData"; // Send formData
             html_content << "})";
@@ -2428,27 +2457,36 @@ void *handle_connection(void *arg)
         {
           // Parse the multipart form data from the request
           std::string contentType = html_request_map["header_Content-Type"];
-
-          std::cout << "I GOT header data content type - " << contentType << std::endl;
-
           std::string boundary = extract_boundary(contentType);
 
-          std::cout << "I GOT BOUNDARY - " << boundary << std::endl;
-
-          std::cout << "I GOT BODY: " << html_request_map["body"] << std::endl;
+          cout << "Boundary used for parsing: " << boundary << endl;
+          cout << "Body: " << html_request_map["body"] << endl;
+          // send_response(client_fd, 500, "Internal Server Error", "application/json", "error_message");
+          // continue;
 
           auto parts = parse_multipart_form_data(html_request_map["body"], boundary);
 
-          std::cout << "I GOT PARTS OF FORM" << std::endl;
+          for (const auto &part : parts)
+          {
+            cout << "Part: " << part.first << " Content: ";
+            cout.write(part.second.content.data(), part.second.content.size());
+            cout << endl;
+          }
 
           // Getting the file from FormData
-          if (parts.find("file") != parts.end())
+          if (parts.find("file") != parts.end() && parts.find("filename") != parts.end() && parts.find("path") != parts.end())
           {
             auto &filePart = parts["file"];
-            std::string filename = filePart.headers["filename"];
-            std::string path = filePart.headers["path"];
+            auto &filenamePart = parts["filename"];
+            auto &pathPart = parts["path"];
 
+            std::string filename = std::string(filenamePart.content.begin(), filenamePart.content.end());
+            std::string path = std::string(pathPart.content.begin(), pathPart.content.end());
             std::string fileContent = base64_encode(std::string(filePart.content.begin(), filePart.content.end()));
+
+            cout << "FILENAME: " << filename << endl;
+            cout << "FILEPATH: " << path << endl;
+            cout << "FILECONTENT: " << fileContent << endl;
 
             // Construct the row key by appending "user_" to the folder name
             std::string parentRowKey = username + "_" + path;
@@ -2678,12 +2716,12 @@ void *handle_connection(void *arg)
 
           if (response_status == 0)
           {
-            // Convert the byte content to string
-            std::string file_content(response_value.begin(), response_value.end());
+            // Decode the base64 encoded file content
+            std::string file_content = base64_decode(response_value);
 
             // Construct the HTTP response headers to trigger file download
             std::string content_disposition = "attachment; filename=\"" + file_name + "\"";
-            std::string content_type = "application/octet-stream"; // Set the appropriate content type for the file
+            std::string content_type = "application/octet-stream";
 
             // Send the file contents with appropriate headers
             send_response_with_headers(client_fd, 200, "OK", content_type, file_content, content_disposition);
