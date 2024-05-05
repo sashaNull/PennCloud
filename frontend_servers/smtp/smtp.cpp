@@ -202,6 +202,7 @@ void read_and_handle_data(int* fd, bool debug_mode) {
           bool atleast_one_sent = false;
           for (const auto& recipient : mail_to) {
             string username = get_receiver_username(recipient);
+            cout << "SMTP | recipient: " << recipient << " | username: " << username;
             if (deliver_local_email(username, uid, from, encoded_subject, encoded_body, encoded_display, 
                                     g_map_rowkey_to_server, g_coordinator_addr) == 0) {
               atleast_one_sent = true;

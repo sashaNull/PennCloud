@@ -383,6 +383,7 @@ int put_email_to_backend(const string &uid, const string &from, const string &to
     }
 
     // put to
+    cout << "putting to: " << to << endl;
     colkey = "to";
     msg_to_send = construct_msg(2, rowkey, colkey, to, "", "", 0);
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 

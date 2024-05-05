@@ -1190,7 +1190,6 @@ void *handle_connection(void *arg)
       else
       {
         F_2_B_Message msg_to_send, response_msg;
-        string backend_serveraddr_str = "127.0.0.1:6000";
         // get username from cookie
         std::string username = get_username_from_cookie(cookie, fd);
         if (!username.empty())
@@ -1229,7 +1228,6 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/sentbox" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -1279,7 +1277,6 @@ void *handle_connection(void *arg)
     {
       // /compose?mode=reply&email_id=123
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
@@ -1417,6 +1414,7 @@ void *handle_connection(void *arg)
       string invalid_recipients = "";
       for (const auto &usrname : recipients[0])
       {
+        cout << "check invalid recipients: " << usrname << endl;
         rowkey = usrname + "_info";
         colkey = "email";
         type = "get";
@@ -1549,7 +1547,6 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"].substr(0, 11) == "/view_email" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
