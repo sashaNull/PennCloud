@@ -18,5 +18,6 @@ mkdir -p logger
 (cd load_balancer && ./start_loadbalancer.sh)
 (cd backend_servers && ./start_servers.sh $backend_arg)
 (cd frontend_servers && ./start_servers.sh $frontend_arg)
+(cd frontend_servers && cd smtp && ./start_smtp.sh)
 
 echo "All services have been started and are logging to the 'logger' folder."

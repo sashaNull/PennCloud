@@ -32,35 +32,47 @@ unordered_map<string, string> parse_http_request(const string &request)
     istringstream request_stream(request);
     string request_line;
     getline(request_stream, request_line);
-    cout << request_line << endl;
+    cout << "Request Line: " << request_line << endl;
+
     istringstream request_line_stream(request_line);
     string method, uri, http_version;
     request_line_stream >> method >> uri >> http_version;
-
-    // TODO: save headers if needed
-    map<string, string> headers;
-    string header_line;
-    while (getline(request_stream, header_line) && header_line != "\r")
-    {
-        size_t delimiter_pos = header_line.find(':');
-        if (delimiter_pos != string::npos)
-        {
-            string header_name = header_line.substr(0, delimiter_pos);
-            string header_value = header_line.substr(delimiter_pos + 2, header_line.length() - delimiter_pos - 3);
-            headers[header_name] = header_value;
-        }
-    }
-
-    string body = string(istreambuf_iterator<char>(request_stream), {});
 
     unordered_map<string, string> result;
     result["method"] = method;
     result["uri"] = uri;
     result["http_version"] = http_version;
-    result["headers"] = "";
+
+    // Parse headers
+    unordered_map<string, string> headers;
+    string header_line;
+    while (getline(request_stream, header_line) && header_line != "\r" && !header_line.empty())
+    {
+        if (header_line.back() == '\r')
+        {
+            header_line.pop_back(); // Remove carriage return for compatibility with Windows
+        }
+        size_t delimiter_pos = header_line.find(':');
+        if (delimiter_pos != string::npos)
+        {
+            string header_name = header_line.substr(0, delimiter_pos);
+            string header_value = header_line.substr(delimiter_pos + 2); // Skip past the ": "
+            headers[header_name] = header_value;
+        }
+    }
+
+    // Parse body
+    string body = string(istreambuf_iterator<char>(request_stream), {});
+
+    // Adding headers to the result
+    for (const auto &header : headers)
+    {
+        result["header_" + header.first] = header.second;
+    }
+
     result["body"] = body;
 
-    cout << "end of parse" << endl;
+    cout << "End of parse" << endl;
     return result;
 }
 

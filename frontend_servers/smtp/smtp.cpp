@@ -190,26 +190,28 @@ void read_and_handle_data(int* fd, bool debug_mode) {
         if (command_to_check == ".\r\n") {
           // for each recipient...
           string ts = get_timestamp();
+          string encoded_ts = base64_encode(ts);
           string uid = compute_md5_hash(flatten_vector(mail_data));
           map<string, string> maildata_map = parse_mail_data(mail_data);
           string from = maildata_map["from"];
+          string encoded_from = base64_encode(from);
           string subject = maildata_map["subject"];
-          string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char*>(subject.c_str()), subject.length());
+          string encoded_subject = base64_encode(subject);
           string body = maildata_map["body"];
-          string encoded_body = base_64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), body.length());
+          string encoded_body = base64_encode(body);
           string for_display = format_mail_for_display(subject, from, ts, body);
-          string encoded_display = base_64_encode(reinterpret_cast<const unsigned char*>(for_display.c_str()), for_display.length());
+          string encoded_display = base64_encode(for_display);
           bool atleast_one_sent = false;
           for (const auto& recipient : mail_to) {
             string username = get_receiver_username(recipient);
-            cout << "SMTP | recipient: " << recipient << " | username: " << username;
-            if (deliver_local_email(username, uid, from, encoded_subject, encoded_body, encoded_display, 
+            if (deliver_local_email(username, uid, encoded_from, encoded_subject, encoded_body, encoded_display, 
                                     g_map_rowkey_to_server, g_coordinator_addr) == 0) {
               atleast_one_sent = true;
             }
           }
           string to = flatten_vector(mail_to);
-          put_email_to_backend(uid, from, to, ts, encoded_subject, encoded_body, 
+          string encoded_to = base64_encode(to);
+          put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts, encoded_subject, encoded_body, 
                               encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
           // send response
           string response;
