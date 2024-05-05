@@ -749,7 +749,7 @@ void* smtp_client(void* arg) {
             ((struct sockaddr_in*)res->ai_addr)->sin_port = htons(25);
 
             if (connect(fd, res->ai_addr, res->ai_addrlen) == 0) {
-                std::cout << "Connected to " << mx_host << std::endl;
+                std::cout << "CONNECTED TO SMTP SERVER " << mx_host << std::endl;
 
                 send_smtp_command(fd, ("HELO " + domain + "\r\n").c_str());
                 send_smtp_command(fd, ("MAIL FROM: <" + from + ">\r\n").c_str());
