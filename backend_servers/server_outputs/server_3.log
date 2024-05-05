@@ -214,1536 +214,2045 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
+[5] C: 1|muskaan_info|password|||0|0|
+This row is in new file: mn_mz
 0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 1|muskaan_info|password|||1|0|Rowkey does not exist
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] S: 1|muskaan_info|password|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
+[4] C: 1|muskaan_info|firstName|||0|0|
+This row is in new file: mn_mz
 0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 1|muskaan_info|firstName|||1|0|Rowkey does not exist
 
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] S: 1|muskaan_info|firstName|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
+[5] C: 2|muskaan_info|firstName|Muskaan||0|0|
+This row is in new file: mn_mz
 0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+Primary Port:6005
+Ignored message: WELCOME TO THE SERVER
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5, 6] S: 2|muskaan_info|firstName|Muskaan||0|0|
+[4] New connection
+[4] C: 2|muskaan_info|firstName|Muskaan||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+[5] S: 2|muskaan_info|firstName|Muskaan||0|0|Data written successfully
 [5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 2|m_info|firstName|Muskaan||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 2|m_info|firstName|Muskaan||0|1|Data written successfully
-
-[5] S: 2|m_info|firstName|Muskaan||0|1|Data written successfully
-[4] New connection
-[4] C: 2|m_info|email|mb@qw.compass||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 2|m_info|email|mb@qw.compass||0|1|Data written successfully
-
-[4] S: 2|m_info|email|mb@qw.compass||0|1|Data written successfully
-[6] New connection
-[6] C: 2|m_info|password|1111||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-Checkpointing the file: ka_km 3
-Logs cleared successfully.
-PRINTING SPECIAL: 2|m_info|password|1111||0|1|Data written successfully
-
-[6] S: 2|m_info|password|1111||0|1|Data written successfully
 [7] New connection
-[7] C: 2|m_email|inbox_items|||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 2|m_email|inbox_items|||0|1|Data written successfully
+[7] C: 1|muskaan_info|email|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_info|email|||1|0|Colkey does not exist
 
-[7] S: 2|m_email|inbox_items|||0|1|Data written successfully
-[8] New connection
-[8] C: 2|m_email|sentbox_items|||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 2|m_email|sentbox_items|||0|1|Data written successfully
+[7] S: 1|muskaan_info|email|||1|0|Colkey does not exist
+PRINTING SPECIAL: 2|muskaan_info|firstName|Muskaan||0|1|Data written successfully
 
-[8] S: 2|m_email|sentbox_items|||0|1|Data written successfully
-[9] New connection
-[9] C: 2|m_drive|items|[]||0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-Checkpointing the file: ka_km 3
-Logs cleared successfully.
-PRINTING SPECIAL: 2|m_drive|items|[]||0|1|Data written successfully
-
-[9] S: 2|m_drive|items|[]||0|1|Data written successfully
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[15] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[15] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[15] New connection
-[15] C: 4|m_drive|items|[]|[F@sample.pdf]|0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 4|m_drive|items|[]|[F@sample.pdf]|0|1|Colkey updated successfully
-
-[15] S: 4|m_drive|items|[]|[F@sample.pdf]|0|1|Colkey updated successfully
-[6] Connection closed!
-[4] Connection closed!
-[14] New connection
-[14] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[14] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[14] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[6] New connection
-[6] C: 4|m_drive|items|[F@sample.pdf]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|0|1|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 4|m_drive|items|[F@sample.pdf]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|0|1|Colkey updated successfully
-
-[6] S: 4|m_drive|items|[F@sample.pdf]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|0|1|Colkey updated successfully
-[15] Connection closed!
-[9] Connection closed!
-[8] Connection closed!
-[5] Connection closed!
+[4] S: 2|muskaan_info|firstName|Muskaan||0|1|Data written successfully
 [7] Connection closed!
+[5] New connection
+[5] C: 2|muskaan_info|email|mberiwal13@gmail.com||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_info to 6004
+[5, 7] S: 2|muskaan_info|email|mberiwal13@gmail.com||0|1|
+[5, 7] S: Received Response
+Sending a message with row key: k_m muskaan_info to 6005
+[5, 8] S: 2|muskaan_info|email|mberiwal13@gmail.com||0|1|
+[5, 8] S: Received Response
+PRINTING SPECIAL: 2|muskaan_info|email|mberiwal13@gmail.com||0|0|Data written successfully
+
+[5] S: 2|muskaan_info|email|mberiwal13@gmail.com||0|0|Data written successfully
+[5] Connection closed!
+[6] New connection
+[6] C: 1|muskaan_info|password|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_info|password|||1|0|Colkey does not exist
+
+[6] S: 1|muskaan_info|password|||1|0|Colkey does not exist
 [6] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-0 127.0.0.1:6003 127.0.0.1:6005
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_info|password|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_info|password|1111||0|0|
-
-[4] S: 1|m_info|password|1111||0|0|
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[4] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive/test.txt|content|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive/test.txt|content|||1|0|Rowkey does not exist
-
-[4] S: 1|m_drive/test.txt|content|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[4] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-Checkpointing the file: ka_km 3
+[5] C: 2|muskaan_info|password|1234||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
 Logs cleared successfully.
-Sending a message with row key: k_m m_drive to 6004
-Connection Failed
-PRINTING SPECIAL: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|0|0|Colkey updated successfully
+Sending a message with row key: k_m muskaan_info to 6004
+[5, 9] S: 2|muskaan_info|password|1234||0|1|
+[5, 9] S: Received Response
+Sending a message with row key: k_m muskaan_info to 6005
+[5, 14] S: 2|muskaan_info|password|1234||0|1|
+[5, 14] S: Received Response
+PRINTING SPECIAL: 2|muskaan_info|password|1234||0|0|Data written successfully
 
-[4] S: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|0|0|Colkey updated successfully
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive/test.txt|content|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive/test.txt|content|||1|0|Rowkey does not exist
-
-[5] S: 1|m_drive/test.txt|content|||1|0|Rowkey does not exist
+[5] S: 2|muskaan_info|password|1234||0|0|Data written successfully
 [5] Connection closed!
-[4] New connection
-[4] C: 2|m_drive/test.txt|content|ZGF0YTp0ZXh0L3BsYWluO2Jhc2U2NCxhRzlzWVNCb2IyeGhDblJvYVhNZ2FYTWdZU0IwWlhOMElHWnBiR1VL||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-Sending a message with row key: k_m m_drive/test.txt to 6004
-Connection Failed
-PRINTING SPECIAL: 2|m_drive/test.txt|content|ZGF0YTp0ZXh0L3BsYWluO2Jhc2U2NCxhRzlzWVNCb2IyeGhDblJvYVhNZ2FYTWdZU0IwWlhOMElHWnBiR1VL||0|0|Data written successfully
+[6] New connection
+[6] C: 2|muskaan_email|inbox_items|||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 2|muskaan_email|inbox_items|||0|1|Data written successfully
 
-[4] S: 2|m_drive/test.txt|content|ZGF0YTp0ZXh0L3BsYWluO2Jhc2U2NCxhRzlzWVNCb2IyeGhDblJvYVhNZ2FYTWdZU0IwWlhOMElHWnBiR1VL||0|0|Data written successfully
-[4] Connection closed!
+[6] S: 2|muskaan_email|inbox_items|||0|1|Data written successfully
 [5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
+[5] C: 2|muskaan_email|sentbox_items|||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 2|muskaan_email|sentbox_items|||0|1|Data written successfully
 
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-
-[4] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive/dummy.pdf|content|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive/dummy.pdf|content|||1|0|Rowkey does not exist
-
-[4] S: 1|m_drive/dummy.pdf|content|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-
-[4] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-[4] Connection closed!
-[5] New connection
-[5] C: 1|m_drive|items|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-
-[5] S: 1|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]||0|0|
-[5] Connection closed!
-[4] New connection
-[4] C: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt,F@dummy.pdf]|0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-Sending a message with row key: k_m m_drive to 6004
-Connection Failed
-PRINTING SPECIAL: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt,F@dummy.pdf]|0|0|Colkey updated successfully
-
-[4] S: 4|m_drive|items|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt]|[F@sample.pdf,F@jpeg-optimizer_dog.jpeg,F@test.txt,F@dummy.pdf]|0|0|Colkey updated successfully
-[5] New connection
-[4] Connection closed!
-[5] C: 1|m_drive/dummy.pdf|content|||0|0|
-This row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-PRINTING SPECIAL: 1|m_drive/dummy.pdf|content|||1|0|Rowkey does not exist
-
-[5] S: 1|m_drive/dummy.pdf|content|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 2|m_drive/dummy.pdf|content|JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nD2OywoCMQxF9/mKu3YRk7bptDAIDuh+oOAP+AAXgrOZ37etjmSTe3ISIljpDYGwwrKxRwrKGcsNlx1e31mt5UFTIYucMFiqcrlif1ZobP0do6g48eIPKE+ydk6aM0roJG/RegwcNhDr5tChd+z+miTJnWqoT/3oUabOToVmmvEBy5IoCgplbmRzdHJlYW0KZW5kb2JqCgozIDAgb2JqCjEzNAplbmRvYmoKCjUgMCBvYmoKPDwvTGVuZ3RoIDYgMCBSL0ZpbHRlci9GbGF0ZURlY29kZS9MZW5ndGgxIDIzMTY0Pj4Kc3RyZWFtCnic7Xx5fFvVlf+59z0tdrzIu7xFz1G8Kl7i2HEWE8vxQlI3iRM71A6ksSwrsYptKZYUE9omYStgloZhaSlMMbTsbSPLAZwEGgNlusxQ0mHa0k4Z8muhlJb8ynQoZVpi/b736nkjgWlnfn/8Pp9fpNx3zz33bPecc899T4oVHA55KIEOkUJO96DLvyQxM5WI/omIpbr3BbU/3J61FPBpItOa3f49g1948t/vI4rLIzL8dM/A/t3vn77ZSpT0LlH8e/0eV98jn3k0mSj7bchY2Q/EpdNXm4hyIIOW9g8Gr+gyrq3EeAPGVQM+t+uw5VrQ51yBcc6g6wr/DywvGAHegbE25Br0bFR/ezPGR4kq6/y+QPCnVBYl2ijka/5hjz95S8kmok8kEFl8wDG8xQtjZhRjrqgGo8kcF7+I/r98GY5TnmwPU55aRIhb9PWZNu2Nvi7mRM9/C2flx5r+itA36KeshGk0wf5MWfQ+y2bLaSOp9CdkyxE6S3dSOnXSXSyVllImbaeNTAWNg25m90T3Rd+ii+jv6IHoU+zq6GOY/yL9A70PC/5NZVRHm0G/nTz0lvIGdUeThis row is in new file: ka_km
-1 127.0.0.1:6003 127.0.0.1:6003
-Checkpointing the file: ka_km 3
+[5] S: 2|muskaan_email|sentbox_items|||0|1|Data written successfully
+[15] New connection
+[15] C: 2|muskaan_drive|items|[]||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
 Logs cleared successfully.
-PRINTING SPECIAL: 2|m_drive/dummy.pdf|content|JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nD2OywoCMQxF9/mKu3YRk7bptDAIDuh+oOAP+AAXgrOZ37etjmSTe3ISIljpDYGwwrKxRwrKGcsNlx1e31mt5UFTIYucMFiqcrlif1ZobP0do6g48eIPKE+ydk6aM0roJG/RegwcNhDr5tChd+z+miTJnWqoT/3oUabOToVmmvEBy5IoCgplbmRzdHJlYW0KZW5kb2JqCgozIDAgb2JqCjEzNAplbmRvYmoKCjUgMCBvYmoKPDwvTGVuZ3RoIDYgMCBSL0ZpbHRlci9GbGF0ZURlY29kZS9MZW5ndGgxIDIzMTY0Pj4Kc3RyZWFtCnic7Xx5fFvVlf+59z0tdrzIu7xFz1G8Kl7i2HEWE8vxQlI3iRM71A6ksSwrsYptKZYUE9omYStgloZhaSlMMbTsbSPLAZwEGgNlusxQ0mHa0k4Z8muhlJb8ynQoZVpi/b736nkjgWlnfn/8Pp9fpNx3zz33bPecc899T4oVHA55KIEOkUJO96DLvyQxM5WI/omIpbr3BbU/3J61FPBpItOa3f49g1948t/vI4rLIzL8dM/A/t3vn77ZSpT0LlH8e/0eV98jn3k0mSj7bchY2Q/EpdNXm4hyIIOW9g8Gr+gyrq3EeAPGVQM+t+uw5VrQ51yBcc6g6wr/DywvGAHegbE25Br0bFR/ezPGR4kq6/y+QPCnVBYl2ijka/5hjz95S8kmok8kEFl8wDG8xQtjZhRjrqgGo8kcF7+I/r98GY5TnmwPU55aRIhb9PWZNu2Nvi7mRM9/C2flx5r+itA36KeshGk0wf5MWfQ+y2bLaSOp9CdkyxE6S3dSOnXSXSyVllImbaeNTAWNg25m90T3Rd+ii+jv6IHoU+zq6GOY/yL9A70PC/5NZVRHm0G/nTz0lvIGdUe||0|2|Data written successfully
+PRINTING SPECIAL: 2|muskaan_drive|items|[]||0|1|Data written successfully
 
-[4] S: 2|m_drive/dummy.pdf|content|JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nD2OywoCMQxF9/mKu3YRk7bptDAIDuh+oOAP+AAXgrOZ37etjmSTe3ISIljpDYGwwrKxRwrKGcsNlx1e31mt5UFTIYucMFiqcrlif1ZobP0do6g48eIPKE+ydk6aM0roJG/RegwcNhDr5tChd+z+miTJnWqoT/3oUabOToVmmvEBy5IoCgplbmRzdHJlYW0KZW5kb2JqCgozIDAgb2JqCjEzNAplbmRvYmoKCjUgMCBvYmoKPDwvTGVuZ3RoIDYgMCBSL0ZpbHRlci9GbGF0ZURlY29kZS9MZW5ndGgxIDIzMTY0Pj4Kc3RyZWFtCnic7Xx5fFvVlf+59z0tdrzIu7xFz1G8Kl7i2HEWE8vxQlI3iRM71A6ksSwrsYptKZYUE9omYStgloZhaSlMMbTsbSPLAZwEGgNlusxQ0mHa0k4Z8muhlJb8ynQoZVpi/b736nkjgWlnfn/8Pp9fpNx3zz33bPecc899T4oVHA55KIEOkUJO96DLvyQxM5WI/omIpbr3BbU/3J61FPBpItOa3f49g1948t/vI4rLIzL8dM/A/t3vn77ZSpT0LlH8e/0eV98jn3k0mSj7bchY2Q/EpdNXm4hyIIOW9g8Gr+gyrq3EeAPGVQM+t+uw5VrQ51yBcc6g6wr/DywvGAHegbE25Br0bFR/ezPGR4kq6/y+QPCnVBYl2ijka/5hjz95S8kmok8kEFl8wDG8xQtjZhRjrqgGo8kcF7+I/r98GY5TnmwPU55aRIhb9PWZNu2Nvi7mRM9/C2flx5r+itA36KeshGk0wf5MWfQ+y2bLaSOp9CdkyxE6S3dSOnXSXSyVllImbaeNTAWNg25m90T3Rd+ii+jv6IHoU+zq6GOY/yL9A70PC/5NZVRHm0G/nTz0lvIGdUe||0|2|Data written successfully
-[4] C: Qma6nhbRWtrGMslFP8H7j7DhdrqDvs0+F30fWtPpasirp0ZqjD4b/YDK6Gb1sOGVuCfoNjrBjFF31EuLaQmNckf0J9HXqIi66Wv0DdjkYFPqBiqgy+k6+jLLVv4B0J30dZpmCXyn0mQ4CU0b6RIaohEapcfoByyVtRteMbwT/Wz0TTJSGpXAJi+9xWrZJv6gmhBdF/05XUrH6HtYr3hPqZeqDxsunW6I/n30Ocqgp1g8e5o9a6g23Hr2quj90W8hI4toOTyyGXp66Rp6lr5P/05/4AejB2kDdUDzCyyfaawIHv8Jz+YH+AHlZarAanfC2hDdR2FE5DidoGfgm3+l0/QGS2e57BOsl93G/sATeB9/SblHOar8i8rUR+FvOxXCR0F6kJ7Efn6RXmIGyK9i7ewzzMe+xP6eneZh/jb/k2pWr1H/op41FE2fnv5LdHP0j2SlHPokXUkH4duv0QQdpR/Sj+kP9B/0HrOwVayf3c/C7DR7m8fxJXwL9/O7+IP8m8pm5TblWbVWXa9err6o/tzwBcNNJpdp+oOHpm+f/ub0j6JPRX+E3EmC/CJqhUevQlY8SCfpZUj/Gb1KvxT5A/lr2Q72aWgJsBvYHeyb7AX2I/ZbrJLkewlfy5uh1ceH4aer+e38Dmh/Ce9T/Of8Vf47/kfFoCxRVip7lfuVsDKpnFJ+rVrUIrVCXa5uUXeoUUSm2nCxocPwiOFxw3OGd4z1xj6j3/gb09Wma83/dLbs7L9N03T/dHh6ArlrRiZdCU98lR5A3h9FDH4Aj/4QFp+mdxGFHFbAimH3atbK2tgm9il2GfOwq9n17O/Yl9k97AH2LawAa+Am2O7gjbyDu7iHX8uv57fwo3gf59/nP+Gv8DOwPEuxKw5lubJR2aFcqgxhDUHlgHItPHub8pjykvKy8qbyG+UMopalLlZD6pXq3erD6lH1R4ZPGgbxfsBw0jBl+JHhA8MHRm7MMeterminate called after throwing an instance of 'std::invalid_argument'
-  what():  stoi
+[15] S: 2|muskaan_drive|items|[]||0|1|Data written successfully
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[17] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[17] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[17] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[17] Connection closed!
+[16] New connection
+[16] C: 1|muskaan_info|password|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_info|password|1234||0|0|
+
+[16] S: 1|muskaan_info|password|1234||0|0|
+[16] Connection closed!
+[17] New connection
+[17] C: 1|muskaan_info|password|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_info|password|1234||0|0|
+
+[17] S: 1|muskaan_info|password|1234||0|0|
+[17] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[17] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[17] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[17] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[17] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[17] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[17] Connection closed!
+[16] New connection
+[16] C: 1|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(6).txt|content|||1|0|Rowkey does not exist
+
+[16] S: 1|muskaan_drive/test(6).txt|content|||1|0|Rowkey does not exist
+[16] Connection closed!
+[17] New connection
+[17] C: 4|muskaan_drive|items|[]|[F@test(6).txt]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+[16] New connection
+[16] C: 1|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+PRINTING SPECIAL: 4|muskaan_drive|items|[]|[F@test(6).txt]|0|1|Colkey updated successfully
+
+[17] S: 4|muskaan_drive|items|[]|[F@test(6).txt]|0|1|Colkey updated successfully
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(6).txt|content|||1|0|Rowkey does not exist
+
+[16] S: 1|muskaan_drive/test(6).txt|content|||1|0|Rowkey does not exist
+[16] Connection closed!
+[19] New connection
+[19] C: 2|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/test(6).txt to 6004
+[19, 18] S: 2|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|1|
+[19, 18] S: Received Response
+Sending a message with row key: k_m muskaan_drive/test(6).txt to 6005
+[19, 20] S: 2|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|1|
+[19, 20] S: Received Response
+PRINTING SPECIAL: 2|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|Data written successfully
+
+[19] S: 2|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|Data written successfully
+[19] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[19] New connection
+[19] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[19] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[19] Connection closed!
+[16] New connection
+[16] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[16] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[16] Connection closed!
+[19] New connection
+[19] C: 1|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(5).txt|content|||1|0|Rowkey does not exist
+
+[19] S: 1|muskaan_drive/test(5).txt|content|||1|0|Rowkey does not exist
+[19] Connection closed!
+[16] New connection
+[16] C: 4|muskaan_drive|items|[F@test(6).txt]|[F@test(6).txt,F@test(5).txt]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+[19] New connection
+[19] C: 1|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+Checkpointing the file: mn_mz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 1|muskaan_drive/test(5).txt|content|||1|0|Rowkey does not exist
+
+[19] S: 1|muskaan_drive/test(5).txt|content|||1|0|Rowkey does not exist
+[19] Connection closed!
+[22] New connection
+Logs cleared successfully.
+PRINTING SPECIAL: 4|muskaan_drive|items|[F@test(6).txt]|[F@test(6).txt,F@test(5).txt]|0|1|Colkey updated successfully
+
+[16] S: 4|muskaan_drive|items|[F@test(6).txt]|[F@test(6).txt,F@test(5).txt]|0|1|Colkey updated successfully
+[22] C: 2|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/test(5).txt to 6004
+[22, 19] S: 2|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[22, 19] S: Received Response
+Sending a message with row key: k_m muskaan_drive/test(5).txt to 6005
+[22, 23] S: 2|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[22, 23] S: Received Response
+PRINTING SPECIAL: 2|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+
+[22] S: 2|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+[22] Connection closed!
+[21] New connection
+[21] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[21] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[21] Connection closed!
+[22] New connection
+[22] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[22] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[22] Connection closed!
+[21] New connection
+[21] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[21] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[21] Connection closed!
+[22] New connection
+[22] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[22] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[22] Connection closed!
+[21] New connection
+[21] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[21] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[21] Connection closed!
+[22] New connection
+[22] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[22] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[22] Connection closed!
+[21] New connection
+[21] C: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt]|[F@test(6).txt,F@test(5).txt,D@hw1]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt]|[F@test(6).txt,F@test(5).txt,D@hw1]|0|1|Colkey updated successfully
+
+[21] S: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt]|[F@test(6).txt,F@test(5).txt,D@hw1]|0|1|Colkey updated successfully
+[22] New connection
+[22] C: 2|muskaan_drive/hw1|items|[]||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 2|muskaan_drive/hw1|items|[]||0|1|Data written successfully
+
+[22] S: 2|muskaan_drive/hw1|items|[]||0|1|Data written successfully
+[24] New connection
+[24] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[24] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[24] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[24] New connection
+[24] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[24] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[24] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|||1|0|Rowkey does not exist
+
+[25] S: 1|muskaan_drive/hw2|items|||1|0|Rowkey does not exist
+[25] Connection closed!
+[24] New connection
+[24] C: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1]|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+[25] New connection
+PRINTING SPECIAL: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1]|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|0|1|Colkey updated successfully
+
+[24] S: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1]|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|0|1|Colkey updated successfully
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|||1|0|Rowkey does not exist
+
+[25] S: 1|muskaan_drive/hw2|items|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 2|muskaan_drive/hw2|items|[]||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw2 to 6004
+[27, 26] S: 2|muskaan_drive/hw2|items|[]||0|1|
+[27, 26] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2 to 6005
+[27, 28] S: 2|muskaan_drive/hw2|items|[]||0|1|
+[27, 28] S: Received Response
+PRINTING SPECIAL: 2|muskaan_drive/hw2|items|[]||0|0|Data written successfully
+
+[27] S: 2|muskaan_drive/hw2|items|[]||0|0|Data written successfully
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[27] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[]||0|0|
+
+[25] S: 1|muskaan_drive/hw2|items|[]||0|0|
+[25] Connection closed!
+[27] New connection
+[27] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[]||0|0|
+
+[27] S: 1|muskaan_drive/hw2|items|[]||0|0|
+[27] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2/test(5).txt|content|||1|0|Rowkey does not exist
+
+[25] S: 1|muskaan_drive/hw2/test(5).txt|content|||1|0|Rowkey does not exist
+[25] Connection closed!
+[27] New connection
+[27] C: 1|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[27] S: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[27] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[25] S: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[27] New connection
+[25] Connection closed!
+[27] C: 1|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2/test(5).txt|content|||1|0|Rowkey does not exist
+
+[27] S: 1|muskaan_drive/hw2/test(5).txt|content|||1|0|Rowkey does not exist
+[27] Connection closed!
+[25] New connection
+[25] C: 2|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+Logs cleared successfully.
+Sending a message with row key: k_m muskaan_drive/hw2/test(5).txt to 6004
+[25, 29] S: 2|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[25, 29] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2/test(5).txt to 6005
+[25, 30] S: 2|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[25, 30] S: Received Response
+PRINTING SPECIAL: 2|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+
+[25] S: 2|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+[25] Connection closed!
+[27] New connection
+[27] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[]||0|0|
+
+[27] S: 1|muskaan_drive/hw2|items|[]||0|0|
+[27] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[]||0|0|
+
+[25] S: 1|muskaan_drive/hw2|items|[]||0|0|
+[25] Connection closed!
+[27] New connection
+[27] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[]||0|0|
+
+[27] S: 1|muskaan_drive/hw2|items|[]||0|0|
+[27] Connection closed!
+[25] New connection
+[25] C: 4|muskaan_drive/hw2|items|[]|[F@test(5).txt]|0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw2 to 6004
+[25, 31] S: 4|muskaan_drive/hw2|items|[]|[F@test(5).txt]|0|1|
+[25, 31] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2 to 6005
+[25, 32] S: 4|muskaan_drive/hw2|items|[]|[F@test(5).txt]|0|1|
+[25, 32] S: Received Response
+PRINTING SPECIAL: 4|muskaan_drive/hw2|items|[]|[F@test(5).txt]|0|0|Colkey updated successfully
+
+[25] S: 4|muskaan_drive/hw2|items|[]|[F@test(5).txt]|0|0|Colkey updated successfully
+[25] Connection closed!
+[27] New connection
+[27] C: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|[F@test(6).txt,D@hw1,D@hw2]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|[F@test(6).txt,D@hw1,D@hw2]|0|1|Colkey updated successfully
+
+[27] S: 4|muskaan_drive|items|[F@test(6).txt,F@test(5).txt,D@hw1,D@hw2]|[F@test(6).txt,D@hw1,D@hw2]|0|1|Colkey updated successfully
+[25] New connection
+[25] C: 1|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[25] S: 1|muskaan_drive/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[25] Connection closed!
+[33] New connection
+[33] C: 3|muskaan_drive/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+Logs cleared successfully.
+Sending a message with row key: k_m muskaan_drive/test(5).txt to 6004
+[33, 34] S: 3|muskaan_drive/test(5).txt|content|||0|1|
+[33, 34] S: Received Response
+Sending a message with row key: k_m muskaan_drive/test(5).txt to 6005
+[33, 35] S: 3|muskaan_drive/test(5).txt|content|||0|1|
+[33, 35] S: Received Response
+PRINTING SPECIAL: 3|muskaan_drive/test(5).txt|content|||0|0|Colkey deleted successfully
+
+[33] S: 3|muskaan_drive/test(5).txt|content|||0|0|Colkey deleted successfully
+[33] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[25] New connection
+[25] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[25] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[25] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+
+[33] S: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+[33] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+
+[25] S: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+[25] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+
+[33] S: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+[25] New connection
+[33] Connection closed!
+[25] C: 1|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+
+[25] S: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+[25] Connection closed!
+[36] New connection
+[36] C: 2|muskaan_drive/hw2/test(6).txt|content|aG9sYSBob2xhCg==||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+[25] New connection
+PRINTING SPECIAL: 2|muskaan_drive/hw2/test(6).txt|content|aG9sYSBob2xhCg==||0|1|Data written successfully
+
+[36] S: 2|muskaan_drive/hw2/test(6).txt|content|aG9sYSBob2xhCg==||0|1|Data written successfully
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+
+[25] S: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+[25] Connection closed!
+[37] New connection
+[37] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+
+[37] S: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+[37] Connection closed!
+[25] New connection
+[25] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+
+[25] S: 1|muskaan_drive/hw2|items|[F@test(5).txt]||0|0|
+[25] Connection closed!
+[33] New connection
+[33] C: 4|muskaan_drive/hw2|items|[F@test(5).txt]|[F@test(5).txt,F@test(6).txt]|0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw2 to 6004
+[33, 37] S: 4|muskaan_drive/hw2|items|[F@test(5).txt]|[F@test(5).txt,F@test(6).txt]|0|1|
+[33, 37] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2 to 6005
+[33, 38] S: 4|muskaan_drive/hw2|items|[F@test(5).txt]|[F@test(5).txt,F@test(6).txt]|0|1|
+[33, 38] S: Received Response
+PRINTING SPECIAL: 4|muskaan_drive/hw2|items|[F@test(5).txt]|[F@test(5).txt,F@test(6).txt]|0|0|Colkey updated successfully
+
+[33] S: 4|muskaan_drive/hw2|items|[F@test(5).txt]|[F@test(5).txt,F@test(6).txt]|0|0|Colkey updated successfully
+[33] Connection closed!
+[25] New connection
+[25] C: 4|muskaan_drive|items|[F@test(6).txt,D@hw1,D@hw2]|[D@hw1,D@hw2]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+[33] New connection
+[33] C: 1|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Logs cleared successfully.
+PRINTING SPECIAL: 4|muskaan_drive|items|[F@test(6).txt,D@hw1,D@hw2]|[D@hw1,D@hw2]|0|1|Colkey updated successfully
+
+[25] S: 4|muskaan_drive|items|[F@test(6).txt,D@hw1,D@hw2]|[D@hw1,D@hw2]|0|1|Colkey updated successfully
+PRINTING SPECIAL: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+
+[33] S: 1|muskaan_drive/test(6).txt|content|aG9sYSBob2xhCg==||0|0|
+[33] Connection closed!
+[40] New connection
+[40] C: 3|muskaan_drive/test(6).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/test(6).txt to 6004
+[40, 39] S: 3|muskaan_drive/test(6).txt|content|||0|1|
+[40, 39] S: Received Response
+Sending a message with row key: k_m muskaan_drive/test(6).txt to 6005
+[40, 41] S: 3|muskaan_drive/test(6).txt|content|||0|1|
+[40, 41] S: Received Response
+PRINTING SPECIAL: 3|muskaan_drive/test(6).txt|content|||0|0|Colkey deleted successfully
+
+[40] S: 3|muskaan_drive/test(6).txt|content|||0|0|Colkey deleted successfully
+[40] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+
+[40] S: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+[40] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+
+[33] S: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+[33] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[33] New connection
+[33] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[33] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw1/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw1/test(5).txt|content|||1|0|Rowkey does not exist
+
+[40] S: 1|muskaan_drive/hw1/test(5).txt|content|||1|0|Rowkey does not exist
+[40] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[33] S: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[33] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[40] S: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[40] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/hw1/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw1/test(5).txt|content|||1|0|Rowkey does not exist
+
+[33] S: 1|muskaan_drive/hw1/test(5).txt|content|||1|0|Rowkey does not exist
+[33] Connection closed!
+[40] New connection
+[40] C: 2|muskaan_drive/hw1/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw1/test(5).txt to 6004
+[40, 42] S: 2|muskaan_drive/hw1/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[40, 42] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw1/test(5).txt to 6005
+[40, 43] S: 2|muskaan_drive/hw1/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|1|
+[40, 43] S: Received Response
+PRINTING SPECIAL: 2|muskaan_drive/hw1/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+
+[40] S: 2|muskaan_drive/hw1/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|Data written successfully
+[40] Connection closed!
+[33] New connection
+[33] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+
+[33] S: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+[33] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+
+[40] S: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+[40] Connection closed!
+[33] New connection
+[33] C: 4|muskaan_drive/hw1|items|[]|[F@test(5).txt]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+[40] New connection
+[40] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+Logs cleared successfully.
+PRINTING SPECIAL: 4|muskaan_drive/hw1|items|[]|[F@test(5).txt]|0|1|Colkey updated successfully
+
+[33] S: 4|muskaan_drive/hw1|items|[]|[F@test(5).txt]|0|1|Colkey updated successfully
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+
+[40] S: 1|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]||0|0|
+[40] Connection closed!
+[45] New connection
+[45] C: 4|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]|[F@test(6).txt]|0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw2 to 6004
+[45, 44] S: 4|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]|[F@test(6).txt]|0|1|
+[45, 44] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2 to 6005
+[45, 46] S: 4|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]|[F@test(6).txt]|0|1|
+[45, 46] S: Received Response
+PRINTING SPECIAL: 4|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]|[F@test(6).txt]|0|0|Colkey updated successfully
+
+[45] S: 4|muskaan_drive/hw2|items|[F@test(5).txt,F@test(6).txt]|[F@test(6).txt]|0|0|Colkey updated successfully
+[45] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+
+[40] S: 1|muskaan_drive/hw2/test(5).txt|content|aG9sYSBob2xhCnRoaXMgaXMgYSB0ZXN0IGZpbGUK||0|0|
+[40] Connection closed!
+[45] New connection
+[45] C: 3|muskaan_drive/hw2/test(5).txt|content|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Sending a message with row key: k_m muskaan_drive/hw2/test(5).txt to 6004
+[45, 47] S: 3|muskaan_drive/hw2/test(5).txt|content|||0|1|
+[45, 47] S: Received Response
+Sending a message with row key: k_m muskaan_drive/hw2/test(5).txt to 6005
+[45, 48] S: 3|muskaan_drive/hw2/test(5).txt|content|||0|1|
+[45, 48] S: Received Response
+PRINTING SPECIAL: 3|muskaan_drive/hw2/test(5).txt|content|||0|0|Colkey deleted successfully
+
+[45] S: 3|muskaan_drive/hw2/test(5).txt|content|||0|0|Colkey deleted successfully
+[45] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+
+[40] S: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+[40] Connection closed!
+[45] New connection
+[45] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+
+[45] S: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+
+[45] S: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+[45] Connection closed!
+[40] New connection
+[40] C: 1|muskaan_drive/hw2|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+
+[40] S: 1|muskaan_drive/hw2|items|[F@test(6).txt]||0|0|
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[45] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[45] Connection closed!
+[40] New connection
+[40] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[40] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[40] Connection closed!
+[45] New connection
+[45] C: 4|muskaan_drive|items|[D@hw1,D@hw2]|[D@hw1,D@hw2,D@hw3]|0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Checkpointing the file: mn_mz 3
+[40] New connection
+[40] C: 2|muskaan_drive/hw3|items|[]||0|1|
+This row is in new file: mn_mz
+1 127.0.0.1:6005 127.0.0.1:6005
+Logs cleared successfully.
+PRINTING SPECIAL: 4|muskaan_drive|items|[D@hw1,D@hw2]|[D@hw1,D@hw2,D@hw3]|0|1|Colkey updated successfully
+
+[45] S: 4|muskaan_drive|items|[D@hw1,D@hw2]|[D@hw1,D@hw2,D@hw3]|0|1|Colkey updated successfully
+PRINTING SPECIAL: 2|muskaan_drive/hw3|items|[]||0|1|Data written successfully
+
+[40] S: 2|muskaan_drive/hw3|items|[]||0|1|Data written successfully
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[50] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[50] Connection closed!
+[49] New connection
+[49] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[49] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[49] Connection closed!
+[50] New connection
+[50] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+1 127.0.0.1:6005 127.0.0.1:6005
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
