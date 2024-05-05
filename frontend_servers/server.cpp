@@ -1695,7 +1695,7 @@ void *handle_connection(void *arg)
           string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
           cout << "delete email with uid: " << uid << " from " << source << endl;
-          delete_email(fd, username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
+          delete_email(username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
           std::string redirect_to =  "/" + source;
           redirect(client_fd, redirect_to);
         }
