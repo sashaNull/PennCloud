@@ -558,7 +558,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         // Delete file content
-        // backend_serveraddr_str = "127.0.0.1:6000";
         string row_key = username + "_" + oldFolderPath + "/" + itemName;
 
         std::cout << "row key for delete file: " << row_key << std::endl;
@@ -727,7 +726,7 @@ void *handle_connection(void *arg)
       else
       {
         // Redirect to login
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
     }
 
@@ -872,7 +871,7 @@ void *handle_connection(void *arg)
         }
 
         // if successful, ask browser to redirect to /login
-        string redirect_to = "http://" + g_serveraddr_str + "/login";
+        string redirect_to =  "/login";
         redirect(client_fd, redirect_to);
       }
       else if (get_response_status == 0)
@@ -908,7 +907,7 @@ void *handle_connection(void *arg)
       else
       {
         // Redirect to login
-        redirect(client_fd, "http://" + g_serveraddr_str + "/home");
+        redirect(client_fd,  "/home");
       }
     }
 
@@ -992,7 +991,7 @@ void *handle_connection(void *arg)
           }
 
           // Redirect to home page with the cookie
-          redirect_with_cookie(client_fd, "http://" + g_serveraddr_str + "/home", cookie);
+          redirect_with_cookie(client_fd,  "/home", cookie);
         }
         else
         {
@@ -1016,7 +1015,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1035,7 +1034,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1096,7 +1095,7 @@ void *handle_connection(void *arg)
       else if (reset_response_status == 0)
       {
         // Password reset successful, redirect to login page
-        string redirect_to = "http://" + g_serveraddr_str + "/login";
+        string redirect_to =  "/login";
         redirect(client_fd, redirect_to);
       }
       else
@@ -1170,15 +1169,15 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
         // Redirect to home
-        redirect(client_fd, "http://" + g_serveraddr_str + "/home");
+        redirect(client_fd,  "/home");
       }
 
-      string redirect_to = "http://" + g_serveraddr_str + "/login";
+      string redirect_to =  "/login";
       redirect(client_fd, redirect_to);
     }
     // GET: /inbox
@@ -1188,7 +1187,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1224,7 +1223,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -1238,7 +1237,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1272,7 +1271,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -1289,7 +1288,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1389,7 +1388,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -1535,7 +1534,7 @@ void *handle_connection(void *arg)
         cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
       }
 
-      std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
+      std::string redirect_to =  "/inbox";
       redirect(client_fd, redirect_to);
     }
 
@@ -1550,7 +1549,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1666,7 +1665,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -1678,7 +1677,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -1691,13 +1690,13 @@ void *handle_connection(void *arg)
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
           cout << "delete email with uid: " << uid << " from " << source << endl;
           delete_email(fd, username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
-          std::string redirect_to = "http://" + g_serveraddr_str + "/" + source;
+          std::string redirect_to =  "/" + source;
           redirect(client_fd, redirect_to);
         }
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -1712,7 +1711,7 @@ void *handle_connection(void *arg)
       {
         // Redirect to login for all other pages
         cout << "Going from drive to home" << endl;
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2119,7 +2118,7 @@ void *handle_connection(void *arg)
         {
           // Handle unauthenticated or failed lookup
           cout << "Drive me error" << endl;
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -2135,7 +2134,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2314,7 +2313,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -2326,7 +2325,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2517,7 +2516,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -2529,7 +2528,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2605,7 +2604,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -2617,7 +2616,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2796,7 +2795,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -2804,14 +2803,13 @@ void *handle_connection(void *arg)
     // Handle POST request to rename a folder
     else if (html_request_map["uri"] == "/rename_folder" && html_request_map["method"] == "POST")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -2838,32 +2836,77 @@ void *handle_connection(void *arg)
           string row_key = username + "_" + oldFolderPath;
           string new_row_key = username + "_" + newFolderPath;
 
-          // Check whether folder already exists in this directory
-          F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "items", "", "", "", 0);
-          F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+          F_2_B_Message msg_to_send;
+          string response_value, response_error_msg;
+          int response_status, response_code;
+          string rowkey = new_row_key;
+          string type = "get";
+          string colkey = "items";
+          msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+          response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                              response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+          if (response_code == 1)
+          {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            continue;
+          }
+          else if (response_code == 2)
+          {
+            cerr << "ERROR in communicating with backend" << endl;
+            continue;
+          }                                    
 
-          std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
+          std::cout << "RESPONSE: " << response_error_msg << std::endl;
 
-          if (response_msg_get.status == 0)
+          if (response_status == 0)
           {
             // file already exists
             string content = "{\"error\":\"Folder with same name already exists!!\"}";
             send_response(client_fd, 409, "Conflict", "application/json", content);
           }
-          else if (response_msg_get.status == 1)
+          else if (response_status == 1)
           {
 
             // Recursively rename folder
             renameFolder(oldFolderPath, newFolderPath, client_fd, fd, username);
 
             // GET old folder and PUT folder path with new folder name
-            F_2_B_Message msg_to_send_get = construct_msg(1, row_key, "items", "", "", "", 0);
-            F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
-
-            F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "items", response_msg_get.value, "", "", 0);
-            F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
-
-            if (response_msg_put.status != 0)
+            msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                              response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+            if (response_code == 1)
+            {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
+            F_2_B_Message msg_to_send_put;
+            string response_value_put, response_error_msg_put;
+            int response_status_put, response_code_put;
+            string rowkey = new_row_key;
+            string type = "put";
+            string colkey = "items";
+            msg_to_send_put = construct_msg(2, rowkey, colkey, response_value, "", "", 0);
+            response_code_put = send_msg_to_backend(fd, msg_to_send_put, response_value_put, response_status_put,
+                                              response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+            if (response_code == 1)
+            {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
+            if (response_status_put != 0)
             {
               // Error handling: send appropriate error response to the client
               string error_message = "Failed to create new path";
@@ -2875,10 +2918,27 @@ void *handle_connection(void *arg)
 
             std::cout << "Sending delete for: " << row_key << std::endl;
 
-            F_2_B_Message msg_to_send_delete = construct_msg(3, row_key, "items", "", "", "", 0);
-            F_2_B_Message response_msg_delete = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete);
-
-            if (response_msg_delete.status != 0)
+            F_2_B_Message msg_to_send_delete;
+            string response_value_delete, response_error_msg_delete;
+            int response_status_delete, response_code_delete;
+             rowkey = new_row_key;
+             type = "delete";
+             colkey = "items";
+            msg_to_send_delete = construct_msg(3, row_key, colkey, "", "", "", 0);
+            response_code_delete = send_msg_to_backend(fd, msg_to_send_delete, response_value_delete, response_status_delete,
+                                              response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+            if (response_code == 1)
+            {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
+            if (response_status_delete != 0)
             {
               // Error handling: send appropriate error response to the client
               string error_message = "Failed to delete folder";
@@ -2900,15 +2960,32 @@ void *handle_connection(void *arg)
 
               while (!success)
               {
+                 F_2_B_Message msg_to_send_get;
+                string response_value_get, response_error_msg_get;
+                int response_status_get, response_code_get;
+                string rowkey = parentRowKey;
+                string type = "get";
+                string colkey = "items";
+                msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                response_code_get = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
+                                                  response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
                 // GET request for the parent folder
-                F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-                F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
-
-                if (response_msg_get.status == 0)
+                if (response_code == 1)
+                {
+                  cerr << "ERROR in communicating with coordinator" << endl;
+                  continue;
+                }
+                else if (response_code == 2)
+                {
+                  cerr << "ERROR in communicating with backend" << endl;
+                  continue;
+                }
+                if (response_status_get == 0)
                 {
                   std::string newValue;
 
-                  if (response_msg_get.value == "[]")
+                  if (response_value_get == "[]")
                   {
                     // No items in parent folder
                     newValue = "[]";
@@ -2916,7 +2993,7 @@ void *handle_connection(void *arg)
                   else
                   {
                     // Remove the deleted folder from parent folder's items
-                    vector<string> parentItems = parse_items_list(response_msg_get.value);
+                    vector<string> parentItems = parse_items_list(response_value_get);
 
                     // Define the item to be removed (folderPath preceded by "D@" for directories)
                     string itemToRemove = "D@" + folderName;
@@ -2944,26 +3021,44 @@ void *handle_connection(void *arg)
 
                     std::cout << "New value after deletion in parent: " << newValue << std::endl;
                   }
-
+                  F_2_B_Message msg_to_send_cput;
+                  string response_value_cput, response_error_msg_cput;
+                  int response_status_cput, response_code_cput;
+                  string rowkey = parentRowKey;
+                  string type = "cput";
+                  string colkey = "items";
+                  msg_to_send_cput = construct_msg(4, rowkey, colkey, response_value_get, newValue, "", 0);
+                  response_code_cput = send_msg_to_backend(fd, msg_to_send_cput, response_value_cput, response_status_cput,
+                                                    response_error_msg_cput, rowkey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
                   // CPUT the parent folder
-                  F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-                  F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+                  if (response_code == 1)
+                  {
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
+                  }
+                  else if (response_code == 2)
+                  {
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
+                  
 
-                  if (response_msg_cput.status == 0)
+                  if (response_status_cput == 0)
                   {
                     success = true;
                     // Success response
                     string refresh_script = "<script>window.location.reload(true);</script>";
                     send_response(client_fd, 200, "OK", "text/html", refresh_script);
                   }
-                  else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Rowkey does not exist")
+                  else if (response_status_cput == 1 && strip(response_error_msg_cput) == "Rowkey does not exist")
                   {
                     // Parent folder does not exist - Construct and send the HTTP response
                     string content = "{\"error\":\"Parent folder does not exist\"}";
                     send_response(client_fd, 404, "Not Found", "application/json", content);
                     break; // Exit loop if parent folder doesn't exist
                   }
-                  else if (response_msg_cput.status == 1 && strip(response_msg_cput.errorMessage) == "Current value is not v1")
+                  else if (response_status_cput == 1 && strip(response_error_msg_cput) == "Current value is not v1")
                   {
                     // Old value is wrong - Construct and send the HTTP response
                     string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
@@ -2991,7 +3086,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -3005,7 +3100,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -3206,7 +3301,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -3220,7 +3315,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -3388,7 +3483,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -3402,7 +3497,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -3546,7 +3641,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
@@ -3560,7 +3655,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd,  "/login");
       }
       else
       {
@@ -3722,7 +3817,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+          redirect(client_fd,  "/login");
         }
       }
     }
