@@ -208,7 +208,7 @@ void read_and_handle_data(int* fd, bool debug_mode) {
             }
           }
           string to = flatten_vector(mail_to);
-          put_email_to_backend(backend_fd, uid, from, to, ts, encoded_subject, encoded_body, 
+          put_email_to_backend(uid, from, to, ts, encoded_subject, encoded_body, 
                               encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
           // send response
           string response;

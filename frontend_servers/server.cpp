@@ -24,8 +24,6 @@
 #include "./admin.h"
 using namespace std;
 
-// TODO: take away later
-string g_username;
 
 // Global mutex declaration
 pthread_mutex_t map_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -919,8 +917,7 @@ void *handle_connection(void *arg)
       string username = form_data["username"];
       string password = form_data["password"];
       transform(username.begin(), username.end(), username.begin(), ::tolower);
-      // TODO: take out
-      // g_username = username;
+
       // START COORDINATOR
       string response_value, get_response_value;
       string response_error_msg, get_response_error_msg;
@@ -1398,8 +1395,16 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "POST")
     {
       // TODO: get from field from cookies
-      string from = g_username + "@localhost";
-      string from_username = g_username;
+      std::string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        // Redirect to login for all other pages
+        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+      }
+      else
+      {
+      string from_username = get_username_from_cookie(cookie, fd);
+      string from = from_username + "@localhost";
 
       F_2_B_Message msg_to_send;
       string response_value, response_error_msg;
@@ -1477,7 +1482,7 @@ void *handle_connection(void *arg)
       // deliver for external recipients
       for (const auto &r : recipients[1])
       {
-        string dummy_from = g_username + "@seas.upenn.edu";
+        string dummy_from = from_username + "@seas.upenn.edu";
         pthread_t thread_id;
         auto *data = new std::map<std::string, std::string>{
             {"to", r},
@@ -1537,6 +1542,7 @@ void *handle_connection(void *arg)
 
       std::string redirect_to = "http://" + g_serveraddr_str + "/inbox";
       redirect(client_fd, redirect_to);
+    }
     }
 
     // GET: view_email
