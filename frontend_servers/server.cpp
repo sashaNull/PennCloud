@@ -24,7 +24,6 @@
 #include "./admin.h"
 using namespace std;
 
-
 // Global mutex declaration
 pthread_mutex_t map_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -56,61 +55,195 @@ string generate_cookie()
   return sessionID;
 }
 
-// Function to decode base64 string to binary data
-std::vector<unsigned char> base64_decode(const std::string &encoded_string)
+// Function to encode files
+std::string base64_encode(const std::string &data)
 {
-  static const std::string base64_chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  BIO *bio, *b64;
+  BUF_MEM *bufferPtr;
 
-  std::vector<unsigned char> decoded_bytes;
-  size_t in_len = encoded_string.size();
-  size_t i = 0;
-  unsigned char char_array_4[4], char_array_3[3];
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new(BIO_s_mem());
+  bio = BIO_push(b64, bio);
 
-  while (in_len-- && (encoded_string[i] != '=') && (isalnum(encoded_string[i]) || (encoded_string[i] == '+') || (encoded_string[i] == '/')))
-  {
-    char_array_4[i % 4] = static_cast<unsigned char>(base64_chars.find(encoded_string[i]));
-    i++;
-    if (i % 4 == 0)
-    {
-      char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-      char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-      char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+  BIO_write(bio, data.c_str(), data.length());
+  BIO_flush(bio);
+  BIO_get_mem_ptr(bio, &bufferPtr);
+  BIO_set_close(bio, BIO_NOCLOSE);
 
-      for (int j = 0; j < 3; j++)
-        decoded_bytes.push_back(char_array_3[j]);
-    }
-  }
+  std::string output(bufferPtr->data, bufferPtr->length);
+  BIO_free_all(bio);
 
-  if (i % 4)
-  {
-    for (size_t j = i % 4; j < 4; j++)
-      char_array_4[j] = 0;
-
-    char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-    char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-
-    for (size_t j = 0; j < (i % 4 - 1); j++)
-      decoded_bytes.push_back(char_array_3[j]);
-  }
-
-  return decoded_bytes;
+  return output;
 }
 
-// Function to extract text content from data URL
-std::string extract_text_content(const std::string &file_content)
+// Function to decode files
+std::string base64_decode(const std::string &encoded_data)
 {
-  // Split file content by comma and get the base64-encoded string
-  std::istringstream iss(file_content);
-  std::string base64_string;
-  while (std::getline(iss, base64_string, ','))
-    ;
+  BIO *bio, *b64;
+  char inbuf[512];
+  std::string output;
+  int inlen;
 
-  // Decode base64 string to obtain binary data
-  std::vector<unsigned char> decoded_bytes = base64_decode(base64_string);
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
 
-  // Convert binary data to string (assuming UTF-8 encoding)
-  return std::string(decoded_bytes.begin(), decoded_bytes.end());
+  bio = BIO_push(b64, bio);
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+
+  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
+  {
+    output.append(inbuf, inlen);
+  }
+
+  BIO_free_all(bio);
+
+  return output;
+}
+
+struct Part
+{
+  std::map<std::string, std::string> headers;
+  std::vector<char> content;
+};
+
+// Function to extract boundary for form data
+std::string extract_boundary(const std::string &content_type)
+{
+  size_t pos = content_type.find("boundary=");
+  if (pos != std::string::npos)
+  {
+    return content_type.substr(pos + 9); // 9 to skip 'boundary='
+  }
+  return "";
+}
+
+// Function to compare two lines after stripping
+bool compare_stripped(const std::string &line1, const std::string &line2)
+{
+  std::string stripped_line1 = strip(line1);
+  std::string stripped_line2 = strip(line2);
+  return stripped_line1 == stripped_line2;
+}
+
+// Function to parse multi-part form data
+std::map<std::string, Part> parse_multipart_form_data(const std::string &body, const std::string &boundary)
+{
+  std::map<std::string, Part> parts;
+  std::string delimiter = "--" + boundary;
+  std::string end_delimiter = delimiter + "--";
+  bool isHeaderPart = true;
+  Part currentPart;
+  std::string partName;
+
+  // Strip \r from the body content
+  std::string new_body = strip(body, "\r");
+  std::istringstream stream(new_body);
+  std::string line;
+
+  while (std::getline(stream, line))
+  {
+    // Normalize the line by removing carriage return
+    if (!line.empty() && line.back() == '\r')
+    {
+      line.pop_back();
+    }
+
+    std::cout << "Processing line: " << line << std::endl;
+
+    // Detect boundaries
+    if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
+    {
+      std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
+      if (!isHeaderPart && !partName.empty())
+      {
+        parts[partName] = std::move(currentPart); // Save completed part
+        std::cout << "SAVED PART : " << std::endl;
+        currentPart = Part(); // Reset part
+        partName.clear();
+      }
+      isHeaderPart = true;
+      if (compare_stripped(line, end_delimiter))
+      {
+        std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
+        break; // Stop processing after the final boundary
+      }
+      continue;
+    }
+
+    // Handle headers
+    if (isHeaderPart)
+    {
+      if (line.empty())
+      {
+        std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
+        isHeaderPart = false; // Empty line indicates the end of headers
+        continue;
+      }
+
+      // Parse headers
+      size_t pos = line.find(':');
+      if (pos != std::string::npos)
+      {
+        std::string headerKey = line.substr(0, pos);
+        std::cout << "HEADER KEY : " << headerKey << std::endl;
+        std::string headerValue = line.substr(pos + 2); // Skip ': ' after the key
+        std::cout << "HEADER VALUE : " << headerValue << std::endl;
+
+        // Check if this is a disposition header containing the part name
+        if (headerKey == "Content-Disposition")
+        {
+          size_t namePos = headerValue.find("name=\"");
+          if (namePos != std::string::npos)
+          {
+            namePos += 6; // Skip past 'name="'
+            size_t nameEnd = headerValue.find('"', namePos);
+            partName = headerValue.substr(namePos, nameEnd - namePos);
+
+            std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
+          }
+        }
+        currentPart.headers[headerKey] = headerValue;
+      }
+    }
+    else if (!partName.empty())
+    {
+      // Content reading
+      std::ostringstream contentStream;
+      contentStream << line; // Start with the current line
+      while (std::getline(stream, line) && !compare_stripped(line, delimiter) && !compare_stripped(line, end_delimiter))
+      {
+        if (!line.empty() && line.back() == '\r')
+        {
+          line.pop_back(); // Normalize the line
+        }
+        std::cout << "CONTENT READING LINE : " << line << std::endl;
+
+        contentStream << "\n"
+                      << line; // Append the line to content
+      }
+
+      if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
+      {
+        stream.seekg(-(long)(line.length() + 2), std::ios_base::cur); // Rewind to handle the delimiter again
+        std::cout << "REWINDED : " << line << std::endl;
+      }
+
+      // Assign content to the current part
+      std::string contentStr = contentStream.str();
+      std::cout << "CONTENT STREAM: " << contentStr << std::endl;
+      currentPart.content.assign(contentStr.begin(), contentStr.end());
+      isHeaderPart = true; // Prepare for the next part
+      std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
+    }
+    std::cout << "GOING TO NEXT LINE: " << std::endl;
+    // if (!std::getline(stream, line))
+    // {
+    //   std::cerr << "Failed to read line, stopping." << std::endl;
+    //   break;
+    // }
+  }
+  return parts;
 }
 
 std::string url_decode(const std::string &str)
@@ -680,8 +813,8 @@ void *handle_connection(void *arg)
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // Receive the request
-  const unsigned int BUFFER_SIZE = 4096;
-  char buffer[BUFFER_SIZE];
+  const unsigned int BUFFER_SIZE = 1024 * 100;
+  vector<char> buffer(BUFFER_SIZE);
 
   int fd = create_socket();
 
@@ -690,8 +823,8 @@ void *handle_connection(void *arg)
   while (true)
   {
     cout << "Listening..." << endl;
-    memset(buffer, 0, BUFFER_SIZE);
-    ssize_t bytes_read = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
+    ssize_t bytes_read = recv(client_fd, buffer.data(), BUFFER_SIZE - 1, 0);
+
     if (bytes_read == -1)
     {
       cerr << "Failed to read from socket." << endl;
@@ -703,7 +836,7 @@ void *handle_connection(void *arg)
       break;
     }
     buffer[bytes_read] = '\0';
-    string request(buffer);
+    string request(buffer.begin(), buffer.end());
     unordered_map<string, string> html_request_map = parse_http_request(request);
 
     // GET: rendering signup page
@@ -724,7 +857,7 @@ void *handle_connection(void *arg)
       else
       {
         // Redirect to login
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
     }
 
@@ -869,7 +1002,7 @@ void *handle_connection(void *arg)
         }
 
         // if successful, ask browser to redirect to /login
-        string redirect_to =  "/login";
+        string redirect_to = "/login";
         redirect(client_fd, redirect_to);
       }
       else if (get_response_status == 0)
@@ -905,7 +1038,7 @@ void *handle_connection(void *arg)
       else
       {
         // Redirect to login
-        redirect(client_fd,  "/home");
+        redirect(client_fd, "/home");
       }
     }
 
@@ -988,7 +1121,7 @@ void *handle_connection(void *arg)
           }
 
           // Redirect to home page with the cookie
-          redirect_with_cookie(client_fd,  "/home", cookie);
+          redirect_with_cookie(client_fd, "/home", cookie);
         }
         else
         {
@@ -1012,7 +1145,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1031,7 +1164,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1092,7 +1225,7 @@ void *handle_connection(void *arg)
       else if (reset_response_status == 0)
       {
         // Password reset successful, redirect to login page
-        string redirect_to =  "/login";
+        string redirect_to = "/login";
         redirect(client_fd, redirect_to);
       }
       else
@@ -1142,7 +1275,7 @@ void *handle_connection(void *arg)
 
         // Redirect to the login page and delete the cookie
         std::string response_stream = "HTTP/1.1 302 Found\r\n";
-        response_stream += "Location: http://" + g_serveraddr_str + "/login\r\n";                                     // Correct redirect URL
+        response_stream += "Location: http://" + g_serveraddr_str + "/login\r\n";                           // Correct redirect URL
         response_stream += "Set-Cookie: sid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly\r\n"; // Delete the cookie
         response_stream += "Content-Length: 0\r\n";                                                         // Optional, generally not needed for redirects
         response_stream += "Connection: close\r\n";                                                         // Ensure connection is not kept alive
@@ -1166,15 +1299,15 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
         // Redirect to home
-        redirect(client_fd,  "/home");
+        redirect(client_fd, "/home");
       }
 
-      string redirect_to =  "/login";
+      string redirect_to = "/login";
       redirect(client_fd, redirect_to);
     }
     // GET: /inbox
@@ -1184,12 +1317,11 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
         F_2_B_Message msg_to_send, response_msg;
-        string backend_serveraddr_str = "127.0.0.1:6000";
         // get username from cookie
         std::string username = get_username_from_cookie(cookie, fd);
         if (!username.empty())
@@ -1220,7 +1352,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -1228,13 +1360,12 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/sentbox" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1268,7 +1399,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -1278,14 +1409,12 @@ void *handle_connection(void *arg)
     {
       // /compose?mode=reply&email_id=123
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
-
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1385,7 +1514,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -1402,160 +1531,159 @@ void *handle_connection(void *arg)
       }
       else
       {
-      string from_username = get_username_from_cookie(cookie, fd);
-      string from = from_username + "@localhost";
+        string from_username = get_username_from_cookie(cookie, fd);
+        string from = from_username + "@localhost";
 
-      F_2_B_Message msg_to_send;
-      string response_value, response_error_msg;
-      int response_status, response_code;
+        F_2_B_Message msg_to_send;
+        string response_value, response_error_msg;
+        int response_status, response_code;
 
-      map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
-      vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
+        map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
+        vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
 
-      // TODO: check for invalid recipients
-      string invalid_recipients = "";
-      for (const auto &usrname : recipients[0])
-      {
-        rowkey = usrname + "_info";
-        colkey = "email";
-        type = "get";
-        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-        if (response_code == 1)
+        // TODO: check for invalid recipients
+        string invalid_recipients = "";
+        for (const auto &usrname : recipients[0])
         {
-          cerr << "ERROR in communicating with coordinator" << endl;
+          rowkey = usrname + "_info";
+          colkey = "email";
+          type = "get";
+          msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+          response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                              response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                              g_coordinator_addr, type);
+          if (response_code == 1)
+          {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            continue;
+          }
+          else if (response_code == 2)
+          {
+            cerr << "ERROR in communicating with backend" << endl;
+            continue;
+          }
+
+          if (response_status == 1 && strip(response_error_msg) == "Rowkey does not exist")
+          {
+            invalid_recipients += usrname + "@localhost;";
+          }
+        }
+        for (const auto &r : recipients[1])
+        {
+          if (!is_valid_email(r))
+          {
+            invalid_recipients += r;
+          }
+        }
+        cout << invalid_recipients << endl;
+
+        if (invalid_recipients != "")
+        {
+          string htmlResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n";
+          htmlResponse += "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">";
+          htmlResponse += "<title>Invalid Recipients</title></head><body>";
+          htmlResponse += "<h1>Alert</h1>";
+          htmlResponse += "<p>The following recipients are invalid:</p>";
+          htmlResponse += "<p>" + invalid_recipients + "</p>";
+          htmlResponse += "</body></html>";
+
+          send(client_fd, htmlResponse.c_str(), htmlResponse.size(), 0);
           continue;
         }
-        else if (response_code == 2)
+
+        string ts_sentbox = get_timestamp();
+
+        string subject = form_data["subject"];
+        string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char *>(subject.c_str()),
+                                                subject.length());
+
+        string body = form_data["body"];
+        string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()),
+                                             body.length());
+
+        string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
+        string encoded_display = base_64_encode(reinterpret_cast<const unsigned char *>(for_display.c_str()),
+                                                for_display.length());
+
+        string uid = compute_md5_hash(for_display);
+
+        // deliver for external recipients
+        for (const auto &r : recipients[1])
         {
-          cerr << "ERROR in communicating with backend" << endl;
-          continue;
+          string dummy_from = from_username + "@seas.upenn.edu";
+          pthread_t thread_id;
+          auto *data = new std::map<std::string, std::string>{
+              {"to", r},
+              {"from", dummy_from},
+              {"subject", subject},
+              {"content", body}};
+          if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
+          {
+            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+            delete data;
+          }
+          else
+          {
+            pthread_detach(thread_id);
+          }
+        }
+        // deliver for local recipients
+        for (const auto &usrname : recipients[0])
+        {
+          int deliver_success = deliver_local_email(usrname, uid, from, encoded_subject, encoded_body,
+                                                    encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
+          if (deliver_success == 0)
+          {
+            cout << "SUCCESS: delivered local mail to " << usrname << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+          }
         }
 
-        if (response_status == 1 && strip(response_error_msg) == "Rowkey does not exist")
+        // store email
+        int store_email_success = put_email_to_backend(uid, from, form_data["to"], ts_sentbox,
+                                                       encoded_subject, encoded_body, encoded_display,
+                                                       g_map_rowkey_to_server, g_coordinator_addr);
+        if (store_email_success == 0)
         {
-          invalid_recipients += usrname + "@localhost;";
-        }
-      }
-      for (const auto &r : recipients[1])
-      {
-        if (!is_valid_email(r))
-        {
-          invalid_recipients += r;
-        }
-      }
-      cout << invalid_recipients << endl;
-
-      if (invalid_recipients != "")
-      {
-        string htmlResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n";
-        htmlResponse += "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">";
-        htmlResponse += "<title>Invalid Recipients</title></head><body>";
-        htmlResponse += "<h1>Alert</h1>";
-        htmlResponse += "<p>The following recipients are invalid:</p>";
-        htmlResponse += "<p>" + invalid_recipients + "</p>";
-        htmlResponse += "</body></html>";
-
-        send(client_fd, htmlResponse.c_str(), htmlResponse.size(), 0);
-        continue;
-      }
-
-      string ts_sentbox = get_timestamp();
-
-      string subject = form_data["subject"];
-      string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char *>(subject.c_str()),
-                                              subject.length());
-
-      string body = form_data["body"];
-      string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()),
-                                           body.length());
-
-      string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-      string encoded_display = base_64_encode(reinterpret_cast<const unsigned char *>(for_display.c_str()),
-                                              for_display.length());
-
-      string uid = compute_md5_hash(for_display);
-
-      // deliver for external recipients
-      for (const auto &r : recipients[1])
-      {
-        string dummy_from = from_username + "@seas.upenn.edu";
-        pthread_t thread_id;
-        auto *data = new std::map<std::string, std::string>{
-            {"to", r},
-            {"from", dummy_from},
-            {"subject", subject},
-            {"content", body}};
-        if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
-        {
-          std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-          delete data;
+          cout << "SUCCESS: stored email with uid " << uid << endl;
         }
         else
         {
-          pthread_detach(thread_id);
+          cout << "ERROR: failed to store email with uid " << uid << endl;
         }
-      }
-      // deliver for local recipients
-      for (const auto &usrname : recipients[0])
-      {
-        int deliver_success = deliver_local_email(usrname, uid, from, encoded_subject, encoded_body,
-                                                  encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
-        if (deliver_success == 0)
+
+        // put in sentbox
+        int sentbox_success = put_in_sentbox(from_username, uid, form_data["to"], ts_sentbox,
+                                             encoded_subject, encoded_body, g_map_rowkey_to_server,
+                                             g_coordinator_addr);
+        if (sentbox_success == 0)
         {
-          cout << "SUCCESS: delivered local mail to " << usrname << endl;
+          cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
         }
         else
         {
-          cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+          cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
         }
-      }
 
-      // store email
-      int store_email_success = put_email_to_backend(uid, from, form_data["to"], ts_sentbox,
-                                                     encoded_subject, encoded_body, encoded_display,
-                                                     g_map_rowkey_to_server, g_coordinator_addr);
-      if (store_email_success == 0)
-      {
-        cout << "SUCCESS: stored email with uid " << uid << endl;
+        std::string redirect_to = "/inbox";
+        redirect(client_fd, redirect_to);
       }
-      else
-      {
-        cout << "ERROR: failed to store email with uid " << uid << endl;
-      }
-
-      // put in sentbox
-      int sentbox_success = put_in_sentbox(from_username, uid, form_data["to"], ts_sentbox,
-                                           encoded_subject, encoded_body, g_map_rowkey_to_server,
-                                           g_coordinator_addr);
-      if (sentbox_success == 0)
-      {
-        cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
-      }
-      else
-      {
-        cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
-      }
-
-      std::string redirect_to =  "/inbox";
-      redirect(client_fd, redirect_to);
-    }
     }
 
     // GET: view_email
     else if (html_request_map["uri"].substr(0, 11) == "/view_email" && html_request_map["method"] == "GET")
     {
       F_2_B_Message msg_to_send, response_msg;
-      string backend_serveraddr_str = "127.0.0.1:6000";
 
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1671,19 +1799,18 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
     else if (html_request_map["uri"].substr(0, 13) == "/delete_email" && html_request_map["method"] == "GET")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1696,13 +1823,13 @@ void *handle_connection(void *arg)
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
           cout << "delete email with uid: " << uid << " from " << source << endl;
           delete_email(username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
-          std::string redirect_to =  "/" + source;
+          std::string redirect_to = "/" + source;
           redirect(client_fd, redirect_to);
         }
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -1717,7 +1844,7 @@ void *handle_connection(void *arg)
       {
         // Redirect to login for all other pages
         cout << "Going from drive to home" << endl;
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -1764,7 +1891,7 @@ void *handle_connection(void *arg)
             std::stringstream html_content;
 
             // Append upload file and create folder buttons
-            html_content << "<button onclick=\"uploadFile()\">Upload File</button>";
+            html_content << "<button onclick=\"uploadFile('" << path << "')\">Upload File</button>";
             html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
 
             // JavaScript functions for upload and create folder actions
@@ -1775,31 +1902,20 @@ void *handle_connection(void *arg)
             html_content << "input.onchange = function(event) {";
             html_content << "var file = event.target.files[0];";
             html_content << "if (file) {";
-            html_content << "readFileContents(file, path);"; // Pass file and path to readFileContents
+            html_content << "uploadFileRequest(file, file.name, path);"; // Pass file, filename, and path directly to uploadFileRequest
             html_content << "}";
             html_content << "};";
             html_content << "input.click();"; // Simulate click event on hidden file input
             html_content << "}";
-            html_content << "function readFileContents(file, path) {"; // Accept file and path as parameters
-            html_content << "var reader = new FileReader();";
-            html_content << "reader.onload = function(event) {";
-            html_content << "var fileContent = event.target.result;";
-            html_content << "uploadFileRequest(fileContent, file.name, path);"; // Pass file content, filename, and path to uploadFileRequest
-            html_content << "};";
-            html_content << "reader.readAsDataURL(file);"; // Read file as data URL
-            html_content << "}";
-            html_content << "function uploadFileRequest(fileContent, filename, path) {"; // Accept file content, filename, and path as parameters
-            html_content << "var jsonData = JSON.stringify({";
-            html_content << "'fileContent': fileContent,"; // Include file content in JSON data
-            html_content << "'filename': filename,";       // Include filename in JSON data
-            html_content << "'path': '" << path << "'";    // Path of parent folder
-            html_content << "});";
+            html_content << "function uploadFileRequest(file, filename, path) {"; // Accept file, filename, and path as parameters
+            html_content << "var formData = new FormData();";
+            html_content << "let blobVar = new Blob([file], { type: file.type });";
+            html_content << "formData.append('file', blobVar, file.name);"; // Create a Blob and append file object
+            html_content << "formData.append('filename', filename);";
+            html_content << "formData.append('path', path);";
             html_content << "fetch('/upload_file', {"; // Send POST request to upload_file endpoint
             html_content << "method: 'POST',";
-            html_content << "headers: {";
-            html_content << "'Content-Type': 'application/json'";
-            html_content << "},";
-            html_content << "body: jsonData";
+            html_content << "body: formData"; // Send formData
             html_content << "})";
             html_content << ".then(response => {";
             html_content << "if (response.ok) {";
@@ -2124,7 +2240,7 @@ void *handle_connection(void *arg)
         {
           // Handle unauthenticated or failed lookup
           cout << "Drive me error" << endl;
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -2140,7 +2256,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -2319,7 +2435,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -2331,7 +2447,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -2339,70 +2455,172 @@ void *handle_connection(void *arg)
         std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
-          // Extract file, file name and path from the request body
-          map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
+          // Parse the multipart form data from the request
+          std::string contentType = html_request_map["header_Content-Type"];
+          std::string boundary = extract_boundary(contentType);
 
-          string text = post_data["fileContent"];
-          std::string fileContent = extract_text_content(text);
+          cout << "Boundary used for parsing: " << boundary << endl;
+          cout << "Body: " << html_request_map["body"] << endl;
+          // send_response(client_fd, 500, "Internal Server Error", "application/json", "error_message");
+          // continue;
 
-          string path = post_data["path"];
-          string filename = post_data["filename"];
+          auto parts = parse_multipart_form_data(html_request_map["body"], boundary);
 
-          std::cout << "file content: " << fileContent << std::endl;
-
-          // Construct the row key by appending "user_" to the foldername
-          string parentRowKey = username + "_" + path;
-
-          std::cout << "parent row key: " << parentRowKey << std::endl;
-
-          // Construct the row key for the new file
-          std::string file_row_key = parentRowKey + "/" + filename;
-
-          F_2_B_Message msg_to_send;
-          string get_response_value, get_response_error_msg;
-          int response_code, get_response_status;
-
-          // Check whether file already exists in this directory
-          type = "get";
-          colkey = "content";
-          msg_to_send = construct_msg(1, file_row_key, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status,
-                                              get_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
-                                              g_coordinator_addr, type);
-          if (response_code == 1)
+          for (const auto &part : parts)
           {
-            cerr << "ERROR in communicating with coordinator" << endl;
-            continue;
-          }
-          else if (response_code == 2)
-          {
-            cerr << "ERROR in communicating with backend" << endl;
-            continue;
+            cout << "Part: " << part.first << " Content: ";
+            cout.write(part.second.content.data(), part.second.content.size());
+            cout << endl;
           }
 
-          std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
-
-          if (get_response_status == 0)
+          // Getting the file from FormData
+          if (parts.find("file") != parts.end() && parts.find("filename") != parts.end() && parts.find("path") != parts.end())
           {
-            // file already exists
-            string content = "{\"error\":\"File already exists!!\"}";
-            send_response(client_fd, 409, "Conflict", "application/json", content);
-          }
-          else if (get_response_status == 1)
-          {
-            // Loop till success: GET the parent folder
-            bool success = false;
-            string response_value, response_error_msg;
-            int response_code, response_status;
+            auto &filePart = parts["file"];
+            auto &filenamePart = parts["filename"];
+            auto &pathPart = parts["path"];
 
-            while (!success)
+            std::string filename = std::string(filenamePart.content.begin(), filenamePart.content.end());
+            std::string path = std::string(pathPart.content.begin(), pathPart.content.end());
+            std::string fileContent = base64_encode(std::string(filePart.content.begin(), filePart.content.end()));
+
+            cout << "FILENAME: " << filename << endl;
+            cout << "FILEPATH: " << path << endl;
+            cout << "FILECONTENT: " << fileContent << endl;
+
+            // Construct the row key by appending "user_" to the folder name
+            std::string parentRowKey = username + "_" + path;
+            std::string file_row_key = parentRowKey + "/" + filename;
+
+            F_2_B_Message msg_to_send;
+            string get_response_value, get_response_error_msg;
+            int response_code, get_response_status;
+
+            // Check whether file already exists in this directory
+            type = "get";
+            colkey = "content";
+            msg_to_send = construct_msg(1, file_row_key, colkey, "", "", "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send, get_response_value, get_response_status,
+                                                get_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+            if (response_code == 1)
             {
-              // GET request for the parent folder
-              type = "get";
-              colkey = "items";
-              msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
+
+            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
+
+            if (get_response_status == 0)
+            {
+              // file already exists
+              string content = "{\"error\":\"File already exists!!\"}";
+              send_response(client_fd, 409, "Conflict", "application/json", content);
+            }
+            else if (get_response_status == 1)
+            {
+              // Loop till success: GET the parent folder
+              bool success = false;
+              string response_value, response_error_msg;
+              int response_code, response_status;
+
+              while (!success)
+              {
+                // GET request for the parent folder
+                type = "get";
+                colkey = "items";
+                msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                    response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
+                if (response_code == 1)
+                {
+                  cerr << "ERROR in communicating with coordinator" << endl;
+                  continue;
+                }
+                else if (response_code == 2)
+                {
+                  cerr << "ERROR in communicating with backend" << endl;
+                  continue;
+                }
+
+                if (response_status == 0)
+                {
+                  std::string newValue;
+
+                  if (response_value == "[]")
+                  {
+                    // If the list is empty, simply add the new value with square brackets
+                    newValue = "[F@" + filename + "]";
+                  }
+                  else
+                  {
+                    // Find the position of the last closing bracket
+                    size_t last_bracket_pos = response_value.find_last_of(']');
+
+                    // Extract the substring up to the last closing bracket (excluding)
+                    std::string existing_values = response_value.substr(0, last_bracket_pos);
+
+                    // Concatenate the new value with a comma
+                    newValue = existing_values + ",F@" + filename + "]";
+                  }
+
+                  // CPUT the parent folder
+                  string cput_response_value, cput_response_error_msg;
+                  int cput_response_status;
+                  type = "cput";
+                  colkey = "items";
+                  msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
+                                                      cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+                  if (response_code == 1)
+                  {
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
+                  }
+                  else if (response_code == 2)
+                  {
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
+
+                  if (cput_response_status == 0)
+                  {
+                    success = true;
+                  }
+                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
+                  {
+                    // Parent folder does not exist - Construct and send the HTTP response
+                    string content = "{\"error\":\"Parent folder does not exist\"}";
+                    send_response(client_fd, 404, "Not Found", "application/json", content);
+                  }
+                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
+                  {
+                    // Old value is wrong - Construct and send the HTTP response
+                    string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
+                    send_response(client_fd, 401, "Unauthorized", "application/json", content);
+                  }
+                  else
+                  {
+                    // Error in fetching user - Construct and send the HTTP response
+                    string content = "{\"error\":\"Error fetching user\"}";
+                    send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                  }
+                }
+              }
+
+              // PUT for the content of the file
+              type = "put";
+              colkey = "content";
+              msg_to_send = construct_msg(2, file_row_key, colkey, fileContent, "", "", 0);
               response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                  response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                  response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
                                                   g_coordinator_addr, type);
               if (response_code == 1)
               {
@@ -2417,112 +2635,29 @@ void *handle_connection(void *arg)
 
               if (response_status == 0)
               {
-                std::string newValue;
-
-                if (response_value == "[]")
-                {
-                  // If the list is empty, simply add the new value with square brackets
-                  newValue = "[F@" + filename + "]";
-                }
-                else
-                {
-                  // Find the position of the last closing bracket
-                  size_t last_bracket_pos = response_value.find_last_of(']');
-
-                  // Extract the substring up to the last closing bracket (excluding)
-                  std::string existing_values = response_value.substr(0, last_bracket_pos);
-
-                  // Concatenate the new value with a comma
-                  newValue = existing_values + ",F@" + filename + "]";
-                }
-
-                // CPUT the parent folder
-                string cput_response_value, cput_response_error_msg;
-                int cput_response_status;
-                type = "cput";
-                colkey = "items";
-                msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
-                response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
-                                                    cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
-                if (response_code == 1)
-                {
-                  cerr << "ERROR in communicating with coordinator" << endl;
-                  continue;
-                }
-                else if (response_code == 2)
-                {
-                  cerr << "ERROR in communicating with backend" << endl;
-                  continue;
-                }
-
-                if (cput_response_status == 0)
-                {
-                  success = true;
-                }
-                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
-                {
-                  // Parent folder does not exist - Construct and send the HTTP response
-                  string content = "{\"error\":\"Parent folder does not exist\"}";
-                  send_response(client_fd, 404, "Not Found", "application/json", content);
-                }
-                else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
-                {
-                  // Old value is wrong - Construct and send the HTTP response
-                  string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
-                  send_response(client_fd, 401, "Unauthorized", "application/json", content);
-                }
-                else
-                {
-                  // Error in fetching user - Construct and send the HTTP response
-                  string content = "{\"error\":\"Error fetching user\"}";
-                  send_response(client_fd, 500, "Internal Server Error", "application/json", content);
-                }
+                // Construct and send a success response to the client
+                std::string success_response = "{\"message\":\"File uploaded successfully\"}";
+                send_response(client_fd, 200, "OK", "application/json", success_response);
               }
-            }
-
-            // PUT for the content of the file
-            type = "put";
-            colkey = "content";
-            msg_to_send = construct_msg(2, file_row_key, colkey, fileContent, "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-            if (response_code == 1)
-            {
-              cerr << "ERROR in communicating with coordinator" << endl;
-              continue;
-            }
-            else if (response_code == 2)
-            {
-              cerr << "ERROR in communicating with backend" << endl;
-              continue;
-            }
-
-            if (response_status == 0)
-            {
-              // Construct and send a success response to the client
-              std::string success_response = "{\"message\":\"File uploaded successfully\"}";
-              send_response(client_fd, 200, "OK", "application/json", success_response);
+              else
+              {
+                // Error handling: send appropriate error response to the client
+                std::string error_message = "Failed to upload file";
+                send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              }
             }
             else
             {
-              // Error handling: send appropriate error response to the client
-              std::string error_message = "Failed to upload file";
-              send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              // Error in fetching user - Construct and send the HTTP response
+              string content = "{\"error\":\"Operation failed\"}";
+              send_response(client_fd, 500, "Internal Server Error", "application/json", content);
             }
-          }
-          else
-          {
-            // Error in fetching user - Construct and send the HTTP response
-            string content = "{\"error\":\"Operation failed\"}";
-            send_response(client_fd, 500, "Internal Server Error", "application/json", content);
           }
         }
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -2534,7 +2669,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -2581,12 +2716,12 @@ void *handle_connection(void *arg)
 
           if (response_status == 0)
           {
-            // Convert the byte content to string
-            std::string file_content(response_value.begin(), response_value.end());
+            // Decode the base64 encoded file content
+            std::string file_content = base64_decode(response_value);
 
             // Construct the HTTP response headers to trigger file download
             std::string content_disposition = "attachment; filename=\"" + file_name + "\"";
-            std::string content_type = "application/octet-stream"; // Set the appropriate content type for the file
+            std::string content_type = "application/octet-stream";
 
             // Send the file contents with appropriate headers
             send_response_with_headers(client_fd, 200, "OK", content_type, file_content, content_disposition);
@@ -2610,7 +2745,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -2622,7 +2757,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -2801,7 +2936,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -2815,7 +2950,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -2861,7 +2996,7 @@ void *handle_connection(void *arg)
           {
             cerr << "ERROR in communicating with backend" << endl;
             continue;
-          }                                    
+          }
 
           std::cout << "RESPONSE: " << response_error_msg << std::endl;
 
@@ -2880,8 +3015,8 @@ void *handle_connection(void *arg)
             // GET old folder and PUT folder path with new folder name
             msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                              response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                              g_coordinator_addr, type);
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
             if (response_code == 1)
             {
               cerr << "ERROR in communicating with coordinator" << endl;
@@ -2900,8 +3035,8 @@ void *handle_connection(void *arg)
             string colkey = "items";
             msg_to_send_put = construct_msg(2, rowkey, colkey, response_value, "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_put, response_value_put, response_status_put,
-                                              response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
-                                              g_coordinator_addr, type);
+                                                response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
             if (response_code == 1)
             {
               cerr << "ERROR in communicating with coordinator" << endl;
@@ -2927,13 +3062,13 @@ void *handle_connection(void *arg)
             F_2_B_Message msg_to_send_delete;
             string response_value_delete, response_error_msg_delete;
             int response_status_delete;
-             rowkey = new_row_key;
-             type = "delete";
-             colkey = "items";
+            rowkey = new_row_key;
+            type = "delete";
+            colkey = "items";
             msg_to_send_delete = construct_msg(3, row_key, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_delete, response_value_delete, response_status_delete,
-                                              response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
-                                              g_coordinator_addr, type);
+                                                response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
             if (response_code == 1)
             {
               cerr << "ERROR in communicating with coordinator" << endl;
@@ -2966,7 +3101,7 @@ void *handle_connection(void *arg)
 
               while (!success)
               {
-                 F_2_B_Message msg_to_send_get;
+                F_2_B_Message msg_to_send_get;
                 string response_value_get, response_error_msg_get;
                 int response_status_get, response_code;
                 string rowkey = parentRowKey;
@@ -2974,8 +3109,8 @@ void *handle_connection(void *arg)
                 string colkey = "items";
                 msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
                 response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
-                                                  response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
-                                                  g_coordinator_addr, type);
+                                                    response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
                 // GET request for the parent folder
                 if (response_code == 1)
                 {
@@ -3035,8 +3170,8 @@ void *handle_connection(void *arg)
                   string colkey = "items";
                   msg_to_send_cput = construct_msg(4, rowkey, colkey, response_value_get, newValue, "", 0);
                   response_code = send_msg_to_backend(fd, msg_to_send_cput, response_value_cput, response_status_cput,
-                                                    response_error_msg_cput, rowkey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
+                                                      response_error_msg_cput, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
                   // CPUT the parent folder
                   if (response_code == 1)
                   {
@@ -3048,7 +3183,6 @@ void *handle_connection(void *arg)
                     cerr << "ERROR in communicating with backend" << endl;
                     continue;
                   }
-                  
 
                   if (response_status_cput == 0)
                   {
@@ -3092,7 +3226,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -3105,7 +3239,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -3146,7 +3280,7 @@ void *handle_connection(void *arg)
           response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
                                               response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
-          
+
           if (response_code == 1)
           {
             cerr << "ERROR in communicating with coordinator" << endl;
@@ -3184,23 +3318,23 @@ void *handle_connection(void *arg)
                                                 response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
             if (response_code == 1)
-          {
-            cerr << "ERROR in communicating with coordinator" << endl;
-            continue;
-          }
-          else if (response_code == 2)
-          {
-            cerr << "ERROR in communicating with backend" << endl;
-            continue;
-          }
+            {
+              cerr << "ERROR in communicating with coordinator" << endl;
+              continue;
+            }
+            else if (response_code == 2)
+            {
+              cerr << "ERROR in communicating with backend" << endl;
+              continue;
+            }
 
             // GET old folder and PUT new folder path
             F_2_B_Message msg_to_send_put;
             string response_value_put, response_error_msg_put;
             int response_status_put;
-             rowkey = new_path_key;
-             type = "put";
-             colkey = "items";
+            rowkey = new_path_key;
+            type = "put";
+            colkey = "items";
             msg_to_send_put = construct_msg(2, rowkey, colkey, response_value_get, "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_put, response_value_put, response_status_put,
                                                 response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
@@ -3228,9 +3362,9 @@ void *handle_connection(void *arg)
             F_2_B_Message msg_to_send_delete;
             string response_value_delete, response_error_msg_delete;
             int response_status_delete;
-             rowkey = row_key;
-             type = "delete";
-             colkey = "items";
+            rowkey = row_key;
+            type = "delete";
+            colkey = "items";
             msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_delete, response_value_delete, response_status_delete,
                                                 response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
@@ -3293,9 +3427,9 @@ void *handle_connection(void *arg)
                 F_2_B_Message msg_to_send_get_new;
                 string response_value_get_new, response_error_msg_get_new;
                 int response_status_get_new;
-                 rowkey = new_row_key;
-                 type = "get";
-                 colkey = "items";
+                rowkey = new_row_key;
+                type = "get";
+                colkey = "items";
                 msg_to_send_get_new = construct_msg(1, rowkey, colkey, "", "", "", 0);
                 response_code = send_msg_to_backend(fd, msg_to_send_get_new, response_value_get_new, response_status_get_new,
                                                     response_error_msg_get_new, rowkey, colkey, g_map_rowkey_to_server,
@@ -3402,9 +3536,9 @@ void *handle_connection(void *arg)
                   F_2_B_Message msg_to_send_cput_new;
                   string response_value_cput_new, response_error_msg_cput_new;
                   int response_status_cput_new;
-                   rowkey = new_row_key;
-                   type = "cput";
-                   colkey = "items";
+                  rowkey = new_row_key;
+                  type = "cput";
+                  colkey = "items";
                   msg_to_send_cput_new = construct_msg(4, rowkey, colkey, response_value_get_new, newValueFolder, "", 0);
                   response_code = send_msg_to_backend(fd, msg_to_send_cput_new, response_value_cput_new, response_status_cput_new,
                                                       response_error_msg_cput_new, rowkey, colkey, g_map_rowkey_to_server,
@@ -3450,7 +3584,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -3464,7 +3598,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -3632,7 +3766,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -3644,7 +3778,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -3680,7 +3814,7 @@ void *handle_connection(void *arg)
             response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
                                                 get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
-            
+
             std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
             if (get_response_status == 0)
@@ -3702,12 +3836,12 @@ void *handle_connection(void *arg)
                                                   get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                   g_coordinator_addr, type);
               // GET and PUT new file contents
-              
+
               string put_response_value, put_response_error_msg;
               int put_response_status;
-               type = "put";
-               rowkey = new_row_key;
-               colkey = "content";
+              type = "put";
+              rowkey = new_row_key;
+              colkey = "content";
               F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, get_response_value, "", "", 0);
               response_code = send_msg_to_backend(fd, msg_to_send_put, put_response_value, put_response_status,
                                                   put_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
@@ -3794,7 +3928,6 @@ void *handle_connection(void *arg)
                                                         delete_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                         g_coordinator_addr, type);
 
-
                     if (delete_response_status == 0)
                     {
                       // Set success flag to true to exit the loop
@@ -3832,7 +3965,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }
@@ -3844,7 +3977,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd,  "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -3867,7 +4000,6 @@ void *handle_connection(void *arg)
             std::string new_row_key = username + "_" + newFilePath + "/" + fileName;
             std::string old_row_key = username + "_" + filePath;
             std::string new_parent_row_key = username + "_" + newFilePath;
-
 
             string get_response_value, get_response_error_msg;
             int get_response_status, response_code;
@@ -3899,7 +4031,7 @@ void *handle_connection(void *arg)
               response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
                                                   get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                   g_coordinator_addr, type);
-              
+
               string put_response_value, put_response_error_msg;
               int put_response_status;
               type = "put";
@@ -4060,7 +4192,7 @@ void *handle_connection(void *arg)
         else
         {
           // Handle unauthenticated or failed lookup
-          redirect(client_fd,  "/login");
+          redirect(client_fd, "/login");
         }
       }
     }

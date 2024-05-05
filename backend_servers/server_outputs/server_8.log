@@ -33,6 +33,7 @@ yn_yz
 za_zm
 zn_zz
 Failed to open log file: ./data/server8/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server8/logs/za_zm_logs.txt
 Failed to open log file: ./data/server8/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server8/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server8/logs/xn_xz_logs.txt
@@ -52,27 +53,108 @@ Failed to open log file: ./data/server8/logs/un_uz_logs.txt
 Failed to open log file: ./data/server8/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server8/logs/wa_wm_logs.txt
 Range to Primary Map:
-Range: zn_zz - Primary: No primary available
-Range: za_zm - Primary: No primary available
-Range: yn_yz - Primary: No primary available
-Range: ya_ym - Primary: No primary available
-Range: xn_xz - Primary: No primary available
-Range: xa_xm - Primary: No primary available
-Range: wn_wz - Primary: No primary available
-Range: ra_rm - Primary: No primary available
-Range: va_vm - Primary: No primary available
-Range: rn_rz - Primary: No primary available
-Range: sn_sz - Primary: No primary available
-Range: qa_qm - Primary: No primary available
-Range: qn_qz - Primary: No primary available
-Range: ua_um - Primary: No primary available
-Range: ta_tm - Primary: No primary available
-Range: sa_sm - Primary: No primary available
-Range: tn_tz - Primary: No primary available
-Range: un_uz - Primary: No primary available
-Range: vn_vz - Primary: No primary available
-Range: wa_wm - Primary: No primary available
+Range: zn_zz - Primary: 127.0.0.1:6006
+Range: za_zm - Primary: 127.0.0.1:6006
+Range: yn_yz - Primary: 127.0.0.1:6006
+Range: ya_ym - Primary: 127.0.0.1:6006
+Range: xn_xz - Primary: 127.0.0.1:6006
+Range: xa_xm - Primary: 127.0.0.1:6006
+Range: wn_wz - Primary: 127.0.0.1:6006
+Range: ra_rm - Primary: 127.0.0.1:6006
+Range: va_vm - Primary: 127.0.0.1:6006
+Range: rn_rz - Primary: 127.0.0.1:6006
+Range: sn_sz - Primary: 127.0.0.1:6006
+Range: qa_qm - Primary: 127.0.0.1:6006
+Range: qn_qz - Primary: 127.0.0.1:6006
+Range: ua_um - Primary: 127.0.0.1:6006
+Range: ta_tm - Primary: 127.0.0.1:6006
+Range: sa_sm - Primary: 127.0.0.1:6006
+Range: tn_tz - Primary: 127.0.0.1:6006
+Range: un_uz - Primary: 127.0.0.1:6006
+Range: vn_vz - Primary: 127.0.0.1:6006
+Range: wa_wm - Primary: 127.0.0.1:6006
+GET Response from primary: qa_qm VER 0
+
+LGET Response from primary: qa_qm VER 0
+
+GET Response from primary: qn_qz VER 0
+
+LGET Response from primary: qn_qz VER 0
+
+GET Response from primary: ra_rm VER 0
+
+LGET Response from primary: ra_rm VER 0
+
+GET Response from primary: rn_rz VER 0
+
+LGET Response from primary: rn_rz VER 0
+
+GET Response from primary: sa_sm VER 0
+
+LGET Response from primary: sa_sm VER 0
+
+GET Response from primary: sn_sz VER 0
+
+LGET Response from primary: sn_sz VER 0
+
+GET Response from primary: ta_tm VER 0
+
+LGET Response from primary: ta_tm VER 0
+
+GET Response from primary: tn_tz VER 0
+
+LGET Response from primary: tn_tz VER 0
+
+GET Response from primary: ua_um VER 0
+
+LGET Response from primary: ua_um VER 0
+
+GET Response from primary: un_uz VER 0
+
+LGET Response from primary: un_uz VER 0
+
+GET Response from primary: va_vm VER 0
+
+LGET Response from primary: va_vm VER 0
+
+GET Response from primary: vn_vz VER 0
+
+LGET Response from primary: vn_vz VER 0
+
+GET Response from primary: wa_wm VER 0
+
+LGET Response from primary: wa_wm VER 0
+
+GET Response from primary: wn_wz VER 0
+
+LGET Response from primary: wn_wz VER 0
+
+GET Response from primary: xa_xm VER 0
+
+LGET Response from primary: xa_xm VER 0
+
+GET Response from primary: xn_xz VER 0
+
+LGET Response from primary: xn_xz VER 0
+
+GET Response from primary: ya_ym VER 0
+
+LGET Response from primary: ya_ym VER 0
+
+GET Response from primary: yn_yz VER 0
+
+LGET Response from primary: yn_yz VER 0
+
+GET Response from primary: za_zm VER 0
+
+LGET Response from primary: za_zm VER 0
+
+GET Response from primary: zn_zz VER 0
+
+LGET Response from primary: zn_zz VER 0
+
 Failed to open log file: ./data/server8/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server8/logs/za_zm_logs.txt
 Failed to open log file: ./data/server8/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server8/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server8/logs/xn_xz_logs.txt
@@ -91,6 +173,8 @@ Failed to open log file: ./data/server8/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server8/logs/un_uz_logs.txt
 Failed to open log file: ./data/server8/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server8/logs/wa_wm_logs.txt
+<<<<<<< HEAD
+=======
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
@@ -4572,3 +4656,4 @@ This row is in new file: ta_tm
 1 127.0.0.1:6006 127.0.0.1:6006
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9
