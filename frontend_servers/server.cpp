@@ -2484,7 +2484,7 @@ void *handle_connection(void *arg)
             // PUT for the content of the file
             type = "put";
             colkey = "content";
-            msg_to_send = construct_msg(2, file_row_key, fileContent, "", "", "", 0);
+            msg_to_send = construct_msg(2, file_row_key, colkey, fileContent, "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                                 response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
@@ -3639,8 +3639,6 @@ void *handle_connection(void *arg)
     // Handle POST request to rename a file
     else if (html_request_map["uri"] == "/rename_file" && html_request_map["method"] == "POST")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
-
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -3673,28 +3671,49 @@ void *handle_connection(void *arg)
             std::string old_row_key = username + "_" + filePath;
 
             // Check whether file already exists in this directory
-            string backend_serveraddr_str = "127.0.0.1:6000";
-            F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
-            F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+            string get_response_value, get_response_error_msg;
+            int get_response_status, response_code;
+            string type = "get";
+            string rowkey = new_row_key;
+            string colkey = "content";
+            F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+            
+            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
-            std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
-
-            if (response_msg_get.status == 0)
+            if (get_response_status == 0)
             {
               // file already exists
               string content = "{\"error\":\"File with same name already exists!!\"}";
               send_response(client_fd, 409, "Conflict", "application/json", content);
             }
-            else if (response_msg_get.status == 1)
+            else if (get_response_status == 1)
             {
+
+              string get_response_value, get_response_error_msg;
+              int get_response_status, response_code;
+              string type = "get";
+              string rowkey = old_row_key;
+              string colkey = "content";
+              F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                  get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
               // GET and PUT new file contents
-              F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
-              F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+              
+              string put_response_value, put_response_error_msg;
+              int put_response_status;
+               type = "put";
+               rowkey = new_row_key;
+               colkey = "content";
+              F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, get_response_value, "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_put, put_response_value, put_response_status,
+                                                  put_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
 
-              F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
-              F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
-
-              if (response_msg_put.status != 0)
+              if (put_response_status != 0)
               {
                 // Error handling: send appropriate error response to the client
                 string error_message = "Failed to create new file path";
@@ -3709,13 +3728,20 @@ void *handle_connection(void *arg)
               while (!success)
               {
                 // Get current directory items
-                F_2_B_Message msg_to_send_get = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-                F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-                if (response_msg_get.status == 0)
+                string get_response_value, get_response_error_msg;
+                int get_response_status, response_code;
+                string type = "get";
+                string rowkey = parentRowKey;
+                string colkey = "items";
+                F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                    get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
+                if (get_response_status == 0)
                 {
                   // Parse items list
-                  vector<string> items = parse_items_list(response_msg_get.value);
+                  vector<string> items = parse_items_list(get_response_value);
 
                   // Replace the old file name with the new file name
                   for (auto &item : items)
@@ -3744,16 +3770,32 @@ void *handle_connection(void *arg)
                   std::cout << "New value to update: " << newValue << std::endl;
 
                   // CPUT the current directory items with the renamed file
-                  F_2_B_Message msg_to_send_cput = construct_msg(4, parentRowKey, "items", response_msg_get.value, newValue, "", 0);
-                  F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
 
-                  if (response_msg_cput.status == 0)
+                  string cput_response_value, cput_response_error_msg;
+                  int cput_response_status, response_code;
+                  string type = "cput";
+                  string rowkey = parentRowKey;
+                  string colkey = "items";
+                  F_2_B_Message msg_to_send_cput = construct_msg(4, rowkey, colkey, get_response_value, newValue, "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send_cput, cput_response_value, cput_response_status,
+                                                      cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+
+                  if (cput_response_status == 0)
                   {
                     // Delete file content
-                    F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
-                    F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
+                    string delete_response_value, delete_response_error_msg;
+                    int delete_response_status, response_code;
+                    string type = "delete";
+                    string rowkey = old_row_key;
+                    string colkey = "content";
+                    F_2_B_Message msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
+                    response_code = send_msg_to_backend(fd, msg_to_send_delete, delete_response_value, delete_response_status,
+                                                        delete_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                        g_coordinator_addr, type);
 
-                    if (response_msg_delete_content.status == 0)
+
+                    if (delete_response_status == 0)
                     {
                       // Set success flag to true to exit the loop
                       success = true;
@@ -3797,8 +3839,6 @@ void *handle_connection(void *arg)
     // Handle POST request to move a file
     else if (html_request_map["uri"] == "/move_file" && html_request_map["method"] == "POST")
     {
-      string backend_serveraddr_str = "127.0.0.1:6000";
-
       // get username from cookie
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
@@ -3828,28 +3868,49 @@ void *handle_connection(void *arg)
             std::string old_row_key = username + "_" + filePath;
             std::string new_parent_row_key = username + "_" + newFilePath;
 
-            // Check whether file already exists in this directory
-            F_2_B_Message msg_to_send_get = construct_msg(1, new_row_key, "content", "", "", "", 0);
-            F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
 
-            std::cout << "RESPONSE: " << response_msg_get.errorMessage << std::endl;
+            string get_response_value, get_response_error_msg;
+            int get_response_status, response_code;
+            string type = "get";
+            string rowkey = new_row_key;
+            string colkey = "content";
+            F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+            response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
 
-            if (response_msg_get.status == 0)
+            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
+
+            if (get_response_status == 0)
             {
               // file already exists
               string content = "{\"error\":\"File already exists in new directory!!\"}";
               send_response(client_fd, 409, "Conflict", "application/json", content);
             }
-            else if (response_msg_get.status == 1)
+            else if (get_response_status == 1)
             {
               // GET and PUT new file contents
-              F_2_B_Message msg_to_send_get = construct_msg(1, old_row_key, "content", "", "", "", 0);
-              F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+              string get_response_value, get_response_error_msg;
+              int get_response_status, response_code;
+              string type = "get";
+              string rowkey = old_row_key;
+              string colkey = "content";
+              F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                  get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              
+              string put_response_value, put_response_error_msg;
+              int put_response_status;
+              type = "put";
+              rowkey = new_row_key;
+              colkey = "content";
+              F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", get_response_value, "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_put, put_response_value, put_response_status,
+                                                  put_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
 
-              F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "content", response_msg_get.value, "", "", 0);
-              F_2_B_Message response_msg_put = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_put);
-
-              if (response_msg_put.status != 0)
+              if (put_response_status != 0)
               {
                 // Error handling: send appropriate error response to the client
                 string error_message = "Failed to create new file path";
@@ -3864,17 +3925,30 @@ void *handle_connection(void *arg)
               while (!success)
               {
                 // Get new directory items
-                F_2_B_Message msg_to_send_get = construct_msg(1, new_parent_row_key, "items", "", "", "", 0);
-                F_2_B_Message response_msg_get = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get);
+                string get_response_value, get_response_error_msg;
+                int get_response_status, response_code;
+                string type = "get";
+                string rowkey = new_parent_row_key;
+                string colkey = "items";
+                F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
+                                                    get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
 
-                // Get old directory items
-                F_2_B_Message msg_to_send_get_old = construct_msg(1, parentRowKey, "items", "", "", "", 0);
-                F_2_B_Message response_msg_get_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_get_old);
+                string old_get_response_value, old_get_response_error_msg;
+                int old_get_response_status;
+                type = "get";
+                rowkey = parentRowKey;
+                colkey = "items";
+                F_2_B_Message msg_to_send_old_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                response_code = send_msg_to_backend(fd, msg_to_send_old_get, old_get_response_value, old_get_response_status,
+                                                    old_get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                    g_coordinator_addr, type);
 
-                if (response_msg_get.status == 0 && msg_to_send_get_old.status == 0)
+                if (get_response_status == 0 && old_get_response_status == 0)
                 {
                   // For new directory: Parse items list
-                  vector<string> items = parse_items_list(response_msg_get.value);
+                  vector<string> items = parse_items_list(get_response_value);
 
                   // Append the new file name to the existing items list
                   items.push_back("F@" + fileName);
@@ -3896,7 +3970,7 @@ void *handle_connection(void *arg)
                   std::cout << "New value to update: " << newValue << std::endl;
 
                   // For old directory: Parse items list
-                  vector<string> old_items = parse_items_list(response_msg_get_old.value);
+                  vector<string> old_items = parse_items_list(old_get_response_value);
 
                   // Remove the old file from the directory items
                   old_items.erase(remove(old_items.begin(), old_items.end(), "F@" + fileName), old_items.end());
@@ -3916,20 +3990,40 @@ void *handle_connection(void *arg)
                   newValue_old += "]";
 
                   // CPUT the new directory items with the new file
-                  F_2_B_Message msg_to_send_cput = construct_msg(4, new_parent_row_key, "items", response_msg_get.value, newValue, "", 0);
-                  F_2_B_Message response_msg_cput = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput);
+                  string cput_response_value, cput_response_error_msg;
+                  int cput_response_status, response_code;
+                  string type = "cput";
+                  string rowkey = new_parent_row_key;
+                  string colkey = "items";
+                  F_2_B_Message msg_to_send_cput = construct_msg(4, rowkey, colkey, get_response_value, newValue, "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send_cput, cput_response_value, cput_response_status,
+                                                      cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
 
-                  // CPUT the old directory items without the new file
-                  F_2_B_Message msg_to_send_cput_old = construct_msg(4, parentRowKey, "items", response_msg_get_old.value, newValue_old, "", 0);
-                  F_2_B_Message response_msg_cput_old = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_cput_old);
+                  string old_cput_response_value, old_cput_response_error_msg;
+                  int old_cput_response_status;
+                  type = "cput";
+                  rowkey = parentRowKey;
+                  colkey = "items";
+                  F_2_B_Message msg_to_send_cput_old = construct_msg(4, rowkey, colkey, old_get_response_value, newValue_old, "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send_cput_old, old_cput_response_value, old_cput_response_status,
+                                                      old_cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
 
-                  if (response_msg_cput.status == 0 && response_msg_cput_old.status == 0)
+                  if (cput_response_status == 0 && old_cput_response_status == 0)
                   {
                     // Delete file content
-                    F_2_B_Message msg_to_send_delete_content = construct_msg(3, old_row_key, "content", "", "", "", 0);
-                    F_2_B_Message response_msg_delete_content = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send_delete_content);
+                    string delete_response_value, delete_response_error_msg;
+                    int delete_response_status, response_code;
+                    string type = "delete";
+                    string rowkey = old_row_key;
+                    string colkey = "content";
+                    F_2_B_Message msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
+                    response_code = send_msg_to_backend(fd, msg_to_send_delete, delete_response_value, delete_response_status,
+                                                        delete_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                        g_coordinator_addr, type);
 
-                    if (response_msg_delete_content.status == 0)
+                    if (delete_response_status == 0)
                     {
                       // Set success flag to true to exit the loop
                       success = true;
