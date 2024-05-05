@@ -104,6 +104,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
         cout << "going to decode message: " << line << endl;
         msg_to_return = decode_message(line);
         cout << "decoded message" << endl;
+        close(new_fd);
         return msg_to_return;
         cout << "after return" << endl;
       }
@@ -221,7 +222,7 @@ int send_msg_to_backend(int fd, F_2_B_Message msg_to_send, string &value, int &s
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr,
                         const string &type)
 {
-
+  // fd = create_socket();
   string backend_serveraddr_str = get_backend_server_addr(fd, rowkey, colkey, g_map_rowkey_to_server,
                                                           g_coordinator_addr, type);
   if (backend_serveraddr_str.empty())
