@@ -13,9 +13,9 @@ vector<DisplayEmail> parse_emails_str(const string &emails_str)
         vector<string> email_fields = split(email_str, "##");
         DisplayEmail email_item;
         email_item.uid = email_fields[0];
-        email_item.to_from = email_fields[1];
-        email_item.subject = base_64_decode(email_fields[2]);
-        email_item.timestamp = email_fields[3];
+        email_item.to_from = base64_decode(email_fields[1]);
+        email_item.subject = base64_decode(email_fields[2]);
+        email_item.timestamp = base64_decode(email_fields[3]);
         to_return.push_back(email_item);
     }
     return to_return;
@@ -181,7 +181,7 @@ string get_timestamp()
 }
 
 // TODO: make helper function for deliver_local_mail and put_in_sentbox
-int deliver_local_email(const string &recipient, const string &uid, const string &from,
+int deliver_local_email(const string &recipient, const string &uid, const string &encoded_from,
                         const string &encoded_subject, const string &encoded_body, const string &encoded_display, 
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
@@ -205,7 +205,7 @@ int deliver_local_email(const string &recipient, const string &uid, const string
     }
 
     // try cput until success
-    string received_ts, to_cput;
+    string received_ts, encoded_ts, to_cput;
     string get_response_value;
     string cput_response_value, cput_response_error_msg;
     int cput_response_status;
@@ -213,13 +213,14 @@ int deliver_local_email(const string &recipient, const string &uid, const string
     {
         // uid##sender##subject##timestamp,
         received_ts = get_timestamp();
-        to_cput = uid + "##" + from + "##" + encoded_subject + "##" + received_ts + "," + usr_inbox_str;
+        encoded_ts = base64_encode(received_ts);
+        to_cput = uid + "##" + encoded_from + "##" + encoded_subject + "##" + encoded_ts + "," + usr_inbox_str;
 
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_inbox_str, to_cput, "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, cput_response_status, 
-                                                cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1) {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
@@ -236,8 +237,8 @@ int deliver_local_email(const string &recipient, const string &uid, const string
         type = "get";
         msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, get_response_status, 
-                                                get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1) {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
@@ -251,8 +252,8 @@ int deliver_local_email(const string &recipient, const string &uid, const string
     return 0;
 }
 
-int put_in_sentbox( const string &username, const string &uid, const string &to, 
-                    const string &ts, const string &subject, const string &body,
+int put_in_sentbox( const string &username, const string &uid, const string &encoded_to, 
+                    const string &encoded_ts, const string &encoded_subject, const string &encoded_body,
                     map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
     int fd = create_socket();
@@ -283,7 +284,7 @@ int put_in_sentbox( const string &username, const string &uid, const string &to,
     while (true)
     {
         // uid##to##subject##timestamp,
-        to_cput = uid + "##" + to + "##" + subject + "##" + ts + "," + usr_sentbox_str;
+        to_cput = uid + "##" + encoded_to + "##" + encoded_subject + "##" + encoded_ts + "," + usr_sentbox_str;
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_sentbox_str, to_cput, "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, cput_response_status, 
@@ -357,7 +358,7 @@ string construct_view_email_html(const string &subject, const string &from, cons
     return html.str();
 }
 
-int put_email_to_backend(const string &uid, const string &from, const string &to, const string &ts, 
+int put_email_to_backend(const string &uid, const string &encoded_from, const string &encoded_to, const string &encoded_ts, 
                         const string &encoded_subject, const string &encoded_body, const string &encoded_display,
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) 
 {
@@ -370,7 +371,7 @@ int put_email_to_backend(const string &uid, const string &from, const string &to
 
     // put from
     string colkey = "from";
-    msg_to_send = construct_msg(2, rowkey, colkey, from, "", "", 0);
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_from, "", "", 0);
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
@@ -384,7 +385,7 @@ int put_email_to_backend(const string &uid, const string &from, const string &to
 
     // put to
     colkey = "to";
-    msg_to_send = construct_msg(2, rowkey, colkey, to, "", "", 0);
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_to, "", "", 0);
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
@@ -398,7 +399,7 @@ int put_email_to_backend(const string &uid, const string &from, const string &to
 
     // put ts
     colkey = "timestamp";
-    msg_to_send = construct_msg(2, rowkey, colkey, ts, "", "", 0);
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_ts, "", "", 0);
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
