@@ -384,7 +384,6 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     }
 
     // put to
-    cout << "putting to: " << to << endl;
     colkey = "to";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_to, "", "", 0);
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
@@ -750,7 +749,7 @@ void* smtp_client(void* arg) {
             ((struct sockaddr_in*)res->ai_addr)->sin_port = htons(25);
 
             if (connect(fd, res->ai_addr, res->ai_addrlen) == 0) {
-                std::cout << "CONNECTED TO SMTP SERVER " << mx_host << std::endl;
+                std::cout << "Connected to " << mx_host << std::endl;
 
                 send_smtp_command(fd, ("HELO " + domain + "\r\n").c_str());
                 send_smtp_command(fd, ("MAIL FROM: <" + from + ">\r\n").c_str());
