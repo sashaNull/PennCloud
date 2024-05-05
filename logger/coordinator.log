@@ -48,29 +48,6 @@ Range: a_b is handled by the following servers:
 Server 127.0.0.1:6000 is down.
 Server 127.0.0.1:6001 is down.
 Server 127.0.0.1:6002 is down.
-Server 127.0.0.1:6003 is down.
-Server 127.0.0.1:6004 is down.
-Server 127.0.0.1:6005 is down.
-Server 127.0.0.1:6006 is down.
-Server 127.0.0.1:6007 is down.
-Server 127.0.0.1:6008 is down.
-No active servers available for range a_b
-No active servers available for range c_e
-No active servers available for range f_j
-No active servers available for range k_m
-No active servers available for range n_p
-No active servers available for range q_s
-No active servers available for range t_v
-No active servers available for range w_z
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: No
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: No
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: No
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: No
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: No
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
 [4] New connection
 [4] New connection
 [4] New connection
@@ -364,6 +341,11 @@ Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
 [4] New connection
 [4] New connection
 [4] New connection
+<<<<<<< HEAD
+k_m
+Got request: muskaan_info Gave Response: +OK RESP 127.0.0.1:6003
+
+=======
 [4] New connection
 [4] New connection
 [4] New connection
@@ -11185,3 +11167,4 @@ Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
 Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9

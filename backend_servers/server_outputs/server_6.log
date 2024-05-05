@@ -33,6 +33,7 @@ yn_yz
 za_zm
 zn_zz
 Failed to open log file: ./data/server6/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server6/logs/za_zm_logs.txt
 Failed to open log file: ./data/server6/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server6/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server6/logs/xn_xz_logs.txt
@@ -52,27 +53,28 @@ Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server6/logs/wa_wm_logs.txt
 Range to Primary Map:
-Range: zn_zz - Primary: No primary available
-Range: za_zm - Primary: No primary available
-Range: yn_yz - Primary: No primary available
-Range: ya_ym - Primary: No primary available
-Range: xn_xz - Primary: No primary available
-Range: xa_xm - Primary: No primary available
-Range: wn_wz - Primary: No primary available
-Range: ra_rm - Primary: No primary available
-Range: va_vm - Primary: No primary available
-Range: rn_rz - Primary: No primary available
-Range: sn_sz - Primary: No primary available
-Range: qa_qm - Primary: No primary available
-Range: qn_qz - Primary: No primary available
-Range: ua_um - Primary: No primary available
-Range: ta_tm - Primary: No primary available
-Range: sa_sm - Primary: No primary available
-Range: tn_tz - Primary: No primary available
-Range: un_uz - Primary: No primary available
-Range: vn_vz - Primary: No primary available
-Range: wa_wm - Primary: No primary available
+Range: zn_zz - Primary: 127.0.0.1:6006
+Range: za_zm - Primary: 127.0.0.1:6006
+Range: yn_yz - Primary: 127.0.0.1:6006
+Range: ya_ym - Primary: 127.0.0.1:6006
+Range: xn_xz - Primary: 127.0.0.1:6006
+Range: xa_xm - Primary: 127.0.0.1:6006
+Range: wn_wz - Primary: 127.0.0.1:6006
+Range: ra_rm - Primary: 127.0.0.1:6006
+Range: va_vm - Primary: 127.0.0.1:6006
+Range: rn_rz - Primary: 127.0.0.1:6006
+Range: sn_sz - Primary: 127.0.0.1:6006
+Range: qa_qm - Primary: 127.0.0.1:6006
+Range: qn_qz - Primary: 127.0.0.1:6006
+Range: ua_um - Primary: 127.0.0.1:6006
+Range: ta_tm - Primary: 127.0.0.1:6006
+Range: sa_sm - Primary: 127.0.0.1:6006
+Range: tn_tz - Primary: 127.0.0.1:6006
+Range: un_uz - Primary: 127.0.0.1:6006
+Range: vn_vz - Primary: 127.0.0.1:6006
+Range: wa_wm - Primary: 127.0.0.1:6006
 Failed to open log file: ./data/server6/logs/zn_zz_logs.txt
+Failed to open log file: ./data/server6/logs/za_zm_logs.txt
 Failed to open log file: ./data/server6/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server6/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server6/logs/xn_xz_logs.txt
@@ -92,69 +94,447 @@ Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
 Failed to open log file: ./data/server6/logs/wa_wm_logs.txt
 [4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-0 127.0.0.1:6006 No primary available
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] C: GET qa_qm
+qa_qm
+GET Response:VER 0
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] C: GET qa_qm
+[4] C: LGET qa_qm
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] New connection
+qa_qm
+GET Response:VER 0
+
+[6] C: GET qn_qz
+qn_qz
+GET Response:VER 0
+
+[6] C: LGET qn_qz
+LGET Response:VER 0
+
+[5] C: LGET qa_qm
+LGET Response:VER 0
+
+[4] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] C: GET ra_rm
+ra_rm
+GET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] C: LGET ra_rm
+LGET Response:VER 0
+
+[6] New connection
+[6] C: GET qn_qz
+qn_qz
+GET Response:VER 0
+
+[6] C: LGET qn_qz
+LGET Response:VER 0
+
+[5] New connection
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] C: GET rn_rz
+rn_rz
+GET Response:VER 0
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[7] New connection
+[7] C: GET ra_rm
+ra_rm
+GET Response:VER 0
+
+[5] C: LGET rn_rz
+LGET Response:VER 0
+
+[7] C: LGET ra_rm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
 [5] Connection closed!
 [4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] C: quit
+[4] C: GET sa_sm
+sa_sm
+GET Response:VER 0
 
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
+[7] S: Quit command received. Server goodbye!
+[7] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] C: GET rn_rz
+rn_rz
+GET Response:VER 0
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] C: LGET sa_sm
+LGET Response:VER 0
+
+[5] C: LGET rn_rz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
 [5] Connection closed!
+[6] New connection
 [4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[6] C: GET sa_sm
+sa_sm
+GET Response:VER 0
 
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
+[4] C: GET sn_sz
+sn_sz
+GET Response:VER 0
+
+[6] C: LGET sa_sm
+LGET Response:VER 0
+
+[4] C: LGET sn_sz
+LGET Response:VER 0
+
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] C: GET sn_sz
+sn_sz
+[6] New connection
+GET Response:VER 0
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
+[6] C: GET ta_tm
+ta_tm
+GET Response:VER 0
+
+[5] C: LGET sn_sz
+LGET Response:VER 0
+
+[6] C: LGET ta_tm
+LGET Response:VER 0
+
 [4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[7] New connection
+[4] C: GET ta_tm
+ta_tm
+GET Response:VER 0
 
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] C: GET tn_tz
+tn_tz
+GET Response:VER 0
+
+[4] C: LGET ta_tm
+LGET Response:VER 0
+
+[7] C: LGET tn_tz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
 [4] Connection closed!
 [5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] C: quit
+[7] S: Quit command received. Server goodbye!
+[7] Connection closed!
+[5] C: GET tn_tz
+tn_tz
+GET Response:VER 0
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] New connection
+[5] C: LGET tn_tz
+LGET Response:VER 0
+
+[4] C: GET ua_um
+ua_um
+GET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
 [5] Connection closed!
+[4] C: LGET ua_um
+LGET Response:VER 0
+
+[6] New connection
+[6] C: GET ua_um
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+ua_um
+GET Response:VER 0
+
+[5] New connection
+[5] C: GET un_uz
+un_uz
+GET Response:VER 0
+
+[6] C: LGET ua_um
+LGET Response:VER 0
+
+[5] C: LGET un_uz
+LGET Response:VER 0
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] New connection
+[4] C: GET un_uz
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+un_uz
+GET Response:VER 0
+
+[6] New connection
+[4] C: LGET un_uz
+LGET Response:VER 0
+
+[6] C: GET va_vm
+va_vm
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+GET Response:VER 0
+
+[5] New connection
+[6] C: LGET va_vm
+LGET Response:VER 0
+
+[5] C: GET va_vm
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+va_vm
+GET Response:VER 0
+
+[4] New connection
+[5] C: LGET va_vm
+LGET Response:VER 0
+
+[4] C: GET vn_vz
+vn_vz
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+GET Response:VER 0
+
+[6] New connection
+[4] C: LGET vn_vz
+LGET Response:VER 0
+
+[6] C: GET vn_vz
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+vn_vz
+GET Response:VER 0
+
+[5] New connection
+[6] C: LGET vn_vz
+LGET Response:VER 0
+
+[5] C: GET wa_wm
+wa_wm
+GET Response:VER 0
+
+[4] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[5] C: LGET wa_wm
+LGET Response:VER 0
+
+[4] C: GET wa_wm
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+wa_wm
+GET Response:VER 0
+
+[6] New connection
+[6] C: GET wn_wz
+wn_wz
+GET Response:VER 0
+
+[4] C: LGET wa_wm
+LGET Response:VER 0
+
+[6] C: LGET wn_wz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] New connection
+[5] C: GET wn_wz
+wn_wz
+GET Response:VER 0
+
+[4] C: GET xa_xm
+xa_xm
+GET Response:VER 0
+
+[5] C: LGET wn_wz
+LGET Response:VER 0
+
+[4] C: LGET xa_xm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[6] New connection
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] C: GET xa_xm
+xa_xm
+GET Response:VER 0
+
+[5] New connection
+[6] C: LGET xa_xm
+LGET Response:VER 0
+
+[5] C: GET xn_xz
+xn_xz
+GET Response:VER 0
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[5] C: LGET xn_xz
+LGET Response:VER 0
+
+[4] New connection
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] C: GET xn_xz
+xn_xz
+GET Response:VER 0
+
+[6] New connection
+[4] C: LGET xn_xz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] C: GET ya_ym
+ya_ym
+GET Response:VER 0
+
+[5] New connection
+[5] C: GET ya_ym
+[6] C: LGET ya_ym
+LGET Response:VER 0
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+ya_ym
+GET Response:VER 0
+
+[4] New connection
+[4] C: GET yn_yz
+yn_yz
+GET Response:VER 0
+
+[5] C: LGET ya_ym
+LGET Response:VER 0
+
+[4] C: LGET yn_yz
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[6] New connection
+[6] C: GET yn_yz
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+yn_yz
+GET Response:VER 0
+
+[5] New connection
+[6] C: LGET yn_yz
+LGET Response:VER 0
+
+[5] C: GET za_zm
+za_zm
+GET Response:VER 0
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] Connection closed!
+[4] New connection
+[5] C: LGET za_zm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] C: GET za_zm
+za_zm
+GET Response:VER 0
+
+[6] New connection
+[6] C: GET zn_zz
+zn_zz
+GET Response:VER 0
+
+[4] C: LGET za_zm
+LGET Response:VER 0
+
+[6] C: LGET zn_zz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[5] C: GET zn_zz
+zn_zz
+GET Response:VER 0
+
+[5] C: LGET zn_zz
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+<<<<<<< HEAD
+=======
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
@@ -5705,3 +6085,4 @@ This row is in new file: ta_tm
 1 127.0.0.1:6006 127.0.0.1:6006
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9

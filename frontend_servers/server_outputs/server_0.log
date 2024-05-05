@@ -5,6 +5,13 @@ Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
+<<<<<<< HEAD
+Request Line: GET /drive HTTP/1.1
+End of parse
+I am in get cookie handler from the request
+Going from drive to home
+Sent redirection response to http://127.0.0.1:8000/login
+=======
 Client closed the connection.
 Listening...
 Client closed the connection.
@@ -50,6 +57,7 @@ Connection: keep-alive
 
 
 Sent redirection response to /login
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9
 redirect response: HTTP/1.1 302 Found
 Location: /login
 Content-Length: 0
@@ -57,9 +65,39 @@ Connection: keep-alive
 
 
 Listening...
-GET /login HTTP/1.1
-end of parse
+Request Line: GET /login HTTP/1.1
+End of parse
 I am in get cookie handler from the request
+<<<<<<< HEAD
+Sent response successfully, bytes sent: 2431
+Listening...
+Request Line: GET /favicon.ico HTTP/1.1
+End of parse
+Sent response successfully, bytes sent: 79
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Request Line: POST /login HTTP/1.1
+End of parse
+connected to coordinator
+Message sent successfully: 22 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6003
+asked coordinator: 127.0.0.1:6003
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+Listening...
+Request Line: GET /signup HTTP/1.1
+End of parse
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 2788
+Listening...
+Listening...
+=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,7 +178,118 @@ Client closed the connection.
 Listening...
 Client closed the connection.
 Listening...
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9
 Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+<<<<<<< HEAD
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+get response status: 1
+get response error msg: Rowkey does not exist
+to send: 1|muskaan_info|firstName|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|muskaan_info|firstName|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 2|muskaan_info|firstName|mu||0|0|
+
+Message sent successfully: 35 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+get response status: 1
+get response error msg: Rowkey does not exist
+to send: 1|muskaan_info|firstName|||0|0|
+
+Message sent successfully: 33 bytes.
+going to decode message: 1|muskaan_info|firstName|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 2|muskaan_info|firstName|mu||0|0|
+
+Message sent successfully: 35 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+get response status: 1
+get response error msg: Rowkey does not exist
+to send: 1|muskaan_info|firstName|||0|0|
+
+Message sent successfully: 33 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+=======
 Listening...
 Client closed the connection.
 Listening...
@@ -227,9 +376,44 @@ Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
+>>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9
+Listening...
+Client closed the connection.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+get response status: 1
+get response error msg: Rowkey does not exist
+to send: 1|muskaan_info|firstName|||0|0|
+
+Message sent successfully: 33 bytes.
+Listening...
+Client closed the connection.
+Listening...
+Request Line: POST /signup HTTP/1.1
+End of parse
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
+going to decode message: 1|muskaan_info|password|||1|0|Rowkey does not exist
+decoded message
+got response
+to send: 1|muskaan_info|password|||0|0|
+
+Message sent successfully: 32 bytes.
 Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
-Listening...
-Client closed the connection.
+SIGINT received, shutting down.
