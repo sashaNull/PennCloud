@@ -26,6 +26,7 @@
 #define NUM_SPLITS 2
 
 extern const int MAX_BUFFER_SIZE;
+extern const int WELCOME_BUFFER_SIZE;
 // Global variables for server configuration and state
 
 struct fileRange

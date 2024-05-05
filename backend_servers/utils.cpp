@@ -2,7 +2,8 @@
 using namespace std;
 
 // Maximum buffer size for data transmission
-const int MAX_BUFFER_SIZE = 1024;
+const int MAX_BUFFER_SIZE = 1024 * 100;
+const int WELCOME_BUFFER_SIZE = 1024;
 
 /**
  * Reads data from the client socket into the buffer.

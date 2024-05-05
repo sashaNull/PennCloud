@@ -74,7 +74,7 @@ void update_primary(const string &range)
 {
   int sock;
   struct sockaddr_in serv_addr;
-  char buffer[1024] = {0};
+  char buffer[MAX_BUFFER_SIZE] = {0};
 
   if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
   {
@@ -98,7 +98,7 @@ void update_primary(const string &range)
 
   string request = "PGET " + range + "\r\n";
   send(sock, request.c_str(), request.length(), 0);
-  read(sock, buffer, 1024);
+  read(sock, buffer, MAX_BUFFER_SIZE);
   string response(buffer);
 
   // Parse response
@@ -160,15 +160,15 @@ void get_latest_tablet_and_log()
       }
 
       // Read and ignore the welcome message from the server
-      char welcome_buffer[1024] = {0};
-      read(sock, welcome_buffer, 1024);
+      char welcome_buffer[WELCOME_BUFFER_SIZE] = {0};
+      read(sock, welcome_buffer, WELCOME_BUFFER_SIZE);
       // cout << "Ignored message: " << welcome_buffer << endl; // Optionally log the ignored message
       bool runLogGet = false;
       // Send GET command
       string get_command = "GET " + range + "\r\n";
       send(sock, get_command.c_str(), get_command.length(), 0);
-      char buffer[1024] = {0};
-      read(sock, buffer, 1024);
+      char buffer[MAX_BUFFER_SIZE] = {0};
+      read(sock, buffer, MAX_BUFFER_SIZE);
       cout << "GET Response from primary: " << range << " " << buffer << endl;
 
       // Check version response and possibly send TABGET
@@ -191,7 +191,7 @@ void get_latest_tablet_and_log()
 
           while (reading)
           {
-            char buffer[1024] = {0};
+            char buffer[MAX_BUFFER_SIZE] = {0};
             int bytesRead = read(sock, buffer, sizeof(buffer) - 1);
             if (bytesRead <= 0)
             {
@@ -233,7 +233,7 @@ void get_latest_tablet_and_log()
       string lget_command = "LGET " + range + "\r\n";
       send(sock, lget_command.c_str(), lget_command.length(), 0);
       memset(buffer, 0, sizeof(buffer));
-      read(sock, buffer, 1024);
+      read(sock, buffer, MAX_BUFFER_SIZE);
       cout << "LGET Response from primary: " << range << " " << buffer << endl;
 
       // Check requests_since_checkpoint response and possibly send LOGGET
@@ -254,7 +254,7 @@ void get_latest_tablet_and_log()
           bool reading = true;
           while (reading)
           {
-            char buffer[1024] = {0};
+            char buffer[MAX_BUFFER_SIZE] = {0};
             int bytesRead = read(sock, buffer, sizeof(buffer) - 1);
             if (bytesRead <= 0)
             {
@@ -967,8 +967,8 @@ void *handle_connection(void *arg)
         cerr << "Connection Failed" << endl;
         break;
       }
-      char welcome_buffer[1024] = {0};
-      read(sock, welcome_buffer, 1024);
+      char welcome_buffer[WELCOME_BUFFER_SIZE] = {0};
+      read(sock, welcome_buffer, WELCOME_BUFFER_SIZE);
       cout << "Ignored message: " << welcome_buffer << endl; // Optionally log the ignored message
       bytes_sent = send(sock, serialized_to_primary.c_str(), serialized_to_primary.length(), 0);
       if (bytes_sent < 0)
@@ -982,7 +982,7 @@ void *handle_connection(void *arg)
         cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_primary;
       }
 
-      char buffer[1024] = {0};
+      char buffer[MAX_BUFFER_SIZE] = {0};
       ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
       if (bytes_received <= 0)
       {
@@ -1086,7 +1086,7 @@ void *handle_connection(void *arg)
         {
           cout << "[" << client_fd << ", " << sock << "] S: " << serialized_to_backend;
         }
-        char buffer[1024] = {0};
+        char buffer[MAX_BUFFER_SIZE] = {0};
         ssize_t bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (bytes_received <= 0)
         {
