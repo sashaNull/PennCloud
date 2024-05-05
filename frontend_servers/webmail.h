@@ -42,19 +42,19 @@ std::string format_mail_for_display(const std::string& subject, const std::strin
 
 std::string get_timestamp();
 
-int deliver_local_email(int fd, const std::string& recipient, const std::string& uid, const std::string& from, const std::string& subject, const std::string& encoded_body, const std::string& encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+int deliver_local_email(const std::string& recipient, const std::string& uid, const std::string& from, const std::string& encoded_subject, const std::string& encoded_body, const std::string& encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
-int put_in_sentbox(int fd, const std::string& username, const std::string& uid, const std::string& to, const std::string& ts, const std::string& subject, const std::string& body, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+int put_in_sentbox(const std::string& username, const std::string& uid, const std::string& to, const std::string& ts, const std::string& subject, const std::string& body, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 std::string newline_to_br(const std::string& input);
 
 std::string construct_view_email_html(const std::string& subject, const std::string& from, const std::string& to, const std::string& timestamp, const std::string& body, const std::string& uid, const std::string &source);
 
-int put_email_to_backend(int fd, const std::string &uid, const std::string &from, const std::string &to, const std::string &ts, const std::string &encoded_subject, const std::string &encoded_body, const std::string &encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+int put_email_to_backend(const std::string &uid, const std::string &from, const std::string &to, const std::string &ts, const std::string &encoded_subject, const std::string &encoded_body, const std::string &encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 std::string delete_email_from_box_string(const std::string& input, const std::string& uid, const std::string& delimiter);
 
-int delete_email(int fd, const std::string& username, const std::string& uid, const std::string& source, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+int delete_email(const std::string& username, const std::string& uid, const std::string& source, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 // SSL_CTX* create_ssl_context();
 
