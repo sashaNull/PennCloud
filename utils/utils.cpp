@@ -307,3 +307,49 @@ string base_64_decode(const string& encoded_string) {
 
     return ret;
 }
+
+// Function to encode files
+std::string base64_encode(const std::string &data)
+{
+  BIO *bio, *b64;
+  BUF_MEM *bufferPtr;
+
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new(BIO_s_mem());
+  bio = BIO_push(b64, bio);
+
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+  BIO_write(bio, data.c_str(), data.length());
+  BIO_flush(bio);
+  BIO_get_mem_ptr(bio, &bufferPtr);
+  BIO_set_close(bio, BIO_NOCLOSE);
+
+  std::string output(bufferPtr->data, bufferPtr->length);
+  BIO_free_all(bio);
+
+  return output;
+}
+
+// Function to decode files
+std::string base64_decode(const std::string &encoded_data)
+{
+  BIO *bio, *b64;
+  char inbuf[512];
+  std::string output;
+  int inlen;
+
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
+
+  bio = BIO_push(b64, bio);
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+
+  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
+  {
+    output.append(inbuf, inlen);
+  }
+
+  BIO_free_all(bio);
+
+  return output;
+}
