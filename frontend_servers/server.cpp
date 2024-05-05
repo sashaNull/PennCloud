@@ -4228,66 +4228,92 @@ void *handle_connection(void *arg)
     else if (html_request_map["uri"] == "/admin" && html_request_map["method"] == "GET")
     {
       // LIST: get status of all backend servers
-      size_t colon_pos = g_coordinator_addr_str.find(':');
-      if (colon_pos == std::string::npos)
+      std::string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
       {
-        send_response(client_fd, 500, "Internal Server Error", "text/html", "Server configuration error.");
-        continue;
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
       }
+      else
+      {
+        size_t colon_pos = g_coordinator_addr_str.find(':');
+        if (colon_pos == std::string::npos)
+        {
+          send_response(client_fd, 500, "Internal Server Error", "text/html", "Server configuration error.");
+          continue;
+        }
 
-      std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
-      int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
-      std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
-      std::string response_content = get_admin_html_from_vector(servers);
-      send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
+        std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
+        int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
+        std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
+        std::string response_content = get_admin_html_from_vector(servers);
+        send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
+      }
     }
 
     // GET: /admin/<addr>
     else if (html_request_map["uri"].substr(0, 7) == "/admin/" && html_request_map["method"] == "GET")
     {
-      std::string server_addr = html_request_map["uri"].substr(7);
-      size_t colon_pos = server_addr.find(':');
-      if (colon_pos == std::string::npos || colon_pos == server_addr.length() - 1)
+      std::string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
       {
-        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid server address format.");
-        continue;
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
       }
-      std::string ip = server_addr.substr(0, colon_pos);
-      std::string port_str = server_addr.substr(colon_pos + 1);
-      int port;
-
-      if (!safe_stoi(port_str, port))
+      else
       {
-        send_response(client_fd, 400, "Bad Request", "text/html", "Invalid port number.");
-        continue;
-      }
+        std::string server_addr = html_request_map["uri"].substr(7);
+        size_t colon_pos = server_addr.find(':');
+        if (colon_pos == std::string::npos || colon_pos == server_addr.length() - 1)
+        {
+          send_response(client_fd, 400, "Bad Request", "text/html", "Invalid server address format.");
+          continue;
+        }
+        std::string ip = server_addr.substr(0, colon_pos);
+        std::string port_str = server_addr.substr(colon_pos + 1);
+        int port;
 
-      auto data = fetch_data_from_server(ip, port);
-      if (data.empty())
-      {
-        send_response(client_fd, 500, "Internal Server Error", "text/html", "Failed to fetch data from the server.");
-        continue;
-      }
+        if (!safe_stoi(port_str, port))
+        {
+          send_response(client_fd, 400, "Bad Request", "text/html", "Invalid port number.");
+          continue;
+        }
 
-      std::string html = generate_html_from_data(data, ip, port);
-      send_response(client_fd, 200, "OK", "text/html", html);
+        auto data = fetch_data_from_server(ip, port);
+        if (data.empty())
+        {
+          send_response(client_fd, 500, "Internal Server Error", "text/html", "Failed to fetch data from the server.");
+          continue;
+        }
+
+        std::string html = generate_html_from_data(data, ip, port);
+        send_response(client_fd, 200, "OK", "text/html", html);
+      }
     }
 
     // POST: /admin?toggle=suspend&server=<addr>     or    /admin?toggle=activate&server=<addr>
     else if (html_request_map["uri"].substr(0, 13) == "/admin?toggle" && html_request_map["method"] == "POST")
     {
-      std::string query = html_request_map["uri"].substr(6);
-
-      std::string result = handle_toggle_request(query);
-
-      if (result.empty())
+      std::string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
       {
-        std::string redirect_html = "<html><head><meta http-equiv='refresh' content='0;url=/admin'></head></html>";
-        send_response(client_fd, 302, "Found", "text/html", redirect_html);
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
       }
       else
       {
-        send_response(client_fd, 400, "Bad Request", "text/html", result);
+        std::string query = html_request_map["uri"].substr(6);
+        std::string result = handle_toggle_request(query);
+
+        if (result.empty())
+        {
+          std::string redirect_html = "<html><head><meta http-equiv='refresh' content='0;url=/admin'></head></html>";
+          send_response(client_fd, 302, "Found", "text/html", redirect_html);
+        }
+        else
+        {
+          send_response(client_fd, 400, "Bad Request", "text/html", result);
+        }
       }
     }
     else
