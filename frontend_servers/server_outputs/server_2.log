@@ -20,3784 +20,653 @@ Listening...
 Client closed the connection.
 Listening...
 Client closed the connection.
-<<<<<<< HEAD
-SIGINT received, shutting down.
-=======
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-GET / HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: UpJ6Vu1Hnw1NX8WFDTfw2Un5k72Kzt8R
-Sent redirection response to /home
-redirect response: HTTP/1.1 302 Found
-Location: /home
-Content-Length: 0
-Connection: keep-alive
-
-
-Sent redirection response to /login
-redirect response: HTTP/1.1 302 Found
-Location: /login
-Content-Length: 0
-Connection: keep-alive
-
-
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: UpJ6Vu1Hnw1NX8WFDTfw2Un5k72Kzt8R
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: UpJ6Vu1Hnw1NX8WFDTfw2Un5k72Kzt8R
-connected to coordinator
-Message sent successfully: 19 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6000
-asked coordinator: 127.0.0.1:6000
-to send: 3|cookie|UpJ6Vu1Hnw1NX8WFDTfw2Un5k72Kzt8R|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|UpJ6Vu1Hnw1NX8WFDTfw2Un5k72Kzt8R|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
-Listening...
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-connected to coordinator
-Message sent successfully: 20 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 109
-Listening...
-POST /login HTTP/1.1
-end of parse
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 109
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 109
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-GET /signup HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-Sent response successfully, bytes sent: 2725
-Listening...
-Listening...
-Client closed the connection.
-POST /signup HTTP/1.1
-end of parse
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Rowkey does not exist
-decoded message
-get response status: 1
-get response error msg: Rowkey does not exist
-to send: 1|sasha_info|firstName|||0|0|
-
-Message sent successfully: 31 bytes.
-going to decode message: 1|sasha_info|firstName|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_info|firstName|Sasha||0|0|
-
-Message sent successfully: 36 bytes.
-going to decode message: 2|sasha_info|firstName|Sasha||0|0|Data written successfully
-decoded message
-to send: 1|sasha_info|email|||0|0|
-
-Message sent successfully: 27 bytes.
-going to decode message: 1|sasha_info|email|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|sasha_info|email|sasha@gmail.com||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 2|sasha_info|email|sasha@gmail.com||0|0|Data written successfully
-decoded message
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|sasha_info|password|1234||0|0|
-
-Message sent successfully: 34 bytes.
-going to decode message: 2|sasha_info|password|1234||0|0|Data written successfully
-decoded message
-connected to coordinator
-Message sent successfully: 21 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_email|inbox_items|||0|0|
-
-Message sent successfully: 34 bytes.
-going to decode message: 2|sasha_email|inbox_items|||0|0|Data written successfully
-decoded message
-to send: 1|sasha_email|sentbox_items|||0|0|
-
-Message sent successfully: 36 bytes.
-going to decode message: 1|sasha_email|sentbox_items|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|sasha_email|sentbox_items|||0|0|
-
-Message sent successfully: 36 bytes.
-going to decode message: 2|sasha_email|sentbox_items|||0|0|Data written successfully
-decoded message
-connected to coordinator
-Message sent successfully: 21 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive|items|[]||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 2|sasha_drive|items|[]||0|0|Data written successfully
-decoded message
-Sent redirection response to /login
-redirect response: HTTP/1.1 302 Found
-Location: /login
-Content-Length: 0
-Connection: keep-alive
-
-
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-connected to coordinator
-Message sent successfully: 21 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6001
-asked coordinator: 127.0.0.1:6001
-to send: 1|adwait_info|password|||0|0|
-
-Message sent successfully: 31 bytes.
-going to decode message: 1|adwait_info|password|1234||0|0|
-decoded message
-I am in get cookie handler from the request
-to send: 1|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|adwait||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 2|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|adwait||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: /home
-Content-Length: 0
-Connection: keep-alive
-Set-Cookie: sid=gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
-
-
-Redirect with cookie response sent successfully, bytes sent: 189
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp
-to send: 1|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|adwait||0|0|
-decoded message
-got response
-to send: 3|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|gYyMBwV2VswJ4zR9nyGrwDRXxAaq9KEp|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
-Listening...
-POST /login HTTP/1.1
-end of parse
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|1234||0|0|
-decoded message
-got response
-to send: 1|sasha_info|password|||0|0|
-
-Message sent successfully: 30 bytes.
-going to decode message: 1|sasha_info|password|1234||0|0|
-decoded message
-I am in get cookie handler from the request
-to send: 1|cookie|qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|cookie|qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7|sasha||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 2|cookie|qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7|sasha||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: /home
-Content-Length: 0
-Connection: keep-alive
-Set-Cookie: sid=qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
-
-
-Redirect with cookie response sent successfully, bytes sent: 189
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6258
-Listening...
-Listening...
-Client closed the connection.
-POST /create_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-parent row key: sasha_drive
-connected to coordinator
-Message sent successfully: 32 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[]|[D@helloworld]|0|0|
-
-Message sent successfully: 44 bytes.
-going to decode message: 4|sasha_drive|items|[]|[D@helloworld]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld|items|[]||0|0|
-
-Message sent successfully: 41 bytes.
-going to decode message: 2|sasha_drive/helloworld|items|[]||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6530
-Listening...
-Listening...
-Client closed the connection.
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-POST /upload_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-file content: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-parent row key: sasha_drive
-connected to coordinator
-Message sent successfully: 30 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@helloworld]|[D@helloworld,F@help.txt]|0|0|
-
-Message sent successfully: 67 bytes.
-going to decode message: 4|sasha_drive|items|[D@helloworld]|[D@helloworld,F@help.txt]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 120 bytes.
-going to decode message: 2|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Client closed the connection.
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6755
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-POST /rename_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-File path for rename: drive/help.txt
-New file name: fuck
-connected to coordinator
-Message sent successfully: 26 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive/fuck|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-to send: 1|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive/fuck|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 116 bytes.
-going to decode message: 2|sasha_drive/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Parent directory to update: sasha_drive
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@help.txt]||0|0|
-decoded message
-New value to update: [D@helloworld,F@fuck]
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@help.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@helloworld,F@help.txt]|[D@helloworld,F@fuck]|0|0|
-
-Message sent successfully: 74 bytes.
-going to decode message: 4|sasha_drive|items|[D@helloworld,F@help.txt]|[D@helloworld,F@fuck]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 3|sasha_drive/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Listening...
-Client closed the connection.
-Client closed the connection.
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@fuck]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6747
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /move_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-connected to coordinator
-Message sent successfully: 37 bytes.
-sent message to coordinator
-Listening...
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 127 bytes.
-going to decode message: 2|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Parent directory to update: sasha_drive
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@fuck]||0|0|
-decoded message
-New value to update: [F@fuck]
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld|items|[]|[F@fuck]|0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 4|sasha_drive/helloworld|items|[]|[F@fuck]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,F@fuck]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@helloworld,F@fuck]|[D@helloworld]|0|0|
-
-Message sent successfully: 63 bytes.
-going to decode message: 4|sasha_drive|items|[D@helloworld,F@fuck]|[D@helloworld]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/fuck|content|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 3|sasha_drive/fuck|content|||0|0|Colkey deleted successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Client closed the connection.
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6530
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6517
-Listening...
-Listening...
-Client closed the connection.
-GET /download?file=drive%2Fhelloworld%2Ffuck HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-in download file
-parent row key: sasha_drive/helloworld/fuck
-file name: fuck
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Sent response successfully, bytes sent: 147
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /upload_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-file content: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-parent row key: sasha_drive/helloworld
-connected to coordinator
-Message sent successfully: 41 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|sasha_drive/helloworld/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld|items|[F@fuck]|[F@fuck,F@help.txt]|0|0|
-
-Message sent successfully: 66 bytes.
-going to decode message: 4|sasha_drive/helloworld|items|[F@fuck]|[F@fuck,F@help.txt]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|sasha_drive/helloworld/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 131 bytes.
-going to decode message: 2|sasha_drive/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6753
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-POST /create_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-parent row key: sasha_drive/helloworld
-connected to coordinator
-Message sent successfully: 35 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld|items|[F@fuck,F@help.txt]|[F@fuck,F@help.txt,D@hi]|0|0|
-
-Message sent successfully: 82 bytes.
-going to decode message: 4|sasha_drive/helloworld|items|[F@fuck,F@help.txt]|[F@fuck,F@help.txt,D@hi]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi|items|[]||0|0|
-
-Message sent successfully: 44 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi|items|[]||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7011
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6286
-Listening...
-Listening...
-Client closed the connection.
-POST /create_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-parent row key: sasha_drive/helloworld/hi
-connected to coordinator
-Message sent successfully: 41 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/toasd|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld/hi|items|[]|[D@toasd]|0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 4|sasha_drive/helloworld/hi|items|[]|[D@toasd]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/toasd|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi/toasd|items|[]||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi/toasd|items|[]||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6562
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-POST /upload_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-file content: 
-parent row key: sasha_drive/helloworld/hi
-connected to coordinator
-Message sent successfully: 43 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/one.cpp|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld/hi|items|[D@toasd]|[D@toasd,F@one.cpp]|0|0|
-
-Message sent successfully: 70 bytes.
-going to decode message: 4|sasha_drive/helloworld/hi|items|[D@toasd]|[D@toasd,F@one.cpp]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/one.cpp|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi/one.cpp|content|||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6799
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-POST /upload_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-file content: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-parent row key: sasha_drive/helloworld/hi
-connected to coordinator
-Message sent successfully: 44 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]|[D@toasd,F@one.cpp,F@help.txt]|0|0|
-
-Message sent successfully: 91 bytes.
-going to decode message: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp]|[D@toasd,F@one.cpp,F@help.txt]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/help.txt|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 134 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7038
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-POST /upload_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-file content: hsdjasboiedgbsirugb
-
-parent row key: sasha_drive/helloworld/hi
-connected to coordinator
-Message sent successfully: 45 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6007
-asked coordinator: 127.0.0.1:6007
-to send: 1|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/hellp.txt|content|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]|0|0|
-
-Message sent successfully: 114 bytes.
-going to decode message: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt]|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/hellp.txt|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-
-Message sent successfully: 74 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7279
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-POST /rename_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/helloworld/hi/toasd
-connected to coordinator
-Message sent successfully: 46 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-Listening...
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/helloworld/hi/ehewgfasdf
-to send: 1|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/toasd|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/toasd|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/toasd|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/hi/ehewgfasdf|items|[]||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 2|sasha_drive/helloworld/hi/ehewgfasdf|items|[]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/helloworld/hi/toasd
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|[]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/hi/toasd|items|||0|0|
-
-Message sent successfully: 48 bytes.
-going to decode message: 3|sasha_drive/helloworld/hi/toasd|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive/helloworld/hi
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]||0|0|
-decoded message
-New value after deletion in parent: [F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]|0|0|
-
-Message sent successfully: 131 bytes.
-going to decode message: 4|sasha_drive/helloworld/hi|items|[D@toasd,F@one.cpp,F@help.txt,F@hellp.txt]|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Listening...
-Client closed the connection.
-Client closed the connection.
-Client closed the connection.
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7289
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /rename_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/helloworld/hi
-connected to coordinator
-Message sent successfully: 38 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/helloworld/qweqw
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/hi/one.cpp
-Value of get: 
-connected to coordinator
-Message sent successfully: 46 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 2|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/helloworld/qweqw/one.cpp
-Value of put: 
-row key for delete file: sasha_drive/helloworld/hi/one.cpp
-to send: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/hi/one.cpp|content|||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 3|sasha_drive/helloworld/hi/one.cpp|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/hi/help.txt
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 47 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 137 bytes.
-going to decode message: 2|sasha_drive/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/helloworld/qweqw/help.txt
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/helloworld/hi/help.txt
-to send: 1|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/hi/help.txt|content|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 3|sasha_drive/helloworld/hi/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/hi/hellp.txt
-Value of get: hsdjasboiedgbsirugb
-
-connected to coordinator
-Message sent successfully: 48 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-
-Message sent successfully: 77 bytes.
-going to decode message: 2|sasha_drive/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/helloworld/qweqw/hellp.txt
-Value of put: hsdjasboiedgbsirugb
-
-row key for delete file: sasha_drive/helloworld/hi/hellp.txt
-to send: 1|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 3|sasha_drive/helloworld/hi/hellp.txt|content|||0|0|Colkey deleted successfully
-decoded message
-new row key for rename: sasha_drive/helloworld/qweqw/ehewgfasdf
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|items|[]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|content|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi/ehewgfasdf|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi/ehewgfasdf|content|||1|0|Colkey does not exist
-decoded message
-Row key for get: sasha_drive/helloworld/hi/ehewgfasdf
-Value of get: 
-Sent response successfully, bytes sent: 116
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-
-Message sent successfully: 92 bytes.
-going to decode message: 2|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/helloworld/hi
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 3|sasha_drive/helloworld/hi|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive/helloworld
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]||0|0|
-decoded message
-New value after deletion in parent: [F@fuck,F@help.txt,D@qweqw]
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]|[F@fuck,F@help.txt,D@qweqw]|0|0|
-
-Message sent successfully: 90 bytes.
-going to decode message: 4|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@hi]|[F@fuck,F@help.txt,D@qweqw]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Listening...
-GET /drive/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7017
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld/qweqw HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7307
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld/qweqw HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7307
-Listening...
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Colkey does not exist
-decoded message
-Sent response successfully, bytes sent: 123
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld/hi HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/hi|items|||0|0|
-
-Message sent successfully: 42 bytes.
-going to decode message: 1|sasha_drive/helloworld/hi|items|||1|0|Colkey does not exist
-decoded message
-Sent response successfully, bytes sent: 123
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7017
-Listening...
-GET /drive/ HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-connected to coordinator
-Message sent successfully: 22 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/|items|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|sasha_drive/|items|||1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 123
-Listening...
-Listening...
-Client closed the connection.
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6530
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /create_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-parent row key: sasha_drive
-connected to coordinator
-Message sent successfully: 31 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@helloworld]|[D@helloworld,D@sashaNull]|0|0|
-
-Message sent successfully: 68 bytes.
-going to decode message: 4|sasha_drive|items|[D@helloworld]|[D@helloworld,D@sashaNull]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/sashaNull|items|[]||0|0|
-
-Message sent successfully: 40 bytes.
-going to decode message: 2|sasha_drive/sashaNull|items|[]||0|0|Data written successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,D@sashaNull]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,D@sashaNull]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6791
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /move_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/helloworld
-connected to coordinator
-Message sent successfully: 42 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6007
-asked coordinator: 127.0.0.1:6007
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/sashaNull/helloworld
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-Listening...
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/fuck
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 47 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/sashaNull/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 137 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/sashaNull/helloworld/fuck
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/helloworld/fuck
-to send: 1|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 1|sasha_drive/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 46 bytes.
-going to decode message: 3|sasha_drive/helloworld/fuck|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|sasha_drive/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|sasha_drive/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/help.txt
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 51 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/sashaNull/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 141 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/sashaNull/helloworld/help.txt
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/helloworld/help.txt
-to send: 1|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|sasha_drive/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|sasha_drive/helloworld/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-new row key for rename: sasha_drive/sashaNull/helloworld/qweqw
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|items|[F@one.cpp,F@help.txt,F@hellp.txt,D@ehewgfasdf]||0|0|
-decoded message
-to send: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/qweqw/one.cpp
-Value of get: 
-connected to coordinator
-Message sent successfully: 56 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/sashaNull/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 65 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld/qweqw/one.cpp|content|||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/sashaNull/helloworld/qweqw/one.cpp
-Value of put: 
-row key for delete file: sasha_drive/helloworld/qweqw/one.cpp
-to send: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 3|sasha_drive/helloworld/qweqw/one.cpp|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/helloworld/qweqw/help.txt|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw/help.txt|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/qweqw/help.txt
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 57 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/sashaNull/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 147 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/sashaNull/helloworld/qweqw/help.txt
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/helloworld/qweqw/help.txt
-to send: 1|sasha_drive/helloworld/qweqw/help.txt|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/qweqw/help.txt|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 3|sasha_drive/helloworld/qweqw/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-Row key for get: sasha_drive/helloworld/qweqw/hellp.txt
-Value of get: hsdjasboiedgbsirugb
-
-connected to coordinator
-Message sent successfully: 58 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/sashaNull/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-
-Message sent successfully: 87 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/sashaNull/helloworld/qweqw/hellp.txt
-Value of put: hsdjasboiedgbsirugb
-
-row key for delete file: sasha_drive/helloworld/qweqw/hellp.txt
-to send: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/hellp.txt|content|hsdjasboiedgbsirugb
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld/qweqw/hellp.txt|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 3|sasha_drive/helloworld/qweqw/hellp.txt|content|||0|0|Colkey deleted successfully
-decoded message
-new row key for rename: sasha_drive/sashaNull/helloworld/qweqw/ehewgfasdf
-connected to coordinator
-Message sent successfully: 49 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6007
-asked coordinator: 127.0.0.1:6007
-to send: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|items|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw/ehewgfasdf|content|||1|0|Rowkey does not exist
-decoded message
-Row key for get: sasha_drive/helloworld/qweqw/ehewgfasdf
-Value of get: 
-Sent response successfully, bytes sent: 116
-to send: 1|sasha_drive/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|content|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/helloworld/qweqw|content|||1|0|Colkey does not exist
-decoded message
-Row key for get: sasha_drive/helloworld/qweqw
-Value of get: 
-Sent response successfully, bytes sent: 116
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-
-Message sent successfully: 76 bytes.
-going to decode message: 2|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/helloworld
-to send: 1|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/helloworld|items|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 3|sasha_drive/helloworld|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,D@sashaNull]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,D@sashaNull]||0|0|
-decoded message
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[]||0|0|
-decoded message
-ROW KEY FOR HW2: sasha_drive/sashaNull
-New value after deletion in parent: [D@sashaNull]
-NEW ITEM TO PUT FOR HW2: D@helloworld
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@helloworld,D@sashaNull]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@helloworld,D@sashaNull]|[D@sashaNull]|0|0|
-
-Message sent successfully: 67 bytes.
-going to decode message: 4|sasha_drive|items|[D@helloworld,D@sashaNull]|[D@sashaNull]|0|0|Colkey updated successfully
-decoded message
-NEW ITEM ROW KEY FOR HW2: sasha_drive/sashaNull
-NEW VALUE TO PUT FOR HW2: [D@helloworld]
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/sashaNull|items|[]|[D@helloworld]|0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 4|sasha_drive/sashaNull|items|[]|[D@helloworld]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@sashaNull]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@sashaNull]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6528
-Listening...
-Listening...
-Client closed the connection.
-POST /rename_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/sashaNull
-connected to coordinator
-Message sent successfully: 31 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-Listening...
-going to decode message: 1|sasha_drive/asfasfsaf|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/asfasfsaf
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[D@helloworld]||0|0|
-decoded message
-new row key for rename: sasha_drive/asfasfsaf/helloworld
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/sashaNull/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/sashaNull/helloworld/fuck
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 47 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/asfasfsaf/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 137 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/asfasfsaf/helloworld/fuck
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/sashaNull/helloworld/fuck
-to send: 1|sasha_drive/sashaNull/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/sashaNull/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 3|sasha_drive/sashaNull/helloworld/fuck|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/sashaNull/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/sashaNull/helloworld/help.txt
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 51 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/asfasfsaf/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 141 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/asfasfsaf/helloworld/help.txt
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/sashaNull/helloworld/help.txt
-to send: 1|sasha_drive/sashaNull/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/sashaNull/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 3|sasha_drive/sashaNull/helloworld/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-new row key for rename: sasha_drive/asfasfsaf/helloworld/qweqw
-connected to coordinator
-Message sent successfully: 48 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/sashaNull/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/sashaNull/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/qweqw|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld/qweqw|content|||1|0|Rowkey does not exist
-decoded message
-Row key for get: sasha_drive/sashaNull/helloworld/qweqw
-Value of get: 
-Sent response successfully, bytes sent: 116
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Row key for get: sasha_drive/sashaNull/helloworld
-Value of get: [F@fuck,F@help.txt,D@qweqw]
-connected to coordinator
-Message sent successfully: 42 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-
-Message sent successfully: 76 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/asfasfsaf/helloworld
-Value of put: [F@fuck,F@help.txt,D@qweqw]
-Sending delete for: sasha_drive/sashaNull/helloworld
-to send: 1|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/sashaNull/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/sashaNull/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 3|sasha_drive/sashaNull/helloworld|items|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/sashaNull|items|[D@helloworld]||0|0|
-decoded message
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/sashaNull
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/sashaNull|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 3|sasha_drive/sashaNull|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@sashaNull]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@sashaNull]||0|0|
-decoded message
-New value after deletion in parent: [D@asfasfsaf]
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@sashaNull]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@sashaNull]|[D@asfasfsaf]|0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 4|sasha_drive|items|[D@sashaNull]|[D@asfasfsaf]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6528
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6560
-Listening...
-GET /drive/asfasfsaf/helloworld HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7067
-Listening...
-Listening...
-Client closed the connection.
-POST /rename_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/asfasfsaf/helloworld
-connected to coordinator
-Message sent successfully: 40 bytes.
-sent message to coordinator
-Listening...
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/asfasfsaf/fasdfdas
-to send: 1|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/asfasfsaf/helloworld/fuck
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 45 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/asfasfsaf/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 135 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/asfasfsaf/fasdfdas/fuck
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/asfasfsaf/helloworld/fuck
-to send: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/helloworld/fuck|content|||0|0|
-
-Message sent successfully: 56 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/helloworld/fuck|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/asfasfsaf/helloworld/help.txt
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 49 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 139 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/asfasfsaf/fasdfdas/help.txt
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/asfasfsaf/helloworld/help.txt
-to send: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/helloworld/help.txt|content|||0|0|
-
-Message sent successfully: 60 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/helloworld/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-new row key for rename: sasha_drive/asfasfsaf/fasdfdas/qweqw
-connected to coordinator
-Message sent successfully: 48 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/asfasfsaf/helloworld/qweqw|items|||0|0|
-
-Message sent successfully: 55 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/asfasfsaf/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/qweqw|content|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld/qweqw|content|||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld/qweqw|content|||1|0|Rowkey does not exist
-decoded message
-Row key for get: sasha_drive/asfasfsaf/helloworld/qweqw
-Value of get: 
-Sent response successfully, bytes sent: 116
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/helloworld|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-
-Message sent successfully: 74 bytes.
-going to decode message: 2|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/asfasfsaf/helloworld
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/helloworld|items|||0|0|
-
-Message sent successfully: 49 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/helloworld|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive/asfasfsaf
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-New value after deletion in parent: [D@fasdfdas]
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@helloworld]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/asfasfsaf|items|[D@helloworld]|[D@fasdfdas]|0|0|
-
-Message sent successfully: 64 bytes.
-going to decode message: 4|sasha_drive/asfasfsaf|items|[D@helloworld]|[D@fasdfdas]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6556
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6556
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf/fasdfdas HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7057
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-Listening...
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6556
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf/fasdfdas HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7057
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /move_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/asfasfsaf/fasdfdas/qweqw
-connected to coordinator
-Message sent successfully: 28 bytes.
-sent message to coordinator
-Listening...
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive//qweqw|items|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive//qweqw|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive//qweqw
-connected to coordinator
-Message sent successfully: 46 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-to send: 1|sasha_drive//qweqw|items|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 1|sasha_drive//qweqw|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive//qweqw|items|||0|0|
-
-Message sent successfully: 35 bytes.
-going to decode message: 2|sasha_drive//qweqw|items|||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/asfasfsaf/fasdfdas/qweqw
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||0|0|
-
-Message sent successfully: 53 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/fasdfdas/qweqw|items|||1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 113
-parent row key for delete: sasha_drive/asfasfsaf/fasdfdas
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-to send: 1|sasha_drive/|items|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|sasha_drive/|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/|items|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|sasha_drive/|items|||1|0|Rowkey does not exist
-decoded message
-ROW KEY FOR HW2: sasha_drive/
-New value after deletion in parent: [F@fuck,F@help.txt]
-NEW ITEM TO PUT FOR HW2: D@qweqw
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]|[F@fuck,F@help.txt]|0|0|
-
-Message sent successfully: 93 bytes.
-going to decode message: 4|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt,D@qweqw]|[F@fuck,F@help.txt]|0|0|Colkey updated successfully
-decoded message
-NEW ITEM ROW KEY FOR HW2: sasha_drive/
-NEW VALUE TO PUT FOR HW2: [D@qweqw]
-to send: 1|sasha_drive/|items|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|sasha_drive/|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 4|sasha_drive/|items||[D@qweqw]|0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 4|sasha_drive/|items||[D@qweqw]|1|0|Rowkey does not exist
-decoded message
-Sent response successfully, bytes sent: 133
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf/fasdfdas HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6785
-Listening...
-Listening...
-Client closed the connection.
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6528
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6556
-Listening...
-GET /drive/asfasfsaf/fasdfdas HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6785
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /move_file HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|||1|0|Colkey does not exist
-decoded message
-RESPONSE: Colkey does not exist
-Listening...
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-to send: 1|sasha_drive/help.txt|content|||0|0|
-
-Message sent successfully: 39 bytes.
-going to decode message: 1|sasha_drive/help.txt|content|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 120 bytes.
-going to decode message: 2|sasha_drive/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-Parent directory to update: sasha_drive/asfasfsaf/fasdfdas
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-New value to update: [D@asfasfsaf,F@help.txt]
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@asfasfsaf]|[D@asfasfsaf,F@help.txt]|0|0|
-
-Message sent successfully: 65 bytes.
-going to decode message: 4|sasha_drive|items|[D@asfasfsaf]|[D@asfasfsaf,F@help.txt]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]|[F@fuck]|0|0|
-
-Message sent successfully: 74 bytes.
-going to decode message: 4|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck,F@help.txt]|[F@fuck]|0|0|Colkey updated successfully
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|||0|0|
-
-Message sent successfully: 58 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/fasdfdas/help.txt|content|||0|0|Colkey deleted successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Client closed the connection.
-Listening...
-GET /drive/asfasfsaf/fasdfdas HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6541
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6753
-Listening...
-Listening...
-Client closed the connection.
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6556
-Listening...
-Listening...
-Client closed the connection.
-POST /move_folder HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-folder path for rename: drive/asfasfsaf/fasdfdas
-connected to coordinator
-Message sent successfully: 30 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6008
-asked coordinator: 127.0.0.1:6008
-to send: 1|sasha_drive/fasdfdas|items|||0|0|
-
-Message sent successfully: 37 bytes.
-going to decode message: 1|sasha_drive/fasdfdas|items|||1|0|Rowkey does not exist
-decoded message
-RESPONSE: Rowkey does not exist
-new row key for rename: sasha_drive/fasdfdas
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-Listening...
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-Row key for get: sasha_drive/asfasfsaf/fasdfdas/fuck
-Value of get: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-connected to coordinator
-Message sent successfully: 35 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6006
-asked coordinator: 127.0.0.1:6006
-to send: 2|sasha_drive/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-
-Message sent successfully: 125 bytes.
-going to decode message: 2|sasha_drive/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|Data written successfully
-decoded message
-New Row key for put: sasha_drive/fasdfdas/fuck
-Value of put: asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-
-row key for delete file: sasha_drive/asfasfsaf/fasdfdas/fuck
-to send: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas/fuck|content|asjhkfdgbvaelwrkvbqayewruvlbqaewlrifuqWBERVLIYUWERBGfgvouyqwergfbcvWULKERYGVBQUB
-||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/fasdfdas/fuck|content|||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/fasdfdas/fuck|content|||0|0|Colkey deleted successfully
-decoded message
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-to send: 1|sasha_drive/fasdfdas|items|||0|0|
-
-Message sent successfully: 37 bytes.
-going to decode message: 1|sasha_drive/fasdfdas|items|||1|0|Rowkey does not exist
-decoded message
-got response
-to send: 2|sasha_drive/fasdfdas|items|[F@fuck]||0|0|
-
-Message sent successfully: 45 bytes.
-going to decode message: 2|sasha_drive/fasdfdas|items|[F@fuck]||0|0|Data written successfully
-decoded message
-Sending delete for: sasha_drive/asfasfsaf/fasdfdas
-to send: 1|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf/fasdfdas|items|[F@fuck]||0|0|
-decoded message
-got response
-to send: 3|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|
-
-Message sent successfully: 47 bytes.
-going to decode message: 3|sasha_drive/asfasfsaf/fasdfdas|items|||0|0|Colkey deleted successfully
-decoded message
-parent row key for delete: sasha_drive/asfasfsaf
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt]||0|0|
-decoded message
-ROW KEY FOR HW2: sasha_drive
-New value after deletion in parent: []
-NEW ITEM TO PUT FOR HW2: D@fasdfdas
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive/asfasfsaf|items|[D@fasdfdas]|[]|0|0|
-
-Message sent successfully: 52 bytes.
-going to decode message: 4|sasha_drive/asfasfsaf|items|[D@fasdfdas]|[]|0|0|Colkey updated successfully
-decoded message
-NEW ITEM ROW KEY FOR HW2: sasha_drive
-NEW VALUE TO PUT FOR HW2: [D@asfasfsaf,F@help.txt,D@fasdfdas]
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt]||0|0|
-decoded message
-got response
-to send: 4|sasha_drive|items|[D@asfasfsaf,F@help.txt]|[D@asfasfsaf,F@help.txt,D@fasdfdas]|0|0|
-
-Message sent successfully: 87 bytes.
-going to decode message: 4|sasha_drive|items|[D@asfasfsaf,F@help.txt]|[D@asfasfsaf,F@help.txt,D@fasdfdas]|0|0|Colkey updated successfully
-decoded message
-Sent response successfully, bytes sent: 110
-Listening...
-Client closed the connection.
-Client closed the connection.
-Listening...
-GET /drive/asfasfsaf HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive/asfasfsaf|items|||0|0|
-
-Message sent successfully: 38 bytes.
-going to decode message: 1|sasha_drive/asfasfsaf|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6278
-Listening...
-GET /favicon.ico HTTP/1.1
-end of parse
-Sent response successfully, bytes sent: 79
-Listening...
-Listening...
-Client closed the connection.
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-username: sasha qtdoUCS7ztIU9bK4GzUpq4gRCyXsHMZ7
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt,D@fasdfdas]||0|0|
-decoded message
-got response
-to send: 1|sasha_drive|items|||0|0|
-
-Message sent successfully: 28 bytes.
-going to decode message: 1|sasha_drive|items|[D@asfasfsaf,F@help.txt,D@fasdfdas]||0|0|
-decoded message
-Sent response successfully, bytes sent: 7012
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
->>>>>>> 70764f5b9c136cbb15ceb1e44fe88c4459f28fb9
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.
+Listening...
+Client closed the connection.

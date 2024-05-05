@@ -328,7 +328,7 @@ std::string get_username_from_cookie(const std::string &cookie, int backend_fd)
   // Unlock the mutex after modifying the map
   pthread_mutex_unlock(&map_mutex);
 
-  if (it != cookie_user_map.end())
+  if (it != cookie_user_map.end() && !it->second.empty())
   {
     return it->second; // Return the username if found
   }
@@ -3273,9 +3273,11 @@ void *handle_connection(void *arg)
           F_2_B_Message msg_to_send_get;
           string response_value_get, response_error_msg_get;
           int response_status_get, response_code;
-          string rowkey = new_path_key;
+          string rowkey = new_row_key;
           string type = "get";
           string colkey = "items";
+
+          // Check whether the new directory exists
           msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
           response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
                                               response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
@@ -3291,28 +3293,17 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-          // Check whether folder already exists in this directory
 
-          std::cout << "RESPONSE: " << response_error_msg_get << std::endl;
-
-          if (response_status_get == 0)
+          if (response_status_get == 1)
           {
-            // file already exists
-            string content = "{\"error\":\"Folder with same name already exists in new directory!!\"}";
+            // directory does not exist
+            string content = "{\"error\":\"New diirectory does not exist!!\"}";
             send_response(client_fd, 409, "Conflict", "application/json", content);
           }
-          else if (response_status_get == 1)
+          else if (response_status_get == 0)
           {
-
-            // Recursively move folder
-            renameFolder(oldFolderPath, newFolderPath, client_fd, fd, username);
-
-            F_2_B_Message msg_to_send_get;
-            string response_value_get, response_error_msg_get;
-            int response_status_get, response_code;
-            string rowkey = row_key;
-            string type = "get";
-            string colkey = "items";
+            // Check whether folder already exists in this directory
+            string rowkey = new_path_key;
             msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
                                                 response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
@@ -3328,254 +3319,290 @@ void *handle_connection(void *arg)
               continue;
             }
 
-            // GET old folder and PUT new folder path
-            F_2_B_Message msg_to_send_put;
-            string response_value_put, response_error_msg_put;
-            int response_status_put;
-            rowkey = new_path_key;
-            type = "put";
-            colkey = "items";
-            msg_to_send_put = construct_msg(2, rowkey, colkey, response_value_get, "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send_put, response_value_put, response_status_put,
-                                                response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-            if (response_code == 1)
+            std::cout << "RESPONSE: " << response_error_msg_get << std::endl;
+
+            if (response_status_get == 0)
             {
-              cerr << "ERROR in communicating with coordinator" << endl;
-              continue;
+              // file already exists
+              string content = "{\"error\":\"Folder with same name already exists in new directory!!\"}";
+              send_response(client_fd, 409, "Conflict", "application/json", content);
             }
-            else if (response_code == 2)
+            else if (response_status_get == 1)
             {
-              cerr << "ERROR in communicating with backend" << endl;
-              continue;
-            }
-            if (response_status_put != 0)
-            {
-              // Error handling: send appropriate error response to the client
-              string error_message = "Failed to create new path";
-              send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-            }
 
-            // Delete folder item
-            std::cout << "Sending delete for: " << row_key << std::endl;
+              // Recursively move folder
+              renameFolder(oldFolderPath, newFolderPath, client_fd, fd, username);
 
-            F_2_B_Message msg_to_send_delete;
-            string response_value_delete, response_error_msg_delete;
-            int response_status_delete;
-            rowkey = row_key;
-            type = "delete";
-            colkey = "items";
-            msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send_delete, response_value_delete, response_status_delete,
-                                                response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-            if (response_code == 1)
-            {
-              cerr << "ERROR in communicating with coordinator" << endl;
-              continue;
-            }
-            else if (response_code == 2)
-            {
-              cerr << "ERROR in communicating with backend" << endl;
-              continue;
-            }
-
-            if (response_status_delete != 0)
-            {
-              // Error handling: send appropriate error response to the client
-              string error_message = "Failed to delete folder";
-              send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-            }
-
-            // Get items for the parent folder and new path
-            lastSlashPos = oldFolderPath.find_last_of('/');
-            if (lastSlashPos != string::npos)
-            {
-              string folderName = oldFolderPath.substr(lastSlashPos + 1);      // Extract the folder name
-              string parentFolderPath = oldFolderPath.substr(0, lastSlashPos); // Get the parent folder path
-              string parentRowKey = username + "_" + parentFolderPath;
-
-              std::cout << "parent row key for delete: " << parentRowKey << std::endl;
-
-              // Loop till success: GET the parent folder
-              bool success = false;
-
-              while (!success)
+              F_2_B_Message msg_to_send_get;
+              string response_value_get, response_error_msg_get;
+              int response_status_get, response_code;
+              string rowkey = row_key;
+              string type = "get";
+              string colkey = "items";
+              msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
+                                                  response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code == 1)
               {
+                cerr << "ERROR in communicating with coordinator" << endl;
+                continue;
+              }
+              else if (response_code == 2)
+              {
+                cerr << "ERROR in communicating with backend" << endl;
+                continue;
+              }
 
-                F_2_B_Message msg_to_send_get;
-                string response_value_get, response_error_msg_get;
-                int response_status_get, response_code;
-                string rowkey = parentRowKey;
-                string type = "get";
-                string colkey = "items";
-                msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
-                response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
-                                                    response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
-                // GET request for the parent folder & new folder
-                if (response_code == 1)
-                {
-                  cerr << "ERROR in communicating with coordinator" << endl;
-                  continue;
-                }
-                else if (response_code == 2)
-                {
-                  cerr << "ERROR in communicating with backend" << endl;
-                  continue;
-                }
-                F_2_B_Message msg_to_send_get_new;
-                string response_value_get_new, response_error_msg_get_new;
-                int response_status_get_new;
-                rowkey = new_row_key;
-                type = "get";
-                colkey = "items";
-                msg_to_send_get_new = construct_msg(1, rowkey, colkey, "", "", "", 0);
-                response_code = send_msg_to_backend(fd, msg_to_send_get_new, response_value_get_new, response_status_get_new,
-                                                    response_error_msg_get_new, rowkey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
-                if (response_code == 1)
-                {
-                  cerr << "ERROR in communicating with coordinator" << endl;
-                  continue;
-                }
-                else if (response_code == 2)
-                {
-                  cerr << "ERROR in communicating with backend" << endl;
-                  continue;
-                }
-                std::cout << "ROW KEY FOR HW2: " << new_row_key << std::endl;
+              // GET old folder and PUT new folder path
+              F_2_B_Message msg_to_send_put;
+              string response_value_put, response_error_msg_put;
+              int response_status_put;
+              rowkey = new_path_key;
+              type = "put";
+              colkey = "items";
+              msg_to_send_put = construct_msg(2, rowkey, colkey, response_value_get, "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_put, response_value_put, response_status_put,
+                                                  response_error_msg_put, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code == 1)
+              {
+                cerr << "ERROR in communicating with coordinator" << endl;
+                continue;
+              }
+              else if (response_code == 2)
+              {
+                cerr << "ERROR in communicating with backend" << endl;
+                continue;
+              }
+              if (response_status_put != 0)
+              {
+                // Error handling: send appropriate error response to the client
+                string error_message = "Failed to create new path";
+                send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              }
 
-                // Parent folder handling
-                if (response_status_get == 0)
-                {
-                  std::string newValue;
-                  std::string newValueFolder;
+              // Delete folder item
+              std::cout << "Sending delete for: " << row_key << std::endl;
 
-                  if (response_value_get == "[]")
+              F_2_B_Message msg_to_send_delete;
+              string response_value_delete, response_error_msg_delete;
+              int response_status_delete;
+              rowkey = row_key;
+              type = "delete";
+              colkey = "items";
+              msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send_delete, response_value_delete, response_status_delete,
+                                                  response_error_msg_delete, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code == 1)
+              {
+                cerr << "ERROR in communicating with coordinator" << endl;
+                continue;
+              }
+              else if (response_code == 2)
+              {
+                cerr << "ERROR in communicating with backend" << endl;
+                continue;
+              }
+
+              if (response_status_delete != 0)
+              {
+                // Error handling: send appropriate error response to the client
+                string error_message = "Failed to delete folder";
+                send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
+              }
+
+              // Get items for the parent folder and new path
+              lastSlashPos = oldFolderPath.find_last_of('/');
+              if (lastSlashPos != string::npos)
+              {
+                string folderName = oldFolderPath.substr(lastSlashPos + 1);      // Extract the folder name
+                string parentFolderPath = oldFolderPath.substr(0, lastSlashPos); // Get the parent folder path
+                string parentRowKey = username + "_" + parentFolderPath;
+
+                std::cout << "parent row key for delete: " << parentRowKey << std::endl;
+
+                // Loop till success: GET the parent folder
+                bool success = false;
+
+                while (!success)
+                {
+
+                  F_2_B_Message msg_to_send_get;
+                  string response_value_get, response_error_msg_get;
+                  int response_status_get, response_code;
+                  string rowkey = parentRowKey;
+                  string type = "get";
+                  string colkey = "items";
+                  msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send_get, response_value_get, response_status_get,
+                                                      response_error_msg_get, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+                  // GET request for the parent folder & new folder
+                  if (response_code == 1)
                   {
-                    // No items in parent folder
-                    newValue = "[]";
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
                   }
-                  else
+                  else if (response_code == 2)
                   {
-                    // Remove the deleted folder from parent folder's items
-                    vector<string> parentItems = parse_items_list(response_value_get);
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
+                  F_2_B_Message msg_to_send_get_new;
+                  string response_value_get_new, response_error_msg_get_new;
+                  int response_status_get_new;
+                  rowkey = new_row_key;
+                  type = "get";
+                  colkey = "items";
+                  msg_to_send_get_new = construct_msg(1, rowkey, colkey, "", "", "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send_get_new, response_value_get_new, response_status_get_new,
+                                                      response_error_msg_get_new, rowkey, colkey, g_map_rowkey_to_server,
+                                                      g_coordinator_addr, type);
+                  if (response_code == 1)
+                  {
+                    cerr << "ERROR in communicating with coordinator" << endl;
+                    continue;
+                  }
+                  else if (response_code == 2)
+                  {
+                    cerr << "ERROR in communicating with backend" << endl;
+                    continue;
+                  }
+                  std::cout << "ROW KEY FOR HW2: " << new_row_key << std::endl;
 
-                    // Define the item to be removed (folderPath preceded by "D@" for directories)
-                    string itemToRemove = "D@" + folderName;
+                  // Parent folder handling
+                  if (response_status_get == 0)
+                  {
+                    std::string newValue;
+                    std::string newValueFolder;
 
-                    // Use std::remove to move the items to be removed to the end of the vector
-                    parentItems.erase(std::remove(parentItems.begin(), parentItems.end(), itemToRemove), parentItems.end());
+                    if (response_value_get == "[]")
+                    {
+                      // No items in parent folder
+                      newValue = "[]";
+                    }
+                    else
+                    {
+                      // Remove the deleted folder from parent folder's items
+                      vector<string> parentItems = parse_items_list(response_value_get);
+
+                      // Define the item to be removed (folderPath preceded by "D@" for directories)
+                      string itemToRemove = "D@" + folderName;
+
+                      // Use std::remove to move the items to be removed to the end of the vector
+                      parentItems.erase(std::remove(parentItems.begin(), parentItems.end(), itemToRemove), parentItems.end());
+
+                      // Concatenate remaining items to form the new value
+                      newValue = "[";
+                      bool firstItem = true;
+                      for (const auto &item : parentItems)
+                      {
+                        if (!firstItem)
+                        {
+                          newValue += ",";
+                        }
+                        newValue += item;
+                        firstItem = false;
+                      }
+                      newValue += "]";
+
+                      std::cout << "New value after deletion in parent: " << newValue << std::endl;
+                    }
+
+                    // New folder handling
+                    vector<string> folderItems = parse_items_list(response_value_get_new);
+
+                    // Add the folder name to the list
+                    string newItem = "D@" + folderName;
+                    folderItems.push_back(newItem);
+
+                    std::cout << "NEW ITEM TO PUT FOR HW2: " << newItem << std::endl;
 
                     // Concatenate remaining items to form the new value
-                    newValue = "[";
+                    newValueFolder = "[";
                     bool firstItem = true;
-                    for (const auto &item : parentItems)
+                    for (const auto &item : folderItems)
                     {
                       if (!firstItem)
                       {
-                        newValue += ",";
+                        newValueFolder += ",";
                       }
-                      newValue += item;
+                      newValueFolder += item;
                       firstItem = false;
                     }
-                    newValue += "]";
+                    newValueFolder += "]";
 
-                    std::cout << "New value after deletion in parent: " << newValue << std::endl;
-                  }
-
-                  // New folder handling
-                  vector<string> folderItems = parse_items_list(response_value_get_new);
-
-                  // Add the folder name to the list
-                  string newItem = "D@" + folderName;
-                  folderItems.push_back(newItem);
-
-                  std::cout << "NEW ITEM TO PUT FOR HW2: " << newItem << std::endl;
-
-                  // Concatenate remaining items to form the new value
-                  newValueFolder = "[";
-                  bool firstItem = true;
-                  for (const auto &item : folderItems)
-                  {
-                    if (!firstItem)
+                    F_2_B_Message msg_to_send_cput;
+                    string response_value_cput, response_error_msg_cput;
+                    int response_status_cput, response_code;
+                    string rowkey = parentRowKey;
+                    string type = "cput";
+                    string colkey = "items";
+                    msg_to_send_cput = construct_msg(4, rowkey, colkey, response_value_get, newValue, "", 0);
+                    response_code = send_msg_to_backend(fd, msg_to_send_cput, response_value_cput, response_status_cput,
+                                                        response_error_msg_cput, rowkey, colkey, g_map_rowkey_to_server,
+                                                        g_coordinator_addr, type);
+                    if (response_code == 1)
                     {
-                      newValueFolder += ",";
+                      cerr << "ERROR in communicating with coordinator" << endl;
+                      continue;
                     }
-                    newValueFolder += item;
-                    firstItem = false;
-                  }
-                  newValueFolder += "]";
+                    else if (response_code == 2)
+                    {
+                      cerr << "ERROR in communicating with backend" << endl;
+                      continue;
+                    }
+                    // CPUT the parent folder
 
-                  F_2_B_Message msg_to_send_cput;
-                  string response_value_cput, response_error_msg_cput;
-                  int response_status_cput, response_code;
-                  string rowkey = parentRowKey;
-                  string type = "cput";
-                  string colkey = "items";
-                  msg_to_send_cput = construct_msg(4, rowkey, colkey, response_value_get, newValue, "", 0);
-                  response_code = send_msg_to_backend(fd, msg_to_send_cput, response_value_cput, response_status_cput,
-                                                      response_error_msg_cput, rowkey, colkey, g_map_rowkey_to_server,
-                                                      g_coordinator_addr, type);
-                  if (response_code == 1)
-                  {
-                    cerr << "ERROR in communicating with coordinator" << endl;
-                    continue;
-                  }
-                  else if (response_code == 2)
-                  {
-                    cerr << "ERROR in communicating with backend" << endl;
-                    continue;
-                  }
-                  // CPUT the parent folder
+                    std::cout << "NEW ITEM ROW KEY FOR HW2: " << new_row_key << std::endl;
+                    std::cout << "NEW VALUE TO PUT FOR HW2: " << newValueFolder << std::endl;
 
-                  std::cout << "NEW ITEM ROW KEY FOR HW2: " << new_row_key << std::endl;
-                  std::cout << "NEW VALUE TO PUT FOR HW2: " << newValueFolder << std::endl;
+                    F_2_B_Message msg_to_send_cput_new;
+                    string response_value_cput_new, response_error_msg_cput_new;
+                    int response_status_cput_new;
+                    rowkey = new_row_key;
+                    type = "cput";
+                    colkey = "items";
+                    msg_to_send_cput_new = construct_msg(4, rowkey, colkey, response_value_get_new, newValueFolder, "", 0);
+                    response_code = send_msg_to_backend(fd, msg_to_send_cput_new, response_value_cput_new, response_status_cput_new,
+                                                        response_error_msg_cput_new, rowkey, colkey, g_map_rowkey_to_server,
+                                                        g_coordinator_addr, type);
+                    if (response_code == 1)
+                    {
+                      cerr << "ERROR in communicating with coordinator" << endl;
+                      continue;
+                    }
+                    else if (response_code == 2)
+                    {
+                      cerr << "ERROR in communicating with backend" << endl;
+                      continue;
+                    }
 
-                  F_2_B_Message msg_to_send_cput_new;
-                  string response_value_cput_new, response_error_msg_cput_new;
-                  int response_status_cput_new;
-                  rowkey = new_row_key;
-                  type = "cput";
-                  colkey = "items";
-                  msg_to_send_cput_new = construct_msg(4, rowkey, colkey, response_value_get_new, newValueFolder, "", 0);
-                  response_code = send_msg_to_backend(fd, msg_to_send_cput_new, response_value_cput_new, response_status_cput_new,
-                                                      response_error_msg_cput_new, rowkey, colkey, g_map_rowkey_to_server,
-                                                      g_coordinator_addr, type);
-                  if (response_code == 1)
-                  {
-                    cerr << "ERROR in communicating with coordinator" << endl;
-                    continue;
-                  }
-                  else if (response_code == 2)
-                  {
-                    cerr << "ERROR in communicating with backend" << endl;
-                    continue;
-                  }
+                    // CPUT the new folder path
 
-                  // CPUT the new folder path
-
-                  if (response_status_cput == 0 && response_status_cput_new == 0)
-                  {
-                    success = true;
-                    // Success response
-                    string refresh_script = "<script>window.location.reload(true);</script>";
-                    send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                    if (response_status_cput == 0 && response_status_cput_new == 0)
+                    {
+                      success = true;
+                      // Success response
+                      string refresh_script = "<script>window.location.reload(true);</script>";
+                      send_response(client_fd, 200, "OK", "text/html", refresh_script);
+                    }
+                    else
+                    {
+                      // Error in fetching user - Construct and send the HTTP response
+                      string content = "{\"error\":\"Error in updating parent folder\"}";
+                      send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                      break; // Exit loop if there's an error in updating parent folder
+                    }
                   }
                   else
                   {
                     // Error in fetching user - Construct and send the HTTP response
-                    string content = "{\"error\":\"Error in updating parent folder\"}";
+                    string content = "{\"error\":\"Error fetching parent folder\"}";
                     send_response(client_fd, 500, "Internal Server Error", "application/json", content);
-                    break; // Exit loop if there's an error in updating parent folder
                   }
-                }
-                else
-                {
-                  // Error in fetching user - Construct and send the HTTP response
-                  string content = "{\"error\":\"Error fetching parent folder\"}";
-                  send_response(client_fd, 500, "Internal Server Error", "application/json", content);
                 }
               }
             }
