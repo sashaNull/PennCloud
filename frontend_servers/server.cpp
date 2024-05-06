@@ -1105,7 +1105,6 @@ void *handle_connection(void *arg)
       {
         // Retrieve HTML content from the map
         std::string html_content = g_endpoint_html_map["login"];
-        cout << html_content << endl;
 
         // Construct and send the HTTP response
         send_response(client_fd, 200, "OK", "text/html", html_content);
