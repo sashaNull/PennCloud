@@ -1223,11 +1223,27 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // Retrieve HTML content from the map
-        std::string html_content = g_endpoint_html_map["home"];
+        std::string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          // Handle error or redirect if username not found
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          // Retrieve HTML content from the map
+          std::string html_content = g_endpoint_html_map["home"];
 
-        // Construct and send the HTTP response
-        send_response(client_fd, 200, "OK", "text/html", html_content);
+          // Replace username placeholder
+          size_t username_pos = html_content.find("<!--USERNAME-->");
+          if (username_pos != std::string::npos)
+          {
+            html_content.replace(username_pos, std::string("<!--USERNAME-->").length(), username);
+          }
+
+          // Construct and send the HTTP response
+          send_response(client_fd, 200, "OK", "text/html", html_content);
+        }
       }
     }
 
@@ -1653,89 +1669,92 @@ void *handle_connection(void *arg)
           }
         }
 
-        if (!invalid_recipients.empty()) {
+        if (!invalid_recipients.empty())
+        {
 
           string content = "{\"error\":\"These recipents do not exist:\\n" + invalid_recipients + "\\nPlease enter valid recipients.\"}";
           send_response(client_fd, 400, "Not Found", "application/json", content);
-        } else {
-
-        string ts_sentbox = get_timestamp();
-        string encoded_ts = base64_encode(ts_sentbox);
-
-        string subject = form_data["subject"];
-        string encoded_subject = base64_encode(subject);
-
-        string body = form_data["body"];
-        string encoded_body = base64_encode(body);
-
-        string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-        string encoded_display = base64_encode(for_display);
-
-        string uid = compute_md5_hash(for_display);
-
-        // deliver for external recipients
-        for (const auto &r : recipients[1])
-        {
-          string dummy_from = from_username + "@seas.upenn.edu";
-          pthread_t thread_id;
-          auto *data = new std::map<std::string, std::string>{
-              {"to", r},
-              {"from", dummy_from},
-              {"subject", subject},
-              {"content", body}};
-          if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
-          {
-            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-            delete data;
-          }
-          else
-          {
-            pthread_detach(thread_id);
-          }
-        }
-        // deliver for local recipients
-        for (const auto &usrname : recipients[0])
-        {
-          int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
-                                                    encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
-          if (deliver_success == 0)
-          {
-            cout << "SUCCESS: delivered local mail to " << usrname << endl;
-          }
-          else
-          {
-            cout << "ERROR: failed to deliver local mail to " << usrname << endl;
-          }
-        }
-
-        // store email
-        int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
-                                                       encoded_subject, encoded_body, encoded_display,
-                                                       g_map_rowkey_to_server, g_coordinator_addr);
-        if (store_email_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << endl;
         }
         else
         {
-          cout << "ERROR: failed to store email with uid " << uid << endl;
-        }
 
-        // put in sentbox
-        int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
-                                             encoded_subject, encoded_body, g_map_rowkey_to_server,
-                                             g_coordinator_addr);
-        if (sentbox_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
-        else
-        {
-          cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
+          string ts_sentbox = get_timestamp();
+          string encoded_ts = base64_encode(ts_sentbox);
 
-        std::string redirect_to = "/inbox";
-        redirect(client_fd, redirect_to);
+          string subject = form_data["subject"];
+          string encoded_subject = base64_encode(subject);
+
+          string body = form_data["body"];
+          string encoded_body = base64_encode(body);
+
+          string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
+          string encoded_display = base64_encode(for_display);
+
+          string uid = compute_md5_hash(for_display);
+
+          // deliver for external recipients
+          for (const auto &r : recipients[1])
+          {
+            string dummy_from = from_username + "@seas.upenn.edu";
+            pthread_t thread_id;
+            auto *data = new std::map<std::string, std::string>{
+                {"to", r},
+                {"from", dummy_from},
+                {"subject", subject},
+                {"content", body}};
+            if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
+            {
+              std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+              delete data;
+            }
+            else
+            {
+              pthread_detach(thread_id);
+            }
+          }
+          // deliver for local recipients
+          for (const auto &usrname : recipients[0])
+          {
+            int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
+                                                      encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
+            if (deliver_success == 0)
+            {
+              cout << "SUCCESS: delivered local mail to " << usrname << endl;
+            }
+            else
+            {
+              cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+            }
+          }
+
+          // store email
+          int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
+                                                         encoded_subject, encoded_body, encoded_display,
+                                                         g_map_rowkey_to_server, g_coordinator_addr);
+          if (store_email_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << endl;
+          }
+
+          // put in sentbox
+          int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
+                                               encoded_subject, encoded_body, g_map_rowkey_to_server,
+                                               g_coordinator_addr);
+          if (sentbox_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+
+          std::string redirect_to = "/inbox";
+          redirect(client_fd, redirect_to);
         }
       }
     }
@@ -2043,8 +2062,6 @@ void *handle_connection(void *arg)
               {
                 std::string item_type = item.substr(0, 2);
                 std::string item_name = item.substr(2);
-
-                // To do: folder icon not displaying
 
                 if (item_type == "D@")
                 {

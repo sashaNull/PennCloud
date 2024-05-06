@@ -4,40 +4,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Home</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #e7cccb;
+            color: #282525;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header h2 {
+            text-align: center;
+            color: #282525;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card {
+            background-color: #31315795;
+            /* Light blue background */
+            width: 200px;
+            margin: 10px;
+            height: 110%;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-bg {
+            background-color: #161637;
+            /* Dark blue circle background */
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 50px;
+            color: white;
+        }
+
+        .card p {
+            margin-top: 50px;
+            color: #282525;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logout button {
+            background-color: #161637;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .logout button:hover {
+            background-color: #27274a;
+        }
+
+        .icon-link {
+            color: #282525;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+
+        .icon-link h3 {
+            margin: 20px 0 0;
+            margin-top: 30px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .icon-link:hover {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
 </head>
 
 <body>
-
-    <h2>Welcome to Your Home Page</h2>
-    <button onclick="redirectToEmail()">Email</button>
-    <button onclick="redirectToDrive()">Drive</button>
-    <button onclick="logout()">Logout</button> <!-- Logout button -->
-    <button onclick="reset()">Reset Password</button> <!-- Reset Password button -->
-    <button onclick="admin()">Admin Portal</button>
-
-    <script>
-        function redirectToEmail() {
-            window.location.href = "/inbox"; // Navigate to the user-specific email page
-        }
-
-        function redirectToDrive() {
-            window.location.href = "/drive"; // Navigate to the user-specific drive page
-        }
-
-        function logout() {
-            window.location.href = "/logout"; // Handle the logout process
-        }
-
-        function reset() {
-            window.location.href = "/reset-password"; // Handle the reset password process
-        }
-
-        function admin() {
-            window.location.href = "/admin"; // Handle the reset password process
-        }
-    </script>
-
+    <div class="header">
+        <h2>Welcome to Penn Cloud, <!--USERNAME-->!</h2>
+    </div>
+    <div class="container">
+        <div class="card">
+            <a href="/inbox" class="icon-link">
+                <div class="icon-bg"><i class="fas fa-envelope"></i></div>
+                <h3>Email</h3>
+            </a>
+            <p>Access your Emails here!</p>
+        </div>
+        <div class="card">
+            <a href="/drive" class="icon-link">
+                <div class="icon-bg"><i class="fas fa-hdd"></i></div>
+                <h3>Drive</h3>
+            </a>
+            <p>Access your Files and Folders here!</p>
+        </div>
+        <div class="card">
+            <a href="/admin" class="icon-link">
+                <div class="icon-bg"><i class="fas fa-user-cog"></i></div>
+                <h3>Admin Portal</h3>
+            </a>
+            <p>Access to all Servers and Data!</p>
+        </div>
+        <div class="card">
+            <a href="/reset-password" class="icon-link">
+                <div class="icon-bg"><i class="fas fa-key"></i></div>
+                <h3>Reset Password</h3>
+            </a>
+            <p>Reset your password here!</p>
+        </div>
+        <div class="logout">
+            <button onclick="location.href='/logout';">Logout</button>
+        </div>
+    </div>
 </body>
 
 </html>

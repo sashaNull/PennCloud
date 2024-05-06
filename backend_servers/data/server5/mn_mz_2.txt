@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 musk_drive items []
 musk_email sentbox_items 
 musk_email inbox_items 
-musk_info password 1111
+musk_info password 1234
 musk_info email mberiwal13@gmail.com
 musk_info firstName Muskaan
-=======
-muskaan_drive items []
-muskaan_email sentbox_items 
-muskaan_email inbox_items 
-muskaan_info password 1111
-muskaan_info email muskaan@gmail.com
-muskaan_info firstName Muskaan
->>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
