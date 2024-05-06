@@ -2,7 +2,7 @@
 using namespace std;
 
 // Maximum buffer size for data transmission
-const int MAX_BUFFER_SIZE = 1024 * 100;
+const int MAX_BUFFER_SIZE = 1024 * 8;
 const int WELCOME_BUFFER_SIZE = 1024;
 
 /**

@@ -32,7 +32,7 @@ unordered_map<string, string> parse_http_request(const string &request)
     istringstream request_stream(request);
     string request_line;
     getline(request_stream, request_line);
-    cout << "Request Line: " << request_line << endl;
+    // cout << "Request Line: " << request_line << endl;
 
     istringstream request_line_stream(request_line);
     string method, uri, http_version;

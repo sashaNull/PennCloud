@@ -101,9 +101,9 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
 
       if (!line.empty() && line != "WELCOME TO THE SERVER")
       {
-        cout << "going to decode message: " << line << endl;
+        // cout << "going to decode message: " << line << endl;
         msg_to_return = decode_message(line);
-        cout << "decoded message" << endl;
+        // cout << "decoded message" << endl;
         close(new_fd);
         return msg_to_return;
         cout << "after return" << endl;

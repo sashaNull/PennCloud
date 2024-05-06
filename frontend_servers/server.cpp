@@ -106,23 +106,23 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       line.pop_back();
     }
 
-    std::cout << "Processing line: " << line << std::endl;
+    // std::cout << "Processing line: " << line << std::endl;
 
     // Detect boundaries
     if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
     {
-      std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
+      // std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
       if (!isHeaderPart && !partName.empty())
       {
         parts[partName] = std::move(currentPart); // Save completed part
-        std::cout << "SAVED PART : " << std::endl;
+        // std::cout << "SAVED PART : " << std::endl;
         currentPart = Part(); // Reset part
         partName.clear();
       }
       isHeaderPart = true;
       if (compare_stripped(line, end_delimiter))
       {
-        std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
+        // std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
         break; // Stop processing after the final boundary
       }
       continue;
@@ -133,7 +133,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
     {
       if (line.empty())
       {
-        std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
+        // std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
         isHeaderPart = false; // Empty line indicates the end of headers
         continue;
       }
@@ -143,9 +143,9 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (pos != std::string::npos)
       {
         std::string headerKey = line.substr(0, pos);
-        std::cout << "HEADER KEY : " << headerKey << std::endl;
+        // std::cout << "HEADER KEY : " << headerKey << std::endl;
         std::string headerValue = line.substr(pos + 2); // Skip ': ' after the key
-        std::cout << "HEADER VALUE : " << headerValue << std::endl;
+        // std::cout << "HEADER VALUE : " << headerValue << std::endl;
 
         // Check if this is a disposition header containing the part name
         if (headerKey == "Content-Disposition")
@@ -157,7 +157,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
             size_t nameEnd = headerValue.find('"', namePos);
             partName = headerValue.substr(namePos, nameEnd - namePos);
 
-            std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
+            // std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
           }
         }
         currentPart.headers[headerKey] = headerValue;
@@ -174,7 +174,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
         {
           line.pop_back(); // Normalize the line
         }
-        std::cout << "CONTENT READING LINE : " << line << std::endl;
+        // std::cout << "CONTENT READING LINE : " << line << std::endl;
 
         contentStream << "\n"
                       << line; // Append the line to content
@@ -183,17 +183,17 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
       {
         stream.seekg(-(long)(line.length() + 2), std::ios_base::cur); // Rewind to handle the delimiter again
-        std::cout << "REWINDED : " << line << std::endl;
+        // std::cout << "REWINDED : " << line << std::endl;
       }
 
       // Assign content to the current part
       std::string contentStr = contentStream.str();
-      std::cout << "CONTENT STREAM: " << contentStr << std::endl;
+      // std::cout << "CONTENT STREAM: " << contentStr << std::endl;
       currentPart.content.assign(contentStr.begin(), contentStr.end());
       isHeaderPart = true; // Prepare for the next part
-      std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
+      // std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
     }
-    std::cout << "GOING TO NEXT LINE: " << std::endl;
+    // std::cout << "GOING TO NEXT LINE: " << std::endl;
     // if (!std::getline(stream, line))
     // {
     //   std::cerr << "Failed to read line, stopping." << std::endl;
@@ -773,7 +773,7 @@ void *handle_connection(void *arg)
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // Receive the request
-  const unsigned int BUFFER_SIZE = 1024 * 100;
+  const unsigned int BUFFER_SIZE = 1024 * 8;
   vector<char> buffer(BUFFER_SIZE);
 
   int fd = create_socket();
