@@ -4707,3 +4707,1029 @@ Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
 Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
 Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
 Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
+[4] New connection
+Server 127.0.0.1:6000 is up.
+[4] New connection
+Server 127.0.0.1:6001 is up.
+[4] New connection
+Server 127.0.0.1:6002 is up.
+[4] New connection
+Server 127.0.0.1:6003 is up.
+[4] New connection
+Server 127.0.0.1:6004 is up.
+[4] New connection
+Server 127.0.0.1:6005 is up.
+[4] New connection
+Server 127.0.0.1:6006 is up.
+[4] New connection
+Server 127.0.0.1:6007 is up.
+[4] New connection
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6008, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6008, Active: Yes
