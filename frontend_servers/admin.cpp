@@ -276,28 +276,27 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Server Data</title>";
     html << "<style>";
-    html << "body { font-family: Arial, sans-serif; margin: 20px; }";
-    html << "table { width: 100%; border-collapse: collapse; }";
-    html << "th, td { border: 1px solid #ddd; padding: 8px; text-align: left; word-wrap: break-word; }";
-    html << "th { background-color: #f2f2f2; }";
-    html << "tr:nth-child(even) { background-color: #f9f9f9; }";
-    html << "td { max-width: 400px; }"; // Sets a maximum width for table cells
+    html << "body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }";
+    html << "table { width: 90%; border-collapse: collapse; }";
+    html << "th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }";
+    html << "th { background-color: #606060; color: white; }";
+    html << "tr:nth-child(even) { background-color: #e9e9e9; }";
+    html << "tr:hover { background-color: #d1d1d1; }";         // Adding hover effect to rows
+    html << "td { max-width: 300px; word-wrap: break-word; }"; // Ensure the value wraps within the cell
     html << "</style></head><body>";
-    html << "<h1>Data from Server</h1>";
-    html << "<h2>Server: " << server_ip << ":" << server_port << "</h2>"; // Header indicating which server the data is from
+    html << "<h1>Data from Server " << server_ip << ":" << server_port << "</h1>";
+    html << "<table>";
+    html << "<tr><th>Row Key</th><th>Column Key</th><th>Value</th></tr>";
 
     for (const auto &row_pair : data)
     {
-        html << "<h3>Row: " << row_pair.first << "</h3>";
-        html << "<table>";
-        html << "<tr><th>Column Key</th><th>Value</th></tr>";
         for (const auto &col_pair : row_pair.second)
         {
-            html << "<tr><td>" << col_pair.first << "</td><td>" << col_pair.second << "</td></tr>";
+            html << "<tr><td>" << row_pair.first << "</td><td>" << col_pair.first << "</td><td>" << col_pair.second << "</td></tr>";
         }
-        html << "</table>";
     }
 
+    html << "</table>";
     html << "</body></html>";
     return html.str();
 }
