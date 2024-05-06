@@ -24,6 +24,9 @@
 #include "./admin.h"
 using namespace std;
 
+#define LOAD_BALANCER_IP "127.0.0.1"
+#define LOAD_BALANCER_PORT 8080
+
 // Global mutex declaration
 pthread_mutex_t map_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -328,7 +331,7 @@ std::string get_username_from_cookie(const std::string &cookie, int backend_fd)
   // Unlock the mutex after modifying the map
   pthread_mutex_unlock(&map_mutex);
 
-  if (it != cookie_user_map.end())
+  if (it != cookie_user_map.end() && !it->second.empty())
   {
     return it->second; // Return the username if found
   }
@@ -808,6 +811,9 @@ string parse_commands(int argc, char *argv[])
   return lines[server_index];
 }
 
+bool suspended = false;
+pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void *handle_connection(void *arg)
 {
   int client_fd = *static_cast<int *>(arg);
@@ -838,6 +844,121 @@ void *handle_connection(void *arg)
     buffer[bytes_read] = '\0';
     string request(buffer.begin(), buffer.end());
     unordered_map<string, string> html_request_map = parse_http_request(request);
+
+    // Check if server is suspended and the request is not for /revive
+    pthread_mutex_lock(&suspend_mutex);
+    bool current_suspended = suspended;
+    pthread_mutex_unlock(&suspend_mutex);
+
+    // Check if the incoming request is for the /status endpoint
+    if (html_request_map["uri"] == "/status")
+    {
+      if (current_suspended)
+      {
+        // If the server is suspended, send a 503 Service Unavailable response
+        send_response(client_fd, 503, "Service Unavailable", "text/plain", "Server is suspended.");
+      }
+      else
+      {
+        // If the server is not suspended, send a 200 OK response
+        send_response(client_fd, 200, "OK", "text/plain", "Server is active and accepting requests.");
+      }
+      continue; // Continue to the next iteration of the loop
+    }
+
+    if (current_suspended && html_request_map["uri"] != "/revive")
+    {
+      std::string suspended_response = R"(
+        <html>
+            <head><title>Suspended</title></head>
+            <body>
+                <p>This server is currently suspended. Redirecting to another server in 1 second...</p>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = 'http://127.0.0.1:8080/';
+                    }, 500);
+                </script>
+            </body>
+        </html>
+    )";
+      send_response(client_fd, 200, "OK", "text/html", suspended_response);
+      continue;
+    }
+
+    // Handling /suspend
+    if (html_request_map["uri"] == "/suspend")
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      suspended = true;
+      pthread_mutex_unlock(&suspend_mutex);
+      std::string response_body = R"(
+          <html>
+          <head>
+              <script>
+                  window.onload = function() {
+                      setTimeout(function() {
+                          // Check if the referrer is available
+                          if (document.referrer) {
+                              // Modify the referrer URL to point to the /admin page
+                              var adminUrl = new URL(document.referrer);
+                              adminUrl.pathname = '/admin';  // Set the path to /admin
+                              
+                              // Redirect to the modified URL
+                              window.location.href = adminUrl.href;
+                          } else {
+                              // If no referrer is available, use a default or fallback URL
+                              window.location.href = '/admin';
+                          }
+                      }, 1500);
+                  };
+              </script>
+          </head>
+          <body>
+              <p>Server is suspended. You will be redirected to the admin page shortly. Access <a href='/revive'>/revive</a> to resume.</p>
+          </body>
+          </html>
+      )";
+
+      send_response(client_fd, 200, "OK", "text/html", response_body);
+      continue;
+    }
+
+    // Handling /revive
+    if (html_request_map["uri"] == "/revive")
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      suspended = false;
+      pthread_mutex_unlock(&suspend_mutex);
+      std::string response_body = R"(
+          <html>
+          <head>
+              <script>
+                  window.onload = function() {
+                      setTimeout(function() {
+                          // Check if the referrer is available
+                          if (document.referrer) {
+                              // Modify the referrer URL to point to the /admin page
+                              var adminUrl = new URL(document.referrer);
+                              adminUrl.pathname = '/admin';  // Set the path to /admin
+                              
+                              // Redirect to the modified URL
+                              window.location.href = adminUrl.href;
+                          } else {
+                              // If no referrer is available, use a default or fallback URL
+                              window.location.href = '/admin';
+                          }
+                      }, 1500);
+                  };
+              </script>
+          </head>
+          <body>
+              <p>Server is revived and operational. You will be redirected to the admin page shortly.</p>
+          </body>
+          </html>
+      )";
+      send_response(client_fd, 200, "OK", "text/html", response_body);
+      continue;
+    }
 
     // GET: rendering signup page
     if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "GET")
@@ -4218,8 +4339,9 @@ void *handle_connection(void *arg)
 
         std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
         int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
-        std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
-        std::string response_content = get_admin_html_from_vector(servers);
+        std::vector<server_info> backend_servers = get_list_of_backend_servers(coordinator_ip, coordinator_port);
+        std::vector<server_info> frontend_servers = get_list_of_frontend_servers(LOAD_BALANCER_IP, LOAD_BALANCER_PORT);
+        std::string response_content = get_admin_html_from_vector(frontend_servers, backend_servers);
         send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
       }
     }
