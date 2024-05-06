@@ -22,6 +22,7 @@
 #include "./backend_communication.h"
 #include "./webmail.h"
 #include "./admin.h"
+#include "./bulletin.h"
 using namespace std;
 
 #define LOAD_BALANCER_IP "127.0.0.1"
@@ -1654,89 +1655,92 @@ void *handle_connection(void *arg)
           }
         }
 
-        if (!invalid_recipients.empty()) {
+        if (!invalid_recipients.empty())
+        {
 
           string content = "{\"error\":\"These recipents do not exist:\\n" + invalid_recipients + "\\nPlease enter valid recipients.\"}";
           send_response(client_fd, 400, "Not Found", "application/json", content);
-        } else {
-
-        string ts_sentbox = get_timestamp();
-        string encoded_ts = base64_encode(ts_sentbox);
-
-        string subject = form_data["subject"];
-        string encoded_subject = base64_encode(subject);
-
-        string body = form_data["body"];
-        string encoded_body = base64_encode(body);
-
-        string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-        string encoded_display = base64_encode(for_display);
-
-        string uid = compute_md5_hash(for_display);
-
-        // deliver for external recipients
-        for (const auto &r : recipients[1])
-        {
-          string dummy_from = from_username + "@seas.upenn.edu";
-          pthread_t thread_id;
-          auto *data = new std::map<std::string, std::string>{
-              {"to", r},
-              {"from", dummy_from},
-              {"subject", subject},
-              {"content", body}};
-          if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
-          {
-            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-            delete data;
-          }
-          else
-          {
-            pthread_detach(thread_id);
-          }
-        }
-        // deliver for local recipients
-        for (const auto &usrname : recipients[0])
-        {
-          int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
-                                                    encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
-          if (deliver_success == 0)
-          {
-            cout << "SUCCESS: delivered local mail to " << usrname << endl;
-          }
-          else
-          {
-            cout << "ERROR: failed to deliver local mail to " << usrname << endl;
-          }
-        }
-
-        // store email
-        int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
-                                                       encoded_subject, encoded_body, encoded_display,
-                                                       g_map_rowkey_to_server, g_coordinator_addr);
-        if (store_email_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << endl;
         }
         else
         {
-          cout << "ERROR: failed to store email with uid " << uid << endl;
-        }
 
-        // put in sentbox
-        int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
-                                             encoded_subject, encoded_body, g_map_rowkey_to_server,
-                                             g_coordinator_addr);
-        if (sentbox_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
-        else
-        {
-          cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
+          string ts_sentbox = get_timestamp();
+          string encoded_ts = base64_encode(ts_sentbox);
 
-        std::string redirect_to = "/inbox";
-        redirect(client_fd, redirect_to);
+          string subject = form_data["subject"];
+          string encoded_subject = base64_encode(subject);
+
+          string body = form_data["body"];
+          string encoded_body = base64_encode(body);
+
+          string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
+          string encoded_display = base64_encode(for_display);
+
+          string uid = compute_md5_hash(for_display);
+
+          // deliver for external recipients
+          for (const auto &r : recipients[1])
+          {
+            string dummy_from = from_username + "@seas.upenn.edu";
+            pthread_t thread_id;
+            auto *data = new std::map<std::string, std::string>{
+                {"to", r},
+                {"from", dummy_from},
+                {"subject", subject},
+                {"content", body}};
+            if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
+            {
+              std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+              delete data;
+            }
+            else
+            {
+              pthread_detach(thread_id);
+            }
+          }
+          // deliver for local recipients
+          for (const auto &usrname : recipients[0])
+          {
+            int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
+                                                      encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
+            if (deliver_success == 0)
+            {
+              cout << "SUCCESS: delivered local mail to " << usrname << endl;
+            }
+            else
+            {
+              cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+            }
+          }
+
+          // store email
+          int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
+                                                         encoded_subject, encoded_body, encoded_display,
+                                                         g_map_rowkey_to_server, g_coordinator_addr);
+          if (store_email_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << endl;
+          }
+
+          // put in sentbox
+          int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
+                                               encoded_subject, encoded_body, g_map_rowkey_to_server,
+                                               g_coordinator_addr);
+          if (sentbox_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+
+          std::string redirect_to = "/inbox";
+          redirect(client_fd, redirect_to);
         }
       }
     }
@@ -4417,9 +4421,10 @@ void *handle_connection(void *arg)
         }
       }
     }
-    
+
     // GET: /bulletin
-    else if (html_request_map["uri"] == "/bulletin" && html_request_map["method"] == "GET") {
+    else if (html_request_map["uri"] == "/bulletin" && html_request_map["method"] == "GET")
+    {
       string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -4428,8 +4433,8 @@ void *handle_connection(void *arg)
       }
       else
       {
-      // get (bulletin-board items) from backend
-      // render_bulletin_board(uids_list)
+        // get (bulletin-board items) from backend
+        // render_bulletin_board(uids_list)
         // parse item uids (uid1, uid2, ....)
         // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
         // store as list of BulletinMsg objects
@@ -4438,7 +4443,8 @@ void *handle_connection(void *arg)
     }
 
     // GET: /my-bulletins
-    else if (html_request_map["uri"] == "/my-bulletins" && html_request_map["method"] == "GET") {
+    else if (html_request_map["uri"] == "/my-bulletins" && html_request_map["method"] == "GET")
+    {
       string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -4447,8 +4453,8 @@ void *handle_connection(void *arg)
       }
       else
       {
-      // get (username_bulletin items) from backend
-      // render_my_bulletins(uids_list)
+        // get (username_bulletin items) from backend
+        // render_my_bulletins(uids_list)
         // parse item uids (uid1, uid2, ....)
         // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
         // store as list of BulletinMsg objects
@@ -4459,7 +4465,8 @@ void *handle_connection(void *arg)
     }
 
     // GET: /edit-bulletin?title=<title>&msg=<msg>
-    else if (html_request_map["uri"].substr(0, 15) == "/edit-bulletin" && html_request_map["method"] == "GET") {
+    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "GET")
+    {
       string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -4468,36 +4475,82 @@ void *handle_connection(void *arg)
       }
       else
       {
-      // if uri not just /edit-bulletin, parse args from uri
-      // pass args into form as prefills
-      // render
-      // if submit button, send POST
+        // Get username from cookie
+        string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          map<string, string> params = parse_query_params(html_request_map["uri"]);
+          string title = params["title"];
+          string msg = params["msg"];
+          string response_html = generate_edit_bulletin_form(username, title, msg);
+          send_response(client_fd, 200, "OK", "text/html", response_html);
+        }
       }
     }
 
     // POST: /edit-bulletin?title=<title>&msg=<msg>
-    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST") {
+    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST")
+    {
       string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
-        // Redirect to login for all other pages
         redirect(client_fd, "/login");
       }
       else
       {
-      // parse form data: title, msg
-      // owner=username (from cookie)
-      // ts = get_timestamp()
-      // uid = compute_md5_hash(title + msg)
-      // put_bulletin_item_to_backend() :
-        // cput uid into (bullet-board items)
-        // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
-        // cput uid into (username_bulletin items)
+        string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          // parse form data: title, msg
+          // owner=username (from cookie)
+          // ts = get_timestamp()
+          // uid = compute_md5_hash(title + msg)
+          // put_bulletin_item_to_backend() :
+          // cput uid into (bullet-board items)
+          // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
+          // cput uid into (username_bulletin items)
+          cout << html_request_map["body"] << endl;
+          map<string, string> form_data = parseQueryString(html_request_map["body"]);
+          for (const auto &pair : form_data)
+          {
+            std::cout << pair.first << ": " << pair.second << std::endl;
+          }
+          string title = form_data["title"];
+          string msg = form_data["msg"];
+          string ts = get_timestamp();
+          string uid = compute_md5_hash(title + msg + ts);
+
+          string encoded_owner = base64_encode(username);
+          string encoded_ts = base64_encode(ts);
+          string encoded_title = base64_encode(title);
+          string encoded_msg = base64_encode(msg);
+
+          int result = put_bulletin_item_to_backend(username, encoded_owner, encoded_ts, encoded_title, encoded_msg, uid, g_map_rowkey_to_server, g_coordinator_addr, fd);
+          if (result == 0)
+          {
+            // Redirect to bulletin board view or confirmation page
+            redirect(client_fd, "/bulletin-board");
+          }
+          else
+          {
+            // Error handling
+            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+          }
+        }
       }
     }
 
     // GET: /delete-bulletin?uid=<uid>
-    else if (html_request_map["uri"].substr(0, 16) == "/delete-bulletin" && html_request_map["method"] == "GET") {
+    else if (html_request_map["uri"].substr(0, 16) == "/delete-bulletin" && html_request_map["method"] == "GET")
+    {
       string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -4506,8 +4559,8 @@ void *handle_connection(void *arg)
       }
       else
       {
-      // parse out uid from uri
-      // delete_bulletin_item(username, uid)
+        // parse out uid from uri
+        // delete_bulletin_item(username, uid)
       }
     }
 
