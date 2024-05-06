@@ -4417,6 +4417,57 @@ void *handle_connection(void *arg)
         }
       }
     }
+    
+    // GET: /bulletin
+    else if (html_request_map["uri"] == "/bulletin" && html_request_map["method"] == "GET") {
+      // get (bulletin-board items) from backend
+      // render_bulletin_board(uids_list)
+        // parse item uids (uid1, uid2, ....)
+        // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
+        // store as list of BulletinMsg objects
+        // render bulletin board
+    }
+
+    // GET: /my-bulletins
+    else if (html_request_map["uri"] == "/my-bulletins" && html_request_map["method"] == "GET") {
+      // get (username_bulletin items) from backend
+      // render_my_bulletins(uids_list)
+        // parse item uids (uid1, uid2, ....)
+        // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
+        // store as list of BulletinMsg objects
+        // render as list with edit and delete buttons
+        // if click on edit button, /edit-bulletin?title=<title>&msg=<msg>
+        // if click on delete button, /delete-bulletin
+    }
+
+    // GET: /edit-bulletin?title=<title>&msg=<msg>
+    else if (html_request_map["uri"].substr(0, 15) == "/edit-bulletin" && html_request_map["method"] == "GET") {
+      // if uri not just /edit-bulletin, parse args from uri
+      // pass args into form as prefills
+      // render
+      // if submit button, send POST
+
+    }
+
+    // POST: /edit-bulletin?title=<title>&msg=<msg>
+    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST") {
+      // parse form data: title, msg
+      // owner=username (from cookie)
+      // ts = get_timestamp()
+      // uid = compute_md5_hash(title + msg)
+      // put_bulletin_item_to_backend() :
+        // cput uid into (bullet-board items)
+        // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
+        // cput uid into (username_bulletin items)
+    }
+
+    // GET: /delete-bulletin?uid=<uid>
+    else if (html_request_map["uri"].substr(0, 16) == "/delete-bulletin" && html_request_map["method"] == "GET") {
+      // parse out uid from uri
+      // delete_bulletin_item(username, uid)
+    }
+
+    // unknown method
     else
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
