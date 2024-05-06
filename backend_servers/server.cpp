@@ -70,6 +70,14 @@ void initialize_cache(std::unordered_map<std::string, tablet_data> &cache)
   }
 }
 
+void printMap(const std::unordered_map<std::string, std::string> &map)
+{
+  for (const auto &pair : map)
+  {
+    std::cout << pair.first << " -> " << pair.second << std::endl;
+  }
+}
+
 void update_primary(const string &range)
 {
   int sock;
@@ -297,6 +305,11 @@ void get_latest_tablet_and_log()
 
       // Close the socket
       close(sock);
+    }
+    else
+    {
+      cout << "Cannot find primary for: " << range;
+      printMap(range_to_primary_map);
     }
   }
 }
