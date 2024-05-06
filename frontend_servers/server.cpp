@@ -1478,7 +1478,6 @@ void *handle_connection(void *arg)
     // POST: /compose
     else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "POST")
     {
-      // TODO: get from field from cookies
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -1500,7 +1499,6 @@ void *handle_connection(void *arg)
         string encoded_to = base64_encode(to);
         vector<vector<string>> recipients = parse_recipients_str_to_vec(to);
 
-        // TODO: check for invalid recipients
         string invalid_recipients = "";
         for (const auto &usrname : recipients[0])
         {
@@ -1534,21 +1532,12 @@ void *handle_connection(void *arg)
             invalid_recipients += r;
           }
         }
-        cout << invalid_recipients << endl;
 
-        if (invalid_recipients != "")
-        {
-          string htmlResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n";
-          htmlResponse += "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">";
-          htmlResponse += "<title>Invalid Recipients</title></head><body>";
-          htmlResponse += "<h1>Alert</h1>";
-          htmlResponse += "<p>The following recipients are invalid:</p>";
-          htmlResponse += "<p>" + invalid_recipients + "</p>";
-          htmlResponse += "</body></html>";
+        if (!invalid_recipients.empty()) {
 
-          send(client_fd, htmlResponse.c_str(), htmlResponse.size(), 0);
-          continue;
-        }
+          string content = "{\"error\":\"These recipents do not exist:\\n" + invalid_recipients + "\\nPlease enter valid recipients.\"}";
+          send_response(client_fd, 400, "Not Found", "application/json", content);
+        } else {
 
         string ts_sentbox = get_timestamp();
         string encoded_ts = base64_encode(ts_sentbox);
@@ -1627,6 +1616,7 @@ void *handle_connection(void *arg)
 
         std::string redirect_to = "/inbox";
         redirect(client_fd, redirect_to);
+        }
       }
     }
 
