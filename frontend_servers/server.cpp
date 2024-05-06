@@ -24,6 +24,9 @@
 #include "./admin.h"
 using namespace std;
 
+#define LOAD_BALANCER_IP "127.0.0.1"
+#define LOAD_BALANCER_PORT 8080
+
 // Global mutex declaration
 pthread_mutex_t map_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -53,52 +56,6 @@ string generate_cookie()
     sessionID.push_back(charset[rand() % charset.length()]);
   }
   return sessionID;
-}
-
-// Function to encode files
-std::string base64_encode(const std::string &data)
-{
-  BIO *bio, *b64;
-  BUF_MEM *bufferPtr;
-
-  b64 = BIO_new(BIO_f_base64());
-  bio = BIO_new(BIO_s_mem());
-  bio = BIO_push(b64, bio);
-
-  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
-  BIO_write(bio, data.c_str(), data.length());
-  BIO_flush(bio);
-  BIO_get_mem_ptr(bio, &bufferPtr);
-  BIO_set_close(bio, BIO_NOCLOSE);
-
-  std::string output(bufferPtr->data, bufferPtr->length);
-  BIO_free_all(bio);
-
-  return output;
-}
-
-// Function to decode files
-std::string base64_decode(const std::string &encoded_data)
-{
-  BIO *bio, *b64;
-  char inbuf[512];
-  std::string output;
-  int inlen;
-
-  b64 = BIO_new(BIO_f_base64());
-  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
-
-  bio = BIO_push(b64, bio);
-  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
-
-  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
-  {
-    output.append(inbuf, inlen);
-  }
-
-  BIO_free_all(bio);
-
-  return output;
 }
 
 struct Part
@@ -149,23 +106,23 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       line.pop_back();
     }
 
-    std::cout << "Processing line: " << line << std::endl;
+    // std::cout << "Processing line: " << line << std::endl;
 
     // Detect boundaries
     if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
     {
-      std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
+      // std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
       if (!isHeaderPart && !partName.empty())
       {
         parts[partName] = std::move(currentPart); // Save completed part
-        std::cout << "SAVED PART : " << std::endl;
+        // std::cout << "SAVED PART : " << std::endl;
         currentPart = Part(); // Reset part
         partName.clear();
       }
       isHeaderPart = true;
       if (compare_stripped(line, end_delimiter))
       {
-        std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
+        // std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
         break; // Stop processing after the final boundary
       }
       continue;
@@ -176,7 +133,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
     {
       if (line.empty())
       {
-        std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
+        // std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
         isHeaderPart = false; // Empty line indicates the end of headers
         continue;
       }
@@ -186,9 +143,9 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (pos != std::string::npos)
       {
         std::string headerKey = line.substr(0, pos);
-        std::cout << "HEADER KEY : " << headerKey << std::endl;
+        // std::cout << "HEADER KEY : " << headerKey << std::endl;
         std::string headerValue = line.substr(pos + 2); // Skip ': ' after the key
-        std::cout << "HEADER VALUE : " << headerValue << std::endl;
+        // std::cout << "HEADER VALUE : " << headerValue << std::endl;
 
         // Check if this is a disposition header containing the part name
         if (headerKey == "Content-Disposition")
@@ -200,7 +157,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
             size_t nameEnd = headerValue.find('"', namePos);
             partName = headerValue.substr(namePos, nameEnd - namePos);
 
-            std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
+            // std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
           }
         }
         currentPart.headers[headerKey] = headerValue;
@@ -217,7 +174,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
         {
           line.pop_back(); // Normalize the line
         }
-        std::cout << "CONTENT READING LINE : " << line << std::endl;
+        // std::cout << "CONTENT READING LINE : " << line << std::endl;
 
         contentStream << "\n"
                       << line; // Append the line to content
@@ -226,17 +183,17 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
       {
         stream.seekg(-(long)(line.length() + 2), std::ios_base::cur); // Rewind to handle the delimiter again
-        std::cout << "REWINDED : " << line << std::endl;
+        // std::cout << "REWINDED : " << line << std::endl;
       }
 
       // Assign content to the current part
       std::string contentStr = contentStream.str();
-      std::cout << "CONTENT STREAM: " << contentStr << std::endl;
+      // std::cout << "CONTENT STREAM: " << contentStr << std::endl;
       currentPart.content.assign(contentStr.begin(), contentStr.end());
       isHeaderPart = true; // Prepare for the next part
-      std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
+      // std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
     }
-    std::cout << "GOING TO NEXT LINE: " << std::endl;
+    // std::cout << "GOING TO NEXT LINE: " << std::endl;
     // if (!std::getline(stream, line))
     // {
     //   std::cerr << "Failed to read line, stopping." << std::endl;
@@ -808,12 +765,15 @@ string parse_commands(int argc, char *argv[])
   return lines[server_index];
 }
 
+bool suspended = false;
+pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void *handle_connection(void *arg)
 {
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // Receive the request
-  const unsigned int BUFFER_SIZE = 1024 * 100;
+  const unsigned int BUFFER_SIZE = 1024 * 8;
   vector<char> buffer(BUFFER_SIZE);
 
   int fd = create_socket();
@@ -838,6 +798,121 @@ void *handle_connection(void *arg)
     buffer[bytes_read] = '\0';
     string request(buffer.begin(), buffer.end());
     unordered_map<string, string> html_request_map = parse_http_request(request);
+
+    // Check if server is suspended and the request is not for /revive
+    pthread_mutex_lock(&suspend_mutex);
+    bool current_suspended = suspended;
+    pthread_mutex_unlock(&suspend_mutex);
+
+    // Check if the incoming request is for the /status endpoint
+    if (html_request_map["uri"] == "/status")
+    {
+      if (current_suspended)
+      {
+        // If the server is suspended, send a 503 Service Unavailable response
+        send_response(client_fd, 503, "Service Unavailable", "text/plain", "Server is suspended.");
+      }
+      else
+      {
+        // If the server is not suspended, send a 200 OK response
+        send_response(client_fd, 200, "OK", "text/plain", "Server is active and accepting requests.");
+      }
+      continue; // Continue to the next iteration of the loop
+    }
+
+    if (current_suspended && html_request_map["uri"] != "/revive")
+    {
+      std::string suspended_response = R"(
+        <html>
+            <head><title>Suspended</title></head>
+            <body>
+                <p>This server is currently suspended. Redirecting to another server in 1 second...</p>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = 'http://127.0.0.1:8080/';
+                    }, 500);
+                </script>
+            </body>
+        </html>
+    )";
+      send_response(client_fd, 200, "OK", "text/html", suspended_response);
+      continue;
+    }
+
+    // Handling /suspend
+    if (html_request_map["uri"] == "/suspend")
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      suspended = true;
+      pthread_mutex_unlock(&suspend_mutex);
+      std::string response_body = R"(
+          <html>
+          <head>
+              <script>
+                  window.onload = function() {
+                      setTimeout(function() {
+                          // Check if the referrer is available
+                          if (document.referrer) {
+                              // Modify the referrer URL to point to the /admin page
+                              var adminUrl = new URL(document.referrer);
+                              adminUrl.pathname = '/admin';  // Set the path to /admin
+                              
+                              // Redirect to the modified URL
+                              window.location.href = adminUrl.href;
+                          } else {
+                              // If no referrer is available, use a default or fallback URL
+                              window.location.href = '/admin';
+                          }
+                      }, 1500);
+                  };
+              </script>
+          </head>
+          <body>
+              <p>Server is suspended. You will be redirected to the admin page shortly. Access <a href='/revive'>/revive</a> to resume.</p>
+          </body>
+          </html>
+      )";
+
+      send_response(client_fd, 200, "OK", "text/html", response_body);
+      continue;
+    }
+
+    // Handling /revive
+    if (html_request_map["uri"] == "/revive")
+    {
+      pthread_mutex_lock(&suspend_mutex);
+      suspended = false;
+      pthread_mutex_unlock(&suspend_mutex);
+      std::string response_body = R"(
+          <html>
+          <head>
+              <script>
+                  window.onload = function() {
+                      setTimeout(function() {
+                          // Check if the referrer is available
+                          if (document.referrer) {
+                              // Modify the referrer URL to point to the /admin page
+                              var adminUrl = new URL(document.referrer);
+                              adminUrl.pathname = '/admin';  // Set the path to /admin
+                              
+                              // Redirect to the modified URL
+                              window.location.href = adminUrl.href;
+                          } else {
+                              // If no referrer is available, use a default or fallback URL
+                              window.location.href = '/admin';
+                          }
+                      }, 1500);
+                  };
+              </script>
+          </head>
+          <body>
+              <p>Server is revived and operational. You will be redirected to the admin page shortly.</p>
+          </body>
+          </html>
+      )";
+      send_response(client_fd, 200, "OK", "text/html", response_body);
+      continue;
+    }
 
     // GET: rendering signup page
     if (html_request_map["uri"] == "/signup" && html_request_map["method"] == "GET")
@@ -1030,7 +1105,6 @@ void *handle_connection(void *arg)
       {
         // Retrieve HTML content from the map
         std::string html_content = g_endpoint_html_map["login"];
-        cout << html_content << endl;
 
         // Construct and send the HTTP response
         send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -1454,7 +1528,7 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-            string subject = base_64_decode(encoded_subject);
+            string subject = base64_decode(encoded_subject);
 
             // Get Display Message
             string encoded_display;
@@ -1475,15 +1549,15 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-            string display = base_64_decode(encoded_display);
+            string display = base64_decode(encoded_display);
 
             // Get Sender
-            string sender;
+            string encoded_sender;
             rowkey = "email/" + uid;
             colkey = "from";
             type = "get";
             msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-            response_code = send_msg_to_backend(fd, msg_to_send, sender, response_status,
+            response_code = send_msg_to_backend(fd, msg_to_send, encoded_sender, response_status,
                                                 response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
             if (response_code == 1)
@@ -1496,6 +1570,8 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
+            string sender = base64_decode(encoded_sender);
+
             if (mode == "reply")
             {
               prefill_to = sender;
@@ -1522,7 +1598,6 @@ void *handle_connection(void *arg)
     // POST: /compose
     else if (html_request_map["uri"].substr(0, 8) == "/compose" && html_request_map["method"] == "POST")
     {
-      // TODO: get from field from cookies
       std::string cookie = get_cookie_from_header(request);
       if (cookie.empty())
       {
@@ -1533,15 +1608,17 @@ void *handle_connection(void *arg)
       {
         string from_username = get_username_from_cookie(cookie, fd);
         string from = from_username + "@localhost";
+        string encoded_from = base64_encode(from);
 
         F_2_B_Message msg_to_send;
         string response_value, response_error_msg;
         int response_status, response_code;
 
         map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
-        vector<vector<string>> recipients = parse_recipients_str_to_vec(form_data["to"]);
+        string to = form_data["to"];
+        string encoded_to = base64_encode(to);
+        vector<vector<string>> recipients = parse_recipients_str_to_vec(to);
 
-        // TODO: check for invalid recipients
         string invalid_recipients = "";
         for (const auto &usrname : recipients[0])
         {
@@ -1575,35 +1652,24 @@ void *handle_connection(void *arg)
             invalid_recipients += r;
           }
         }
-        cout << invalid_recipients << endl;
 
-        if (invalid_recipients != "")
-        {
-          string htmlResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n";
-          htmlResponse += "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">";
-          htmlResponse += "<title>Invalid Recipients</title></head><body>";
-          htmlResponse += "<h1>Alert</h1>";
-          htmlResponse += "<p>The following recipients are invalid:</p>";
-          htmlResponse += "<p>" + invalid_recipients + "</p>";
-          htmlResponse += "</body></html>";
+        if (!invalid_recipients.empty()) {
 
-          send(client_fd, htmlResponse.c_str(), htmlResponse.size(), 0);
-          continue;
-        }
+          string content = "{\"error\":\"These recipents do not exist:\\n" + invalid_recipients + "\\nPlease enter valid recipients.\"}";
+          send_response(client_fd, 400, "Not Found", "application/json", content);
+        } else {
 
         string ts_sentbox = get_timestamp();
+        string encoded_ts = base64_encode(ts_sentbox);
 
         string subject = form_data["subject"];
-        string encoded_subject = base_64_encode(reinterpret_cast<const unsigned char *>(subject.c_str()),
-                                                subject.length());
+        string encoded_subject = base64_encode(subject);
 
         string body = form_data["body"];
-        string encoded_body = base_64_encode(reinterpret_cast<const unsigned char *>(body.c_str()),
-                                             body.length());
+        string encoded_body = base64_encode(body);
 
         string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-        string encoded_display = base_64_encode(reinterpret_cast<const unsigned char *>(for_display.c_str()),
-                                                for_display.length());
+        string encoded_display = base64_encode(for_display);
 
         string uid = compute_md5_hash(for_display);
 
@@ -1630,7 +1696,7 @@ void *handle_connection(void *arg)
         // deliver for local recipients
         for (const auto &usrname : recipients[0])
         {
-          int deliver_success = deliver_local_email(usrname, uid, from, encoded_subject, encoded_body,
+          int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
                                                     encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
           if (deliver_success == 0)
           {
@@ -1643,7 +1709,7 @@ void *handle_connection(void *arg)
         }
 
         // store email
-        int store_email_success = put_email_to_backend(uid, from, form_data["to"], ts_sentbox,
+        int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
                                                        encoded_subject, encoded_body, encoded_display,
                                                        g_map_rowkey_to_server, g_coordinator_addr);
         if (store_email_success == 0)
@@ -1656,7 +1722,7 @@ void *handle_connection(void *arg)
         }
 
         // put in sentbox
-        int sentbox_success = put_in_sentbox(from_username, uid, form_data["to"], ts_sentbox,
+        int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
                                              encoded_subject, encoded_body, g_map_rowkey_to_server,
                                              g_coordinator_addr);
         if (sentbox_success == 0)
@@ -1670,6 +1736,7 @@ void *handle_connection(void *arg)
 
         std::string redirect_to = "/inbox";
         redirect(client_fd, redirect_to);
+        }
       }
     }
 
@@ -1718,13 +1785,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-          string subject = base_64_decode(encoded_subject);
+          string subject = base64_decode(encoded_subject);
 
           // get from
-          string from;
+          string encoded_from;
           colkey = "from";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, from, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_from, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1737,12 +1804,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string from = base64_decode(encoded_from);
 
           // get to
-          string to;
+          string encoded_to;
           colkey = "to";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, to, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_to, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1755,12 +1823,13 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string to = base64_decode(encoded_to);
 
           // get timestamp
-          string timestamp;
+          string encoded_timestamp;
           colkey = "timestamp";
           msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-          response_code = send_msg_to_backend(fd, msg_to_send, timestamp, response_status,
+          response_code = send_msg_to_backend(fd, msg_to_send, encoded_timestamp, response_status,
                                               response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                               g_coordinator_addr, type);
           if (response_code == 1)
@@ -1773,6 +1842,7 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
+          string timestamp = base64_decode(encoded_timestamp);
 
           // get body
           string encoded_body;
@@ -1791,7 +1861,7 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-          string body = base_64_decode(encoded_body);
+          string body = base64_decode(encoded_body);
           // display the email content
           string html_content = construct_view_email_html(subject, from, to, timestamp, body, uid, source);
           send_response(client_fd, 200, "OK", "text/html", html_content);
@@ -4274,8 +4344,9 @@ void *handle_connection(void *arg)
 
         std::string coordinator_ip = g_coordinator_addr_str.substr(0, colon_pos);
         int coordinator_port = std::stoi(g_coordinator_addr_str.substr(colon_pos + 1));
-        std::vector<server_info> servers = get_list_of_servers(coordinator_ip, coordinator_port);
-        std::string response_content = get_admin_html_from_vector(servers);
+        std::vector<server_info> backend_servers = get_list_of_backend_servers(coordinator_ip, coordinator_port);
+        std::vector<server_info> frontend_servers = get_list_of_frontend_servers(LOAD_BALANCER_IP, LOAD_BALANCER_PORT);
+        std::string response_content = get_admin_html_from_vector(frontend_servers, backend_servers);
         send_response_with_headers(client_fd, 200, "OK", "text/html", response_content, "");
       }
     }

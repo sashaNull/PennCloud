@@ -27,7 +27,10 @@ pn_pz
 Failed to open log file: ./data/server3/logs/pa_pm_logs.txt
 Failed to open log file: ./data/server3/logs/pn_pz_logs.txt
 Failed to open log file: ./data/server3/logs/nn_nz_logs.txt
+<<<<<<< HEAD
 This row is in file: mn_mz
+=======
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 Failed to open log file: ./data/server3/logs/on_oz_logs.txt
 Failed to open log file: ./data/server3/logs/ma_mm_logs.txt
 Failed to open log file: ./data/server3/logs/ln_lz_logs.txt
@@ -52,7 +55,10 @@ Range: ka_km - Primary: No primary available
 Failed to open log file: ./data/server3/logs/pa_pm_logs.txt
 Failed to open log file: ./data/server3/logs/pn_pz_logs.txt
 Failed to open log file: ./data/server3/logs/nn_nz_logs.txt
+<<<<<<< HEAD
 This row is in file: mn_mz
+=======
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 Failed to open log file: ./data/server3/logs/on_oz_logs.txt
 Failed to open log file: ./data/server3/logs/ma_mm_logs.txt
 Failed to open log file: ./data/server3/logs/ln_lz_logs.txt
@@ -150,6 +156,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
+<<<<<<< HEAD
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
 1 127.0.0.1:6003 127.0.0.1:6003
@@ -221,6 +228,14 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
+=======
+[5] C: 1|muskaan_drive|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|muskaan_drive|items|[]||0|0|
+
+[5] S: 1|muskaan_drive|items|[]||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
@@ -229,6 +244,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
+<<<<<<< HEAD
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
@@ -9005,6 +9021,15 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
+=======
+[6] New connection
+[6] C: 1|muskaan_drive|items|||0|0|
+This row is in new file: mn_mz
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|muskaan_drive|items|[]||0|0|
+
+[6] S: 1|muskaan_drive|items|[]||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km

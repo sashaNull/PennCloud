@@ -33,7 +33,6 @@ yn_yz
 za_zm
 zn_zz
 Failed to open log file: ./data/server7/logs/zn_zz_logs.txt
-Failed to open log file: ./data/server7/logs/za_zm_logs.txt
 Failed to open log file: ./data/server7/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server7/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server7/logs/xn_xz_logs.txt
@@ -74,7 +73,6 @@ Range: un_uz - Primary: No primary available
 Range: vn_vz - Primary: No primary available
 Range: wa_wm - Primary: No primary available
 Failed to open log file: ./data/server7/logs/zn_zz_logs.txt
-Failed to open log file: ./data/server7/logs/za_zm_logs.txt
 Failed to open log file: ./data/server7/logs/yn_yz_logs.txt
 Failed to open log file: ./data/server7/logs/ya_ym_logs.txt
 Failed to open log file: ./data/server7/logs/xn_xz_logs.txt
@@ -195,6 +193,7 @@ This row is in new file: ta_tm
 1 127.0.0.1:6007 127.0.0.1:6007
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
@@ -9051,3 +9050,5 @@ This row is in new file: ta_tm
 1 127.0.0.1:6007 127.0.0.1:6007
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+=======
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5

@@ -13,6 +13,7 @@
 using namespace std;
 
 #define PORT 8080
+#define HEARTBEAT_TIME 1
 
 struct ServerInfo
 {
@@ -81,21 +82,37 @@ void *heartbeat(void *arg)
             if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
             {
                 server.is_active = false;
-                // server.currentLoad = 0;
                 if (verbose)
                     cout << "Server " << server.ip << ":" << server.port << " is down." << endl;
             }
             else
             {
-                server.is_active = true;
-                if (verbose)
-                    cout << "Server " << server.ip << ":" << server.port << " is active." << endl;
+                std::string request = "GET /status HTTP/1.1\r\nHost: " + server.ip + "\r\n\r\n";
+                send(sock, request.c_str(), request.size(), 0);
+
+                char response[1024] = {0};
+                read(sock, response, 1024);
+                string response_str(response);
+
+                if (response_str.find("200 OK") != string::npos)
+                {
+                    server.is_active = true;
+                    if (verbose)
+                        cout << "Server " << server.ip << ":" << server.port << " is active." << endl;
+                }
+                else
+                {
+                    server.is_active = false;
+                    if (verbose)
+                        cout << "Server " << server.ip << ":" << server.port << " is down." << endl;
+                }
+
                 close(sock);
             }
         }
         pthread_mutex_unlock(&server_list_lock);
 
-        sleep(5);
+        sleep(HEARTBEAT_TIME);
     }
 
     return NULL;
@@ -109,7 +126,6 @@ int main(int argc, char *argv[])
     int addrlen = sizeof(address);
 
     char buffer[30000] = {0};
-    string hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 11\n\nHELLO WORLD";
 
     int opt;
     std::string configFile;
@@ -206,10 +222,34 @@ int main(int argc, char *argv[])
         valread = read(new_socket, buffer, 30000);
         printf("%s\n", buffer);
 
+        string request(buffer);
+
+        // Check if the request is for LIST
+        if (request.find("GET /LIST HTTP") != string::npos)
+        {
+            stringstream response;
+            pthread_mutex_lock(&server_list_lock);
+
+            response << "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n";
+            for (const auto &server : frontend_server_list)
+            {
+                response << server.ip << ":" << server.port << "#" << (server.is_active ? "1" : "0") << ",";
+            }
+
+            pthread_mutex_unlock(&server_list_lock);
+
+            // Remove the last comma
+            string response_str = response.str();
+            if (!response_str.empty())
+                response_str.pop_back();
+
+            write(new_socket, response_str.c_str(), response_str.length());
+            close(new_socket);
+            continue;
+        }
+
         // Lock the mutex to safely access the server list
         pthread_mutex_lock(&server_list_lock);
-
-        // Find the active server with the least load
         ServerInfo *least_loaded_server = nullptr;
         for (auto &server : frontend_server_list)
         {
@@ -218,21 +258,16 @@ int main(int argc, char *argv[])
                 least_loaded_server = &server;
             }
         }
-
         if (least_loaded_server != nullptr)
         {
-            // Increment the load count
             least_loaded_server->currentLoad++;
             if (verbose)
                 cout << "Redirecting to " << least_loaded_server->ip << ":" << least_loaded_server->port << endl;
         }
-
-        // Unlock the mutex after modifying the list
         pthread_mutex_unlock(&server_list_lock);
 
         if (least_loaded_server)
         {
-            // Prepare redirect response
             string redirect_response = "HTTP/1.1 307 Temporary Redirect\nLocation: http://" +
                                        least_loaded_server->ip + ":" + to_string(least_loaded_server->port) +
                                        "\n\n";
@@ -241,7 +276,6 @@ int main(int argc, char *argv[])
         }
         else
         {
-            // Send a service unavailable response if no active server is found
             string error_response = "HTTP/1.1 503 Service Unavailable\nContent-Type: text/plain\nContent-Length: 19\n\nNo available servers";
             write(new_socket, error_response.c_str(), error_response.length());
         }

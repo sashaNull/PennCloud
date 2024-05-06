@@ -37,17 +37,21 @@ Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
 Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server2/logs/ia_im_logs.txt
 Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
-Failed to open log file: ./data/server2/logs/aa_am_logs.txt
+This row is in file: aa_am
 Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
 Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
 Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
 Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
+<<<<<<< HEAD
 This row is in file: cn_cz
 This row is in file: cn_cz
+=======
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 Failed to open log file: ./data/server2/logs/da_dm_logs.txt
 Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
 Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
-Failed to open log file: ./data/server2/logs/ea_em_logs.txt
+This row is in file: ea_em
+This row is in file: ea_em
 Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
 Failed to open log file: ./data/server2/logs/en_ez_logs.txt
 Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
@@ -79,17 +83,21 @@ Failed to open log file: ./data/server2/logs/hn_hz_logs.txt
 Failed to open log file: ./data/server2/logs/ha_hm_logs.txt
 Failed to open log file: ./data/server2/logs/ia_im_logs.txt
 Failed to open log file: ./data/server2/logs/gn_gz_logs.txt
-Failed to open log file: ./data/server2/logs/aa_am_logs.txt
+This row is in file: aa_am
 Failed to open log file: ./data/server2/logs/fa_fm_logs.txt
 Failed to open log file: ./data/server2/logs/ba_bm_logs.txt
 Failed to open log file: ./data/server2/logs/bn_bz_logs.txt
 Failed to open log file: ./data/server2/logs/ca_cm_logs.txt
+<<<<<<< HEAD
 This row is in file: cn_cz
 This row is in file: cn_cz
+=======
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 Failed to open log file: ./data/server2/logs/da_dm_logs.txt
 Failed to open log file: ./data/server2/logs/ga_gm_logs.txt
 Failed to open log file: ./data/server2/logs/dn_dz_logs.txt
-Failed to open log file: ./data/server2/logs/ea_em_logs.txt
+This row is in file: ea_em
+This row is in file: ea_em
 Failed to open log file: ./data/server2/logs/jn_jz_logs.txt
 Failed to open log file: ./data/server2/logs/en_ez_logs.txt
 Failed to open log file: ./data/server2/logs/ja_jm_logs.txt
@@ -120,6 +128,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
+<<<<<<< HEAD
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
@@ -143,6 +152,14 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
+=======
+[5] C: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|Data written successfully
+
+[5] S: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|1|Data written successfully
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
@@ -151,6 +168,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
+<<<<<<< HEAD
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
@@ -8609,34 +8627,76 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[6] New connection
+[6] C: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
+PRINTING SPECIAL: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|Colkey deleted successfully
+
+[6] S: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|1|Colkey deleted successfully
+[4] New connection
+[4] C: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|
+This row is in new file: cn_cz
+0 127.0.0.1:6002 127.0.0.1:6000
+Checkpointing the file: cn_cz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|Data written successfully
+
+[4] S: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|1|Data written successfully
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[8] New connection
+[8] C: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|Colkey deleted successfully
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[8] S: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|1|Colkey deleted successfully
+[7] New connection
+[7] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
+=======
+[7] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[7] Connection closed!
+[9] New connection
+[9] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
@@ -8650,93 +8710,180 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[9] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[9] Connection closed!
+[7] New connection
+[7] C: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|Data written successfully
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[7] S: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|1|Data written successfully
+[9] New connection
+[9] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
+=======
+[9] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[9] Connection closed!
+[10] New connection
+[10] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[10] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[10] Connection closed!
+[9] New connection
+[9] C: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+Checkpointing the file: cn_cz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|Colkey deleted successfully
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
+=======
+[9] S: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|1|Colkey deleted successfully
+[10] New connection
+[10] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[10] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[10] Connection closed!
+[11] New connection
+[11] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[11] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[11] Connection closed!
+[10] New connection
+[10] C: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|Data written successfully
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[10] S: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|1|Data written successfully
+[11] New connection
+[11] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[11] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[11] Connection closed!
+[12] New connection
+[12] C: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|Colkey deleted successfully
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[12] S: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|1|Colkey deleted successfully
+[11] New connection
+[11] C: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+Checkpointing the file: cn_cz 3
+Logs cleared successfully.
+PRINTING SPECIAL: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|Data written successfully
 
+<<<<<<< HEAD
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: aa_am
+=======
+[11] S: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|1|Data written successfully
+[13] New connection
+[13] C: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|
+This row is in new file: cn_cz
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 0 127.0.0.1:6002 127.0.0.1:6000
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+PRINTING SPECIAL: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|Colkey deleted successfully
 
+<<<<<<< HEAD
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
+=======
+[13] S: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|1|Colkey deleted successfully
+[14] New connection
+[14] C: 1|test_row|test_col|||0|0|
+>>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 This row is in new file: aa_am
 0 127.0.0.1:6002 127.0.0.1:6000
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist

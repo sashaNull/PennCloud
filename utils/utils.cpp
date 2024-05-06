@@ -223,87 +223,48 @@ string lower_case(const string& str) {
   return result;
 }
 
-string base_64_encode(const unsigned char* buf, unsigned int bufLen) {
-  string base64;
-  int i = 0;
-  int j = 0;
-  unsigned char char_array_3[3];
-  unsigned char char_array_4[4];
+// Function to encode files
+std::string base64_encode(const std::string &data)
+{
+  BIO *bio, *b64;
+  BUF_MEM *bufferPtr;
 
-  while (bufLen--) {
-    char_array_3[i++] = *(buf++);
-    if (i == 3) {
-      char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-      char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-      char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-      char_array_4[3] = char_array_3[2] & 0x3f;
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new(BIO_s_mem());
+  bio = BIO_push(b64, bio);
 
-      for(i = 0; (i <4) ; i++)
-        base64 += base64_chars[char_array_4[i]];
-      i = 0;
-    }
-  }
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
+  BIO_write(bio, data.c_str(), data.length());
+  BIO_flush(bio);
+  BIO_get_mem_ptr(bio, &bufferPtr);
+  BIO_set_close(bio, BIO_NOCLOSE);
 
-  if (i)
-  {
-    for(j = i; j < 3; j++)
-      char_array_3[j] = '\0';
+  std::string output(bufferPtr->data, bufferPtr->length);
+  BIO_free_all(bio);
 
-    char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-    char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-    char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-
-    for (j = 0; (j < i + 1); j++)
-      base64 += base64_chars[char_array_4[j]];
-
-    while((i++ < 3))
-      base64 += '=';
-  }
-
-  return base64;
+  return output;
 }
 
-string base_64_decode(const string& encoded_string) {
-    auto base64_char_value = [](char c) -> int {
-      if (c >= 'A' && c <= 'Z') return c - 'A';
-      if (c >= 'a' && c <= 'z') return c - 'a' + 26;
-      if (c >= '0' && c <= '9') return c - '0' + 52;
-      if (c == '+') return 62;
-      if (c == '/') return 63;
-      return -1;
-    };
+// Function to decode files
+std::string base64_decode(const std::string &encoded_data)
+{
+  BIO *bio, *b64;
+  char inbuf[512];
+  std::string output;
+  int inlen;
 
-    int length = encoded_string.size();
-    int i = 0, j = 0;
-    int in_ = 0;
-    unsigned char char_array_4[4], char_array_3[3];
-    string ret;
+  b64 = BIO_new(BIO_f_base64());
+  bio = BIO_new_mem_buf(encoded_data.c_str(), encoded_data.length());
 
-    while (length-- && (encoded_string[in_] != '=') && base64_char_value(encoded_string[in_]) != -1) {
-      char_array_4[i++] = encoded_string[in_]; in_++;
-      if (i == 4) {
-        for (i = 0; i < 4; i++)
-          char_array_4[i] = base64_char_value(char_array_4[i]);
+  bio = BIO_push(b64, bio);
+  BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // Do not use newlines to flush buffer
 
-        char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-        char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
-        char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+  while ((inlen = BIO_read(bio, inbuf, sizeof(inbuf))) > 0)
+  {
+    output.append(inbuf, inlen);
+  }
 
-        for (i = 0; (i < 3); i++)
-          ret += char_array_3[i];
-        i = 0;
-      }
-    }
+  BIO_free_all(bio);
 
-    if (i) {
-      for (j = 0; j < i; j++)
-        char_array_4[j] = base64_char_value(char_array_4[j]);
-
-      char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-      char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
-
-      for (j = 0; (j < i - 1); j++) ret += char_array_3[j];
-    }
-
-    return ret;
+  return output;
 }

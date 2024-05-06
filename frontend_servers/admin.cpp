@@ -15,12 +15,12 @@ using namespace std;
 
 #define MAX_BUFFER_SIZE 1024
 
-std::vector<server_info> get_list_of_servers(const std::string &coordinator_ip, int coordinator_port)
+vector<server_info> get_list_of_backend_servers(const string &coordinator_ip, int coordinator_port)
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0)
     {
-        std::cerr << "Failed to create socket." << std::endl;
+        cerr << "Failed to create socket." << endl;
         return {};
     }
 
@@ -32,7 +32,7 @@ std::vector<server_info> get_list_of_servers(const std::string &coordinator_ip, 
 
     if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
-        std::cerr << "Connection to coordinator failed." << std::endl;
+        cerr << "Connection to coordinator failed." << endl;
         close(sock);
         return {};
     }
@@ -43,23 +43,23 @@ std::vector<server_info> get_list_of_servers(const std::string &coordinator_ip, 
     char buffer[4096] = {0};
     recv(sock, buffer, sizeof(buffer) - 1, 0);
 
-    std::vector<server_info> servers;
-    std::string response = buffer;
+    vector<server_info> servers;
+    string response = buffer;
 
     // Parse response
     if (response.substr(0, 4) == "+OK ")
     {
         size_t start = 4, end;
-        while ((end = response.find(" ", start)) != std::string::npos)
+        while ((end = response.find(" ", start)) != string::npos)
         {
-            std::string server_entry = response.substr(start, end - start);
+            string server_entry = response.substr(start, end - start);
             size_t colon_pos = server_entry.find(':');
             size_t hash_pos = server_entry.find('#');
-            if (colon_pos != std::string::npos && hash_pos != std::string::npos)
+            if (colon_pos != string::npos && hash_pos != string::npos)
             {
                 server_info si;
                 si.ip = server_entry.substr(0, colon_pos);
-                si.port = std::stoi(server_entry.substr(colon_pos + 1, hash_pos - colon_pos - 1));
+                si.port = stoi(server_entry.substr(colon_pos + 1, hash_pos - colon_pos - 1));
                 si.is_active = server_entry.substr(hash_pos + 1) == "1";
                 servers.push_back(si);
             }
@@ -71,39 +71,123 @@ std::vector<server_info> get_list_of_servers(const std::string &coordinator_ip, 
     return servers;
 }
 
-std::string get_admin_html_from_vector(const std::vector<server_info> &servers)
+vector<server_info> get_list_of_frontend_servers(const string &load_balancer_ip, int load_balancer_port)
 {
-    std::stringstream html;
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0)
+    {
+        cerr << "Failed to create socket." << endl;
+        return {};
+    }
+
+    sockaddr_in server_addr;
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(load_balancer_port);
+    inet_pton(AF_INET, load_balancer_ip.c_str(), &server_addr.sin_addr);
+
+    if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
+    {
+        cerr << "Connection to load balancer failed." << endl;
+        close(sock);
+        return {};
+    }
+
+    string list_command = "GET /LIST HTTP/1.1\r\nHost: " + load_balancer_ip + "\r\n\r\n";
+    send(sock, list_command.c_str(), list_command.length(), 0);
+
+    char buffer[4096] = {0};
+    recv(sock, buffer, sizeof(buffer) - 1, 0);
+    close(sock);
+
+    vector<server_info> servers;
+    string response = buffer;
+
+    // Parse the response to separate headers from body
+    string headers, body;
+    size_t body_pos = response.find("\r\n\r\n");
+    if (body_pos != string::npos)
+    {
+        headers = response.substr(0, body_pos);
+        body = response.substr(body_pos + 4); // Skip the "\r\n\r\n"
+    }
+    else
+    {
+        // Error handling if response format is unexpected
+        cerr << "Invalid HTTP response received." << endl;
+        cout << response << endl;
+        return {};
+    }
+
+    // Extract server entries from the body
+    istringstream response_stream(body);
+    string server_entry;
+    while (getline(response_stream, server_entry, ','))
+    {
+        size_t colon_pos = server_entry.find(':');
+        size_t hash_pos = server_entry.find('#');
+        if (colon_pos != string::npos && hash_pos != string::npos)
+        {
+            server_info si;
+            si.ip = server_entry.substr(0, colon_pos);
+            si.port = stoi(server_entry.substr(colon_pos + 1, hash_pos - colon_pos - 1));
+            si.is_active = server_entry.substr(hash_pos + 1) == "1";
+            servers.push_back(si);
+        }
+    }
+
+    return servers;
+}
+
+string get_admin_html_from_vector(const vector<server_info> &frontend_servers, const vector<server_info> &backend_servers)
+{
+    stringstream html;
     html << "<!DOCTYPE html><html><head><title>Admin - Server Status</title>";
     html << "<style>";
     html << "body { font-family: Arial, sans-serif; margin: 40px; }";
     html << "h1 { color: #333; }";
     html << "ul { list-style-type: none; padding: 0; }";
-    html << "li { margin: 10px 0; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; }";
-    html << "button { margin-right: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }";
-    html << "button:hover { background-color: #45a049; }";
+    html << "li { margin: 10px 0; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }";
+    html << ".activeButton { background-color: red; color: white; }";
+    html << ".inactiveButton { background-color: green; color: white; }";
+    html << ".activeStatus { color: green; }";
+    html << ".inactiveStatus { color: red; }";
+    html << "button { margin-right: 10px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }";
+    html << "button:hover { opacity: 0.8; }";
     html << "form { display: inline; }";
     html << "</style></head><body>";
-    html << "<h1>Server Status</h1>";
-    html << "<ul>";
+    html << "<h1>Server Status</h1><h2>Frontend Servers</h2><ul>";
 
-    for (const auto &server : servers)
+    for (const auto &server : frontend_servers)
     {
-        std::string server_addr = server.ip + ":" + std::to_string(server.port);
+        string server_addr = server.ip + ":" + to_string(server.port);
         html << "<li>" << server_addr << " - "
-             << (server.is_active ? "Active" : "Inactive") << " "
+             << "<span class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>"
+             << (server.is_active ? "Active" : "Inactive") << "</span> "
+             << "<form method='POST' action='http://" << server_addr
+             << (server.is_active ? "/suspend" : "/revive") << "'><button type='submit' class='"
+             << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form><div></div>"
+             << "</li>";
+    }
+
+    html << "</ul><h2>Backend Servers</h2><ul>";
+
+    for (const auto &server : backend_servers)
+    {
+        string server_addr = server.ip + ":" + to_string(server.port);
+        html << "<li>" << server_addr << " - "
+             << "<span class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>"
+             << (server.is_active ? "Active" : "Inactive") << "</span> "
              << "<form method='POST' action='/admin?toggle="
              << (server.is_active ? "suspend" : "activate")
              << "&server=" << server_addr
-             << "'><button type='submit'>"
-             << (server.is_active ? "Suspend" : "Activate")
-             << "</button></form> "
+             << "'><button type='submit' class='"
+             << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form> "
              << "<a href='/admin/" << server_addr << "' style='text-decoration: none;'><button>Show Data</button></a>"
              << "</li>";
     }
 
-    html << "</ul>";
-    html << "</body></html>";
+    html << "</ul></body></html>";
     return html.str();
 }
 
@@ -218,25 +302,25 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     return html.str();
 }
 
-std::string handle_toggle_request(const std::string &query)
+string handle_toggle_request(const string &query)
 {
     size_t toggle_pos = query.find("toggle=");
     size_t server_pos = query.find("&server=");
-    if (toggle_pos == std::string::npos || server_pos == std::string::npos)
+    if (toggle_pos == string::npos || server_pos == string::npos)
     {
         return "Invalid parameters";
     }
 
-    std::string toggle = query.substr(toggle_pos + 7, server_pos - (toggle_pos + 7));
-    std::string server_addr = query.substr(server_pos + 8);
+    string toggle = query.substr(toggle_pos + 7, server_pos - (toggle_pos + 7));
+    string server_addr = query.substr(server_pos + 8);
     size_t colon_pos = server_addr.find(':');
-    if (colon_pos == std::string::npos)
+    if (colon_pos == string::npos)
     {
         return "Invalid server address";
     }
 
-    std::string ip = server_addr.substr(0, colon_pos);
-    int port = std::stoi(server_addr.substr(colon_pos + 1));
+    string ip = server_addr.substr(0, colon_pos);
+    int port = stoi(server_addr.substr(colon_pos + 1));
     bool is_suspend = (toggle == "suspend");
 
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -269,7 +353,7 @@ std::string handle_toggle_request(const std::string &query)
     msg.isFromPrimary = 0;
     msg.errorMessage = "";
 
-    std::string serialized = encode_message(msg);
+    string serialized = encode_message(msg);
     send(sockfd, serialized.c_str(), serialized.length(), 0);
 
     char buffer[MAX_BUFFER_SIZE] = {0};
@@ -287,21 +371,21 @@ std::string handle_toggle_request(const std::string &query)
     return "";
 }
 
-bool safe_stoi(const std::string &str, int &out)
+bool safe_stoi(const string &str, int &out)
 {
     try
     {
-        out = std::stoi(str);
+        out = stoi(str);
         return true;
     }
-    catch (const std::invalid_argument &e)
+    catch (const invalid_argument &e)
     {
-        std::cerr << "Invalid argument: " << e.what() << std::endl;
+        cerr << "Invalid argument: " << e.what() << endl;
         return false;
     }
-    catch (const std::out_of_range &e)
+    catch (const out_of_range &e)
     {
-        std::cerr << "Out of range: " << e.what() << std::endl;
+        cerr << "Out of range: " << e.what() << endl;
         return false;
     }
 }

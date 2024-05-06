@@ -22,6 +22,9 @@
 #include <unistd.h>
 #include <stdexcept>
 #include <openssl/md5.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <openssl/bio.h>
 
 struct F_2_B_Message
 {
@@ -57,8 +60,8 @@ std::string compute_md5_hash(const std::string& to_hash);
 
 std::string lower_case(const std::string& str);
 
-std::string base_64_encode(const unsigned char* buf, unsigned int bufLen);
+std::string base64_encode(const std::string &data);
 
-std::string base_64_decode(const std::string& encoded_string);
+std::string base64_decode(const std::string &encoded_data);
 
 #endif // UTILS_H
