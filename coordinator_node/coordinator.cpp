@@ -298,6 +298,7 @@ int main(int argc, char *argv[])
                 {
                     response = "-ERR No primary server for this range\r\n";
                 }
+                cout << "PGET " << tablet << " Response: " << response;
 
                 size_t n = send(client_fd, response.c_str(), response.length(), 0);
                 if (n < 0)

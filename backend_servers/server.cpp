@@ -308,7 +308,7 @@ void get_latest_tablet_and_log()
     }
     else
     {
-      cout << "Cannot find primary for: " << range;
+      cout << "Cannot find primary for: " << range << endl;
       printMap(range_to_primary_map);
     }
   }
@@ -1087,12 +1087,14 @@ void *handle_connection(void *arg)
         if (connect(sock, (struct sockaddr *)&other_addr, sizeof(other_addr)) < 0)
         {
           cerr << "Connection Failed" << endl;
+          close(sock);
           break;
         }
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
         {
           cerr << "Error in send(). Exiting" << endl;
+          close(sock);
           break;
         }
         if (verbose)
@@ -1104,6 +1106,7 @@ void *handle_connection(void *arg)
         if (bytes_received <= 0)
         {
           cout << "Does not receive response from other servers." << endl;
+          close(sock);
           break;
         }
         else
@@ -1114,6 +1117,7 @@ void *handle_connection(void *arg)
                  << "Received Response" << endl;
           }
         }
+        close(sock);
       }
     }
 
