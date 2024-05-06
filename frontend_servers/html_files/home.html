@@ -14,6 +14,7 @@
     <button onclick="redirectToDrive()">Drive</button>
     <button onclick="logout()">Logout</button> <!-- Logout button -->
     <button onclick="reset()">Reset Password</button> <!-- Reset Password button -->
+    <button onclick="admin()">Admin Portal</button>
 
     <script>
         function redirectToEmail() {
@@ -30,6 +31,10 @@
 
         function reset() {
             window.location.href = "/reset-password"; // Handle the reset password process
+        }
+
+        function admin() {
+            window.location.href = "/admin"; // Handle the reset password process
         }
     </script>
 
