@@ -7,10 +7,10 @@ if [ "$#" -ne 1 ]; then
 fi
 
 n=$1
-
+sleep 0.5
 # Compile the server
 make server
-
+sleep 0.5
 # Start server instances
 for ((i=0; i<n; i++))
 do
