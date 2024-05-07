@@ -15,28 +15,75 @@ Host: 127.0.0.1
 Sent response successfully, bytes sent: 105
 Listening...
 Listening...
+<<<<<<< HEAD
 GET /drive HTTP/1.1
+=======
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /logout HTTP/1.1
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 Host: 127.0.0.1:8000
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br
+<<<<<<< HEAD
 Connection: keep-alive
 Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
 Sec-Fetch-Site: none
+=======
+Referer: http://127.0.0.1:8000/home
+Connection: keep-alive
+Cookie: sid=deY8fAf5CpZcELRghB8AYuh4VqiddInE
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 Sec-Fetch-User: ?1
 
 
 I am in get cookie handler from the request
+<<<<<<< HEAD
 cookie is: QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
 username:  QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+=======
+cookie is: deY8fAf5CpZcELRghB8AYuh4VqiddInE
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 connected to coordinator
-Message sent successfully: 16 bytes.
+Message sent successfully: 19 bytes.
 sent message to coordinator
 received message from coordinator
+<<<<<<< HEAD
 Message: +OK RESP 127.0.0.1:6002
 asked coordinator: 127.0.0.1:6002
 to send: 1|cookie|QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf|||0|0|
@@ -50,6 +97,16 @@ Content-Length: 0
 Connection: keep-alive
 
 
+=======
+Message: +OK RESP 127.0.0.1:6000
+asked coordinator: 127.0.0.1:6000
+to send: 3|cookie|deY8fAf5CpZcELRghB8AYuh4VqiddInE|||0|0|
+
+Message sent successfully: 50 bytes.
+Delete response status: 1
+Delete response error msg: Rowkey does not exist
+Listening...
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 Listening...
 GET /login HTTP/1.1
 Host: 127.0.0.1:8000
@@ -57,6 +114,7 @@ User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Fi
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br
+<<<<<<< HEAD
 Connection: keep-alive
 Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
 Upgrade-Insecure-Requests: 1
@@ -1704,6 +1762,50 @@ Host: 127.0.0.1
 Sent response successfully, bytes sent: 105
 Listening...
 Listening...
+=======
+Referer: http://127.0.0.1:8000/home
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 4215
+Listening...
+GET /style.css HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/login
+Sec-Fetch-Dest: style
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 GET /status HTTP/1.1
 Host: 127.0.0.1
 

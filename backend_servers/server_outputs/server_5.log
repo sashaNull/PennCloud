@@ -312,6 +312,7 @@ This row is in new file: ka_km
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+<<<<<<< HEAD
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
@@ -924,6 +925,8 @@ This row is in new file: mn_mz
 PRINTING SPECIAL: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|1|Colkey deleted successfully
 
 [5] S: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|1|Colkey deleted successfully
+=======
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 [5] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
@@ -933,6 +936,7 @@ This row is in new file: ka_km
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+<<<<<<< HEAD
 [5] C: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|1|
 This row is in new file: mn_mz
 1 127.0.0.1:6003 127.0.0.1:6003
@@ -956,10 +960,13 @@ This row is in new file: ka_km
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+=======
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 [4] Connection closed!
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+<<<<<<< HEAD
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -1249,5 +1256,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
 1 127.0.0.1:6003 127.0.0.1:6003
+=======
+0 127.0.0.1:6005 127.0.0.1:6003
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 

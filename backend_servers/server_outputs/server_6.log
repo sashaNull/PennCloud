@@ -637,6 +637,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
 1 127.0.0.1:6006 127.0.0.1:6006
+<<<<<<< HEAD
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
@@ -1149,5 +1150,7 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
 1 127.0.0.1:6006 127.0.0.1:6006
+=======
+>>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
