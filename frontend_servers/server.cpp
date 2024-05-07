@@ -2887,7 +2887,7 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-
+            
             std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
             if (get_response_status == 0)
@@ -2898,7 +2898,33 @@ void *handle_connection(void *arg)
             }
             else if (get_response_status == 1)
             {
-              // Loop till success: GET the parent folder
+              type = "put";
+              colkey = "no_chunks";
+              string value = "0";
+
+              string put_response_value, put_response_error_msg;
+              int put_response_status;
+              msg_to_send = construct_msg(2, file_row_key, colkey, value, "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send, put_response_value, put_response_status,
+                                                  put_response_error_msg, file_row_key, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code == 1)
+              {
+                cerr << "ERROR in communicating with coordinator" << endl;
+                continue;
+              }
+              else if (response_code == 2)
+              {
+                cerr << "ERROR in communicating with backend" << endl;
+                continue;
+              }
+            
+              bool file_transfer_successfully = file_chunk_storing(client_fd, fd, content_length, file_row_key, boundary);
+
+              if (file_transfer_successfully)
+              {
+                // Success response
+                              // Loop till success: GET the parent folder
               bool success = false;
               string response_value, response_error_msg;
               int response_code, response_status;
@@ -2989,11 +3015,7 @@ void *handle_connection(void *arg)
                 }
               }
 
-              bool file_transfer_successfully = file_chunk_storing(client_fd, fd, content_length, file_row_key, boundary);
 
-              if (file_transfer_successfully)
-              {
-                // Success response
                 string refresh_script = "<script>window.location.reload(true);</script>";
                 send_response(client_fd, 200, "OK", "text/html", refresh_script);
               }
