@@ -1,7 +1,0 @@
-musk_drive/hw2 items []
-musk_info firstName muskaan
-musk_info email mberiwal13@gmail.com
-musk_info password 1111
-musk_email inbox_items 
-musk_email sentbox_items 
-musk_drive items [D@hw2,F@dummy.pdf]
