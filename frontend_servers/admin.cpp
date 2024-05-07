@@ -144,50 +144,50 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Admin - Server Status</title>";
     html << "<style>";
-    html << "body { font-family: Arial, sans-serif; margin: 40px; }";
-    html << "h1 { color: #333; }";
-    html << "ul { list-style-type: none; padding: 0; }";
-    html << "li { margin: 10px 0; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }";
-    html << ".activeButton { background-color: red; color: white; }";
-    html << ".inactiveButton { background-color: green; color: white; }";
-    html << ".activeStatus { color: green; }";
-    html << ".inactiveStatus { color: red; }";
-    html << "button { margin-right: 10px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }";
+    html << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525}";
+    html << "h1, h2 { text-align: left; }";
+    html << ".server-grid { display: flex; flex-wrap: wrap; justify-content: space-around; }";
+    html << ".server-card-1 { background-color: #3737516b; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 100px;  flex-direction: column; justify-content: center; align-items: center;}";
+    html << ".server-card-2 { background-color: #3737516b; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 150px; flex-direction: column; justify-content: center; align-items: center;}";
+    html << ".addr { font-size: 20px;}";
+    html << ".activeButton { background-color: red; color: white; font-weight: bold; display: inline-block; width: 45%; margin: 0 auto; margin-bottom: 10px;}";
+    html << ".inactiveButton { background-color: green; color: white; font-weight: bold; display: inline-block; width: 45%; margin: 0 auto; margin-bottom: 10px;}";
+    html << ".activeStatus, .inactiveStatus { background-color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd; display: inline-block; width: 50%;}";
+    html << ".activeStatus { color: #228B22; margin: 10px; font-weight: bold;}";
+    html << ".inactiveStatus { color: red; margin: 10px; font-weight: bold;}";
+    html << "button { margin: 0 auto; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; }";
     html << "button:hover { opacity: 0.8; }";
-    html << "form { display: inline; }";
     html << "</style></head><body>";
-    html << "<h1>Server Status</h1><h2>Frontend Servers</h2><ul>";
+    html << "<h1>Server Status</h1>";
 
+    // Frontend Servers
+    html << "<h2>Frontend Servers</h2><div class='server-grid'>";
     for (const auto &server : frontend_servers)
     {
-        string server_addr = server.ip + ":" + to_string(server.port);
-        html << "<li>" << server_addr << " - "
-             << "<span class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>"
-             << (server.is_active ? "Active" : "Inactive") << "</span> "
-             << "<form method='POST' action='http://" << server_addr
-             << (server.is_active ? "/suspend" : "/revive") << "'><button type='submit' class='"
-             << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form><div></div>"
-             << "</li>";
+        std::string server_addr = server.ip + ":" + std::to_string(server.port);
+        html << "<div class='server-card-1'>";
+        html << "<div class = 'addr'>" << server_addr << "</div>";
+        html << "<div class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>" << (server.is_active ? "Active" : "Inactive") << "</div>";
+        html << "<form method='POST' action='http://" << server_addr << (server.is_active ? "/suspend" : "/revive") << "'>";
+        html << "<button type='submit' class='" << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form>";
+        html << "</div>";
     }
+    html << "</div>";
 
-    html << "</ul><h2>Backend Servers</h2><ul>";
-
+    // Backend Servers
+    html << "<h2>Backend Servers</h2><div class='server-grid'>";
     for (const auto &server : backend_servers)
     {
-        string server_addr = server.ip + ":" + to_string(server.port);
-        html << "<li>" << server_addr << " - "
-             << "<span class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>"
-             << (server.is_active ? "Active" : "Inactive") << "</span> "
-             << "<form method='POST' action='/admin?toggle="
-             << (server.is_active ? "suspend" : "activate")
-             << "&server=" << server_addr
-             << "'><button type='submit' class='"
-             << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form> "
-             << "<a href='/admin/" << server_addr << "' style='text-decoration: none;'><button>Show Data</button></a>"
-             << "</li>";
+        std::string server_addr = server.ip + ":" + std::to_string(server.port);
+        html << "<div class='server-card-2'>";
+        html << "<div class = 'addr'>" << server_addr << "</div>";
+        html << "<div class='" << (server.is_active ? "activeStatus" : "inactiveStatus") << "'>" << (server.is_active ? "Active" : "Inactive") << "</div>";
+        html << "<form method='POST' action='/admin?toggle=" << (server.is_active ? "suspend" : "activate") << "&server=" << server_addr << "'>";
+        html << "<button type='submit' class='" << (server.is_active ? "activeButton" : "inactiveButton") << "'>TOGGLE</button></form>";
+        html << "<a href='/admin/" << server_addr << "' style='text-decoration: none; '><button>Show Data</button></a>";
+        html << "</div>";
     }
-
-    html << "</ul></body></html>";
+    html << "</div></body></html>";
     return html.str();
 }
 
@@ -276,15 +276,17 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Server Data</title>";
     html << "<style>";
-    html << "body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }";
-    html << "table { width: 90%; border-collapse: collapse; }";
+    html << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525}";
+    html << "h2 { text-align: center; }";
+    html << "table { width: 100%; border-collapse: collapse; }";
     html << "th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }";
-    html << "th { background-color: #606060; color: white; }";
+    html << "th { background-color: #161637; color: white; }";
     html << "tr:nth-child(even) { background-color: #e9e9e9; }";
-    html << "tr:hover { background-color: #d1d1d1; }";         // Adding hover effect to rows
-    html << "td { max-width: 300px; word-wrap: break-word; }"; // Ensure the value wraps within the cell
+    html << "tr:nth-child(odd) { background-color: #606060; }";
+    html << "tr:hover { background-color: #d1d1d1; }";                                                                       // Adding hover effect to rows
+    html << "td { max-width: 300px; word-wrap: break-word; max-height: 100px; overflow: auto; display: block; width: 100%}"; // Ensure the value wraps within the cell
     html << "</style></head><body>";
-    html << "<h1>Data from Server " << server_ip << ":" << server_port << "</h1>";
+    html << "<h2>Data from Server " << server_ip << ":" << server_port << "</h2>";
     html << "<table>";
     html << "<tr><th>Row Key</th><th>Column Key</th><th>Value</th></tr>";
 

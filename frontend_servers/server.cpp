@@ -1449,11 +1449,28 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // Retrieve HTML content from the map
-        std::string html_content = g_endpoint_html_map["home"];
+        std::string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          cout << "redirecting from home to login coz no user" << endl;
+          // Handle error or redirect if username not found
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          // Retrieve HTML content from the map
+          std::string html_content = g_endpoint_html_map["home"];
 
-        // Construct and send the HTTP response
-        send_response(client_fd, 200, "OK", "text/html", html_content);
+          // Replace username placeholder
+          size_t username_pos = html_content.find("<!--USERNAME-->");
+          if (username_pos != std::string::npos)
+          {
+            html_content.replace(username_pos, std::string("<!--USERNAME-->").length(), username);
+          }
+
+          // Construct and send the HTTP response
+          send_response(client_fd, 200, "OK", "text/html", html_content);
+        }
       }
     }
 
@@ -2228,8 +2245,9 @@ void *handle_connection(void *arg)
             html_content << "if (response.ok) {";
             html_content << "window.location.reload(true);";
             html_content << "} else {";
-            html_content << "response.json().then(data => {";
-            html_content << "alert('Failed to upload file: ' + data.error)});";
+            html_content << "response.json().then(data => {"; // Show error message
+            html_content << "alert('Failed to upload file: ' + data.error); window.location.reload(true)});";
+
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2263,7 +2281,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);"; // Refresh the page after successful create folder request
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to create folder: ' + data.error)});";
+            html_content << "alert('Failed to create folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2281,8 +2299,6 @@ void *handle_connection(void *arg)
               {
                 std::string item_type = item.substr(0, 2);
                 std::string item_name = item.substr(2);
-
-                // To do: folder icon not displaying
 
                 if (item_type == "D@")
                 {
@@ -2348,8 +2364,8 @@ void *handle_connection(void *arg)
             html_content << "alert('Folder deleted successfully');";
             html_content << "window.location.reload(true);";
             html_content << "} else {";
-            html_content << "response.json().then(data => {";
-            html_content << "alert('Failed to delete folder: ' + data.error)});";
+            html_content << "response.json().then(data => {"; // Show error message
+            html_content << "alert('Failed to delete folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2378,7 +2394,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";         // Refresh the page after successful renaming
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to rename folder: ' + data.error)});";
+            html_content << "alert('Failed to rename folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2406,7 +2422,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move folder: ' + data.error)});";
+            html_content << "alert('Failed to move folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2464,7 +2480,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";       // Refresh the page after successful deletion
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to delete file: ' + data.error)});";
+            html_content << "alert('Failed to delete file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2492,7 +2508,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";     // Refresh the page after successful move
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move file: ' + data.error)});";
+            html_content << "alert('Failed to move file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2521,6 +2537,7 @@ void *handle_connection(void *arg)
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
             html_content << "alert('Failed to rename file: ' + data.error)});";
+            html_content << "alert('Failed to rename file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
