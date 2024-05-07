@@ -27,7 +27,7 @@ using namespace std;
 #define LOAD_BALANCER_IP "127.0.0.1"
 #define LOAD_BALANCER_PORT 8080
 
-const unsigned int BUFFER_SIZE = 1140*10+1;
+const unsigned int BUFFER_SIZE = 1140 * 10 + 1;
 
 // Global mutex declaration
 pthread_mutex_t map_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -76,10 +76,11 @@ std::string extract_boundary(const std::string &content_type)
     size_t pos = result.find_last_not_of("\r\n");
 
     // If any non-whitespace character is found, erase the characters after it
-    if (pos != std::string::npos) {
-        result.erase(pos+1);
+    if (pos != std::string::npos)
+    {
+      result.erase(pos + 1);
     }
-    
+
     return result;
   }
   return "";
@@ -93,130 +94,146 @@ bool compare_stripped(const std::string &line1, const std::string &line2)
   return stripped_line1 == stripped_line2;
 }
 
-bool recv_file_name_path (int client_fd, int &content_length, std::string boundary, std::string &filename, std::string &path)
+bool recv_file_name_path(int client_fd, int &content_length, std::string boundary, std::string &filename, std::string &path)
 {
-    char buf[2]; // Buffer to hold received data
-    std::string received_data; // Temporary buffer for processing
+  char buf[2];               // Buffer to hold received data
+  std::string received_data; // Temporary buffer for processing
 
-    // First Loop: Read until "\r\n\r\n"
-    while (true) {
-        int bytes_received = recv(client_fd, buf, 1, 0);
-        if (bytes_received <= 0) {
-            // Error handling for recv failure
-            return false;
-        }
-        
-        content_length -= bytes_received;
-        
-        received_data += buf[0];
-
-        if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n") {
-            break; // Found "\r\n\r\n", exit loop
-        }
-    }
-
-    // Check if received_data contains the boundary
-    if (received_data.find(boundary) == std::string::npos) {
-        return false; // Boundary not found, return false
-    }
-
-    // Read the next line to get the filename
-    filename.clear();
-    while (true) {
-        int bytes_received = recv(client_fd, buf, 1, 0);
-        if (bytes_received <= 0) {
-            // Error handling for recv failure
-            return false;
-        }
-
-        content_length -= bytes_received;
-
-        filename += buf[0];
-        if (filename.size() >= 2 && filename.substr(filename.size() - 2) == "\r\n") {
-            break; // Found end of line, exit loop
-        }
-
-    }
-
-    size_t crlf_pos = filename.find_last_not_of("\r\n");
-    if (crlf_pos != std::string::npos)
+  // First Loop: Read until "\r\n\r\n"
+  while (true)
+  {
+    int bytes_received = recv(client_fd, buf, 1, 0);
+    if (bytes_received <= 0)
     {
-      filename.erase(crlf_pos+1);
+      // Error handling for recv failure
+      return false;
     }
 
-    // Second Loop: Read until "\r\n\r\n"
-    received_data.clear();
-    while (true) {
-        int bytes_received = recv(client_fd, buf, 1, 0);
-        if (bytes_received <= 0) {
-            // Error handling for recv failure
-            return false;
-        }
+    content_length -= bytes_received;
 
-        content_length -= bytes_received;
-        
-        received_data += buf[0];
+    received_data += buf[0];
 
-        if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n") {
-            break; // Found "\r\n\r\n", exit loop
-        }
-    }
-
-    // Check if received_data contains the boundary
-    if (received_data.find(boundary) == std::string::npos) {
-        return false; // Boundary not found, return false
-    }
-
-    // Read the next line to get the path
-    path.clear();
-    while (true) {
-        int bytes_received = recv(client_fd, buf, 1, 0);
-        if (bytes_received <= 0) {
-            // Error handling for recv failure
-            return false;
-        }
-
-        content_length -= bytes_received;
-
-        path += buf[0];
-        if (path.size() >= 2 && path.substr(path.size() - 2) == "\r\n") {
-            break; // Found end of line, exit loop
-        }
-
-    }
-
-    crlf_pos = path.find_last_not_of("\r\n");
-    if (crlf_pos != std::string::npos)
+    if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n")
     {
-      path.erase(crlf_pos+1);
+      break; // Found "\r\n\r\n", exit loop
+    }
+  }
+
+  // Check if received_data contains the boundary
+  if (received_data.find(boundary) == std::string::npos)
+  {
+    return false; // Boundary not found, return false
+  }
+
+  // Read the next line to get the filename
+  filename.clear();
+  while (true)
+  {
+    int bytes_received = recv(client_fd, buf, 1, 0);
+    if (bytes_received <= 0)
+    {
+      // Error handling for recv failure
+      return false;
     }
 
-    // Third Loop: Check for boundary
-    received_data.clear();
-    while (true) {
-        int bytes_received = recv(client_fd, buf, 1, 0);
-        if (bytes_received <= 0) {
-            // Error handling for recv failure
-            return false;
-        }
+    content_length -= bytes_received;
 
-        content_length -= bytes_received;
-        
-        received_data += buf[0];
+    filename += buf[0];
+    if (filename.size() >= 2 && filename.substr(filename.size() - 2) == "\r\n")
+    {
+      break; // Found end of line, exit loop
+    }
+  }
 
-        if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n") {
-            break; // Found "\r\n\r\n", exit loop
-        }
+  size_t crlf_pos = filename.find_last_not_of("\r\n");
+  if (crlf_pos != std::string::npos)
+  {
+    filename.erase(crlf_pos + 1);
+  }
+
+  // Second Loop: Read until "\r\n\r\n"
+  received_data.clear();
+  while (true)
+  {
+    int bytes_received = recv(client_fd, buf, 1, 0);
+    if (bytes_received <= 0)
+    {
+      // Error handling for recv failure
+      return false;
     }
 
-    // Check if received_data contains the boundary
-    if (received_data.find(boundary) == std::string::npos) {
-        return false; // Boundary not found, return false
+    content_length -= bytes_received;
+
+    received_data += buf[0];
+
+    if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n")
+    {
+      break; // Found "\r\n\r\n", exit loop
     }
-    return true;
+  }
+
+  // Check if received_data contains the boundary
+  if (received_data.find(boundary) == std::string::npos)
+  {
+    return false; // Boundary not found, return false
+  }
+
+  // Read the next line to get the path
+  path.clear();
+  while (true)
+  {
+    int bytes_received = recv(client_fd, buf, 1, 0);
+    if (bytes_received <= 0)
+    {
+      // Error handling for recv failure
+      return false;
+    }
+
+    content_length -= bytes_received;
+
+    path += buf[0];
+    if (path.size() >= 2 && path.substr(path.size() - 2) == "\r\n")
+    {
+      break; // Found end of line, exit loop
+    }
+  }
+
+  crlf_pos = path.find_last_not_of("\r\n");
+  if (crlf_pos != std::string::npos)
+  {
+    path.erase(crlf_pos + 1);
+  }
+
+  // Third Loop: Check for boundary
+  received_data.clear();
+  while (true)
+  {
+    int bytes_received = recv(client_fd, buf, 1, 0);
+    if (bytes_received <= 0)
+    {
+      // Error handling for recv failure
+      return false;
+    }
+
+    content_length -= bytes_received;
+
+    received_data += buf[0];
+
+    if (received_data.size() >= 4 && received_data.substr(received_data.size() - 4) == "\r\n\r\n")
+    {
+      break; // Found "\r\n\r\n", exit loop
+    }
+  }
+
+  // Check if received_data contains the boundary
+  if (received_data.find(boundary) == std::string::npos)
+  {
+    return false; // Boundary not found, return false
+  }
+  return true;
 }
 
-bool file_chunk_storing (int client_fd, int backend_fd, int content_length, string file_row_key, string boundary)
+bool file_chunk_storing(int client_fd, int backend_fd, int content_length, string file_row_key, string boundary)
 {
   char buffer[BUFFER_SIZE];
   int boundary_and_crlf_length = ("\r\n" + boundary + "--\r\n\r\n").length();
@@ -225,19 +242,18 @@ bool file_chunk_storing (int client_fd, int backend_fd, int content_length, stri
   while (true)
   {
     memset(buffer, 0, sizeof(buffer));
-    
+
     int flags = fcntl(client_fd, F_GETFL, 0);
     fcntl(client_fd, F_SETFL, flags | O_NONBLOCK);
     ssize_t bytes_received = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);
     fcntl(client_fd, F_SETFL, flags);
 
-    
     if (bytes_received <= 0)
     {
       break;
     }
     cout << "BUFFER LENGTH: " << bytes_received << endl;
-    
+
     string rowkey = file_row_key;
     string colkey = "content_" + to_string(i);
     string value = string(buffer, bytes_received);
@@ -248,7 +264,7 @@ bool file_chunk_storing (int client_fd, int backend_fd, int content_length, stri
     {
       value.erase(value.length() - boundary_and_crlf_length, boundary_and_crlf_length);
     }
-    
+
     cout << "ITERATION: " << i << endl;
     cout << "BUFFER LENGTH: " << bytes_received << endl;
     cout << "LENGTH AFTER TURNING TO A STRING: " << string(buffer, bytes_received).size() << endl;
@@ -256,15 +272,15 @@ bool file_chunk_storing (int client_fd, int backend_fd, int content_length, stri
     value = base64_encode(value);
 
     cout << "LENGTH AFTER TURNING TO BASE64: " << value.size() << endl;
-    
+
     F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, value, "", "", 0);
     string response_value, response_error_msg;
     int response_code, response_status;
 
     response_code = send_msg_to_backend(backend_fd, msg_to_send_put, response_value, response_status,
-                                                  response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                  g_coordinator_addr, type);
-  
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+
     if (response_code == 1)
     {
       cerr << "ERROR in communicating with coordinator" << endl;
@@ -283,21 +299,21 @@ bool file_chunk_storing (int client_fd, int backend_fd, int content_length, stri
     }
     i++;
   }
-  
+
   cout << "OUT OF LOOP!!!!!!!!!!!" << endl;
-  
+
   string type = "put";
   string rowkey = file_row_key;
   string colkey = "no_chunks";
-  string value = to_string(i-1);
-  
+  string value = to_string(i - 1);
+
   F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, value, "", "", 0);
   string response_value, response_error_msg;
   int response_code, response_status;
   response_code = send_msg_to_backend(backend_fd, msg_to_send_put, response_value, response_status,
-                                                  response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                  g_coordinator_addr, type);
-                                                  cout<<"CHECK HERE PLEASE: "<<response_code<<endl;
+                                      response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                      g_coordinator_addr, type);
+  cout << "CHECK HERE PLEASE: " << response_code << endl;
   if (response_code == 1)
   {
     cerr << "ERROR in communicating with coordinator" << endl;
@@ -308,8 +324,7 @@ bool file_chunk_storing (int client_fd, int backend_fd, int content_length, stri
     cerr << "ERROR in communicating with backend" << endl;
     return false;
   }
-  
-  
+
   return true;
 }
 
@@ -998,14 +1013,13 @@ string parse_commands(int argc, char *argv[])
 bool suspended = false;
 pthread_mutex_t suspend_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-
 string recv_header(int client_fd)
 {
   char buffer;
   ssize_t bytes_received;
   string received_request_header = "";
-  
-  while(true)
+
+  while (true)
   {
     bytes_received = recv(client_fd, &buffer, 1, 0);
     if (bytes_received == -1)
@@ -1019,16 +1033,16 @@ string recv_header(int client_fd)
     else
     {
       received_request_header += buffer;
-      
-      if (received_request_header.size() >= 4 && received_request_header.substr(received_request_header.size() - 4) == "\r\n\r\n") {
-                break;
+
+      if (received_request_header.size() >= 4 && received_request_header.substr(received_request_header.size() - 4) == "\r\n\r\n")
+      {
+        break;
       }
     }
   }
-  
-  return received_request_header; 
-}
 
+  return received_request_header;
+}
 
 void *handle_connection(void *arg)
 {
@@ -1045,27 +1059,27 @@ void *handle_connection(void *arg)
   {
     cout << "Listening..." << endl;
     string request_header = recv_header(client_fd);
-    
+
     if (request_header == "HANDLE ERROR")
     {
-        continue;
+      continue;
     }
     else if (request_header == "CONNECTION CLOSED")
     {
-        break;
+      break;
     }
-    
+
     cout << request_header << endl;
     unordered_map<string, string> html_request_map = parse_http_header(request_header);
-    
+
     if (html_request_map["method"] != "POST" || html_request_map["uri"] != "/upload_file")
     {
-      if(html_request_map.find("header_Content-Length")  != html_request_map.end())
+      if (html_request_map.find("header_Content-Length") != html_request_map.end())
       {
         int small_content_length = stoi(html_request_map["header_Content-Length"]);
         if (small_content_length > 0)
         {
-          char buffer[small_content_length+1];
+          char buffer[small_content_length + 1];
           buffer[small_content_length] = '\0';
           bytes_received = recv(client_fd, &buffer, small_content_length, 0);
           if (bytes_received == -1)
@@ -1083,7 +1097,7 @@ void *handle_connection(void *arg)
         }
       }
     }
-    
+
     // Check if server is suspended and the request is not for /revive
     pthread_mutex_lock(&suspend_mutex);
     bool current_suspended = suspended;
@@ -1938,89 +1952,92 @@ void *handle_connection(void *arg)
           }
         }
 
-        if (!invalid_recipients.empty()) {
+        if (!invalid_recipients.empty())
+        {
 
           string content = "{\"error\":\"These recipents do not exist:\\n" + invalid_recipients + "\\nPlease enter valid recipients.\"}";
           send_response(client_fd, 400, "Not Found", "application/json", content);
-        } else {
-
-        string ts_sentbox = get_timestamp();
-        string encoded_ts = base64_encode(ts_sentbox);
-
-        string subject = form_data["subject"];
-        string encoded_subject = base64_encode(subject);
-
-        string body = form_data["body"];
-        string encoded_body = base64_encode(body);
-
-        string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
-        string encoded_display = base64_encode(for_display);
-
-        string uid = compute_md5_hash(for_display);
-
-        // deliver for external recipients
-        for (const auto &r : recipients[1])
-        {
-          string dummy_from = from_username + "@seas.upenn.edu";
-          pthread_t thread_id;
-          auto *data = new std::map<std::string, std::string>{
-              {"to", r},
-              {"from", dummy_from},
-              {"subject", subject},
-              {"content", body}};
-          if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
-          {
-            std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
-            delete data;
-          }
-          else
-          {
-            pthread_detach(thread_id);
-          }
-        }
-        // deliver for local recipients
-        for (const auto &usrname : recipients[0])
-        {
-          int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
-                                                    encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
-          if (deliver_success == 0)
-          {
-            cout << "SUCCESS: delivered local mail to " << usrname << endl;
-          }
-          else
-          {
-            cout << "ERROR: failed to deliver local mail to " << usrname << endl;
-          }
-        }
-
-        // store email
-        int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
-                                                       encoded_subject, encoded_body, encoded_display,
-                                                       g_map_rowkey_to_server, g_coordinator_addr);
-        if (store_email_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << endl;
         }
         else
         {
-          cout << "ERROR: failed to store email with uid " << uid << endl;
-        }
 
-        // put in sentbox
-        int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
-                                             encoded_subject, encoded_body, g_map_rowkey_to_server,
-                                             g_coordinator_addr);
-        if (sentbox_success == 0)
-        {
-          cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
-        else
-        {
-          cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
-        }
+          string ts_sentbox = get_timestamp();
+          string encoded_ts = base64_encode(ts_sentbox);
 
-        std::string redirect_to = "/inbox";
-        redirect(client_fd, redirect_to);
+          string subject = form_data["subject"];
+          string encoded_subject = base64_encode(subject);
+
+          string body = form_data["body"];
+          string encoded_body = base64_encode(body);
+
+          string for_display = format_mail_for_display(subject, from, ts_sentbox, body);
+          string encoded_display = base64_encode(for_display);
+
+          string uid = compute_md5_hash(for_display);
+
+          // deliver for external recipients
+          for (const auto &r : recipients[1])
+          {
+            string dummy_from = from_username + "@seas.upenn.edu";
+            pthread_t thread_id;
+            auto *data = new std::map<std::string, std::string>{
+                {"to", r},
+                {"from", dummy_from},
+                {"subject", subject},
+                {"content", body}};
+            if (pthread_create(&thread_id, nullptr, smtp_client, data) != 0)
+            {
+              std::cerr << "Failed to create thread: " << std::strerror(errno) << std::endl;
+              delete data;
+            }
+            else
+            {
+              pthread_detach(thread_id);
+            }
+          }
+          // deliver for local recipients
+          for (const auto &usrname : recipients[0])
+          {
+            int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
+                                                      encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
+            if (deliver_success == 0)
+            {
+              cout << "SUCCESS: delivered local mail to " << usrname << endl;
+            }
+            else
+            {
+              cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+            }
+          }
+
+          // store email
+          int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
+                                                         encoded_subject, encoded_body, encoded_display,
+                                                         g_map_rowkey_to_server, g_coordinator_addr);
+          if (store_email_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << endl;
+          }
+
+          // put in sentbox
+          int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
+                                               encoded_subject, encoded_body, g_map_rowkey_to_server,
+                                               g_coordinator_addr);
+          if (sentbox_success == 0)
+          {
+            cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+          else
+          {
+            cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
+          }
+
+          std::string redirect_to = "/inbox";
+          redirect(client_fd, redirect_to);
         }
       }
     }
@@ -2268,7 +2285,7 @@ void *handle_connection(void *arg)
             html_content << "formData.append('path', path);";
             html_content << "let blobVar = new Blob([file], { type: file.type });";
             html_content << "formData.append('file', blobVar, file.name);"; // Create a Blob and append file object
-            html_content << "fetch('/upload_file', {"; // Send POST request to upload_file endpoint
+            html_content << "fetch('/upload_file', {";                      // Send POST request to upload_file endpoint
             html_content << "method: 'POST',";
             html_content << "body: formData"; // Send formData
             html_content << "})";
@@ -2814,7 +2831,7 @@ void *handle_connection(void *arg)
           std::string content_type = html_request_map["header_Content-Type"];
           int content_length = stoi(html_request_map["header_Content-Length"]);
           std::string boundary = extract_boundary(content_type);
-          
+
           std::string filename;
           std::string path;
           bool file_ready_to_read = recv_file_name_path(client_fd, content_length, boundary, filename, path);
@@ -2969,7 +2986,7 @@ void *handle_connection(void *arg)
                   }
                 }
               }
-              
+
               bool file_transfer_successfully = file_chunk_storing(client_fd, fd, content_length, file_row_key, boundary);
 
               if (file_transfer_successfully)
@@ -3037,7 +3054,8 @@ void *handle_connection(void *arg)
           string response_value, response_error_msg;
           int response_code, response_status;
           type = "get";
-          colkey = "content";
+          colkey = "no_chunks";
+
           msg_to_send = construct_msg(1, rowKey, colkey, "", "", "", 0);
           response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                               response_error_msg, rowKey, colkey, g_map_rowkey_to_server,
@@ -3053,12 +3071,38 @@ void *handle_connection(void *arg)
             continue;
           }
 
-          if (response_status == 0)
+          int no_chunks = stoi(response_value);
+          cout << "Number of chunks: " << no_chunks << endl;
+          if (no_chunks > 0)
           {
-            // Decode the base64 encoded file content
-            std::string file_content = base64_decode(response_value);
+            string file_content = "";
+            for (int i = 1; i < no_chunks + 1; i++)
+            {
+              F_2_B_Message msg_to_send;
+              string response_value, response_error_msg;
+              int response_code, response_status;
+              type = "get";
+              colkey = "content_" + to_string(i);
 
-            // Construct the HTTP response headers to trigger file download
+              msg_to_send = construct_msg(1, rowKey, colkey, "", "", "", 0);
+              response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                  response_error_msg, rowKey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+              if (response_code != 0)
+              {
+
+                // Error in fetching file - Construct and send the HTTP response
+                string content = "{\"error\":\"Error fetching file\"}";
+                send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                continue;
+              }
+
+              cout << "RESPONSE: " << response_value << endl;
+              cout << "content_" << i << ": " << response_value.size() << endl;
+              string decoded_value = base64_decode(response_value);
+              cout << "DECODED LENGTH: " << decoded_value.size() << endl;
+              file_content += decoded_value;
+            }
             std::string content_disposition = "attachment; filename=\"" + file_name + "\"";
             std::string content_type = "application/octet-stream";
 
@@ -3073,6 +3117,8 @@ void *handle_connection(void *arg)
 
             // Send the response with the redirect script
             send_response(client_fd, 200, "OK", "text/html", redirect_script.str());
+
+            cout << "TRANSER SUCCESS!!!" << endl;
           }
           else
           {
