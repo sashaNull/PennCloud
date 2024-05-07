@@ -4,5 +4,4 @@
 make
 echo "Starting coordinator..."
 ./coordinator -v ../backend_servers/server_config.txt > ../logger/coordinator.log 2>&1 &
-echo "Coordinator Started. PID: "
-echo $!
+echo "Coordinator Started. PID: $!"
