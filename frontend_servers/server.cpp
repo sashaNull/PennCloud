@@ -282,6 +282,7 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
     response_code = send_msg_to_backend(backend_fd, msg_to_send_put, response_value, response_status,
                                         response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                         g_coordinator_addr, type);
+    usleep(1000);
 
     if (response_code == 1)
     {
