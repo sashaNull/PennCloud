@@ -147,9 +147,9 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525}";
     html << "h1, h2 { text-align: left; }";
     html << ".server-grid { display: flex; flex-wrap: wrap; justify-content: space-around; }";
-    html << ".server-card-1 { background-color: #3737516b; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 100px;  flex-direction: column; justify-content: center; align-items: center;}";
-    html << ".server-card-2 { background-color: #3737516b; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 150px; flex-direction: column; justify-content: center; align-items: center;}";
-    html << ".addr { font-size: 20px;}";
+    html << ".server-card-1 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 100px;  flex-direction: column; justify-content: center; align-items: center;}";
+    html << ".server-card-2 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 150px; flex-direction: column; justify-content: center; align-items: center;}";
+    html << ".addr { font-size: 20px; color: white;}";
     html << ".activeButton { background-color: red; color: white; font-weight: bold; display: inline-block; width: 45%; margin: 0 auto; margin-bottom: 10px;}";
     html << ".inactiveButton { background-color: green; color: white; font-weight: bold; display: inline-block; width: 45%; margin: 0 auto; margin-bottom: 10px;}";
     html << ".activeStatus, .inactiveStatus { background-color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd; display: inline-block; width: 50%;}";
@@ -282,9 +282,9 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     html << "th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }";
     html << "th { background-color: #161637; color: white; }";
     html << "tr:nth-child(even) { background-color: #e9e9e9; }";
-    html << "tr:nth-child(odd) { background-color: #606060; }";
-    html << "tr:hover { background-color: #d1d1d1; }";                                                                       // Adding hover effect to rows
-    html << "td { max-width: 300px; word-wrap: break-word; max-height: 100px; overflow: auto; display: block; width: 100%}"; // Ensure the value wraps within the cell
+    html << "tr:nth-child(odd) { background-color: #d1d1d1; }";
+    html << "tr:hover { background-color: #ffffff; }";                                                                   // Adding hover effect to rows
+    html << "div.scrollable { max-width: 300px; word-wrap: break-word; max-height: 100px; overflow: auto; width: 100%}"; // Ensure the value wraps within the cell
     html << "</style></head><body>";
     html << "<h2>Data from Server " << server_ip << ":" << server_port << "</h2>";
     html << "<table>";
@@ -294,7 +294,7 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     {
         for (const auto &col_pair : row_pair.second)
         {
-            html << "<tr><td>" << row_pair.first << "</td><td>" << col_pair.first << "</td><td>" << col_pair.second << "</td></tr>";
+            html << "<tr><td><div class='scrollable'>" << row_pair.first << "</div></td><td><div class='scrollable'>" << col_pair.first << "</div></td><td><div class='scrollable'>" << col_pair.second << "</div></td></tr>";
         }
     }
 
