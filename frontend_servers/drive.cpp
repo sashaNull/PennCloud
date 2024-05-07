@@ -17,6 +17,7 @@ using namespace std;
 
 int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
+    cout << "I AM DELETING FILES" << endl;
     std::string value, error_msg;
     int status, result;
 
@@ -47,6 +48,19 @@ int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, 
     try
     {
         no_chunks = std::stoi(value);
+
+        // Delete the number of chunks entry
+        F_2_B_Message delete_msg;
+        delete_msg.type = 3; // DELETE request
+        delete_msg.rowkey = rowkey;
+        delete_msg.colkey = "no_chunks";
+
+        result = send_msg_to_backend(fd, delete_msg, value, status, error_msg, rowkey, "no_chunks", g_map_rowkey_to_server, g_coordinator_addr, "delete");
+        if (result != 0 || status != 0)
+        {
+            std::cerr << "Failed to delete chunk entry";
+            return 1; // Stop and return failure
+        }
     }
     catch (const std::invalid_argument &e)
     {
@@ -58,6 +72,8 @@ int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, 
         std::cerr << "Number of chunks out of range: " << e.what() << std::endl;
         return 1; // Return error if conversion fails
     }
+
+    cout << "Number of chunks: " << no_chunks << endl;
 
     // Step 2: Delete each chunk
     for (int i = 1; i <= no_chunks; ++i)
@@ -123,9 +139,24 @@ int copyChunks(int fd, const std::string &old_row_key, const std::string &new_ro
             return 1; // Return error if conversion fails
         }
 
+        cout << "Number of chunks: " << no_chunks << endl;
+
+        // Put no of chunks to new row
+        string put_response_value, put_response_error_msg;
+        int put_response_status;
+        type = "put";
+        rowkey = new_row_key;
+        F_2_B_Message msg_to_send_put = construct_msg(2, new_row_key, "no_chunks", std::to_string(no_chunks), "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send_put, put_response_value, put_response_status,
+                                            put_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+
         // Copy each chunk
         for (int i = 1; i <= no_chunks; ++i)
         {
+            string get_response_value, get_response_error_msg;
+            int get_response_status;
+            type = "get";
             rowkey = old_row_key;
             colkey = "content_" + std::to_string(i);
 
@@ -173,10 +204,6 @@ int copyChunks(int fd, const std::string &old_row_key, const std::string &new_ro
                     // Error handling
                     return put_response_status;
                 }
-                else
-                {
-                    return 0;
-                }
             }
             else
             {
@@ -184,6 +211,8 @@ int copyChunks(int fd, const std::string &old_row_key, const std::string &new_ro
                 return get_response_status;
             }
         }
+        cout << "All chunks copied successfully." << endl;
+        return 0;
     }
     else
     {
