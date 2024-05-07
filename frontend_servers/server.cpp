@@ -2536,7 +2536,6 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to rename file: ' + data.error)});";
             html_content << "alert('Failed to rename file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
