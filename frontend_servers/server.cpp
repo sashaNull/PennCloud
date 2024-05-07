@@ -4202,7 +4202,7 @@ void *handle_connection(void *arg)
             int get_response_status, response_code;
             string type = "get";
             string rowkey = new_row_key;
-            string colkey = "content";
+            string colkey = "no_chunks";
             F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
                                                 get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
@@ -4218,29 +4218,10 @@ void *handle_connection(void *arg)
             }
             else if (get_response_status == 1)
             {
-
-              string get_response_value, get_response_error_msg;
-              int get_response_status, response_code;
-              string type = "get";
-              string rowkey = old_row_key;
-              string colkey = "content";
-              F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
-              response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
-                                                  get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                  g_coordinator_addr, type);
               // GET and PUT new file contents
+              int get_put_response_status = copyChunks(fd, old_row_key, new_row_key, g_map_rowkey_to_server, g_coordinator_addr);
 
-              string put_response_value, put_response_error_msg;
-              int put_response_status;
-              type = "put";
-              rowkey = new_row_key;
-              colkey = "content";
-              F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, get_response_value, "", "", 0);
-              response_code = send_msg_to_backend(fd, msg_to_send_put, put_response_value, put_response_status,
-                                                  put_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                  g_coordinator_addr, type);
-
-              if (put_response_status != 0)
+              if (get_put_response_status != 0)
               {
                 // Error handling: send appropriate error response to the client
                 string error_message = "Failed to create new file path";
@@ -4311,15 +4292,7 @@ void *handle_connection(void *arg)
                   if (cput_response_status == 0)
                   {
                     // Delete file content
-                    string delete_response_value, delete_response_error_msg;
-                    int delete_response_status, response_code;
-                    string type = "delete";
-                    string rowkey = old_row_key;
-                    string colkey = "content";
-                    F_2_B_Message msg_to_send_delete = construct_msg(3, rowkey, colkey, "", "", "", 0);
-                    response_code = send_msg_to_backend(fd, msg_to_send_delete, delete_response_value, delete_response_status,
-                                                        delete_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                        g_coordinator_addr, type);
+                    int delete_response_status = delete_file_chunks(fd, old_row_key, g_map_rowkey_to_server, g_coordinator_addr);
 
                     if (delete_response_status == 0)
                     {
@@ -4427,7 +4400,7 @@ void *handle_connection(void *arg)
             {
               // Check whether file already exists in this directory
               string rowkey = new_row_key;
-              string colkey = "content";
+              string colkey = "no_chunks";
               msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
               response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
                                                   get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
