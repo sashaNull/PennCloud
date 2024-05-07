@@ -1,991 +1,506 @@
 IP: 127.0.0.1:8002
 Listening fd: 3
 Listening...
-Client closed the connection.
-Listening...
-GET / HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-Sent redirection response to http://127.0.0.1:8002/login
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/login
-Content-Length: 0
-Connection: keep-alive
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Sent redirection response to http://127.0.0.1:8002/login
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/login
-Content-Length: 0
-Connection: keep-alive
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-connected to coordinator
-Message sent successfully: 19 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6000
-asked coordinator: 127.0.0.1:6000
-to send: 1|emma_info|password|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|emma_info|password|123456||0|0|
-decoded message
-I am in get cookie handler from the request
-connected to coordinator
-Message sent successfully: 16 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6000
-asked coordinator: 127.0.0.1:6000
-to send: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 2|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/home
-Content-Length: 0
-Connection: keep-alive
-Set-Cookie: sid=mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Redirect with cookie response sent successfully, bytes sent: 210
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg
-Sent response successfully, bytes sent: 1115
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg
-to send: 1|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|emma||0|0|
-decoded message
-got response
-to send: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|mX6igCnoe0lo33sM5e2Qc9FvGef4wmlg|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
-Listening...
-POST /login HTTP/1.1
-end of parse
-to send: 1|emma_info|password|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|emma_info|password|123456||0|0|
-decoded message
-got response
-to send: 1|emma_info|password|||0|0|
-
-Message sent successfully: 29 bytes.
-going to decode message: 1|emma_info|password|123456||0|0|
-decoded message
-I am in get cookie handler from the request
-to send: 1|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|0|
-
-Message sent successfully: 54 bytes.
-going to decode message: 2|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/home
-Content-Length: 0
-Connection: keep-alive
-Set-Cookie: sid=niMYDqb7S50YasgaUenCK7cs2SRPlCjY; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Redirect with cookie response sent successfully, bytes sent: 210
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-username: emma niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-connected to coordinator
-Message sent successfully: 20 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6001
-asked coordinator: 127.0.0.1:6001
-to send: 1|emma_drive|items|||0|0|
-
-Message sent successfully: 27 bytes.
-going to decode message: 1|emma_drive|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6258
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-GET /inbox HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-connected to coordinator
-Message sent successfully: 20 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6001
-asked coordinator: 127.0.0.1:6001
-to send: 1|emma_email|inbox_items|||0|0|
-
-Message sent successfully: 33 bytes.
-going to decode message: 1|emma_email|inbox_items|23d5af93185e98df92149e502a2e1bc8##adwait@localhost##YXNkYXM=##Sat May 04 02:25:02 2024,426e6577fd0ca11e4c5a23fc5cab1e13##adwait@localhost##amZhc2lvamZpb3Fq##Sat May 04 01:51:40 2024,||0|0|
-decoded message
-Sent response successfully, bytes sent: 868
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-Sent redirection response to http://127.0.0.1:8002/home
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/home
-Content-Length: 0
-Connection: keep-alive
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Listening...
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: niMYDqb7S50YasgaUenCK7cs2SRPlCjY
-to send: 1|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|emma||0|0|
-decoded message
-got response
-to send: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|niMYDqb7S50YasgaUenCK7cs2SRPlCjY|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
-Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-connected to coordinator
-Message sent successfully: 22 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6005
-asked coordinator: 127.0.0.1:6005
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-Sent response successfully, bytes sent: 111
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-got response
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-I am in get cookie handler from the request
-to send: 1|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 2|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: http://127.0.0.1:8002/home
-Content-Length: 0
-Connection: keep-alive
-Set-Cookie: sid=7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
 
-Redirect with cookie response sent successfully, bytes sent: 210
+Sent response successfully, bytes sent: 105
 Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-Sent response successfully, bytes sent: 1115
 Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-username: muskaan 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-connected to coordinator
-Message sent successfully: 23 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6003
-asked coordinator: 127.0.0.1:6003
-to send: 1|muskaan_drive|items|||0|0|
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-Message sent successfully: 30 bytes.
-going to decode message: 1|muskaan_drive|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6258
-Listening...
-GET /inbox HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-connected to coordinator
-Message sent successfully: 23 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6005
-asked coordinator: 127.0.0.1:6005
-to send: 1|muskaan_email|inbox_items|||0|0|
 
-Message sent successfully: 36 bytes.
-going to decode message: 1|muskaan_email|inbox_items|||0|0|
-decoded message
-Sent response successfully, bytes sent: 475
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: 7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn
-to send: 1|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|0|
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|muskaan||0|0|
-decoded message
-got response
-to send: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|0|
 
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|7K6Pjx6PWy6pR8S2n6yGBLaew69qhZgn|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-GET /login HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
 
-<body>
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
 
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
 
-</body>
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
 
-</html>
-Sent response successfully, bytes sent: 2368
+
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
 Listening...
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.

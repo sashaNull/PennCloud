@@ -1,6 +1,0 @@
-zero_drive items []
-zero_email sentbox_items 
-zero_email inbox_items 
-zero_info password 1234
-zero_info email zero@gmail.com
-zero_info firstName e

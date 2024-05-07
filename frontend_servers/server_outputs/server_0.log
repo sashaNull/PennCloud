@@ -1,869 +1,1768 @@
 IP: 127.0.0.1:8000
 Listening fd: 3
 Listening...
-<<<<<<< HEAD
-Request Line: GET /home HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Sent response successfully, bytes sent: 1287
-Listening...
-Request Line: GET /admin HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-Request Line: GET /admin HTTP/1.1
-End of parse
-=======
-Client closed the connection.
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
 Listening...
 Listening...
-Client closed the connection.
-GET / HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-Sent redirection response to http://127.0.0.1:8000/login
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8000/login
-Content-Length: 0
+GET /drive HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
+Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
 
 
-Sent redirection response to http://127.0.0.1:8000/login
-redirect response: HTTP/1.1 302 Found
-Location: http://127.0.0.1:8000/login
-Content-Length: 0
-Connection: keep-alive
-
-
-Listening...
-GET /login HTTP/1.1
-end of parse
->>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
 I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Listening...
-<<<<<<< HEAD
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Request Line: GET /admin HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Listening...
-Listening...
-Client closed the connection.
-Request Line: POST /admin?toggle=suspend&server=127.0.0.1:6000 HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Type: 5
-Rowkey: suspend
-Colkey: suspend
-Value: 
-Value2: 
-Status: 0
-From Backend: 0
-ErrorMessage: Server successfully Suspended
-Sent response successfully, bytes sent: 143
-Listening...
-Request Line: GET /admin HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Listening...
-Listening...
-Client closed the connection.
-Request Line: POST /admin?toggle=activate&server=127.0.0.1:6000 HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-Type: 6
-Rowkey: revive
-Colkey: revive
-Value: 
-Value2: 
-Status: 0
-From Backend: 0
-ErrorMessage: Server back online
-Sent response successfully, bytes sent: 143
-Listening...
-Request Line: GET /admin HTTP/1.1
-End of parse
-I am in get cookie handler from the request
-cookie is: 7MOThdSgc2DWpLOdsoi6KInhVKv3v2f3
-=======
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-POST /login HTTP/1.1
-end of parse
-connected to coordinator
-Message sent successfully: 22 bytes.
-sent message to coordinator
-received message from coordinator
-Message: +OK RESP 127.0.0.1:6005
-asked coordinator: 127.0.0.1:6005
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-I am in get cookie handler from the request
+cookie is: QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+username:  QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
 connected to coordinator
 Message sent successfully: 16 bytes.
 sent message to coordinator
 received message from coordinator
-Message: +OK RESP 127.0.0.1:6000
-asked coordinator: 127.0.0.1:6000
-to send: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|0|
+Message: +OK RESP 127.0.0.1:6002
+asked coordinator: 127.0.0.1:6002
+to send: 1|cookie|QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf|||0|0|
 
-Message sent successfully: 57 bytes.
-going to decode message: 2|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: http://127.0.0.1:8000/home
+Message sent successfully: 50 bytes.
+Drive me error
+Sent redirection response to /login
+redirect response: HTTP/1.1 302 Found
+Location: /login
 Content-Length: 0
 Connection: keep-alive
-Set-Cookie: sid=zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
 
 
-Redirect with cookie response sent successfully, bytes sent: 210
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM
-Sent response successfully, bytes sent: 1115
-Listening...
-GET /home HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM
-Sent response successfully, bytes sent: 1115
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM
-to send: 1|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|muskaan||0|0|
-decoded message
-got response
-to send: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|zWxv1vDAJ1rjzNRKJSZkh6vrVacVMooM|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
 Listening...
 GET /login HTTP/1.1
-end of parse
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+
 I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
->>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
-Listening...
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-<<<<<<< HEAD
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-Listening...
-Client closed the connection.
-=======
-POST /login HTTP/1.1
-end of parse
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-got response
-to send: 1|muskaan_info|password|||0|0|
-
-Message sent successfully: 32 bytes.
-going to decode message: 1|muskaan_info|password|1111||0|0|
-decoded message
-I am in get cookie handler from the request
-to send: 1|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|0|
-
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||1|0|Colkey does not exist
-decoded message
-got response
-to send: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|0|
-
-Message sent successfully: 57 bytes.
-going to decode message: 2|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|0|Data written successfully
-decoded message
-Response being sent:
-HTTP/1.1 302 Found
-Location: http://127.0.0.1:8000/home
+cookie is: QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Sent redirection response to /home
+redirect response: HTTP/1.1 302 Found
+Location: /home
 Content-Length: 0
 Connection: keep-alive
-Set-Cookie: sid=tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
 
 
-Redirect with cookie response sent successfully, bytes sent: 210
 Listening...
 GET /home HTTP/1.1
-end of parse
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+
 I am in get cookie handler from the request
-cookie is: tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
-Sent response successfully, bytes sent: 1115
+cookie is: QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Sent response successfully, bytes sent: 1287
 Listening...
-GET /home HTTP/1.1
-end of parse
+GET /logout HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/home
+Cookie: sid=QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
 I am in get cookie handler from the request
-cookie is: tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
-Sent response successfully, bytes sent: 1115
+cookie is: QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf
+to send: 1|cookie|QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf|||0|0|
+
+Message sent successfully: 50 bytes.
+got response
+to send: 3|cookie|QdrmYSqCT3qiwPdPtGUmHGdalDJHFVdf|||0|0|
+
+Message sent successfully: 50 bytes.
+Delete response status: 1
+Delete response error msg: Rowkey does not exist
 Listening...
-GET /inbox HTTP/1.1
-end of parse
+Listening...
+GET /login HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/home
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
 I am in get cookie handler from the request
-cookie is: tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
+Sent response successfully, bytes sent: 4215
+Listening...
+GET /style.css HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/login
+Sec-Fetch-Dest: style
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+GET /signup HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/login
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 4478
+Listening...
+GET /style.css HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/signup
+Sec-Fetch-Dest: style
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+POST /signup HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/signup
+Content-Type: application/json
+Content-Length: 111
+Origin: http://127.0.0.1:8000
+Connection: keep-alive
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
 connected to coordinator
-Message sent successfully: 23 bytes.
+Message sent successfully: 19 bytes.
 sent message to coordinator
 received message from coordinator
-Message: +OK RESP 127.0.0.1:6004
-asked coordinator: 127.0.0.1:6004
-to send: 1|muskaan_email|inbox_items|||0|0|
+Message: +OK RESP 127.0.0.1:6005
+asked coordinator: 127.0.0.1:6005
+to send: 1|musk_info|password|||0|0|
 
-Message sent successfully: 36 bytes.
-going to decode message: 1|muskaan_email|inbox_items|||0|0|
-decoded message
-Sent response successfully, bytes sent: 475
-Listening...
-GET /drive HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
-username: muskaan tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
+Message sent successfully: 29 bytes.
+get response status: 1
+get response error msg: Rowkey does not exist
+to send: 1|musk_info|firstName|||0|0|
+
+Message sent successfully: 30 bytes.
+got response
+to send: 2|musk_info|firstName|Muskaan||0|0|
+
+Message sent successfully: 37 bytes.
+to send: 1|musk_info|email|||0|0|
+
+Message sent successfully: 26 bytes.
+got response
+to send: 2|musk_info|email|mberiwal13@gmail.com||0|0|
+
+Message sent successfully: 46 bytes.
+to send: 1|musk_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+got response
+to send: 2|musk_info|password|1111||0|0|
+
+Message sent successfully: 33 bytes.
 connected to coordinator
-Message sent successfully: 23 bytes.
+Message sent successfully: 20 bytes.
 sent message to coordinator
 received message from coordinator
 Message: +OK RESP 127.0.0.1:6003
 asked coordinator: 127.0.0.1:6003
-to send: 1|muskaan_drive|items|||0|0|
+to send: 2|musk_email|inbox_items|||0|0|
 
-Message sent successfully: 30 bytes.
-going to decode message: 1|muskaan_drive|items|[]||0|0|
-decoded message
-Sent response successfully, bytes sent: 6258
-Listening...
-GET /logout HTTP/1.1
-end of parse
-I am in get cookie handler from the request
-cookie is: tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8
-to send: 1|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|0|
+Message sent successfully: 33 bytes.
+to send: 1|musk_email|sentbox_items|||0|0|
 
-Message sent successfully: 50 bytes.
-going to decode message: 1|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|muskaan||0|0|
-decoded message
+Message sent successfully: 35 bytes.
 got response
-to send: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|0|
+to send: 2|musk_email|sentbox_items|||0|0|
 
-Message sent successfully: 50 bytes.
-going to decode message: 3|cookie|tNpT9PtWCJ7lIj17kmromCxV6rCwGOe8|||0|0|Colkey deleted successfully
-decoded message
-Delete response status: 0
-Delete response error msg: Colkey deleted successfully
-Listening...
-Client closed the connection.
+Message sent successfully: 35 bytes.
+connected to coordinator
+Message sent successfully: 20 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6003
+asked coordinator: 127.0.0.1:6003
+to send: 2|musk_drive|items|[]||0|0|
+
+Message sent successfully: 29 bytes.
+Sent redirection response to /login
+redirect response: HTTP/1.1 302 Found
+Location: /login
+Content-Length: 0
+Connection: keep-alive
+
+
 Listening...
 GET /login HTTP/1.1
-end of parse
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/signup
+Connection: keep-alive
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
 I am in get cookie handler from the request
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
-
-    <h2>User Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            var formData = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-            fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/home"; // Redirect to the home page
-                        return;
-                    }
-                    // Not a 2XX response, so parse the JSON and handle it
-                    return response.json().then(data => {
-                        if (response.status === 404 && data.error === "User does not exist") {
-                            throw new Error("Username does not exist"); // This will be caught by .catch
-                        }
-                        else if (response.status === 401 && data.error === "Incorrect password") {
-                            throw new Error("Password is incorrect"); // This will be caught by .catch
-                        }
-                        throw new Error("Login failed for another reason"); // General error
-                    });
-                })
-                .catch(error => {
-                    console.error("Error logging in:", error);
-                    alert(error.message);
-                });
-        });
-    </script>
-
-</body>
-
-</html>
-Sent response successfully, bytes sent: 2368
+Sent response successfully, bytes sent: 4215
 Listening...
->>>>>>> 9eafb84f8e8b52e47d276b41beac7ba012f399f5
+GET /login HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/signup
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 4215
 Listening...
-Client closed the connection.
+GET /style.css HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/login
+Sec-Fetch-Dest: style
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+POST /login HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/login
+Content-Type: application/json
+Content-Length: 37
+Origin: http://127.0.0.1:8000
+Connection: keep-alive
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
+to send: 1|musk_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+got response
+to send: 1|musk_info|password|||0|0|
+
+Message sent successfully: 29 bytes.
+I am in get cookie handler from the request
+to send: 1|cookie|AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA|||0|0|
+
+Message sent successfully: 50 bytes.
+got response
+to send: 2|cookie|AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA|musk||0|0|
+
+Message sent successfully: 54 bytes.
+Response being sent:
+HTTP/1.1 302 Found
+Location: /home
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA; Path=/; Expires=Wed, 31 Jul 2024 07:28:00 GMT; HttpOnly
+
+
+Redirect with cookie response sent successfully, bytes sent: 189
+Listening...
+GET /home HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/login
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sent response successfully, bytes sent: 1287
+Listening...
+GET /home HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/login
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sent response successfully, bytes sent: 1287
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+GET /drive HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/home
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+username: musk AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 6103
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+POST /create_folder HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/drive
+Content-Type: application/json
+Content-Length: 35
+Origin: http://127.0.0.1:8000
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+parent row key: musk_drive
+connected to coordinator
+Message sent successfully: 24 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6003
+asked coordinator: 127.0.0.1:6003
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 4|musk_drive|items|[]|[D@hw1]|0|0|
+
+Message sent successfully: 36 bytes.
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+got response
+to send: 2|musk_drive/hw1|items|[]||0|0|
+
+Message sent successfully: 33 bytes.
+Sent response successfully, bytes sent: 110
+Listening...
+Listening...
+GET /drive HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/home
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+username: musk AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 6361
+Listening...
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/drive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+POST /upload_file HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/drive
+Content-Type: multipart/form-data; boundary=---------------------------37329718531681396971113027338
+Content-Length: 28089
+Origin: http://127.0.0.1:8000
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+FILENAME: jpeg-optimizer_dog.jpeg
+FILEPATH: drive
+connected to coordinator
+Message sent successfully: 44 bytes.
+sent message to coordinator
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6003
+asked coordinator: 127.0.0.1:6003
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+RESPONSE: Rowkey does not exist
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 4|musk_drive|items|[D@hw1]|[D@hw1,F@jpeg-optimizer_dog.jpeg]|0|0|
+
+Message sent successfully: 67 bytes.
+BUFFER LENGTH: 11400
+ITERATION: 1
+BUFFER LENGTH: 11400
+LENGTH AFTER TURNING TO A STRING: 11400
+BUFFER: ˇÿˇ‡ JFIF      ˇ€ C ,!'!,'$'2/,5BoHB==BàafPo°ç©¶ûçõò±«ˇÿ±ºÒøòõﬁˇ‡Òˇˇˇˇˇ¨’ˇˇˇˇˇˇˇˇˇˇ€ C/22B:BÇHHÇˇ∑õ∑ˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇ¿ hç" ˇƒ           	
+ˇƒ µ   } !1AQa"q2Åë°#B±¡R—$3brÇ	
+%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyzÉÑÖÜáàâäíìîïñóòôö¢£§•¶ß®©™≤≥¥µ∂∑∏π∫¬√ƒ≈∆«»… “”‘’÷◊ÿŸ⁄·‚„‰ÂÊÁËÈÍÒÚÛÙıˆ˜¯˘˙ˇƒ        	
+ˇƒ µ  w !1AQaq"2ÅBë°±¡	#3Rbr—
+$4·%Ò&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyzÇÉÑÖÜáàâäíìîïñóòôö¢£§•¶ß®©™≤≥¥µ∂∑∏π∫¬√ƒ≈∆«»… “”‘’÷◊ÿŸ⁄‚„‰ÂÊÁËÈÍÚÛÙıˆ˜¯˘˙ˇ⁄   ? ØET(¢ä )h¢Ä
+(¢Ä
+(¢Ä
+(¢Ää(†ä(†ä(†ä(†¢ä(QE QE QE QE- QE QE QE ¥î¥(¢ñÄ
+(¢Ä
+(§†ñíñÄ
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Å-%- QE
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢ÄäZJ (¢äQE QE QE
+)(†B—IE
+(¢ÅQ@¬ä(†ä(†äJ(h§¢Ä
+(¢Ä
+(¢Ä
+(¢ÅîPEP0¢ä( ¢ä((¢ä (¢ä (¢ä (¢ä J(¢Ä
+(¢Ä
+(¢Ä
+JZJ (¢ä (¢ä ))i(h¢ä (¢ñÄ
+(¢Ä
+(¢Ä
+(¢Ää(†ä(†ä(†ñíä-î¥ QE QE QE QE-
+(¢ÅQ@Q@Q@EP0•§¢Ää(†ä(†ä(†ä(†AEP0¢ä(QE R—E QE QE QE QE QE QE
+(¢Ä
+(¢ÅQ@Q@Q@Q@Q@	EPEPEPEPE% QE QE QE QE QE QE îQE R“PEPEPEPQE QE QE QE RR“PEPEP0¢ä( §•§†ä(†ä(†ä(†ä)( ¢ä( ¢ä( ¢ä( ¢ä( ¢ä( •§•†ä(†ä(†¢ä( ¢ä( ¢ä( ¢ä(R—E QE QE QE -Q@Q@Q@Q@-%- QE R—@Q@Q@Q@Q@Q@Q@EPEPEPEPEPEPEPEPEPEPEPEPEPEPEPQE QE QE QE QE QE QE îQE QE QE QE QE îQ@Q@Q@Q@	EPEPEPEPEPQE QE QE QE îR“P0¢ä( ¢ä( §•¢Ä
+J(†ä(†ä(†ä(†ä(†ñíñÅQ@¬ä(†¢ä(QE(¢äR—@	KE QE QE R“R–EPEPEPKIK@Q@Q@EPEPEPEPEPEP—E QE QE QE QE QE QE QE QE QE QE QE QE QE QE% -RP—IK@%- îQE QE QE QE QE î¥PQE QE QE RR“PEPEPEPEPQE- %¥î QE QE QE% QE QE QE î¥PQE QE(¢ä (¢ä J(¢Ä
+(¢Ä
+(¢Ä
+(¢ÅQ@-PEPKIK@Q@Q@R–EPEPEPKIK@Q@R–EPEPEPEP—E QE QE QE QE QE ¥RR–EPEPEPEPEPEPEPEPEPEPE-% QE QE QE QE î¥PEPEPIKI@Q@Q@Q@Q@Q@%-% QE QE î¥PQKI@Q@Q@Q@	E-% -%-% QE QE QE %¥PQE QE QE QE îR“PEP0¢ä((¢äQE
+(¢Ä
+(¢ÅQ@EPEPKE QE QE R“R–EPEPEP—E QE R“Q@EPEPEPKE QE QE QE QE QE QE R“R–EPEPEPEPEPEPEPEPEPKIK@Q@Q@%-% -%PEPEPEPEPIKE %Q@Q@Q@Q@Q@Q@	EPEPEPIKI@Q@Q@Q@Q@	EPEPEPEPEPQE QE QE QE RQE QE QE î¥PQE(¢ä Z(¢Ä
+(¢ÅQ@Q@Eî ¥QE QE ¥î¥ QIK@Q@Q@-%- QE QE ¥î¥ QE R“Q@E%- QE QE QE QE -%PEPEP—E QE QE QE QE QE QE QE QE R“R–E% ¥îQ@Q@Q@Q@Q@Q@Q@Q@	E- îQE QE QE QE QE î¥î QE QE QE îR—@	EPEPEPEî ¥îQ@Q@Q@Q@	E-% QE QE î¥î QE QE QE RR“PEPEPKIK@Q@Q@Q@R–EPEPKIK@Q@Q@Q@-%- QE QE ¥î¥ QE QE R“R–EPEPEPEPE¥ QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE RQE ¥îP—IK@Q@Q@Q@%- îR—@	EPEPEPEPIKI@Q@Q@Q@%PEPEPIKE %Q@Q@Q@Q@	EPEPEPIKE %Q@Q@Q@Q@	E-%
+(¢Ää(†ä(†AEPKE QE QE QE ¥QE QE QK@	KE QE QE QE- QE R—@%- QE QE QE QE QE- %-PEPE¥ îR—@	EPEPEPEPEPEPEPE¥ QE îQK@	EPE-% QE %¥PQKE %-PEPEPEPEPEPEPIKE %¥î QE QE îR“PEPEPEPIKE %Q@Q@Q@%- îQE QE î¥PQKE %Q@Q@Q@	EPE-% QE
+(¢ÄäZJ Z(¢Ä
+(•†•¢äQE QK@	E- î¥Q@Q@-PEPEPE- îR—@Q@R–EPEPEPEPEP—E QE QE QKE QE QE QE QE QE QE QE QE QE QE QE QE R—@	EPEPQKE %¥PQKE %¥PQKE %¥PQKE %¥PQKI@Q@Q@	E- îQE QE %¥PQKE %¥PQKI@Q@%- îR—@	E- îR—@∆—KE %¥PQKE %¥PQE îR—@	E- îQE %¥PQE QE QKE QE QE ¥Q@Q@Q@¥PEPE¥ QE QE QE QE ¥QE
+(¢Ä
+(¢Ä
+(¢Ä
+)h†•¢ä (¢ä (¢ä (•§†ñä( ¢ä( ¢ä( ¢ä( ¢ä( ¢ñíÄ
+(¢Ä
+)h†¢ñíÄ
+)h†¢ñä (¢ä (•¢ÄäZ(î¥Q@Q@	E- îQE %¥P!(•¢ÄäZ((•¢ÄäZ((•¢ÄäZ(îR—@	EPQKEäZ(îR—@	E- îR—@	IKE %¥PQKE %¥R(•¢ò	E- îQE î¥PQäZ(1E- îQE %¥PQKEäZ())h†¢ñä m¥P!))h†¢ñíÄä(†ä(†ñä( ¢ä( ¢äZ JZ(†ä(†ä)h ¢ä( ¢ä( ¢ä( ¢ä( •¢äQE QE QE ¥Q@Q@Q@Q@-P0¢ä( ¢ä( ¢äZ J)h†AEP0¢ä( ¢ä( ¢ä( ¢ä( ¢ä(QKE
+(¢ÅQ@¬ä(†AESQEÄ(¢ä (¢ä (¢ä J)h†¢ñä J(•†¢ñä JZ(†ä(†¢ó`–QK¥˙RÌ>î ⁄)vüJ0}((¢ä (¢ä (≈PäJZ(îR—@	E-% 
+(¢Å%-∆%Q@Q@Çä)( ¢ä( ¢ä( ¢ä( ¢äJ-%PER ¢ä( ¢ä( ¢ä((•§†ä(†íñä J(¢ò	EP •¢ä (¢ä (¢ä Z(¢Ä
+(¢Ä
+(¢Ä
+Z(†ä(†äZ( ¢ä( ¢ä( ¢ä(QE QE QE ¥QE QE QE
+Z(†ä(†ñä( ¢ä( ¢ä( ¢ä( ¢ä( ¢ä( ¢ä( ¢ä( ¢ñä J(¢Ää(†ä(¶E- îR—@	E-% QE 
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+P	•U&¶U≈;åöpä•¢ùÜ3 ª>íÄ∞RÌñå–`QÅFhÕ õA£4@¡I∞S≥Fh#0°bíã_TÂA®ô•`ERQE% QE QE î¥î QE QE% QE QE QI@Q@Q@Q@îPEPEPEPEP0¢íä ZJ(†ä)( ¢ñäQE R—@	KIK@Q@Q@Q@EPKIK@Q@Q@Q@R–QKE QE QE QE QE -Q@-%- QE QE QE R“PE¥ îQE QE ¥RÖ4 îSˆQ≤òXe%<≠4ä@%¥îZ(¢ÅÖ-%-0
+(¢Ä
+(¢êQLä(§!(•§†aE-¿J)h†¢ñíê¢§U¶I©V1Nå”†E&i	†fì4Ã“ÊÄö3IM&Äö)π§-E∆:å”7—∫êÕ&i3Hh˚©sQÉKE¿~hÕ34†–ÛE4Z`5”5	´5ã@àh†—R ¢äJ-RP“R—@	EPIKE %Q@Q@Q@¬ä(†¢ñä J(¢ÄäZ((¢ä (¢ä (¢íÄ
+(¢Ä
+(¢Ä
+(¢Ä
+JZJ Z(¢Ä
+ZJ(h§¢Ä
+ZJ(h§•†ä(†ä(†¢ä(h§•†ä(†ä(†ä(†ñíñÄ
+(¢Ä
+)h†¢ñä JZ(†ä(†ä(†¢ä( ¢ä( ¢ä( •§•†ä(†ä(†••U&•Tò‡”ƒy©p(†v
+vfÅÖ%P E&⁄u ¬î∆\T‘P"æ(≈NPSJ–"•ßl†≠∞ ZR¶íÄ
+(¢êQ@îP!h¢äQKLíñä J(•Ä *E†})iå\“A4¬h§“n§Õ4öñ∆;u<á<‘ÄÒB`«M&öM!4Ó!I¶ìHM757¸—öe8PÉN£ß- :ñä)àL“ÉIE(Õ •¶!A•Í)¥´Lú`”*w4ô!E%ÑQE QE QE î¥î QE QIE -Q@RP1i(¢Ä
+(¢Ä
+(§†ä(†AEPEP1(¢ä (¢ä (¢ä J(¢Ä
+(¢Ää(†ä)(h§¢ÅE%- -îP1h§¢Äñíä--%Z)(†¢íä Z))h ¢ä(h§¢Äñíä (¢ä (¢ä¥îP—EZ(§†¢ä( ¢ä( •§ßö J1Rßß`" ‘ä¥Ï
+3@ƒÈFi	§&ÅéÕ.j:P‘ ¸—öa4ô¢‡>ó4Õ‘õ©\	3Fj<“Êãåx4Ó*,“ÉN‚±%¶Üßfò)1KöJ B)åµ%4‰“%9Ü)¥(¢äB
+(¢Ä
+ZJZ (¢ä`QER(§QO†h)	§&òZãåq4“i3E!Å4∆jV5öñ4;5 n*º|öòö`«n¶ìE†Bfî–H ùÄ“C50∏†4°™îv4—&M .EDçR-0—N"õ@NÕ4SI≈ IN∂jQMkT-÷¶jâ®⁄JZJDÖQ@RP“QE QE îQ@Q@Q@Q@¬ä)(h§¢ÅQ@RP—IE QE
+(¢Ä
+(¢Ä
+(§†ä(†ä(†¢íä ZJ(†AE% ¥RR–—IK@Q@-% ¥QE ¥îP—IK@Q@-% ¥RQ@EP“QE QE ¥îP““R–EPKIE -îPá5*äçEH)îáQöni	†b≥b£/HÌLÕKc∞˝‘¶‚åbÄö3MÕ®Ì‹R¶ÁäLö êö3QÊú $¥—Jià\“fööwZ Pj@j*p4–RRd“LCÅ£≠34‡i\∏®ÍW®©í¬ä(§ ¢ä( ¢ä( ¢ä( •î´LdÇÇi	‚òÕJÂ f¶¶;SI©*ƒ°≥“ùöjå
+^î ÷5‘≠PûMc„ ’S≥Lëii¥π†é)è&)∏‚¢(X—p∞≠(∆jª [ÈS2*3	HD]©Uà4Ò	4ıÇòBŸ´KP«ZùEH«äB)¿R‚òÜMu»©qHEõ?ñ‹‘ÒHqMû-√ TV Uéil2—®û§'ökäd≤:J(§HQE îQE QE îQ@%PKIE -Q@RP0¢ä(QE RR“PEPEPEPEPIKI@Q@Q@	EP—IE -%PEPEP““R–EPEP“QE QE --% ¥QE QI@E% ¥QE -%PEPKIK@ •§•†ä(†¢íñÄ
+(†–÷úZö:SXä.ZCã“®ÛA4ÆUÄöA@‰”œêöSQÓ≈.Í “föNhp4fõEö§ÌIäJê…L¶7 aöôj¢ëö±
+,"R¥`”î–EPÑÊêÉFhÕ 'JPi¶ÅHdÄéÙö;®‚ô,âÜ))[9ÊíÇä(†¢íñÄ
+)(†ö~ ¿hcE H‘liI¶jKi»)Üûáä<ê):”zö^¥ksQÅÕIM^M4xßbÅK@Ü—äëE)ùÇ‰[i¿RëF(∞
+(⁄(ßLC6
+]¥˙i4Ä ß
+h•Õ$ó5!lS∏âsIöÖ¶
+*ª\”ˆE7`ŒES÷ú.1ﬁÅÉH„#"ò≤á˙‘ÉëR2)Œ∏4⁄	
+(§†AEPEPQE îR—@	EP—E RR—@	EPEPIKI@Q@Q@Q@%-% QE QE %Q@RP—IE -î¥ QE QE ¥¥î¥ QE QE QE QE R“R–—IK@Q@	KIK@Q@Q@R–EPKIE -Q@Q@-% ·Mz\Ä)åŸ§ÀCi‘⁄Pi=x«zRp*¥íÒLÔ•P&•ã$”h$4¥†SÄ©ÑRTÑQ≤òó∏≈!§PHqVEA:zS@ ¸±ÎNËz”J∑•(V5dñ¢∏ØZ∞T„á'5ic¿®(SFiqF( ¶Ù4Ía†C…‚ë_úSwbô∏gÉ@…õ•2ûßp¶∞≈4%QLê¢ä( ¢äJ p¶±ßc∆Ê§—'&êöPP‹Piô¶†‰“Á4’‡SÖ “£Zõ)®GòâE8
+bêS·KMÕ(4\RÖ†R¶∞Ä®À“rh∏-öL“N w§1E.i3M&Å
+Z°ëç=ö°vÕ"g$ÛQ©f¢5B—ìIEÆE_µìÃO•gVÖäa	†dÆ**ùÖD’"ci)h†ë(•§†ä(†¢ñíÄ
+(¢Ä
+(¢Ä
+(¢Ä
+(¢Ä
+JZ((¢ä ))h†¢ä( ¢ä( ¢ä( §•§†ä(†ä(†¢ä((¢ä (¢ä (¢ä Z(¢Ä
+(•†ä(†¢ä( ¢ä( ¢ä( ¢ä( •§•†P(†ä(†ä(†äZ( ¢ä( ¢ä( ¢ä( ¢ä(h§•†ä(†ä)å”3JÌÅLZE°Ùt†R„äC"ëâ™˝Í—ZçêU&ç*Ã+ÅöÖ-V–`Pƒá4‡¥™)¯XmßmßbíÄVìm;4P6”Y2*B)¥ÜWh∞hU¡´fòF;PÆ<åS‘–ÈqH)iàB¥∆JñêÅ@\b°,sV§L’W4Üâ¢ê˜©òddU4lµÓ4W
+)H¡§¶dQE 
+(§Rx®Õ>ò‘çHN(§40öJ%0$SO£SOÄcPıjî)ΩÈ°AÅN¶Êå–!˘£8¶få–˜Rfõö3@‡*0‘Ï”¸“g4‹“fÄOΩ1ûêöa†`ÕL4§”I†±®Õ<”qLChßbêöbŒp+R‹m@*åK»‚Ø«“Ä’b•jâÈ0}©(§§HQE QE QE RR—@	EPEPEPEP0§¢ä (¢íÄíä( ¢ä( ¢äJ (¢äQE
+(§†ä(†¢ä(QKE %-PE- QE QE ¥QE QE QE QE ¥î¥ ¥QE QE QK@Q@Q@Q@îP—E- QE QE ∆8ÛP»‘ää#cìÕ9j2iÒı¶Y:äSBÙ†“∆¶öîå“m4H◊2äjéjJ-8S≈F”sL≈4ëUÃæÙÇL˜¶"œ^îﬁEFØéÙÌ‡å“hc√wZçXx§ÄoCGû¬£<PÇN	LNLcSw—∫ÄöM‘∆lSfêv‚™π…©õ8®ÅâRƒÿ5(41ó	»Õ%26œ§∆(FrVäZ)í%¥î SM:ê“h§»ÿSJõ¶¥|R-2Mß≤ëL4∆9i‰‘ji‘ <R
+@i†CÛKöfi¬ÅER &öM‘N¯¶õÒOV™õÕ8Iävk4PâE/ò(ÚiÑäil”P˜SI¶n§‹iàu-Gì@<–…¿§J'•4 [Ü≠°™…Vë˛\–¨‹”[ëMW‹y•jWFi)M%Q@-% ¥RR–E J(¢Ä
+(¢Ä
+(¢ÅÖQ@	IKI@Q@RPEPEPIKI@E% RR“PEP—E(¢ä )h¢Ä
+)h†bQKE
+(¢Ä
+Z(†íñä J(¢Ä
+(¢Ä
+Z(†¢íñÄ
+(¢Ä
+ZJZ (¢ä (¢ä (¢ä ))i(ii)h ¢ä( ¢äJ G8YéMLÊ°4ë™VCi»ÿ4”@™iM8‘
+‹T x©˛4öBihDı•v¿‚Å¿¶7JDÚ‡UÀíi“u®™êòÌ∆ç∆õE1,§T™‰’jû>ÄP∆ãI“§p)˚´2â¶≤Êêp¶""§P*F®Ÿ∞(ijøõÕHØë@≈~iÑ‚ïö£&ÄµF∆êöi4 ¢îR
+Z`KÊ¨cä™áö≤Ω*B[EµFBQE RKE */5!PE$b§ÌN≈§NTu¡´Ó*ª≠&R+äu!4R(3KH)h¢ú6ó4 ¥¥ÇîR÷ÈU‹ÛV[•VêsTÑ6Ç(ß™Ó™î¢úÎ∂ö(M4‘∏‚öE!å¢óbòÑ"Ä2qR*Ê§Ü<74ÆëGÚÛLñ%¨˝’ÕVsìöCQG5"∂x®Å•SÕ!ÿö3Õ=ç1G¶ÑLÄ“R—LÅ(¢ä (¢ä )i)h †—I@Q@Q@¥P1))i(%)§†AEP—EJ)h§QKE %%-¿JZ(†§ßRRîQE0äJ($Z(¢Ä
+ZJZ-Q@Q@Q@E% ¥QEäZJ (¢ä Z)(†¢ä(h§¢Äñíä Z(¢Ä
+(¢Ä
+(§†ä(†ñíîP—E RZCHdl8®NÁäÄ–ç§•§™ı5:*®5"µ&2|”÷°ŒjXœÑ+çèÊ¶7JWsL©sQ’"XQEƒ,UHáìiM?≠B≠R©(êS¡®Å4ı4!5^c≈JÓsTﬁMÕÌLéµ2öåS¡≈&1XÊòiƒ”h∆¶”⁄£¶Ñ8S≥M¥ ı<’®õ"©)Ê≠√é¢ì!¢îäJfLJ(¢Å*åöJï ¶Ü=FKMcLc¢qRöç™X Âiªy©à¶‚ëDx§©¶@%(§¢ò·L·H@j)¶≈5Ö0*‚Öm¶§u®»´)«\6(W+KªsfêcäB)˝©†¢<Qäìm¶!#’•ZÜ/ΩVq≈+!ï˚UriÚ©›öf) u°z‚ìiÍ*TLÛHdã“ñÅ“ñÇîR—Lë(•§†¢ñä JZ(†¢ñä J(¢Ä
+(¢Ää(†bRR—@i)i( ¢ä( ¢ä( ¢ä( ¢ä) îR—L¢ñä CIKI@Q@	EP •§•†ñíä ZZJZîQ@ÇäJZ )i(†¢íñÄ
+(¢Ä
+(§†¢íä ZZJZ (¢ä Z)(†¢íñÄäJ( ¢ì4P—IK@-%- ¥⁄Z ZCE!§2TU#‰‘t—†RQE0ú¥⁄z–Ä”£nj1J85#&jaß»¶ö ç™#Rπ¶böE)§™¥†‚õJ NÜ§´+~Ïµ6eM)p¢†,@®ÀK,€é;ScÍ 2j ÆõfäJíÖÕ'4†—@nî õ®H¡¶Ñ¥îSjÕ±œV¶∂8jLfíñíÉ6QE÷ßA≈5§ÈM®Õ8öi¶1¶òiÊöjF0”HßëM4Ü0”M<”ie¶íò ßäe(4 ˙CFh§!ÑTL∏´òER`W≈*VN*#LD±jAÇqUÜGCOçænh)2r∏†
+x!ñÄ)Ä–0j“tÊ°•)âåê‚£Ú¿ßwRöÜÅËÜÌ∏¢äD‹(¢äb
+ZJZ@%%- îî¥îƒ-î¥ RR“PEî ¥RR–KIE îQ@Q@	EPEPEP0¢íä-îPEP1(¢äQEä(†B—E QE R“R–Eî QE R“R–EPEPEPEP““Q@Q@Q@Q@E% QE S©¥¢Ää(†ä(†ÉEÄÇSé**ñQÛTT—†QE¿ © ‚ö†TÉ•&qKE&hÏ”à•Ê\±5"r¥¬¶ùZdç#öJï«4¬(Ü—ä\S¬”/zK1©B·Fái&ê«9¿≈@M=€q°&ÇG√953R}—L-öíÖ¶Êå—ö QNö*E†`4…„#Ê*¬¶zTÜ-»T–âlÃ¢¶íåE	nœÙ™∏µ<I» ÛJ-y‰‘Í°Gò^¬—Hh†Ü-*ı§ß¢–´“Çh)P∆ìHM)¶öC“Zi§ißi†cM4”ÒM4Äm4”»¶ö J3Hh†bÊîfy† ì4c5<“Ü4qT,ÑUÄA¶∞¶òi*b)•xßqùçNØU0Aß´˙–ReΩ√™’\7Ω=IßqÿôézRTàòLûµÎIô±(¢äDÖQ@Q@Q@ƒ§•§†B—E RZC@%PEP—E îQE QE %Q@	EP—IE QE QE R“PQKI@Q@	EP—E QE QE ¥î¥PQKI@-PEPEPE- î¥Q@¥î QE QE QE QKäJ (¢ä )E%- -Q@¥î QKE "ïsU»¡´§dUwàÁ4&Z"¢•X‘ã:”∏»I5)©ÑAE1ñï∆EHiƒR ni ‘¬(ò
+F±¶®˝ÂI√/Ω/ÕM
+¬∞¶R∞¶ëLdj*E^iT™9†˘:UcÛ:bÆéïNQâ(”œ•â02j8∆ML~QR¡vÊôö	ÊíÅã@ÊÅNQ@AS(®‘T´R2x÷¶«b¶hÜE"‘T@mÈVäÊò»(hD“Tåò®»§!(¢íÅ*T#≠NΩ)°°ÙÜì4Ñ”Üòi∆öiJi•4Üê	E!§§04“iM7–”M<”M 4”{”ç0ä5∏4¥h≈0
+Bi{RPêëRu®÷§^¥ÄB)§TÿÕ!JBVõ≤ßÚÕY¢‡B©Vb\R§U: ’ƒTL9´qP?Zbci)i)QE QE QI@Q@Q@!•§4 îQE QK@%PEPEPQE% QE RQ@E% ¥RQ@≈¢ä( ¢ä)(¢äcE8äJ (¢äQE R—@¥PQKE %.(ßI±ÿM¥ò© †äõïb:)H§™Lõ¥LBR”Ä†äWÜ—KE1	E- îbó¥ ‹Qäu îbñíÄäZ(1KE R“R–KE- %¥R •s@ßT≤–≈.(¢Åàj‘‰SUX
+‰SMJ¬òE#≈4äêäB(©÷•AÇMDN8Z†“PhÕ1à¥ı<‘bú NßäØ8˘ÍejIx	ê¢Û«JY*PÆ*öêDfíärä P*E⁄p§1¿T´Qäëi:ïMBµ*ö¥C$§4
+ST"&
+∞¬°qRTî¶Ä§“$rjnÇí5¿Êú‘ C	§&ÉMÕ4ÜäJ CHiM!§i3A¶Êê≈§•§†4ô•¶–RRgöSÕA•†–JS“êS *A¡®¡¡ßä@HH*%©GJ;ä^)î‡3LC∆)ÎLPH*êÖ®dZöö›(±§ß7ZmI"QE R“R–QE QE QE RQE %¥PEP1(•§†AEPE JJZJ (¢ä J(¢Ä
+(¢ÅÖQ@-%8R` R‚îR‘‹ª≈&)‘î\Väa.)•hLm—O€HV™‰ÿJ(¢òÇñä( •¢ä@QJ( •î¢ê–·Eñ§±§SH©)§SLM•åRämíê†Rë@•©.√§≈?ò™π-•ó†QpHLRbüHE¢úE%2D¢ä)à(¢ä Z1@•†≈Q@≈QK@	E- R“SÄ©
+QE(“∏¶0ß”Z®òTdT≠QöëëöJq¶–0Ê©¶*>Ù‚i°°(§
+LENGTH AFTER TURNING TO BASE64: 15200
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 2|musk_drive/jpeg-optimizer_dog.jpeg|content_1|/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACweISchHCwnJCcyLyw1Qm9IQj09QohhZlBvoY2ppp6Nm5ixx//Ysbzxv5ib3v/g8f//////rNX/////////////2wBDAS8yMkI6QoJISIL/t5u3////////////////////////////////////////////////////////////////////wAARCANoBI0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvRRRUCCiiigApaKKACiiigAooooAKKKKAFooooAKKKKACiiigAooooAWiiigQUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQMKKKWgAooooAKKKSgApaSloAKKKKACiiigAooooAKKKKBBS0lLQAUUUUDCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKWkoAKKKKBBRRRQAUUUUAFFFFAwopKKBC0UlFAwooooEFFFFAwooooAKKKKACikooAWikooAKKKKACiiigAooooEFFJRQAUUUUDCiiigAooooASiiigAooooAKKKKACiiigBKKKKACiiigAooooAKSlpKACiiigAooooAKSlpKAFooooAKKKWgAooooAKKKKACiiigBaKKKACiiigAooooAKWkooELRSUtABRRRQAUUUUAFFFFABRRS0DCiiigQUUUUAFFFFABRRRQAtFFFAwpaSigBaKKKACiiigAooooAKKKKBBRRRQMKKKKBBRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAwooooAKKKKBBRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUlFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUlLSUAFFFFABRRRQMKKKKACkpaSgAooooAKKKKACiiigAoopKACiiigAooooAKKKKACiiigAooooAKWkpaACiiigAooooAWiiigAooooAKKKKACiiigQUtFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFLSUtABRRRQAUUtFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigAooooAKSlooAKSiigAooooAKKKKACiiigAooooAKWkpaBBRRRQMKKKKAFooooEFFFFAwooooEFFLRQAlLRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFJQAtFFJQAtFJS0AFJS0UAJRRRQAUUUUAFFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUUUUAJRRS0AJRS0lABRRRQAUUUUAFFFJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQMKKKKACiiigBKKKKACiiigAooooAKKKKBBRRRQAUtFFABRRRQAUtJS0AFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFLQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UlLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFLSUAFFFFABRRRQAUUUUAFFFFABSUtFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFJS0UAJRS0lABRRRQAUUUUAFFFFACUUtJQAtJS0lABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAJRS0lABRRRQMKKKKAEooooEFFFFAwooooAKKKKBBRRRQAtFFFABRRRQAUtFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFAC0UUUAFFFFABS0lFAC0UUUAFFFFABRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAUlLSUALSUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUlLRQAlFFFAwooooAWiiigAooooEFFFFABRRRQAtFFJQAtFFFABRRRQAUtJS0AFFJS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUtJS0AFFFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUUUUALSUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUtABRSUUALSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAlFLRQAlFFFABRRRQAUUUUAFFFJQAtJRRQAUUUUAFFFFABRRRQAlFLSUAFFFFABRRRQAUlLSUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUlLRQAlFLRQAlFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUlFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigBaKKKACiiigQUUUUAFLRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUtACUtFFABRRRQAUUUUAFFFLQAUUUUAFFLRQAUlLRQAUUUUAFFFFABRRRQAUUUUAFFFLQAlLRRQAUUUUAFFFLQAlFLRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRS0AFFFFACUUUtACUUUUAFFLSUAFFFFACUUtFACUUtFACUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUtJQAUUUUAFFFFACUUtJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFJS0UAJRS0UAJRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFAwooooASilpKAFooooAKKKWgBKWiigQUUUUAFFFLQAlFLRQAlLRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAJRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFLRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtJQAUUUUAFFFFACUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtJQAUUUUAFJS0UAJRS0UAJRS0UAJRS0UDG0UtFACUUtFACUUtFACUUtFACUUUUAJRS0UAJRS0UAJRRRQAlFLRQAlFFFABRRRQAUUtFABRRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFAC0UUUCCiiigAooooAKKKKACilooASloooAKKKKACiiigAopaSgApaKKACiiigAooooAKKKKACiiigAopaSgAooooAKKWigBKKWkoAKKWigBKKWigAooooAKKWigBKKWigYlLRRQAUUUUAJRS0UAJRRRQAlFLRQISilooASilooASilooASilooASilooASilooGJRS0UAJRRRQAlFLRQISilooGJRS0UAJRS0UAJRS0UAJSUtFACUUtFACUUtFACUUtFIBKKWimAlFLRQAlFFFABSUtFACUYpaKAExRS0UAJRRRQAlFLRQAlFLRQMSilooASkpaKAEopaKAG0UtFAhKSlooASilpKAFooooAKKKKACloooAKKKKACiiloASloooAKKKKACiiloAKKKKACiiigAooooAKKKKACloooEFFFFABRRRQAUUUUAFLRRQAUUUUAFFFFABRRRQAUtFFAwooooAKKKKACiiloASilooEFFFFAwooooAKKKKACiiigAooooAKKKKBBRS0UDCiiigQUUUUDCiiigQUUUUxhRRRSAKKKKACiiigAooooASilooASilooASiiloASilooASloooAKKKKAEopcUYNACUUu0+lLtPpQA2il2n0owfSgBKKKKACiiigAoxRRQAYpKWigYlFLRQAlFLSUgCiiigQUlLRTGJRRRQAUUUUCCiikoAKKKKACiiigAooooAKKKSgYtJRRQAUUUUgCiiigAooooAKKKKAEopaSgAooooAKSlooASiiimAlFFFAgpaKKACiiigAooooAWiiigAooooAKKKKACloooAKKKKACilooAKKKKACiiigAooooEFFFFABRRRQAUUUUALRRRQAUUUUAFFFFAwpaKKACiiigApaKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopaKAEooooAWiiigAooopgFFLRQAlFLRQAlFLSUAFFFFIAooooAKKKKACiiigAooooAKKKKACiiigApQCaVVJqZVxTsBEIyacIqlop2GM8oUuwU+koAbsFLt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ikpmTEooooEFKoyaSpUApoY9RgUNS01jTGMaonFSmo2qWMrlabt5qYim4pFEeKSpCKYaQCUopKKYDxThTBThSEBqKRamxTWFMCrihW2mpHWoyKsRKRvHFRlcNihXK0u7c2aQEmOKQin9qQigojxRipMUbaYhIxzVpVqGL71WccUrAyGV+1VyafKp3ZpmKQB1oXrik2nqKlRM80hki9KWgdKWghiUUtFMkSilpKAEopaKAEpaKKAEopaKAEooooAKKKKAFooooGJSUtFACGkpaSgAooooAKKKKACiiigAooopAJRS0UwEopaKAENJS0lABRRRQAlFFFAgpaSloAKWkooAWlpKWgYUlFFAgopKWgApaSigBaKSloAKKKKACiikoAWikooAWlpKWgAooooAWikooAWikpaAFopKKACikzRQAtFJS0AFLSUtABS02loAWkNFIaQEMlRVI+TUdNGgUlFFMBKctNp60ASA06NuajFKODUjJmphpwbIppoAjaojUrmmYpoTGUUppKoQtKDim0oNAE6GpAarKxp+7B61NhllTSlwoqAsQKgdyxoSBkss2447U2Md6iAyasquFpsEFGaKSpKFzSc0oNFADG6UypsZqEjBpoQUtJRTAWrNsc8VVqa2OGpMC2aSlpKDNhRRRQIB1qdBxTUWpOlNDQGozTiaaaYxpphp5ppqRjDTSKeRTTSGMNNNPNNpDGUUppKYAKeKZSg0APpDRmikIYRUTLirBphFUmBXxR0qVk4qI0xEsRJqQYJxVYZHQ0+Nvm5oKTJyuKAKeCGWgCmA0DBq0nTmoQKlHSmJjJAM4qPywKcQd1KahoHohu0UuKKKRNwooopiClpKWkAlJS0UAJSUtJTELRSUtABSUtJQAUUUlAC0UlLQAUtJRQAUlFFABRRRQAlFFFABRRRQAUUUUDCikooELRSUUAFFFFAxKKKKBBRRRQMSiiigQtFFFABRRRQAUtJS0AFFFJQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAtLSUUAFFFFABRRRQAUUUUALRSUUAFFFFABTqbSigBaKKKACiiigAoNFFICCU44qKpZR81RU0aBRRRTAAKkA4pqgVIOlJgNxS0UmaBjs0xmIpRTmGRQBXLE1InK0wqadF1pkjSOaSpXHNMIoHYbRilxTwtMLAi96FUsxqULhDUaHaSaQ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||0|0|
+
+Message sent successfully: 15255 bytes.
+BUFFER LENGTH: 11400
+ITERATION: 2
+BUFFER LENGTH: 11400
+LENGTH AFTER TURNING TO A STRING: 11400
+BUFFER: †”î¢íîPàjLÒP≠;v p*‰”Ÿ≥L"í$JQF.(¬ú)¢ñê«ÉR)®÷§ÄôMH¶†SR©™D≤PiŸ®¡ßT!∆£u»©)≠@äƒsRF¢Ç£5"ÅI Ó‘«ßQ±¶6úiµ#
+J(†ê“–hÑS©qM"ÅëìH8äLR 4√N£èΩ)ßbì ⁄("íò
+i¥„Iåö CNF¶ëJ¥0©‘#≠<5!fû¶ò9©ö"äpÇñ®C©£4PyöéßîTìîî¥RQE ¥î¥PQE QE îQK@ƒ•¢ä@%¥S(¢ä JZ(†¢î“PRS¿£mM«aîSä”i‹V
+JZ(îQE0
+(¢Ä
+p¶“äL§>å”sFjJ∏π£4‹—ö,ìRRIöEÿu&)3Köaa§RSÕ4”LÕ°(¢îS$Z)qF)\´•£SQKE (•§•©e°i)3FiZ%(†ë¬ñêR“((≈¥¿m¥P
+(•¶Ñ∆öaßöi¶Kíñäw$J)qF(∏X(£QpñêR–E-(\vKKä\Qqÿ@)ÿ†R–1)E¢öÜöi∆öiÄ∆®ö§ja©cC6ûi¶Åçßv¶RÉ@–¥ÜùIä¢Ü“ä1Kä(§sA8¶Êê1))‘î%-¥ SÖ R‡”≈FH¶ê«≠JB)·©àîx54‡iàîCBöPÜ‚û:RA§a4‚j2h6ï©π§—Iö3@öL“fäCìPM1içNÎF)`ï%!  CNaL¡ RcöZ†bZÊî–Mî
+P)Äò©fê
+råP"D(ßÉLC≈.iô•òáfîSE<P$ÈPV$T8©êXå“S»£mM¬√)@ßbåQqÚâE.)	ä¬RR“U))i( •îP©(§§“QI@E%-0íäJ Z §•,hp•≈ •®4äB)‘Üòôî„M™Fl))h™îR“PEPKI@§04îÏRbÅ≤CIE&ó
+3IEqh§ß
+∏bî
+Z(ÇäL—ö-%¢ÅIKHiâÜii¥¥Å0¢ä(¬îRSÄ†CÖQRZ
+\”h†vKMπ†•¶Êó5H≈•Õa∏£¥PbñäC∞ò£m(ßÅEƒ—1KäyòßqX@)@¢ñï«`•§•¢‡RQö`--&h5hë4““`4äåÒRcTååöißEi)M% 8\”(¶;è§Õ6äp<“RäJ	
+ (—@ ·≈:õJ †‚ÄiF)pjp4¿)ÿ†	”¡®ÖH)°©ßTji¿’>öM”I¶1¶P∆êTÄ56î“PRS©)J)h†§4¥P (4îî ¢Çhä@s@)§sRSOZ`5á“*B>Zjä E†äyZ:ä `ßHùM<Ò@8ßi;P) ·≈8oZr”‡M<SE8S¬ú)¢ú)àdT¡©œJØ!Ê¶CAE34k3K(•§†BRu!¶KIN"ìDXCIN"öh)h†
+ ZJv)1@¢óî QEƒQEîJZLÏ“ÊôFjlW0¸“H)qHwiµ&⁄a™D±(¢ñ®ë))i( ¢ä()¬ì‡*YIIäZ)a(¢í®ê•¢îR ß
+JQH¥)§†“PE-J(¢òÖ†—E %-RQIöZ`-(§•äC®§•©)	EPP¥ô¢íòÆ-.i¥fÅ6;4fôöPiìq‘¥⁄\“e!h§¢ê≈ÒQ”≈ )§†öJRQ@
+.iô•Õ1\SIKF(¢ä)+DKM4§”	† öa4§”I§14“öJ LPx•Õ4–HE8PE 2ñêéiiÄRv)¶Ää("ÄRöhßP ¶É@•§ (îPE¶û¢ÒH	ßÉQ
+p4îx54Ï’~i	¶Êì4 )3A4 L“fä 	§¢ÅHäZ((4Q@	ä-!†¶û?å(AÕò86h√ëM∆(847≠0Ù§«4ëA<P!£Üß74ûîΩËv¢É@§äx¶äQLDÄ”Å®¡ß
+`<SÖ0S≈1
+zUi:’É“´øZR"Õ=ZòAÕ ¨çâ¡¢ò¶üA(£4S$LRS©)ÖÑ§"ñäAaò•ùF)ä¬QKI@	ä1KJ(ÜÌ§"§§4
+ƒdRS»§≈1Xm∏£JP(≈8RcH •§£5&ñò‘Ï”Zö%ç¢ä*àä(¶J SÖKcH •≈Tö §•§†£¥U&(¢ä Z))h∞\3E%X.-- ¥Ü!¢ÉILC®†R–RRöJ%=E4S≈iIöSM5%°sE6ñëWö3M£4…lRi(¢öD6îQLW
+Z(¶!ii¥¢•¢”Iö))8SÖ0RÊê
+M&i	§†§.isM•†LZ%(4»)‘Ã“Êö(ZCKHj»i¶úiÜì“i¥‚)ÑRÑ“fóbòƒ¢äBh
+(ñÄÅK@† ”SË†ÈE)cä` ÍJZ@Ë¢íÄR”{”Ö (ß
+n)zP1‚îSAßR·Köni	†Ó§Õ34‡iÄπ£4RP •§•†ä)iÄ⁄)i(i¥¥îÄZC÷ä( œ4h†u¶!¿¶b•aöb–13Kû)bõ@!ÌJ√äbjC@'ÅK⁄öiA†4π£≠(ÄPi¬ôäp¶!¬ú)¢îP≈<TbûµHBπ‚°∆jW˚µj&TD+Qï©i¨—Lj”≥MÈA5d‹\—önhê\uQ@¬íñåPRäJQLAHi‘Üï¿JQIKLä))ÄRR—HBbåR“PE% ¥îRR¬äZ)àn(≈-Ñ§•¢Å-P0Õ§¢Å‹ZJ)(∞\3Fi(¶M≈¢ä(¥RQ@J)π•Åé¢íäíÆbî
+p\-q •¢äWÑ≈&)ÙÑS∏¨ ß
+a£4ë%!›‘n†,¢ñÇ(%âES"·Eî¿(P(Í(Õä
+L““R`ÖÕõ@§U«ä(†ä¢ÉIö
+∏¥¥‹“äDﬁ‚—Eƒ–ô•^¥ÜïG5HDîÑ“öi™	¶N4“)i4‹”à¶ëHbRZCLìH9•4(säZJ .(π¢Ä
+J^Ùáä ozwjLR‚ÄRä 6ä bîQA†ä3Lùö p•Õ6ä@<Bi)	†j0i¬òÕî¥)i)E -îfÄíå—ÇiÄîS±äi4ÄJ\‚íêö vsJ*2yß@c≈F84‚i≠“ò~E1iA»§Ô@^Iå‘}E9#<6)ie^‚£›äH)A¶ÜÕ.i 4¢ò8b)‚ò8`;·H¥ÒLC$<TU+äà÷s4àfó4⁄QP6!¶”öõTåÿQE(ƒ¥KRŸi †”sFhP)3FiìqŸ§&ì4Q`∏¥fõö3LBÊäANãÇäu&)\v4ô†ÒMÕ2E&Äi¥¢òE-ÜfäCE¡Öî¥
+pÇû*[*¬L5!54–òRQEQ"JSI@	KF)(¥¥î¥(•≈PJ(≈ÅE¢ì·Fiπ§Õ+&?4S3Nã„≥KMÕ§äE&⁄7QöC∞bìπß
+ EÏP)‘…cqHE>ê”à»¶ö{S1A6î
+ ßÅ@Ï2äyò†víóÌ¥1!ò†
+ìb§´“ëIFÍaaå)Ü¶85
+hÜÜSÅ¶“ä´;4fíîR∞Ó(©TqHãRc© iÜûiÜÅâM4¶äCi)I¶öîQö iò•&ìΩ &)@•§4 R“R–H‘¥u†SJE3°ßÉë@é)á"ü“öNh¥¥Üä`8Piπ£4Ä3@jC@†ÉJ2îPÛMj3HhVû)Ä”≈ :ñíñÅ
+ÅJiÄ⁄1N≈Ä ¢êµ4µ 8öi4‹F”@öi•ÿE†äZ\böM ”≥ëQö†	1ÉJG4ü√K’h ÈN¿i{–… ’s¡©â‚£~FiÄ—O£ûi ‡i‡” ≈†	Aß-D¶•SLD™*AQ©ßÉT qëU…Ê≠v™“ö¶h§∆fñõEg`∏¶íäZdâNZm<P à¥”N§"§–a§4Í)¢d2ä]¥m™3≥ó4ÑQL “Ph§!ÀKöh4µ,÷Êú2ú)–çL©FERf2BR≠¢õC©(Õ&©%;bÇXÄPh§4∆Äviîπ§1Y©ô†öJ§Cc®§£4…ä(†aö)(†C©@¶—∫ì)Õ-GNÇÏ;î†”	ÊÇ\GQIKAfäÄ
+(ß(Õ êö~⁄i&ë–AEPhß©®ÈAÊÄ{Êå”3KC$x4SiE hB(˙cSπ4‡j,“ÉLdÑ“SI†-.Ía4ô§RDô£5i¿—`∞¶£f©;Tn)!$≈;vj*DU
+HZ)qF)‹ ¬S¿§⁄jH«≠0±"t•4A™¶öV¶“ ¶ìJM0öCöi4¶òhFi¥¥ få“R–Êíê– -;µ4—@ö§§¶ÊîS)¿“I¶ìN4”@h&õö)Ä3II@Õ –- 8QIFi ¥“ii¶òZîTH*QHR”ih·KH)ià6ùä\P{sNKFh`
+B@§&öM 0fîL4÷Zy¶1≈ BsöQNnyÇÄÀBöm 84Äóä@sA†0»¶ë¡•≈òàÄÊ•^G¸U †bö@¥·÷ùä4
+z–<
+,äx4ÄS±Lädãûi¬Üƒ@Gßπ≈Gú‘ãE%\—öm¨4«Ü•-Q“fïÉò~hÕ0uê‡iz‘t¡§ZDÑTdb§öB3M—É@™3÷ùIäp,÷ )qIúS≥öíÇò¬üGZhÜEEHVô∂ù…∞QKä(*‚–i¥Í i4ô•"õLñ-!4Q@	E.(≈a)h≈¿J(4PQKä]¥
+¬Ru†b(†““P
+J(≈R\”3J «S©¢ù@Ñ•îîÇ‰õ©§”sE≈Õî†fëwfåsR*“„öE\f)iXbôöáP‘ùE2Åín†ÛLπ§ ≈fäwIE	Å§•¢ò)-%.iêπ§4îS±√qNíú¬‚fú)ΩÈE D†S¿¶•>™(¥Üå“T"6¶{å“c”<äa4Ü4”M:ê–h¢ä`¥îP )qäJ(iπ£4P“QE (¢íñÄ4¬i∆òz–EP!)E•≈ ä\Qä%bä Zi4¥î ÙßÉQ≠H(ÍZm- ¥Í`4Ï”Ï”KQF(ô£ùä\P—∂üä1@ÜÅJE8
+†©≠Ç)œ≈0ö åS®ÎEO4S[≠(9†
+~iî¢êﬁëèëLoªLπ©JÖO&h‡”¡®Aß©‚ÅN£Ò@NLÏS‚ú)Çú1Ã9®™yEW&•Ä¥îπ‚íêÑ•ÌJä m4”ç% %8RJh√O§"ë¢ê)•›M≈Ä∏„Õ§ñÇEÍm•¡ç"öi°M&äR$Õ
+$6¶ÓÊêöm;‰<µ(<Ty•‰
+,+äO4†”3Nß`LwZB(Çh)j%%“P!sFi)3AI\vij<“É@˘GQäZ)\\°≈)n*<“ÉEÜ–¥·M«älÑ?m&⁄7Q∫ßRπDe≈1é)Â©ÕU≈ D94)B‚î”∏öPhPHRRëH:–R”±M†h1OQMπ©e¶?4fôJ ∏Ê9ßJhw∞·H¬êi¯‚Å‹`†“‚Ç(±õcs@4ªi
+”±h†
+v(∞\mÏRbÇBÅMcäE~hâsII@¢·aqIKö:– §Á4ıSOLkAS•:êqKTHM“h¶òiƒ”K“i¶úiá41HhÊä J)qILä)( ¢ì4Ñ– •Õ6ä Z(¢Äî“
+Z!<SiM6ÅJ))¬Ä
+1KK@ƒ¢ñä@%R–h¥ÑS±HiÄäj@j*röH-4SÖ 8SÈÇó4 Í)3Kö@--74¢ò¢ä;–!ih∏¶N8™Ãpj”ä© √@ ˜ßgäb“É@ƒ<–);“Ù†Ó’4‡x†&åÊÉI“Å
+)‘¡Opß≠GO ÒO¡OxßäåSÅ¶≈(¶ÉKLBI˜jµeÜV´±≈LÜÜ‚î
+ny•Õ@Ïá„äiZPiKSLM)ZõLó†¢É@¢Ä 8§ß
+pZ[◊h#( S^ï ∂ÑtRöJ¢îöJQCò©8†ÆE+èî`jRi6"êj!§¢îU@9ßı@qRÀåtF•aömR!éÑ—öP3C%!ß‡Q≈MÕ#4S Êõäw¬Rä1J&)ÈIö §fﬁ£iEïBπ"öôí(…4áqh†Ph)=ó4î
+HPiq@•<R‘@isQÁöP‘≈b^‘›¥‡iOJö#'ö)XP2lú≈&jY§b.i	§&êE€A{“”sK∫ôùÖÌ‘¡KH¥Ö4ÌºSG•∞(&⁄éóäç^úM≤äv*-„5 jhmE6ú‘‹fôì‹cönﬁjp¢çÄ“∏ı#)i≈qM≈2u”¬‚ú£¢g˘±L∏¢`iEB§ÑRhÕ!4U)¶öSM&Ä”M)4⁄íÑ"êäZi§IäZ)ÄîbñÅ@"íûi¶òÜm9©¥ QE%0ä(§ÖêRö i§•4î¿QN—NÄZQ@•†aIKE 
+(¢Äi¶ûiÜò4Â¶Sñòâ:ò8R‚ùL˙ )i(Õ J)π•¿}(¶äuS©¢îS¨*¥ÀVçC(‚Ü^ÜóΩsKHbIKIö (Œ(¢Ä®§£4u†BÅJ)8P1iÀIJ(AN¿i‚Åπ¶äu08`ßPèJ¨„ö±⁄†êsC¡HO4¥∆©«•£iŸ•a‹q9¶ÅÕñò7qi(¢ÅNµ!¶/å‘=M4Ñäijo4$7∞§“QäL’ÿSL$Ê§5?5ó?q*>jÊ•è•K4±-5±J)p)——Sï›Ç´òéQÇåS ‚õ“ÇÔ`¶7ZRi†d”ÿá®
+PqGJJå-®Ω®Õ©)ÖñõJê¥SsKL ‡Fi1KK@“∏√J!lö3Lj#¯§#äL”Å»§a†fù∂Å≈;4ô)ëÙ¢ù‘”Ä\v•9"û1äBE1ÿãm=c‚ó"ç¯†´äR*"ÊïXû¥â1≈7<SÒëL dÉJ‚önjMÇÇÉRπW#4F)¬òÔ–RÏÊóu&Ói	! ¥å¥†“ÊÅå•p•#4—¡†é†PäiÕHÉä2"π©êR”)=ûîÇé‘
+@Ñ9°±HM1∫–;ú ’äÇZ*∆jR¿”E∫§SL≈HΩ*—7ÅIöZ`òiƒ”z–∆%!ßböiJCJi§R	§§4¥∆-
+Z!¶µ8”òÜM•=i)ÄQE ¥QE (¢íñÄi)M%)¬ò¥ÒHcÖ- ß
+î¥îÄL“&h Õ4—E1•Üäb<åp4ÜJ¥¸‘@”ËI¢íùH 
+p¶“–Û@¶”Å¶©¬ö)¬òÄ‘O“•5é(M∏4fï˙”i(¢ä%¥PRä1F(¬ú)¢ú(hQ@j1OêS≈D=M <R“
+ZbTR
+îS$°Å¶µ;íiv‘‹-r,Sîd”∂ä9õ)C∏•qIäp9“7ì	F√M%(¶’JŒÙÅFsPh∂O4ª©£“%…‹p4¶ôúR†∏Í‘∆\Ú))¡©óa™9´
+*j@¯§ƒIö3L<“S`ªöP’•›äv6ié)ûe.¸ä,KC≈*Ù°éhœƒïòÜíñçπ†⁄‚≈ªh€A	ç•bäd AäQGZp2CQäZ\‘‹≤∂i‘Ö}(ÁclZp¶äp†á®†–ÕÅM?Zi4Ü£a¿”’Ü9®Åß/4ä{‰SHÙ£o4∏"Åt#9Õ-)¢ò∂Ò¿¶öu&5®π4ôÊñö‘¨zö}DH:RíSVû˛ÙÉ™&‚-RÕ)<Q`R )zèq†h*˜%›ÕQ”ÉqÉLãÙNÎH0iE≥QåPZëéh*˙[ú·M4/À@˘á„ﬁ¶îµ%AI‹vp)¨‘ô§†§ÖSO'äbı©‚ò¶7µ9zPbó†´F6öPi¶ú)å4îÍC@	IE!§i•4Üê∆“‚ä;Sh§Õ cSÕF‘ƒ0“R“S ¢äJ-RP“”hÕ ê“öJ r”≈FΩjAC·NÌM¢§aöZB(P EFx©I®⁄ÄIA§™RR“P!¬ú0SÅ†	‘Ç†§V§2J)3KHÕ£Päp¶
+x†SÖ4SÖ1®ﬁ§¶8»¶IG9®ÍI85 
+)h†åR“–11IN§†îRRä u%-QOZåS≈:‘Ç£ß©†D™i’5"ÛM SÊû›*#≈)( ÑcöBÿ†∂·Yók\
+M¿‘n∏4™(∞ﬂê§û‘c4¥£F{ç≈%8‚íëI	ı£ÈFsJ#Kµ-4éh…≈2yP53±•<iÑ‡SCΩêP)¥†aÃáSÄÕFiËií –≠öÊöºQbyáÁököxÊî–#⁄qKµÖ(lTÄÒJ‡F	ÔFiƒäm2«Æ1IöJnriX¥«Êå”h†w‘“≤ÒQÁöêä6!Ÿà(Õ)¶ìH§É4π¶—ö
+bJ$Pr*åµl1H«#ô§4ïÑ£S©çΩ‘â¡§ºÊÇ∫›ﬁîæEG@ÈJƒ›Éì⁄ïri@…•Ze\^î¥ùM!;MHÔbBqM94∆jh|úvÓLßäxaPÉë@'4¨+ÿëò)ô«“H4ûµHÜ-(ÊíõŒx§∆ñ§òßÄ;TYÊùúTöXV4“)rOZL’#6!Õ*öZNÜòÆ:ó4v¶–!Ÿ§“åbëA4Ü<.{–Päh<‚ù∏é((LRÕ.I48•b‘¨F<QúS7“˜âEiÅπ•j¥C4‡j"iP‰–"JJZ0HyßbåHdx§4Ú})∏Õ K⁄î‡RL“ÊìΩ- •F‘‚iÜòÜ—E!¶ ¢íä Z)(†¢íä`QI@
+:‘Ç£ÒHäu4R“(wZ)§MjSM&Äi)M6®@h§4S¥π¶—@Õ9O4Ã“Êê©ßäÖ•ê≈£4ô•Äp•⁄p†äPi¥¢ò§=(¥ƒTõ≠CV'Z¨hii†““¿“”E8P1@†äv)q≈#¢Ü§\”Ö6îP”©¥Í pß≠F¶§Äê
+z”ß/Z°sÅö™œ∏ÒV%˚ïXu©ëQ–“ñôûjlB”≥≈0”©ìpœÅ©q≈3ƒò§ÛAn)¶î¥¨Z`ù	§-Õ n‘÷»j•©( ı•4—˜i0hê0‹i•qN†”&OA†
+u
+9†ı†Å8ÎBÚiH»≈ qLaM˙@9†BÉFy•€öPÄM+·∞öRß #R,;ëÌ‚òA)Üì ¿x4ù)‡C/4ÿÄ–M&qGSEÇ‚5.zSM
+„…§Õ4ûh)X“‚ıßîÃ“Êã	ÃlmÇEKêz‘#ÜßÊÜRÿ
+˙SqRV¢lä7”è¿Ÿ•Œiâªä«ö@‘ÜÅLõéßt¶ˆ¢ã$–r(ÈKö@±“êúÛH¬Ä1AZ4Í3˜™LÛQøSLQXÊ¶†å‡‘ÍhÄı§=(<	»â4¿£4◊†q‹‰‘†f¢^)·±I£VÏHx‹Qª4RT–&sH«⁄åä§g(ÿ\öQ“õûiGJp)QæZcrP1ŸÔIª&éÇôÉEÇ„‘ÛRÉQ öp94V4&ïWsdÙ&@‚ãˆ#€Ç)≈hs“Ül”å¥ã≈!|“Õ!ìE4R– Õ!4Ñ”h¥ÜÇi§– i¶é¥bÅâN§«4t¶!≠M4§”M1	IA§4(§©a\∂H‚ÜÏéäíe≤**∏5ai(¢òQ@
+)ÎLß
+@H:Q@4
+EIA¢Ä“ZC@4î„L¶&!§•4Sî¥°rqI@Ö¥É≠ËıÎSU¡©êÒIÄ¸“ÉM4
+ëèÕ8fiA†	ßf¢ùö íîSß-1	*Âjãæˇ v®…˜ç0)Àﬁ£Õ<)† SÖ5M8R ÈJiπ¿ßéVÅaL©‚òh)¬ôOZ ZwjJpÈ@)ÎLßHd´R
+ÖO5 4–á∑(j°ÎVÛëUOhbIäspi§“-qILBÁµ%(¢ê)sÌA‰QúåPT|›)Ï§^îÏTΩÕbÆÜÒä8•=)¥$9FM4åörúR–ò•1F)‘Ü¨ÕãKÅM=8†‘ÄRi2hÔA¶ “Á4î@
+îú”qÕ1ÜÏPZì¥ò§Å§…Õ†PëöoCN<SIœ÷Ä“õN†äb≠'z^îùËâN§≈ ﬁÙ‡h$ªÕ)ùá)ÊíB‚öh∞Æ&6ú”©LR)¡¡¶!M8r):”Ä»ÕJJLRÓ¥)fò1sëHh»≈JciÊêä
+àﬁá52êEDE8t§_AÓ9¶ÉÕ 'ΩÊôòÏê1Iêiqû¥“ÖH§1 Á"'≠rsOŒ& Zål)•2‰fïWiq≠É÷òz‘é)õ8Õ4g&.iTûî”“ïN*àåR≠4)ÊêƒsJß"ë«4Å@u∆(Aìöa<R©¬–›ˆ)ÅÕ5éM%0∏Û%Ú∏®à…˜°î–;é‹{“°…¶*¸‹äùTzP1¬êöu4ä@4úRriÿ≈!&ÅÜ)¥sA†Å@P z”X–O4÷4ƒƒ&õEƒ%%8åShïjqU©—5)+¢¢ı,LÄ¶ET´ÅªT3Eèòt©ã∂ÖI–N(¡©çhfF√ÂÕ&5+z
+C94·H™H&ú¢ÄJ)Âi“§§%&*O)©Dfã°ÿÜäòƒj2∏¢‚#4√RëLaTÑ∆¥‚9‚Ö–OZ	1öB∏Õ,_z§uOJ:Åi0jN‰
+h$ä @HºTY5 4íÅ@Êî
+ëãJ)¥·@
+)‘E 8S≈5E;8¶Ñ+t™}„Wœ"©Jø9¶Tˇ ·å1ä	† SÅ§∆)ÿÄN’(8ŒºSÇ„≠ #6H§≈!84£ö iß-!(˘•õ@4Å4Iö:–2D<”ÛQ•>Ä$Â®	˘≥Sc+U»9"ô,RŸ4ﬁÙv•ZB4c4≈Õ “êûi¡zöh–
+U‡“¥P z“ÊÉämK‘⁄
+»s(≈6û(Xî£•)‹ˆ°
+N»By§4¶Ä;’òÖ!<“ìMi ÓÙ63H:–ŸÕ y•'ìSΩM!8ÈI“ì4 „Õ% –i É≠?µ2ó4\“¥( ‚p)†–∆òNi;“S±@ÄúRR7&ñÄ¿§RQH†•∆i:“ÁÅE1∫‘†”fò
+Ω)ÙƒSärÇhÑ‡“öz«û¥ÒJ·aîÑf§Úœz
+‚Ä±⁄6öëVû ¢„Â €A#Æ*:’Üé8RÕ(‚ÄlR)ùÈ‘Üô,9ß©„öm9G4Ü)†s÷Ç9¶Áö,;Ÿí≈4…û)π¶èΩJ≈&<öS“öizä	Ω∆ıßccîÙ¶!(å–}( >Ù–¿ú
+'är&ﬁΩh&ì•<ÒIäƒ≈&3OîäGéjU E4-!$tâÅR:P1P°f<‘À≈&Ï1ÿ§8§&êöár“ÉF0úRÊû£∞÷‹TáöiHë(4†PzS$ç™>ß#RÉöbc
+ê9°z‚§oöïS©àl´Ä1Qcä∂…ë»®ˆ‚ï¿Øäìf j
+x©J·ç·»¡¶äp‚†⁄˜C“%`Á•(<S	œ•Rf,TåúqAEŒ1HÖ¿°I'öb±B‚ôÂc•<úöpp:“n≈%qÅR∞8¶Ô¡ÕRj)!€ip49'öÖH¿ëQ8ß”’D¬*29©O‹VCú”Y{z‘∏£nNiíG`ÛR?+KGjFF 0¡≈)04å3Õ4‡∏ß®§?zÄÉäu 8•“O∆ÎRÚÊÄB“äh94·@«
+u6ë[,iàvvÒPLsS=DÎ@àe‚òÕM"Éän2(∏ßE(_óö0 ‚Ä‹*Flé)6‡bu†2ÒöûE4i\v–«“ï∏®«&ô7‘RØZ^î))ZwZFÊÅ±Î¡© ÕE€5"hA”\Ç≠VÖWìÔÒLLc
+NÇùﬁö›(´ “é1OÀN›≈ 8∞Õ#c<R)†ÛHcáΩ≈#Ru†CªÊî`éi4û¬ãÃ¿ıß„1ÁΩGN›å
+;
+ßäN¥†bõﬁÄn‚é84ß•!‰P)í!ÈH)	ÁÍ ^Éä3J{SM9õBûh"ÅZi‚ù”•ö @(&êöz(&ÅåßÅﬁêı•R7ΩE0bÅÅI‘–y†–!6‡”à˘hÌI@ÈKF(≈\;—F)qA"(4(¢ë∫qE- û*U sQ—öCπ/ôIÊf¢4î¨U—c9ÔM¶”Ú †w8•V¶gq†ph)±ÏŸ‚ô∑ö	Êê1Ç%`+IŒi˘Õ)≈2HÒKäx¡†‡P/z^!†[
+i¥¥bòÑiÿ§•Õ!°)zR( =i{PH"Ä!ÈF˙ê†=)ÖqAKAT˜•Õ •†L]ÙdbôK⁄Å
+)Ÿ¶
+}0Ω•#R“WÅN˜¶fåÊìú—@‡Ssöva^ì94§R(…•aÛ=áÅëMn)A¡§nZã	ΩäB)¿ÒA¶!qI∑4ˆÁäzØÀLLènO„öåÁ4‡ÿ,®ìS
+)‚£Û	ÈJ	'4Æ]ÖÚi≤.'ÕLì$Sπ" 9§l‰öxfêÚ1äa†úSîUE;p•∞–¶î)Õ)J@M-Gd bê”‘ß¨cΩ&Tt"Â°x© q≈0≠&41õé)É=sR:Ò≈FF)¢d«áÊç‹‘TΩË∞)u»ÕGåê∑jcsÕR!∞≈
+>SAÈ@<SRv8§=1@ Ö&ﬁ1ﬁõ»©Á∑4Ü0ç´M«zsì‹Q⁄òX3NZ`ßF	–!I°[úv¶ì≈7<“…C|’.j∏95)?- òˆl.i±M7;óﬁx…ô≥LfÊëæQI˜® 84áé(AÛ”›{–‚Ä8§h…Õ∏Ú8c© ßëëIªï»≥än0sOaäe1l»‚ëWm(ˆ†ı†c4t•^¥ 4ΩE4ÒJº
+Öœß#LÕ"‰öW/ñ€ñ|œí¢˚‘åŸ¿*ÆS…d]È≠ìNn)π¶Hä(n8
+i§gèz~ÃäLqä`!<P9î
+ 9•Q@4w†@8<“„ö3ö	§04ÉöRi;Pp¶ˆ•ÈLÅó©0COÎ@	∫ö«öS¿§ö ;4ß⁄ JpÊíéîÜ|¬ïéiY∏¶éî¡ã÷ösöZi‚ÄN√ÅÌC/4Äw•›ö@&)¿qIIö :R”M-0RÅIöRi†ÑRî¶äd˙“ÅA¢ÅÜ(ß„ähÎ@MöRhÄ)1N£Ω (8ùi€r(	äW*Õç ÉöVÍAä)\|§&í•)öè4”%°EñíÅ ßMÓ´AIà¶‰ÉO4åB(¶êu¢‚h1Õ¡ßPi\|£OZ\q@£•ÂºRNœî"Z∞Íi<“ÉH¬ò& R‚ôözö LQ÷úhä∆¥ÒMÔNÄ∞“3H:”©q@4
+6ÅÕÆi)ƒqL∆hÕ46)wTÍVÇ∞≈8)ª≤)7ö.	#“iwH9ßph Á&úi 9§Ô@ÄìönsN¿ÎF⁄’¡)›*5·™FREKE\q$äi9™1¡ß2åPòXàtßò†å
+h5Dl.ﬁ)‚úOÃ–ußm≈
+q4 Ù4¸‘H;”â≈Ceƒó4÷z]Ùä∞ßäÅ∫‘§‰TD’Dâ*i„Å@ÈHií5≤[äêF@…° 5!l”"8°wß=4S„L"úi§P¿c
+Xò‰”±öÌ§4«6S=®¡ßÅÅ@Ì≈<qA”ªfÅïÕV)¿‡‘Ñ‰qI≤‚ì 
+s“§e8û)©\nm†•—–’&CCqœ4cúi§Û@AŒiÕ»¶ØL“≈&R∑&ûSTÛRI‹"ê ; S4{öìAÃr*28•fÁä3V∂2ì‘h8M)ù)í˜©«äjıßL=säF<S∫
+Õ"¢Ï»≈ßë≈7oXª‰‘ ÏåSËçìM≈8ÒHOƒ5ÜiE*–›i –NNi¬ì¢ò¶‚ùúÄt•†‚ä	Áá9†RfñíÅ
+ºö\z”zvr(‹Rˆ†phj CBäJPh ÜîÙ§Î
+LENGTH AFTER TURNING TO BASE64: 15200
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 2|musk_drive/jpeg-optimizer_dog.jpeg|content_2|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||0|0|
+
+Message sent successfully: 15255 bytes.
+BUFFER LENGTH: 4870
+ITERATION: 3
+BUFFER LENGTH: 4870
+LENGTH AFTER TURNING TO A STRING: 4870
+BUFFER: @	ﬁñíä hgµ;µ 'JLg≠”wR)!Ÿ¿§5bxßÆq@›áR(†” :—E ¥%ñä( ÌH:”© 8CH)†Ä))√• L—@NÕ0
+v*Y§C4F(≈#A¿“Õ%8D¥0åP)Œ8®wU-L⁄∞„÷îoZ)í¥Q@#äh•'äL–)‘¿qJiò∆‡ÒJz–EûÉ®§ùö	‹niŸÕ6äd
+E †öAö?4™x¶Rää>ı+)¶Ä4‡sQärı†C ÒQÕLOÎ@04‚(Ωh"9•≈;–4 ò≈#/  Ω!•≈#PsMp@ß
+q# ’.)@¢ê 6cöì ≠FI4†‡Pÿ“∏†”≥≈Eûi‡ÒYö⁄»F<S@Õ)”ñ¥1∂¢m‚ôåúÄDy4ähJ^Ùô≈M±&p)§–zSj,mÕ§4î $SKäjÒOTå%´#4‹f•"ëiíùÜßi„öi4¥ = º)àNÙ¨)ZwQRŸI≈¥wÑï∫Qö	†—öZS@	÷îr¶E1Ü”R=áfÄÑ”AÊßB§Ù)J‰dm®Ÿ∞jWÎQ0¶Ñ›Ä6iqM≈8’DéÖ≈0““P )AÊíóµ å“Õ*úPÁé(z∆)‚öÊòÄö»†
+)ŸÕ!@zw QäF†bg&ñíñÅ8AJ4¿kS@©ö(1F)qIH`i3A†Så(œ¸Ç)0(Ωi@≈&)M ésE-¿)3A>îî ÌπÉä\ÒMœ4 ¶ä^¥ò†'éMÊóv)ÙäRAß*ÊÜƒï∆@ Aö~O1\¨ÄéhÁ>—HT9Éî®rM8/?ñ1Q0¡™N‚w †QIö^¶ô!å—åSˆRÏ•qŸëu¢§)«ﬂ,—tcsE`—LC©E%SM•Õ% ·M•ÑÄii)åZ(•†¥—N&àQA¢ê“*·J)¥¢Äy	‘›™&ÎB"@(≈•™ (•£µ %P(h•§4))h§QKä1@¥îƒ¬åRS«J e-)ÄP1sE!ÎKä&)‚ö:Ä¶“ìI@Ï8R”3J <”sÕ§4&Ó)¥Ã“–!Ÿ≈ÊìåRP1 4¥¥Å1wRu£•9H†´âä6”ç3&ê”m?–j@r)XnD,pi ÿ‚†”¶ô Xö4qJ4¬„∏§h=)3Õç74ßöm-Hwjs@•ÈEÑ‰qHΩi&îqLÃjåµ<t®⁄Åÿ3N›Qú“ÅäC%(&ö† öP‘“iπ¶!Ÿ•›HE74X.<\f£Õ8ä v)ß≠¶ì@Ü)Æπ®CS+‰T=Zëëäë8¶í)wP›¡+ûiîg&ÉTâ`(l
+J^¥¿3≈%)Rbê1E–)q@Ü“ñ•4–õ®ÜåRêÄ)à.)EÄIåö\ÒH:–áÉÉH«äå74ö-já—ﬁåÊîPâµÑ&îB9•ÈLB5 „Õ1N)πßM¥ ò£∏¢ê	A<QF)Ä‹öQJx$öCHñåz“gg4ƒ-4”Ö†ÅF)iiAJ!§=(‹]¥ÑR#sO<–Tê–*A¿¶Ö«Z\“a8R‘{©C‘ÿ–íänÏ“n•a5≠?4ç»¶âhÖFZß T`ÄiA™båG—öni©±i¢ì4P&#.EDF*zcc5Iê– ≠9E6J
+v⁄Z3SrÏ&)1NÕÜ“RöJ¢S©¥¥¿Z¶“ä@áÊì4”IöV*„ç.iπ£4XjDÄÒLaÕ&isEÑ›ƒ≈%:ê”%ÜhÕ4—LC©@†R“¥ÑR—@¢î“P1‘RRä mÚ)¶ê“
+QIFphBëIN4ÜÑKV 3Käùäbx¶Êû¬öÅÄ†”±Hh))√öB()i)hò•¢ì4 ÏQä“ì@•Õbêƒ&ÄiH¶äbû(Õ6óQKúRfä(cK÷ö(Õ Öñíò
+zT}ÍCIå–fåR‚ú †–)iÿ‚íÄR”M -5Ö8SZÅ§ ÎJE R‚ê€)iqE2n4“N£P ≠M=i£;™\qLCq≈/j1F((≈-ÄJp8§"Ä))4¬h9Õ;XmäÉ4Ê^(QäF'•1	äZm†WM&óµ6êÿ†“Êíóµ14föM “ 4Â4⁄Q≈0öL–iE ì4m1∆Íc.=O∏Õ"ì∞ä8ß):RHRE%1
+)§ÏqJ„∞îΩ)))à	†QF1@-74π† å” Ê§ÌM4¿J\RR‡“ÑÕ “‚åsE¬ÃR)1Kö\–;"öAßìI÷Å≠m≈=xÊöy4èê0(+õBB‘÷ 
+h†“∞πÜ‰Êû"éiÃ8¶¿!<“ÕsJ√R∫îû*1÷îìEÑÿ∆ÎBΩ(Êóh≈Ã8—H(4XjCÅ•-Q‰“Á4¨9KAKL—E;‹p)Ä”≥IîÖ4√N¶û¥ä
+ZJQ@¶”ç6© §Õäb
+p4⁄ZòM>öVÅäº“–£Í@%¥bÄ
+Jv(≈1¢ùä1HvR—äZCH)iπ£4 ≤i3II@h;4‡j:p4Ç‡ÕLÕ+P∏ıßÌ≈‚ùö.1HFiRn§∏†sRv¶ìN=*ëXa<“
+&h$vi	Õ%%Rı§†R 4“i¯§+öbE<-h˛¢î
+ZW*¬™“ê)§“n5:óaXTdSãS”Dÿ)‚ö£5 n)qJx§Õ2D§4¥ªh∏¨6ä~⁄B)\vh∏£ƒ·IJ0Rw•Õ4ûi±!¡sA\R+SâÕ"ö#"ê≠Hi§-P–1KMÊú)àJ:ê“∏•"ä)°€KKM4 ¥‡8¶ÉOœ!ç4ò•¢Å	E§†≈/JAE0d–F(Œ)	Õ !4ﬁı Ö)	öJP∏£“Ä
+ÒKå
+i¶)¿RÅKä@SÄ• QpÂNê“†µÿ§≈ j\ÊÄîl%-&hÕQêÑ“
+ZJ@:äJ (‚ó4–ih∞Ó)§•(4 ⁄wjhßS”H)≈h≈!Ö¢ÅIç ÈMÕ<Ù¶PÅËî¶åSƒßQä0z“ˆ•4”H†”ò§Õ:ê
+CROÌQ±¶äBsMÕ(§1h¢å”ù)ii( †r)qöZC∞”IN§4ƒR“fÅ8m “)Õ!§Õ%+«
+Zh4¥‚Êíä)àJ(¢Äñíä:åR
+p†ñíîP4 S±M•§XJSILÜ
+(†4⁄ZJ
+(†.(•≈4S®§ßJ LRä(†£4RR¬íñäÃä~x¶“ˆ¶êõ∏”IN4Lë)qF(Ü.)1N§&ÄRRfäCö3M¢ãv4QE0JZ∏Üôäê”q@ìEH)¢ó5,§Ö"ìm£u+èî\R”KQö :êä)°∆QA§´3
+)qIä`-4“—@ ¢äxê–©N4ÄÅHZëWêÅHM74Éà¶\“hñ%:íñô")¶úi¥ ¥˛‘ÄRÊÄ“PM% R—@
+(§• Üíûi∏†`)‡‰S)À@ "õåy¶EáqƒåS)	•ZB∏†S©(°ó∞¢ö∆éi1Iq	§ßIäbRSÄ¶ÉäxÊÇ€–LQ∂ù“Çi£ÜbåS≥öi4≈`¢íó4ÄJ¥ƒ(•¶Êä 1EñÄ4”÷îPhô§Õ!§§Ûö)†“Êã‚öJ	†SÓ‘“isM43@ÎHi(‰SisI@i¬ôN 1¶Sà§≈ £ÅE!†b“RfÄhŸ§¢îP π§≈ ô¢åQ@R–QE-
+(¢ÄKINá`4ªiE<Ràˆ“Ra¶E)¢ô )‘⁄3@«QIE+ùLÕ.h±WöL“QA#Ö-0S≥@\)(§†ä(ZQEah¢ñêXi¢ùäi¶MÇñõJ1%)§††J(‘SsK@ö)(§1˝©¥π§†BR—E!Ö∏¢òÇä)iÄRR—HbQEÜÇêö”3J∆±C≥Fi¥¥.iA¶”Ä§&«ÉA4R3lBh§¢¨»p<Qöm:ÅâEP •Õ%%4RRäVÖñê”(¢ä :ìSJZ &iE6îP i)M% (£
+Z@%J`-QH¥‹—ö?4∆fó≠0äp•§Íi1
+i¡iTqNŒ*-!ªh€Kö3JÂXM¥õiŸ£4\,DÀ@‡TÜ£aTòòÖ©	¢ê’qA•¶äp†.&(†ö1!4(EîPÖ-6ú)J3A§† ”ih†ì4Rb4π¶“ÉHb““QLBQKHh £Ç§≈&4GOäp4õA∂öÀJM74ëVA∂öV•œîÓ+""¥Ojn)‹ñ%8
+JQ“ò¢äJ;¶ëJ- 7R—@ƒ¢óÜêÏ¢õKö¬—Iö((pjpjè4fãyji4îî	ãöZm(¶Cä(†AEPE-(¢íêE%¿Z))h •¢ä¥îR‡hÕ6ñëié¶ö) ı
+(ßbö%°¥†QäQA!∂öEK⁄öiaî¢óSπ6äZ(QIE -¥P0¢åR“⁄(4S$QKIFhCJM%!ßaá4ÄS»§≈sÄÏR
+p§>a ß
+)	§BÊíõND^‚Qäv)EZR)¿ÒHjÄn)-!§JZ1HóÇó4)-!¶!¥
+SF(¥RR–HFi¿SÄ¢„HãêäaÆ;•£P •Õ%¿S@
+xõW∂öEKäk
+Hm—Hz“ä≤ä(†4/Z§i0D‡ÒM&ê)	¨Õêπ§Õ74ôßb…3FiÄ”®Õ4““úÜöiß”qVdñíä 1GJQJiÄ√E.)@§ŸI\@¥ªi¯¢¶Â®°∏¢É@†n(CIN≈!ÓCCh§†S ZißPE0J(≈Ü¥îô¶ç6îQ@ÄR“Q@KM¥ä∏ÜîRRä1I§Õíã
+·Eîƒ¥î¥ RR“PN¶”®
+JZm"¨-!§Õ¢¡p¢íäb∏¢ñêQHw
+(¢òÆQEp•
+ZQE
+ZAK@QHaEPQKE %-S¥RR“îQE
+p¶“ä`-%RbîQE -íñÄ4Ñ—IEÇ·Fh¶ö,≥Köe(†¢ñíÅEP1A•¶“–IA§4ƒ.h¶“ä@-fä )1N§†•QEÜ)¶““PN—NZ(¢ÅãöL—E
+3E% QE -îRRR“Ä“fëç%ß
+`ßfÅπ¶få“i1Fii&)1KöL–∏ÑRbùö)‹ûQ ≈.h4îÜê‡h<”sFié¬£n)Ÿ†öw!ƒeÑ“g4”(¶öN)MF∆ç¡!w“Éö` §jÄ“RöLP4«
+p¶äp§6≈†—E BRR—Vf&)1N§Õ 
+)3E
+Pi¶ÅJ≈sÕ“RfïÉòå–(0·F(Õ†.4≠ Zuƒ&(≈)4ô†BF)iiàa‹ì≠.)\iä\SÒHE4¡°îRö)í%-PäZ)	†b(¢Å%--+åm-S¥îQöC
+(Õ%íñäqîQE2Bä(†AKE Qä(†aEP!E-PIE R—E -QHaEPEPESR—Eä(§ •¢ä`QE ñä)ÄRQE QE bä( ≈-Pfì4QRZBÉKEÇùECM"ä)àJ(¢Å@¢ä Z(¢ò	ER ¢ä(ih¢ò¢ä@•¢ä`(†•Q@IE)	¢äë°¶êQE <QE(¢äÖÕ.h¢§∞4îQLh)h¢êò“i3E¿3Iö(†§(4¥QLô"ì•P!	¶„4QLbÅNQ@
+)qEÅ0≈Q@6--PHRQE4KM¢äb
+uR1@QL “QE 
+(¢Ää(†aFh¢ÅâEP!i(¢Å
+)sEäLL“Eƒ%%S¥ô¢ä 3ERQEƒQE!âESQE QE(¢ä@ˇŸ
+LENGTH AFTER TURNING TO BASE64: 6408
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 2|musk_drive/jpeg-optimizer_dog.jpeg|content_3|QAnelpKKAA5oFGe1O7UAJ0pMZ60E03dSKSHZwKQHNRlieKeucUDdh1IeKKDTIDrRRRQAtBoFJQMWloooAO1IOtOpDQA4GkNIDSmgAoApKcOlABQaTNFADg1OzTAKdipZpEM0A0YoxSNBwNIVzSU4GkS0MIxQKc44qHdVLUzasOPWlBpvWimSFLRRQA4jimilJ4pM0BccKdTAcUppFJjG4PFKDnrQRRQWnoOopAadmgncbmnZzTaKZApFIBigmkGaBj80qnimUooBij71KxoppoAXNOBzUYpy9aBDyvFREc1MTxUZ60AwAzTiKBS9aAIiOaXFOxzQBzQAmMUVIy8UygAHvSGlxSMMUBYUc01wQKcKcSMUANUfLilAopAaADZjmpMgrUZJNKDgUNjSuKDTs8VFnmng8Vma2shGPFNAzSkc05a0MbaibeKZjBqcgAVEeTSKaEpe9JnFHU0CsSZwKaTQelNqLG0QzRmkNJTKJFNLimrxTwQRVIwlqyM03GalIpFpkp2Gpx1p45ppNLQAPSAUvBopiE70rCkHWndRUtlJDcUUtBp3FYQClbpRmgmgBtGaD1pTQAnWlBpypkUxhtNSPYdmgITTQeanQgik9ClK5GRtqNmwalfrUTCmhN2ANmlxTcU4HtVEjg2FxTDS0lAADilB5pKXtSAdjNIVzSqcUOeOKBt6DMYNKeKaDQTmmICaBRjIoAoEHSnZzSEUAUAHencAUYpGoGJnJpaSloEFOBpBSgc0wGtTQKkemigBMUYpcUlIYGkzQaBTEIwozxT8gikwKAG9aUDFJilNIBCOc0UtFMApM0E+lJQA7bkUg4pc8U3PNACmil60mKAEJwaOTRnml3YpFPQSilJBpyrmhsSVxhNAFSBBmn4FTzFcrICOaOcVPtFIVBo5g5Sock04LxU/ljFRMMGqTuJ3AKBRSZpeppkhjNGMU/ZS7KVx2ZF1oqQpxxTfLNF0FmNzRQRg0UxDqUUlFAxTTaXNJQAU4U2lFIQGgGlpKYxaKKWgBRS00U4VJohRQaKQ0irhSim0ooAceRUJHNTdqibrQiJAKMUDpRmqICilo7UAJRRQKAFopaQ0DCkpaKQCUUuKMUAFFLSUxMKMUlPHSgBlLSkUgFAxc0Uh60uKBCYp4poFOoAGptKTSUDsOFLTM0oNADzTc80ZpDQBJu4ptMzS0CHZxQTmk4xSUDENIAc0tLSBMXdSdaOlOUigq4mKNtONMyaQ0xdtPwcU0GpAcilYbkQscGnK2BTioNMdCKaZAFiaBTRxSg80wuO4pB1oPSkzzQIVjTc0p5ptFi1Id2oUc0Cl6UWE5AxxSL1pDyaUcUzMf2qMtTx0qNqB2DNO3VGc0oGKQyUdKCaaDRmgAJpQ1NJpFbmmIdml3UhFNzRYLjwaXGajzTgTigB2KaetGaaTQBYRhimuuahDEVMr5FQ9C1qRkYqROKaSKXcMUN3BKwOeaZRnJoNUiWAobApKXrTAM8UlKRxSYpAxRQTQKXFAhtKWpTTQm6gYhoxSkAcCgCmIBS4pRQaAAUmMmlzxSDrQA4cCg4NIx4qMNzSaLWqH0d6M5pRQibWEJpQaQjml6UxCNSAU480dBTEITim5pxpNtACYoxS4opAJQTxRRimA3JpRSngVECSaQ0iWjHrSZxRnNMQtNNOFGKAGgUYpaWkMQUoNIaQ9KBrcXbSEUiNzTzzQVJDQKkHApoXHWlzSYQQ4UtR7qUPU2NCSim7s0m6lYQ41G60/NI3IpolohUZapwBUYIBpQapijEfRmm5pAamxaQ+ikzRQJiMuRURGKnpjYzVJkNDKBQetOUU2ShAKdtpaM1Ny7CYpMU7NFAWG0lKaSqIYU6m0tMBaAabSikCH5pM000maVirjjS5puaM0WGpEgPFMYc0maXNFhN3ExSU6kNMlhmjNNNFMQ6lAoFLSGLSEUtFADaKU0lAx1FJSigBtFPIpppDSClFJRnBoGkKRSU4HNIaES1YAM0uKFp2KYhh4puaewpoWgYCg07FIaAEpKcOaQigBKWkpaBCYpaKTNADsUYoU0pNADaXNFGKQxCaAaUimimIfnijNNpcUDFFLnFJmigQoY0vWmijNIBGFApaSmAp6VH3qQ0mM0AJmjFLinACgENApadjikoATFFLTTQAtNYU4U1qBpCDrSkUAUuKQ2xopaXFFMm400gFOoxxQAK1NPWmjO6pccUxDccUvajFGKAEoxS0UgEpwOKQigCkUKTTCaDnNOxRYbYqDNOZeKFGKRielMQmKWm0ZoFcdTSaXtTaQ2KDS5pKXtTEBNGaaTQDSADTlNNpRxTAUmkzQaUUABpM0Gm0xDsbqYy4NPU8UuM0ik7CKOKceKTpSE0gbFFITRSUxCg0ppBTscUrjsJS9KSkpiAmgUUYxQAUtNzS5oACM0wDmpO1NNMBKXFJS4NIEhM0A0uKMc0XCzFIpMUuaXNA7DSKaQaeTSdaBrQZtxT145pp5NI+QMCgrm0JC1NYgCmig0rC5huTmng0ijmnMOKYcwA0hPNIBzQRzSsNSHbqUniox1pSTRYTYxutCvSjml2gUxcw4HNFIKDRYakOBpS1R5NLnNKw5S0FLGkzRRTsZ3HAU8CmA07NJlIU0w06mnrSKClpKUUABptONNqkRIKTNBopiCnA02loEBphNPppWgYq80tCjFOpAJRS0YoAKSnYoxTEMop2KMUh2EFLRilpDSClpuaM0yrIcaTNJSUBoOzTgajpwNILgzUzNK1AFA7j1p+0UxeKdmgYuMUhGaQtSbqQWuKBzUnamA5NOPSqRDVhhPNIKDSZoJHZpCc0lJQMUHFL1pKBSADTSafikK5piG0U8LRtoCw0U/qKUClpXKsKq0pAppNJuNTqXYVhUZFOLUxjTRNgp4pqjNSAUDG4pcUp4pM0yRKQ0tLtouKw2in7aQilcdhpoFLijFMQU4UlKDTAXHFJ3pc00nmmxIcFzQVxSK1OJzSKaIyKQrUgGaQikLVDQMUtN5pwpiEoNOpDSAbilIoopoQ3bS0tNNAC04Dimg0/PFCGNNJilooEJRRmkoAXFL0pBRTAUZNBGKM4pCc0AITTe9SAUhSkNCZpKULijHNIdgAoY8UuMCmkZpgMpwFKBS4pAFFOApSBRcOUZTgKQ0hagtRHYpMUgalzmgJRsJS0maM1RkITSClpKQDqKSg0AKOKXNNBpaLDuKaSlHSg0ANp3aminUxDTSCnFaMUhhRSigUmNIOlNzTz0plCB6BSUpoxTFcSnUYoFMBp60valNNNIAxQaAaDTEJikzTqQCkMUUhNP7VGxpgKKQnNNzSikMWiijNMQnSlpaSgAoHIpcZpaQ7DTSU6kNMQUUtJmgQU4Gm0A0ikPzSGkzSUrBccKWmg0tA7i5pKKKYhKKKKAEpaSigQ6jFIKcKAClpKUUDQAU7FNpaRYGkpTSUyGFAoooAU02lpKBBQKKKAuKKXFNFOoAQikpxpKAExSiiigBaM0UlIdwpKWigfMA4p+eKbS9qaQm7jTSU40AUyRKXFGKBSGLikxTqQmgBRSUmaKQx2aM02iiwJ2FzRRRRYfMBpKWgUDuIaZipDTcUCTFUVIKaKXNSykhSKTbRmjdSuPlFxS00tRmgfKOpCKBSmhEsZRQaSrMwopcUmKYC000tFAAKKKeAKQ0KlONICBSFqRVxcCkIFITTc0BoOIphpc0hpoliU6kpaZIh4pppxptAAOtP7UgFLmgBDSUE0lABRS0UAKKKSlFACGkp5puKBgDing5FMpy0AgIpuMGnmmE0WHccSMUykJpVpCuKBTqSihl7CimsaOaTFJFXEJpKcRSYpiUgxTgKaDinjmgtvQTFG2ndKCaaMWhmKMU7OaaTTFYKKSlzSASgUUtMQopabmigAxRQKWgBc009aUUGgYmaTNIaSkA/OaKaDS5osO4ppKCaBTEO7U0mlzTTQIM0DrSGkoAeRTaXNJQAZpwplOFAAxplOIpMUAGKOBRSGgYtJSZoBoAdmkopRQIBS5pMUUAJmijFFABRRS0AJRRS0DCiiigAFLSU4Uh2ADNLtpRTxSHYj20hFSGmGmFhlFKaKZACnU2jNAx1FJRSsCFp1MzS5osVcUmkzSUUEjhS0wU7NAXCkopKACiigUCFpRRRQXYWiilpBYaaKdimmmTYKWm0oNMQUlKaSgBaAaSigB1FNzS0ALmikopDH9qbS5pKBCUtFFIYUUuKKYgoopaYBSUtFIYlFFFIaCkJoY0zNKxrFDs0ZptLQWLmlBptOApCbHg0E0UhoSM2xCaKSirMhwPFGabTqBiUUUUCClzSUlAxc0UlKKVguFBpaQ0wEooooABTqTFFMQGkpaDQAmaUU2lFAAaSlNJQAooxQKWkAlFBpKYC0UUUgFFLTc0ZoGPzTGFGaXrTAZinAYpaTqaTEKBmnBaVRxTs4qGy0hu2jbS5ozSuVYTbSbadmjNFwsRMtA4FSGo2FUmJiFqQmikNURcUGlpopwoC4mKKCaBTEFITQaKAFFFJRQA4UtNpwpDEozQaSgANNpaKACkzRSGmIXNLmm0oNIYtLSUUxCUUtIaACjFIKkGMUmNEdPAopwNJsaQbaay0pNNzSRVkG2mlalzxSU7isiIrQBT2puKdyWJTgKSlHSmAGiikoEOxmmkUoNLQA3FFLRQMSilxSGkOwUoptLmgLC0UmaKChwanBqjzRmiwx5amk0lJQJi5pabSimQxaKKKBBRRRQAUUtFAwoopKQC0UlFMBaKSloAKWiigQUtJRSGOBozTaWkWmOppopDQD1CiinYpolobSgUYpRQSG2mkVL2pppF2GUopcUU7k2EopaKBBRSUUALRS0UDCijFLSGNooNFMkUUtJRmgYGkNKTSUhp2GHNIBTyKTFBXOAFOxSCnCkPmEApwopCaQOQuaSm04VRF7iUYp2KUUCBVpSKcDxSGqAbikNLSGkAhpKWjFIBQKXFIKXNAwpDS0hpiG0ClNGKBC0UlLQAUhGacBTgKLjSIsUGpCKYRSuOw2loxRQIKXNJRTAU0AUCngUmxpXG7aaRUuKawpIbRHRSHrSirICiiigAzQvWgikHWkwRODxTSaQHikJrM2QuaTNNzSZp2LJM0ZpgNOoCw7NNNLSGhGchpppp9NxVmQClpKKADFHSlFKaYDDRS4pQKTZSVxAtLtp+KKm5aihuKKDQKBuKENJTsUhFO5DQ2ikoFMgWmmnUEUwG0ooxRSGFLSUmaYDjTaUUUCAUtJRQAtLTRS0iriGlFJSigExSaTNBpKLCuFFFJTEFLSUtABSUtJQAU6m06gaCkpabSKsLSGkzRmiwXCikopiuKKWkFFIdwooopiuFFFFAXClFApaBBRRRQIKWkFLQAUUUUhhRRRQAlFLRQAlLRRTELRSUtIYlFFFAgpwptKKYC0lFFIYYpRRRQAtApKWgBc0hNFJRYLhRmimmiwDs0uaZSigBaKWkoELRRRQMUGlptLQAUlBpDTELmim0opALRRmigApMU6koASlFFFFhimm0tJQAU4U0U4UCFooooGLmkzRRQIKM0UlABRRRQAtBpRSGgYUUlLSBIDSZpGNJQUOpwpgp2aBDxS5pmaM0hocaTFGaWkWJikxS5pM0Ba4hFJinZop3J5RAMUuaDSUhpDgaDzTc0ZpjsIVo24p2aCadyHEZRSE0mc00xcopppOKU1Gxo3BIXfSg5pgFSCkaoDSUppMUDTHCnCminCkNsWg0UUIykJSUtFWZiYpMU6kzSAUCikzRQMKUGmmgUrFcw/NBNJSZpWDmA0CjNAoHzDhRijNGaAuNK0gWnUUxCYoxSk0maBCEUYpaWmIYRTcGpOtLilcaRGKXFPxSEU0waGUUpopkiUtFFABilopCaBiGiiigQUlLS0rjG0tFFMQtJRRmkMKKM0lAxaSlooHcZRRRTJCiiigQUtFFABRiiigYUUUUCFFLRRQAUlFFABS0UUALRRRSGFFFFABRRRQAUUUUxBS0UUDEooopCCloopgFFFFIBaWiimAUlFFABRRRQAUYoooAMUtFFACZpM0UVJaQoNLRRQFgp1FFAhDTSKKKYhKKKKBC0CiigBaKKKYCUUUUgCiiigBaWiimAUZoopAGaWiimAUGiigBKUUUUALSUUUDCkJooqRoaaQUUUAPFFFFAgooooGhc0uaKKksDSUUUxoKWiikJjSaTNFFMAzSZoooKQoNLRRTJkMIpOlFFAhCabjNFFMYoFOFFFACilxRRSBMMUUUUA2LS0UUEhSUUU0SwNNoopiCnUUUgExQBRRTADSUUUgCiiigBaKKKBhRmiigYlFFFAhaSiigQopc0UUikxM0hNFFMQlJRRTELSZoooAM0UUUhhRRRTEFFFFIYlFFFMQUUUUAFFFFAwooopAf//Z||0|0|
+
+Message sent successfully: 6463 bytes.
+OUT OF LOOP!!!!!!!!!!!
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 2|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|3||0|0|
+
+Message sent successfully: 56 bytes.
+CHECK HERE PLEASE: 0
+Sent response successfully, bytes sent: 110
+Listening...
+Listening...
+GET /drive HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/home
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+username: musk AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 6616
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/drive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+POST /move_file HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://127.0.0.1:8000/drive
+Content-Type: application/json
+Content-Length: 70
+Origin: http://127.0.0.1:8000
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+PATH TO CHECK FOR NEW DIRECTORYmusk_drive/hw1
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+got response
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+connected to coordinator
+Message sent successfully: 48 bytes.
+sent message to coordinator
+Listening...
+received message from coordinator
+Message: +OK RESP 127.0.0.1:6005
+asked coordinator: 127.0.0.1:6005
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content|||0|0|
+
+Message sent successfully: 57 bytes.
+RESPONSE: Rowkey does not exist
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+Number of chunks: 3
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 2|musk_drive/hw1/jpeg-optimizer_dog.jpeg|no_chunks|3||0|0|
+
+Message sent successfully: 60 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 55 bytes.
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 2|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_1|/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACweISchHCwnJCcyLyw1Qm9IQj09QohhZlBvoY2ppp6Nm5ixx//Ysbzxv5ib3v/g8f//////rNX/////////////2wBDAS8yMkI6QoJISIL/t5u3////////////////////////////////////////////////////////////////////wAARCANoBI0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvRRRUCCiiigApaKKACiiigAooooAKKKKAFooooAKKKKACiiigAooooAWiiigQUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQMKKKWgAooooAKKKSgApaSloAKKKKACiiigAooooAKKKKBBS0lLQAUUUUDCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKWkoAKKKKBBRRRQAUUUUAFFFFAwopKKBC0UlFAwooooEFFFFAwooooAKKKKACikooAWikooAKKKKACiiigAooooEFFJRQAUUUUDCiiigAooooASiiigAooooAKKKKACiiigBKKKKACiiigAooooAKSlpKACiiigAooooAKSlpKAFooooAKKKWgAooooAKKKKACiiigBaKKKACiiigAooooAKWkooELRSUtABRRRQAUUUUAFFFFABRRS0DCiiigQUUUUAFFFFABRRRQAtFFFAwpaSigBaKKKACiiigAooooAKKKKBBRRRQMKKKKBBRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAwooooAKKKKBBRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUlFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUlLSUAFFFFABRRRQMKKKKACkpaSgAooooAKKKKACiiigAoopKACiiigAooooAKKKKACiiigAooooAKWkpaACiiigAooooAWiiigAooooAKKKKACiiigQUtFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFLSUtABRRRQAUUtFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigAooooAKSlooAKSiigAooooAKKKKACiiigAooooAKWkpaBBRRRQMKKKKAFooooEFFFFAwooooEFFLRQAlLRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFJQAtFFJQAtFJS0AFJS0UAJRRRQAUUUUAFFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUUUUAJRRS0AJRS0lABRRRQAUUUUAFFFJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQMKKKKACiiigBKKKKACiiigAooooAKKKKBBRRRQAUtFFABRRRQAUtJS0AFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFLQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UlLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFLSUAFFFFABRRRQAUUUUAFFFFABSUtFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFJS0UAJRS0lABRRRQAUUUUAFFFFACUUtJQAtJS0lABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAJRS0lABRRRQMKKKKAEooooEFFFFAwooooAKKKKBBRRRQAtFFFABRRRQAUtFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFAC0UUUAFFFFABS0lFAC0UUUAFFFFABRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAUlLSUALSUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUlLRQAlFFFAwooooAWiiigAooooEFFFFABRRRQAtFFJQAtFFFABRRRQAUtJS0AFFJS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUtJS0AFFFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUUUUALSUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUtABRSUUALSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAlFLRQAlFFFABRRRQAUUUUAFFFJQAtJRRQAUUUUAFFFFABRRRQAlFLSUAFFFFABRRRQAUlLSUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUlLRQAlFLRQAlFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUlFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigBaKKKACiiigQUUUUAFLRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUtACUtFFABRRRQAUUUUAFFFLQAUUUUAFFLRQAUlLRQAUUUUAFFFFABRRRQAUUUUAFFFLQAlLRRQAUUUUAFFFLQAlFLRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRS0AFFFFACUUUtACUUUUAFFLSUAFFFFACUUtFACUUtFACUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUtJQAUUUUAFFFFACUUtJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFJS0UAJRS0UAJRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFAwooooASilpKAFooooAKKKWgBKWiigQUUUUAFFFLQAlFLRQAlLRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAJRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFLRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtJQAUUUUAFFFFACUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtJQAUUUUAFJS0UAJRS0UAJRS0UAJRS0UDG0UtFACUUtFACUUtFACUUtFACUUUUAJRS0UAJRS0UAJRRRQAlFLRQAlFFFABRRRQAUUtFABRRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFAC0UUUCCiiigAooooAKKKKACilooASloooAKKKKACiiigAopaSgApaKKACiiigAooooAKKKKACiiigAopaSgAooooAKKWigBKKWkoAKKWigBKKWigAooooAKKWigBKKWigYlLRRQAUUUUAJRS0UAJRRRQAlFLRQISilooASilooASilooASilooASilooASilooGJRS0UAJRRRQAlFLRQISilooGJRS0UAJRS0UAJRS0UAJSUtFACUUtFACUUtFACUUtFIBKKWimAlFLRQAlFFFABSUtFACUYpaKAExRS0UAJRRRQAlFLRQAlFLRQMSilooASkpaKAEopaKAG0UtFAhKSlooASilpKAFooooAKKKKACloooAKKKKACiiloASloooAKKKKACiiloAKKKKACiiigAooooAKKKKACloooEFFFFABRRRQAUUUUAFLRRQAUUUUAFFFFABRRRQAUtFFAwooooAKKKKACiiloASilooEFFFFAwooooAKKKKACiiigAooooAKKKKBBRS0UDCiiigQUUUUDCiiigQUUUUxhRRRSAKKKKACiiigAooooASilooASilooASiiloASilooASloooAKKKKAEopcUYNACUUu0+lLtPpQA2il2n0owfSgBKKKKACiiigAoxRRQAYpKWigYlFLRQAlFLSUgCiiigQUlLRTGJRRRQAUUUUCCiikoAKKKKACiiigAooooAKKKSgYtJRRQAUUUUgCiiigAooooAKKKKAEopaSgAooooAKSlooASiiimAlFFFAgpaKKACiiigAooooAWiiigAooooAKKKKACloooAKKKKACilooAKKKKACiiigAooooEFFFFABRRRQAUUUUALRRRQAUUUUAFFFFAwpaKKACiiigApaKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopaKAEooooAWiiigAooopgFFLRQAlFLRQAlFLSUAFFFFIAooooAKKKKACiiigAooooAKKKKACiiigApQCaVVJqZVxTsBEIyacIqlop2GM8oUuwU+koAbsFLt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ikpmTEooooEFKoyaSpUApoY9RgUNS01jTGMaonFSmo2qWMrlabt5qYim4pFEeKSpCKYaQCUopKKYDxThTBThSEBqKRamxTWFMCrihW2mpHWoyKsRKRvHFRlcNihXK0u7c2aQEmOKQin9qQigojxRipMUbaYhIxzVpVqGL71WccUrAyGV+1VyafKp3ZpmKQB1oXrik2nqKlRM80hki9KWgdKWghiUUtFMkSilpKAEopaKAEpaKKAEopaKAEooooAKKKKAFooooGJSUtFACGkpaSgAooooAKKKKACiiigAooopAJRS0UwEopaKAENJS0lABRRRQAlFFFAgpaSloAKWkooAWlpKWgYUlFFAgopKWgApaSigBaKSloAKKKKACiikoAWikooAWlpKWgAooooAWikooAWikpaAFopKKACikzRQAtFJS0AFLSUtABS02loAWkNFIaQEMlRVI+TUdNGgUlFFMBKctNp60ASA06NuajFKODUjJmphpwbIppoAjaojUrmmYpoTGUUppKoQtKDim0oNAE6GpAarKxp+7B61NhllTSlwoqAsQKgdyxoSBkss2447U2Md6iAyasquFpsEFGaKSpKFzSc0oNFADG6UypsZqEjBpoQUtJRTAWrNsc8VVqa2OGpMC2aSlpKDNhRRRQIB1qdBxTUWpOlNDQGozTiaaaYxpphp5ppqRjDTSKeRTTSGMNNNPNNpDGUUppKYAKeKZSg0APpDRmikIYRUTLirBphFUmBXxR0qVk4qI0xEsRJqQYJxVYZHQ0+Nvm5oKTJyuKAKeCGWgCmA0DBq0nTmoQKlHSmJjJAM4qPywKcQd1KahoHohu0UuKKKRNwooopiClpKWkAlJS0UAJSUtJTELRSUtABSUtJQAUUUlAC0UlLQAUtJRQAUlFFABRRRQAlFFFABRRRQAUUUUDCikooELRSUUAFFFFAxKKKKBBRRRQMSiiigQtFFFABRRRQAUtJS0AFFFJQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAtLSUUAFFFFABRRRQAUUUUALRSUUAFFFFABTqbSigBaKKKACiiigAoNFFICCU44qKpZR81RU0aBRRRTAAKkA4pqgVIOlJgNxS0UmaBjs0xmIpRTmGRQBXLE1InK0wqadF1pkjSOaSpXHNMIoHYbRilxTwtMLAi96FUsxqULhDUaHaSaQ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||0|0|
+
+Message sent successfully: 15259 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 55 bytes.
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 2|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_2|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||0|0|
+
+Message sent successfully: 15259 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 55 bytes.
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 2|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_3|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||0|0|
+
+Message sent successfully: 6467 bytes.
+All chunks copied successfully.
+Parent directory to update: musk_drive
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+got response
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+New value to update: [F@jpeg-optimizer_dog.jpeg]
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+got response
+to send: 4|musk_drive/hw1|items|[]|[F@jpeg-optimizer_dog.jpeg]|0|0|
+
+Message sent successfully: 60 bytes.
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 4|musk_drive|items|[D@hw1,F@jpeg-optimizer_dog.jpeg]|[D@hw1]|0|0|
+
+Message sent successfully: 67 bytes.
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+I AM DELETING FILES
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||-1334325280|65535|
+
+Message sent successfully: 69 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 3|musk_drive/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 55 bytes.
+Number of chunks: 3
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 55 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 55 bytes.
+to send: 1|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 55 bytes.
+got response
+to send: 3|musk_drive/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 55 bytes.
+All chunks deleted successfully.
+Sent response successfully, bytes sent: 110
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /drive HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+username: musk AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+got response
+to send: 1|musk_drive|items|||0|0|
+
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 6361
+Listening...
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/drive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+Sent response successfully, bytes sent: 79
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+GET /drive/hw1 HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/drive
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+username: musk AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+got response
+to send: 1|musk_drive/hw1|items|||0|0|
+
+Message sent successfully: 31 bytes.
+Sent response successfully, bytes sent: 6379
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+GET /download?file=drive%2Fhw1%2Fjpeg-optimizer_dog.jpeg HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:108.0) Gecko/20100101 Firefox/108.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://127.0.0.1:8000/drive/hw1
+Cookie: sid=AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+
+I am in get cookie handler from the request
+cookie is: AZwsIoxWiN7NUo1ZoVEcX6qcBvXF2mVA
+in download file
+parent row key: musk_drive/hw1/jpeg-optimizer_dog.jpeg
+file name: jpeg-optimizer_dog.jpeg
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|no_chunks|||0|0|
+
+Message sent successfully: 59 bytes.
+Number of chunks: 3
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_1|||0|0|
+
+Message sent successfully: 59 bytes.
+Listening...
+RESPONSE: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACweISchHCwnJCcyLyw1Qm9IQj09QohhZlBvoY2ppp6Nm5ixx//Ysbzxv5ib3v/g8f//////rNX/////////////2wBDAS8yMkI6QoJISIL/t5u3////////////////////////////////////////////////////////////////////wAARCANoBI0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvRRRUCCiiigApaKKACiiigAooooAKKKKAFooooAKKKKACiiigAooooAWiiigQUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQMKKKWgAooooAKKKSgApaSloAKKKKACiiigAooooAKKKKBBS0lLQAUUUUDCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKWkoAKKKKBBRRRQAUUUUAFFFFAwopKKBC0UlFAwooooEFFFFAwooooAKKKKACikooAWikooAKKKKACiiigAooooEFFJRQAUUUUDCiiigAooooASiiigAooooAKKKKACiiigBKKKKACiiigAooooAKSlpKACiiigAooooAKSlpKAFooooAKKKWgAooooAKKKKACiiigBaKKKACiiigAooooAKWkooELRSUtABRRRQAUUUUAFFFFABRRS0DCiiigQUUUUAFFFFABRRRQAtFFFAwpaSigBaKKKACiiigAooooAKKKKBBRRRQMKKKKBBRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAwooooAKKKKBBRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUlFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUlLSUAFFFFABRRRQMKKKKACkpaSgAooooAKKKKACiiigAoopKACiiigAooooAKKKKACiiigAooooAKWkpaACiiigAooooAWiiigAooooAKKKKACiiigQUtFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFLSUtABRRRQAUUtFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigAooooAKSlooAKSiigAooooAKKKKACiiigAooooAKWkpaBBRRRQMKKKKAFooooEFFFFAwooooEFFLRQAlLRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFJQAtFFJQAtFJS0AFJS0UAJRRRQAUUUUAFFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUUUUAJRRS0AJRS0lABRRRQAUUUUAFFFJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQMKKKKACiiigBKKKKACiiigAooooAKKKKBBRRRQAUtFFABRRRQAUtJS0AFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFLQAUUUUAFFFFABRRRQAUUUUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UlLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFLSUAFFFFABRRRQAUUUUAFFFFABSUtFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFJS0UAJRS0lABRRRQAUUUUAFFFFACUUtJQAtJS0lABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAJRS0lABRRRQMKKKKAEooooEFFFFAwooooAKKKKBBRRRQAtFFFABRRRQAUtFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFAC0UUUAFFFFABS0lFAC0UUUAFFFFABRRRQAUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABS0lLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUtJS0AFFFFABRRRQAUlLSUALSUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABSUUUAFFFFABRRRQAUlLRQAlFFFAwooooAWiiigAooooEFFFFABRRRQAtFFJQAtFFFABRRRQAUtJS0AFFJS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUtJS0AFFFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUUUUALSUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUtABRSUUALSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUtFACUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAlFLRQAlFFFABRRRQAUUUUAFFFJQAtJRRQAUUUUAFFFFABRRRQAlFLSUAFFFFABRRRQAUlLSUAFFFFABRRRQAUUUUAFJS0lABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRS0AFFFFABRRRQAUtJS0AFFFFABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAUUUtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlFFABS0lFAC0UlLQAUUUUAFFFFABRRRQAUlLRQAlFLRQAlFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUlFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAlFLSUDCiiigBaKKKACiiigQUUUUAFLRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUtACUtFFABRRRQAUUUUAFFFLQAUUUUAFFLRQAUlLRQAUUUUAFFFFABRRRQAUUUUAFFFLQAlLRRQAUUUUAFFFLQAlFLRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRS0AFFFFACUUUtACUUUUAFFLSUAFFFFACUUtFACUUtFACUtFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtFACUUtJQAUUUUAFFFFACUUtJQAUUUUAFFFFABRRRQAUlLRQAlFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFJS0UAJRS0UAJRRRQAUUUUAFFFFACUUUUAFFLSUAFFFFAwooooASilpKAFooooAKKKWgBKWiigQUUUUAFFFLQAlFLRQAlLRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAJRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFABRRRQAtFFFABRRRQAUUUUAFFLRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtFACUUtJQAUUUUAFFFFACUUtFACUUUUAFFFFACUUtFACUUtFACUUtFACUUtJQAUUUUAFJS0UAJRS0UAJRS0UAJRS0UDG0UtFACUUtFACUUtFACUUtFACUUUUAJRS0UAJRS0UAJRRRQAlFLRQAlFFFABRRRQAUUtFABRRRQAUUUUAFLRRQAUUUUAFFFFABRS0UAFFFFABRRS0AFFFFABRRRQAUUUUAFFFFAC0UUUCCiiigAooooAKKKKACilooASloooAKKKKACiiigAopaSgApaKKACiiigAooooAKKKKACiiigAopaSgAooooAKKWigBKKWkoAKKWigBKKWigAooooAKKWigBKKWigYlLRRQAUUUUAJRS0UAJRRRQAlFLRQISilooASilooASilooASilooASilooASilooGJRS0UAJRRRQAlFLRQISilooGJRS0UAJRS0UAJRS0UAJSUtFACUUtFACUUtFACUUtFIBKKWimAlFLRQAlFFFABSUtFACUYpaKAExRS0UAJRRRQAlFLRQAlFLRQMSilooASkpaKAEopaKAG0UtFAhKSlooASilpKAFooooAKKKKACloooAKKKKACiiloASloooAKKKKACiiloAKKKKACiiigAooooAKKKKACloooEFFFFABRRRQAUUUUAFLRRQAUUUUAFFFFABRRRQAUtFFAwooooAKKKKACiiloASilooEFFFFAwooooAKKKKACiiigAooooAKKKKBBRS0UDCiiigQUUUUDCiiigQUUUUxhRRRSAKKKKACiiigAooooASilooASilooASiiloASilooASloooAKKKKAEopcUYNACUUu0+lLtPpQA2il2n0owfSgBKKKKACiiigAoxRRQAYpKWigYlFLRQAlFLSUgCiiigQUlLRTGJRRRQAUUUUCCiikoAKKKKACiiigAooooAKKKSgYtJRRQAUUUUgCiiigAooooAKKKKAEopaSgAooooAKSlooASiiimAlFFFAgpaKKACiiigAooooAWiiigAooooAKKKKACloooAKKKKACilooAKKKKACiiigAooooEFFFFABRRRQAUUUUALRRRQAUUUUAFFFFAwpaKKACiiigApaKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopaKAEooooAWiiigAooopgFFLRQAlFLRQAlFLSUAFFFFIAooooAKKKKACiiigAooooAKKKKACiiigApQCaVVJqZVxTsBEIyacIqlop2GM8oUuwU+koAbsFLt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ikpmTEooooEFKoyaSpUApoY9RgUNS01jTGMaonFSmo2qWMrlabt5qYim4pFEeKSpCKYaQCUopKKYDxThTBThSEBqKRamxTWFMCrihW2mpHWoyKsRKRvHFRlcNihXK0u7c2aQEmOKQin9qQigojxRipMUbaYhIxzVpVqGL71WccUrAyGV+1VyafKp3ZpmKQB1oXrik2nqKlRM80hki9KWgdKWghiUUtFMkSilpKAEopaKAEpaKKAEopaKAEooooAKKKKAFooooGJSUtFACGkpaSgAooooAKKKKACiiigAooopAJRS0UwEopaKAENJS0lABRRRQAlFFFAgpaSloAKWkooAWlpKWgYUlFFAgopKWgApaSigBaKSloAKKKKACiikoAWikooAWlpKWgAooooAWikooAWikpaAFopKKACikzRQAtFJS0AFLSUtABS02loAWkNFIaQEMlRVI+TUdNGgUlFFMBKctNp60ASA06NuajFKODUjJmphpwbIppoAjaojUrmmYpoTGUUppKoQtKDim0oNAE6GpAarKxp+7B61NhllTSlwoqAsQKgdyxoSBkss2447U2Md6iAyasquFpsEFGaKSpKFzSc0oNFADG6UypsZqEjBpoQUtJRTAWrNsc8VVqa2OGpMC2aSlpKDNhRRRQIB1qdBxTUWpOlNDQGozTiaaaYxpphp5ppqRjDTSKeRTTSGMNNNPNNpDGUUppKYAKeKZSg0APpDRmikIYRUTLirBphFUmBXxR0qVk4qI0xEsRJqQYJxVYZHQ0+Nvm5oKTJyuKAKeCGWgCmA0DBq0nTmoQKlHSmJjJAM4qPywKcQd1KahoHohu0UuKKKRNwooopiClpKWkAlJS0UAJSUtJTELRSUtABSUtJQAUUUlAC0UlLQAUtJRQAUlFFABRRRQAlFFFABRRRQAUUUUDCikooELRSUUAFFFFAxKKKKBBRRRQMSiiigQtFFFABRRRQAUtJS0AFFFJQAUUUUAFLSUtABRRRQAUUUUAFFFFABRRRQAtLSUUAFFFFABRRRQAUUUUALRSUUAFFFFABTqbSigBaKKKACiiigAoNFFICCU44qKpZR81RU0aBRRRTAAKkA4pqgVIOlJgNxS0UmaBjs0xmIpRTmGRQBXLE1InK0wqadF1pkjSOaSpXHNMIoHYbRilxTwtMLAi96FUsxqULhDUaHaSaQ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
+content_1: 15200
+DECODED LENGTH: 11400
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_2|||0|0|
+
+Message sent successfully: 59 bytes.
+RESPONSE: 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
+content_2: 15200
+DECODED LENGTH: 11400
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 59 bytes.
+got response
+to send: 1|musk_drive/hw1/jpeg-optimizer_dog.jpeg|content_3|||0|0|
+
+Message sent successfully: 59 bytes.
+RESPONSE: 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
+content_3: 6408
+DECODED LENGTH: 4806
+Sent response successfully, bytes sent: 147
+TRANSER SUCCESS!!!
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
