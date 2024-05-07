@@ -22,7 +22,7 @@
 #include <set>
 #include <vector>
 
-#define CHECKPOINT_SIZE 2
+#define CHECKPOINT_SIZE 100
 #define NUM_SPLITS 2
 
 extern const int MAX_BUFFER_SIZE;
