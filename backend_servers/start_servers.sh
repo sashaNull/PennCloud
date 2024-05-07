@@ -16,4 +16,5 @@ for ((i=0; i<n; i++))
 do
     ./server server_config.txt $i -v &> "./server_outputs/server_$i.log" &
     echo "Server $i started, outputting to server_$i.log. PID: $!"
+    sleep 0.5
 done
