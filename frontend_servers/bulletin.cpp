@@ -5,252 +5,765 @@
 
 using namespace std;
 
-int render_bulletin_board(string uids)
-{
-    // parse item uids (uid1, uid2, ....)
-    // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
-    // store as list of BulletinMsg objects
-    // render bulletin board
-    return 1;
+BulletinMsg retrieve_bulletin_msg(int fd, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    string response_value, response_error_msg;
+    string rowkey, colkey, type;
+    int response_status, response_code;
+    F_2_B_Message msg_to_send;
+    BulletinMsg msg;
+
+    msg.uid = uid;
+
+    rowkey = "bulletin/" + uid;
+    type = "get";
+    // get owner
+    colkey = "owner";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    }
+    msg.owner = base64_decode(response_value);
+
+    // get timestamp
+    colkey = "timestamp";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    }
+    msg.timestamp = base64_decode(response_value);
+
+    // get title
+    colkey = "title";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    }
+    msg.title = base64_decode(response_value);
+
+    // get message
+    colkey = "message";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    }       
+    msg.message = base64_decode(response_value);
+
+    return msg; 
 }
 
-int render_my_bulletins(string uids)
+vector<BulletinMsg> retrieve_my_bulletin(int fd, const string &uids, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
+    vector<BulletinMsg> to_return;
     // parse item uids (uid1, uid2, ....)
+    vector<string> uids_vector = split(uids, ",");
     // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
-    // store as list of BulletinMsg objects
-    // render as list with edit and delete buttons
-    // if click on edit button, /edit-bulletin?title=<title>&msg=<msg>
-    // if click on delete button, /delete-bulletin
+    string response_value, response_error_msg;
+    string rowkey, colkey, type;
+    int response_status, response_code;
+    F_2_B_Message msg_to_send;
+    for (const auto &uid : uids_vector) 
+    {
+        BulletinMsg msg = retrieve_bulletin_msg(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+        to_return.push_back(msg); 
+    }
+    return to_return;
+}
+
+
+vector<BulletinMsg> retrieve_bulletin_board(int fd, const string &uids, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    vector<BulletinMsg> to_return;
+    // parse item uids (uid1, uid2, ....)
+    vector<string> uids_vector = split(uids, ",");
+    // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
+    string response_value, response_error_msg;
+    string rowkey, colkey, type;
+    int response_status, response_code;
+    F_2_B_Message msg_to_send;
+    for (const auto &uid : uids_vector) 
+    {
+        BulletinMsg msg = retrieve_bulletin_msg(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+        to_return.push_back(msg); 
+    }
+    return to_return;    
+}
+
+string construct_bulletin_board_html(vector<BulletinMsg> msgs) {
+    stringstream html;
+    html << "<!DOCTYPE html><html><head><title>Bulletin Board</title><style>"
+         << "body, html { height: 100%; margin: 0; overflow-y: auto; }"
+         << "div.message { width: 30%; padding: 20px; margin: 10px; float: left; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); }"
+         << "button { margin: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; }"
+         << "</style></head><body><button onclick=\"window.location.href='/my-bulletins'\">My Bulletins</button><div style='clear:both;'></div>";
+
+    for (const auto &msg : msgs) {
+        int r = rand() % 156 + 100;
+        int g = rand() % 156 + 100;
+        int b = rand() % 156 + 100;
+        html << "<div class='message' style='background-color: rgb(" << r << "," << g << "," << b << ");'>"
+             << "<h2>" << msg.title << "</h2>"
+             << "<p><b>Owner:</b> " << msg.owner << "</p>"
+             << "<p><b>Time:</b> " << msg.timestamp << "</p>"
+             << "<p>" << msg.message << "</p>"
+             << "</div>";
+    }
+
+    html << "<div style='clear:both;'></div></body></html>";
+    return html.str();
+}
+
+string construct_my_bulletins_html(vector<BulletinMsg> msgs)
+{
+    stringstream html;
+    html << "<!DOCTYPE html><html><head><title>My Bulletins</title><style>"
+         << "div.message { border: 2px solid #ddd; margin: 10px; padding: 10px; background-color: #f9f9f9; }"
+         << "button { margin: 5px; padding: 5px 10px; font-size: 14px; cursor: pointer; }"
+         << "</style></head><body>"
+         << "<h1>My Bulletin Board</h1>"
+         << "<button onclick=\"window.location.href='/edit-bulletin?mode=new&uid=new'\">Add a New Message</button>"
+         << "<button onclick=\"window.location.href='/bulletin'\">Back to Bulletin Board</button>";
+
+    for (const auto &msg : msgs) {
+        html << "<div class='message'>"
+             << "<h2>" << msg.title << "</h2>"
+             << "<p><b>Time:</b> " << msg.timestamp << "</p>"
+             << "<p>" << msg.message << "</p>"
+             << "<button onclick=\"window.location.href='/edit-bulletin?mode=edit&uid=" << msg.uid  << "'\">Edit</button>"
+             << "<button onclick=\"window.location.href='/delete-bulletin?uid=" << msg.uid << "'\">Delete</button>"
+             << "</div>";
+    }
+
+    html << "</body></html>";
+    return html.str();
+}
+
+
+int put_bulletin_item_to_backend(const string &encoded_owner, const string &encoded_ts, const string &encoded_title, const string &encoded_msg, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
+{
+    int fd = create_socket();
+    string response_value, response_error_msg;
+    string rowkey, colkey, type;
+    int response_status, response_code;
+    F_2_B_Message msg_to_send;
+
+    rowkey = "bulletin/" + uid;
+    type = "put";
+    // put owner
+    colkey = "owner";
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_owner, "", "", 0);
+    cout << "!!!putting owner to backend: " << encoded_owner << endl;
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
     return 1;
-}
-
-std::vector<std::string> parse_json_list_to_vector(const std::string &json_list)
-{
-    std::vector<std::string> result;
-    if (json_list.empty() || json_list == "[]")
-        return result;
-
-    std::string trimmed = json_list.substr(1, json_list.size() - 2);
-    std::stringstream ss(trimmed);
-    std::string item;
-
-    while (std::getline(ss, item, ','))
+    }
+    else if (response_code == 2)
     {
-        // Trim potential white spaces left by splitting
-        item.erase(0, item.find_first_not_of(" \t\n\r\f\v")); // Left trim
-        item.erase(item.find_last_not_of(" \t\n\r\f\v") + 1); // Right trim
-        result.push_back(item);
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
     }
 
-    return result;
-}
-
-std::string join(const std::vector<std::string> &items, const std::string &delimiter)
-{
-    if (items.empty())
-        return "";
-    std::ostringstream joined;
-    auto iter = items.begin();
-
-    joined << *iter++;
-
-    while (iter != items.end())
+    // put timestamp
+    colkey = "timestamp";
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_ts, "", "", 0);
+    cout << "!!!putting timestamp to backend: " << encoded_ts << endl;
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
     {
-        joined << delimiter << *iter++;
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
     }
 
-    return joined.str();
+    // put title
+    colkey = "title";
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_title, "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+
+    // put message
+    colkey = "message";
+    msg_to_send = construct_msg(2, rowkey, colkey, encoded_msg, "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+    close(fd);
+    return 0;
 }
 
-int update_bulletin_list(const string &list_key, const string &uid, int server_fd, map<string, string> &server_map, sockaddr_in coordinator_addr)
+
+int update_to_bulletin_board(int fd, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
-    string response_value, error_msg;
-    int status, result;
-
-    F_2_B_Message msg;
-    msg.type = 1; // '1' for GET operation
-    msg.rowkey = list_key;
-    msg.colkey = "items";
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, server_map, coordinator_addr, "get");
-    if (result != 0)
-        return result;
-
-    // Determine new value
-    vector<string> items;
-    if (status == 1 && error_msg == "Rowkey does not exist")
-    {
-        items.push_back(uid);
+    string bulletin_board_string, get_response_error_msg;
+    F_2_B_Message msg_to_send;
+    int get_response_status;
+    string rowkey = "bulletin-board";
+    string colkey = "items";
+    string type = "get";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
     }
-    else
+    // try cput until success
+    string to_cput;
+    string get_response_value;
+    string cput_response_value, cput_response_error_msg;
+    int cput_response_status;
+    while (true)
     {
-        if (!response_value.empty() && response_value != "[]")
-        {
-            items = parse_json_list_to_vector(response_value);
+        to_cput = uid + "," + delete_uid_from_string(bulletin_board_string, uid, ",");
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, bulletin_board_string, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, cput_response_status, 
+                                            cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
         }
-        if (std::find(items.begin(), items.end(), uid) == items.end())
+
+        if (cput_response_status == 0)
         {
-            items.push_back(uid);
+            break;
+        }
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
         }
     }
-    string new_value = "[" + join(items, ",") + "]"; // Assuming function to join vector items into a string
-
-    // Put new value
-    msg.type = 2; // '2' for PUT operation
-    msg.value = new_value;
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, server_map, coordinator_addr, "put");
-    return result;
+    return 0;
 }
 
-int put_bulletin_item_to_backend(string username, string encoded_owner, string encoded_ts, string encoded_title, string encoded_msg, string uid, map<string, string> global_server_map, sockaddr_in global_coordinator_addr, int server_fd)
+int update_to_my_bulletins(int fd, const string &username, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
-    // cput uid into (bullet-board items)
-    // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
     // cput uid into (username_bulletin items)
-    F_2_B_Message msg;
-    msg.type = 2; // Assuming '2' is the type for PUT operation
-    msg.rowkey = "bulletin/" + uid;
-    msg.colkey = "owner";
-    msg.value = encoded_owner;
-    msg.value2 = "";
-    msg.status = 0;
-    msg.isFromPrimary = 0;
-    msg.errorMessage = "";
+    string my_bulletins_str, get_response_error_msg;
+    F_2_B_Message msg_to_send;
+    int get_response_status;
+    string rowkey = username + "_bulletin";
+    string colkey = "items";
+    string type = "get";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    int response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
+    }
 
-    string response_value, error_msg;
-    int status, result;
-
-    // Store owner
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, global_server_map, global_coordinator_addr, "put");
-    if (result != 0)
-        return result;
-
-    // Store timestamp
-    msg.colkey = "timestamp";
-    msg.value = encoded_ts;
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, global_server_map, global_coordinator_addr, "put");
-    if (result != 0)
-        return result;
-
-    // Store title
-    msg.colkey = "title";
-    msg.value = encoded_title;
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, global_server_map, global_coordinator_addr, "put");
-    if (result != 0)
-        return result;
-
-    // Store message
-    msg.colkey = "message";
-    msg.value = encoded_msg;
-    result = send_msg_to_backend(server_fd, msg, response_value, status, error_msg, msg.rowkey, msg.colkey, global_server_map, global_coordinator_addr, "put");
-    if (result != 0)
-        return result;
-
-    // Add uid to bulletin-board items
-    result = update_bulletin_list("bulletin-board", uid, server_fd, global_server_map, global_coordinator_addr);
-    if (result != 0)
-        return result;
-
-    // Add uid to username_bulletin items
-    result = update_bulletin_list(username + "_bulletin", uid, server_fd, global_server_map, global_coordinator_addr);
-    if (result != 0)
-        return result;
-
-    return 0; // Success
-}
-
-int delete_bulletin_item(string username, string uid)
-{
-    // cput new (bullet-board items)
-    // cput new (username_bulletin items)
-    // delete bulletin/uid owner, timestamp, title, message
-    return 1;
-}
-
-map<string, string> parse_query_params(const string &uri)
-{
-    map<string, string> params;
-    size_t start = uri.find('?');
-    if (start == string::npos)
-        return params;
-    start++;
-    size_t end = uri.find('&', start);
-    while (end != string::npos)
+    // try cput until success
+    string to_cput;
+    string get_response_value;
+    string cput_response_value, cput_response_error_msg;
+    int cput_response_status;
+    while (true)
     {
-        string param = uri.substr(start, end - start);
-        size_t eq = param.find('=');
-        if (eq != string::npos)
-        {
-            string key = param.substr(0, eq);
-            string value = param.substr(eq + 1);
-            params[key] = value;
+        to_cput = uid + "," + delete_uid_from_string(my_bulletins_str, uid, ",");
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, my_bulletins_str, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, cput_response_status, 
+                                            cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
         }
-        start = end + 1;
-        end = uri.find('&', start);
+
+        if (cput_response_status == 0)
+        {
+            break;
+        }
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
     }
-    string lastParam = uri.substr(start);
-    size_t eq = lastParam.find('=');
-    if (eq != string::npos)
-    {
-        string key = lastParam.substr(0, eq);
-        string value = lastParam.substr(eq + 1);
-        params[key] = value;
-    }
-    return params;
+    return 0;
 }
 
-string generate_edit_bulletin_form(const string &username, const string &title, const string &message)
-{
-    string html = "<html><head><title>Edit Bulletin</title></head><body>";
-    html += "<h1>Welcome, " + username + "</h1>";
-    html += "<form action='/edit-bulletin' method='POST'>";
-    html += "Title: <input type='text' name='title' value='" + title + "'><br>";
-    html += "Message: <textarea name='msg'>" + message + "</textarea><br>";
-    html += "<input type='submit' value='Submit'>";
-    html += "</form>";
-    html += "</body></html>";
-    return html;
-}
 
-std::string trim(const std::string &str)
-{
-    size_t first = str.find_first_not_of(" \t\n\v\f\r");
-    if (std::string::npos == first)
-    {
-        return str;
+int add_to_bulletin_board(int fd, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    string bulletin_board_string, get_response_error_msg;
+    F_2_B_Message msg_to_send;
+    int get_response_status;
+    string rowkey = "bulletin-board";
+    string colkey = "items";
+    string type = "get";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
     }
-    size_t last = str.find_last_not_of(" \t\n\v\f\r");
-    return str.substr(first, (last - first + 1));
+    // try cput until success
+    string to_cput;
+    string get_response_value;
+    string cput_response_value, cput_response_error_msg;
+    int cput_response_status;
+    while (true)
+    {
+        to_cput = uid + "," + bulletin_board_string;
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, bulletin_board_string, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, cput_response_status, 
+                                            cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+
+        if (cput_response_status == 0)
+        {
+            break;
+        }
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+    }
+    return 0;
 }
 
-std::map<std::string, std::string> parseQueryString(const std::string &queryString)
-{
-    std::map<std::string, std::string> result;
+int add_to_my_bulletins(int fd, const string &username, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    // cput uid into (username_bulletin items)
+    string my_bulletins_str, get_response_error_msg;
+    F_2_B_Message msg_to_send;
+    int get_response_status;
+    string rowkey = username + "_bulletin";
+    string colkey = "items";
+    string type = "get";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    int response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
+    }
 
-    size_t pos = 0;
-    while (pos < queryString.size())
+    // try cput until success
+    string to_cput;
+    string get_response_value;
+    string cput_response_value, cput_response_error_msg;
+    int cput_response_status;
+    while (true)
     {
-        size_t keyStart = queryString.find_first_not_of("=&", pos);
-        if (keyStart == std::string::npos)
-            break;
+        to_cput = uid + "," + my_bulletins_str;
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, my_bulletins_str, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, cput_response_status, 
+                                            cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
 
-        size_t keyEnd = queryString.find('=', keyStart);
-        if (keyEnd == std::string::npos)
+        if (cput_response_status == 0)
+        {
             break;
+        }
 
-        size_t valueStart = queryString.find_first_not_of("=&", keyEnd + 1);
-        if (valueStart == std::string::npos)
-            break;
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletins_str, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+    }
+    return 0;
+}
 
-        size_t valueEnd = queryString.find('&', valueStart);
-        std::string key = trim(queryString.substr(keyStart, keyEnd - keyStart));
-        std::string value = trim(queryString.substr(valueStart, valueEnd - valueStart));
-        result[key] = value;
+string delete_uid_from_string(const string& original, const string& to_remove, const string& delimiter) {
+    string result;
+    size_t start = 0;
+    size_t end = original.find(delimiter);
+    
+    while (end != string::npos) {
+        string token = original.substr(start, end - start);
+        if (token != to_remove) {
+            if (!result.empty()) {
+                result += delimiter;
+            }
+            result += token;
+        }
+        start = end + delimiter.length();
+        end = original.find(delimiter, start);
+    }
 
-        if (valueEnd == std::string::npos)
-            break;
-        pos = valueEnd + 1;
+    string last_token = original.substr(start);
+    if (last_token != to_remove) {
+        if (!result.empty()) {
+            result += delimiter;
+        }
+        result += last_token;
     }
 
     return result;
 }
+
+
+int delete_in_my_bulletin(int fd, const string &username, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    string my_bulletin_str, response_error_msg;
+    F_2_B_Message msg_to_send;
+    int response_status, response_code;
+    string type = "get";
+    string rowkey = username + "_bulletin";
+    string colkey = "items";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, my_bulletin_str, response_status, 
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
+    }
+
+    // try cput until success
+    string received_ts, to_cput;
+    while (true)
+    {
+        to_cput = delete_uid_from_string(my_bulletin_str, uid, ",");
+
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, my_bulletin_str, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletin_str, response_status, 
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+
+        if (response_status == 0)
+        {
+            break;
+        }
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletin_str, response_status, 
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+    }
+    return 0;
+
+}
+
+int delete_in_bulletin_board(int fd, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+    string bulletin_board_str, response_error_msg;
+    F_2_B_Message msg_to_send;
+    int response_status, response_code;
+    string type = "get";
+    string rowkey = "bulletin-board";
+    string colkey = "items";
+    msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status, 
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+        return 1;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+        return 2;
+    }
+
+    // try cput until success
+    string received_ts, to_cput;
+    while (true)
+    {
+        to_cput = delete_uid_from_string(bulletin_board_str, uid, ",");
+
+        type = "cput";
+        msg_to_send = construct_msg(4, rowkey, colkey, bulletin_board_str, to_cput, "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status, 
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+
+        if (response_status == 0)
+        {
+            break;
+        }
+
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status, 
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1) {
+            cerr << "ERROR in communicating with coordinator" << endl;
+            return 1;
+        } else if (response_code == 2) {
+            cerr << "ERROR in communicating with backend" << endl;
+            return 2;
+        }
+    }
+    return 0;
+}
+
+
+int delete_bulletin_item_from_backend(int fd, const string &uid, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
+{
+
+    // delete bulletin/uid owner, timestamp, title, message
+    string response_value, response_error_msg;
+    string rowkey, colkey, type;
+    int response_status, response_code;
+    F_2_B_Message msg_to_send;
+
+    rowkey = "bulletin/" + uid;
+    type = "delete";
+    // delete owner
+    colkey = "owner";
+    msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+
+    // delete timestamp
+    colkey = "timestamp";
+    msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+
+    // delete title
+    colkey = "title";
+    msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+
+    // delete message
+    colkey = "message";
+    msg_to_send = construct_msg(3, rowkey, colkey, "", "", "", 0);
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
+    cerr << "ERROR in communicating with coordinator" << endl;
+    return 1;
+    }
+    else if (response_code == 2)
+    {
+    cerr << "ERROR in communicating with backend" << endl;
+    return 2;
+    }
+    return 0;
+}
+
+string construct_edit_bulletin_html(const string &uid, const string &mode, const string &prefill_title, const string &prefill_message)
+{
+    stringstream html;
+    html << "<!DOCTYPE html><html><head><title>Compose Bulletin</title><style>"
+         << "input, textarea { width: 95%; margin: 10px; padding: 8px; }"
+         << "textarea { height: 200px; }"
+         << "</style>"
+         << "<script>"
+         << "document.addEventListener('DOMContentLoaded', function () {"
+         << "    document.getElementById('bulletinForm').addEventListener('submit', function (event) {"
+         << "        event.preventDefault();"
+         << "        var formData = {title: document.getElementById('title').value,"
+         << "            message: document.getElementById('message').value};"
+         << "        fetch('/edit-bulletin?mode=" << mode << "&uid=" << uid << "', {"
+         << "            method: 'POST',"
+         << "            headers: { 'Content-Type': 'application/json' },"
+         << "            body: JSON.stringify(formData)"
+         << "        })"
+         << "        .then(response => {"
+         << "            if (response.ok) {"
+         << "               window.location.href = '/my-bulletins';"
+         << "            }"
+         << "        });"
+         << "    });"
+         << "});"
+         << "</script>"
+         << "</head><body>"
+         << "<h1>Compose Bulletin</h1>"
+         << "<form id='bulletinForm'>"
+         << "<label for='title'>Title:</label><input type='text' id='title' name='title' placeholder='Enter title' value='" << prefill_title << "'><br>"
+         << "<label for='message'>Message:</label><textarea id='message' name='message' placeholder='Write your message here...'>" << prefill_message << "</textarea><br>"
+         << "<button type='submit'>Submit Message</button>"
+         << "</form></body></html>";
+
+    return html.str();
+}
+
