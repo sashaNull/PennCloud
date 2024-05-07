@@ -62,15 +62,15 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
   F_2_B_Message msg_to_return;
   sockaddr_in addr = get_socket_address(addr_str);
   int new_fd = create_socket();
-  if (connect(new_fd, (struct sockaddr *)&addr,
-              sizeof(addr)) < 0)
+  if (connect(new_fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
   {
     cerr << "Connection to Backend failed." << endl;
     close(new_fd);
-    return {};
+    msg_to_return.status = 2;
+    return msg_to_return;
   }
   string to_send = encode_message(msg);
-  // cout << "to send: " << to_send << endl;
+  cout << "to send: " << to_send << endl;
 
   send_message(new_fd, to_send);
   // Receive response from the server
