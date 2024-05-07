@@ -2268,39 +2268,48 @@ void *handle_connection(void *arg)
             html_content << "<button onclick=\"uploadFile('" << path << "')\">Upload File</button>";
             html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
 
+            // Add a loading indicator element
+            html_content << "<div id='loadingIndicator' style='display:none;'>Loading...</div>";
+
             // JavaScript functions for upload and create folder actions
             html_content << "<script>";
-            html_content << "function uploadFile(path) { "; // Accept path as parameter
+            html_content << "function uploadFile(path) { ";
             html_content << "var input = document.createElement('input');";
             html_content << "input.type = 'file';";
             html_content << "input.onchange = function(event) {";
             html_content << "var file = event.target.files[0];";
             html_content << "if (file) {";
-            html_content << "uploadFileRequest(file, file.name, path);"; // Pass file, filename, and path directly to uploadFileRequest
+            html_content << "uploadFileRequest(file, file.name, path);";
             html_content << "}";
             html_content << "};";
-            html_content << "input.click();"; // Simulate click event on hidden file input
+            html_content << "input.click();";
             html_content << "}";
-            html_content << "function uploadFileRequest(file, filename, path) {"; // Accept file, filename, and path as parameters
+            html_content << "function uploadFileRequest(file, filename, path) {";
             html_content << "var formData = new FormData();";
             html_content << "formData.append('filename', filename);";
             html_content << "formData.append('path', path);";
             html_content << "let blobVar = new Blob([file], { type: file.type });";
-            html_content << "formData.append('file', blobVar, file.name);"; // Create a Blob and append file object
-            html_content << "fetch('/upload_file', {";                      // Send POST request to upload_file endpoint
+            html_content << "formData.append('file', blobVar, file.name);";
+
+            // Show the loading indicator
+            html_content << "document.getElementById('loadingIndicator').style.display = 'block';";
+
+            html_content << "fetch('/upload_file', {";
             html_content << "method: 'POST',";
-            html_content << "body: formData"; // Send formData
+            html_content << "body: formData";
             html_content << "})";
             html_content << ".then(response => {";
+            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator
             html_content << "if (response.ok) {";
-            html_content << "window.location.reload(true);"; // Refresh the page after successful upload
+            html_content << "window.location.reload(true);";
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
+            html_content << "response.json().then(data => {";
             html_content << "alert('Failed to upload file: ' + data.error)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
-            html_content << "console.error('Error:', error);"; // Log error to console
+            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator on error
+            html_content << "console.error('Error:', error);";
             html_content << "});";
             html_content << "}";
             html_content << "</script>";
@@ -2396,26 +2405,31 @@ void *handle_connection(void *arg)
             // JavaScript function for deleting a folder
             html_content << "<script>";
             html_content << "function deleteFolder(folderPath) {";
-            html_content << "fetch('/delete_folder', {"; // Send POST request to delete_folder endpoint
+            // Show the loading indicator when the deletion process starts
+            html_content << "document.getElementById('loadingIndicator').style.display = 'block';";
+
+            html_content << "fetch('/delete_folder', {";
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
-            html_content << "'folderPath': folderPath"; // Include folder path in JSON data
+            html_content << "'folderPath': folderPath";
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
+            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator
             html_content << "if (response.ok) {";
-            html_content << "alert('Folder deleted successfully');"; // Show success message
-            html_content << "window.location.reload(true);";         // Refresh the page after successful deletion
+            html_content << "alert('Folder deleted successfully');";
+            html_content << "window.location.reload(true);";
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
+            html_content << "response.json().then(data => {";
             html_content << "alert('Failed to delete folder: ' + data.error)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
-            html_content << "console.error('Error:', error);"; // Log error to console
+            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator on error
+            html_content << "console.error('Error:', error);";
             html_content << "});";
             html_content << "}";
             html_content << "</script>";
