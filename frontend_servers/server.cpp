@@ -773,7 +773,7 @@ void *handle_connection(void *arg)
   int client_fd = *static_cast<int *>(arg);
   delete static_cast<int *>(arg);
   // Receive the request
-  const unsigned int BUFFER_SIZE = 1024 * 8;
+  const unsigned int BUFFER_SIZE = 1024 * 100;
   vector<char> buffer(BUFFER_SIZE);
 
   int fd = create_socket();
@@ -1226,6 +1226,7 @@ void *handle_connection(void *arg)
         std::string username = get_username_from_cookie(cookie, fd);
         if (username.empty())
         {
+          cout << "redirecting from home to login coz no user" << endl;
           // Handle error or redirect if username not found
           redirect(client_fd, "/login");
         }
@@ -2011,7 +2012,8 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);"; // Refresh the page after successful upload
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to upload file: ' + data.error)});";
+            html_content << "alert('Failed to upload file: ' + data.error); window.location.reload(true)});";
+
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2044,7 +2046,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);"; // Refresh the page after successful create folder request
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to create folder: ' + data.error)});";
+            html_content << "alert('Failed to create folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2124,7 +2126,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";         // Refresh the page after successful deletion
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to delete folder: ' + data.error)});";
+            html_content << "alert('Failed to delete folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2152,7 +2154,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";         // Refresh the page after successful renaming
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to rename folder: ' + data.error)});";
+            html_content << "alert('Failed to rename folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2180,7 +2182,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move folder: ' + data.error)});";
+            html_content << "alert('Failed to move folder: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2238,7 +2240,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";       // Refresh the page after successful deletion
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to delete file: ' + data.error)});";
+            html_content << "alert('Failed to delete file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2266,7 +2268,7 @@ void *handle_connection(void *arg)
             html_content << "window.location.reload(true);";     // Refresh the page after successful move
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move file: ' + data.error)});";
+            html_content << "alert('Failed to move file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
@@ -2295,6 +2297,7 @@ void *handle_connection(void *arg)
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
             html_content << "alert('Failed to rename file: ' + data.error)});";
+            html_content << "alert('Failed to rename file: ' + data.error); window.location.reload(true)});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
