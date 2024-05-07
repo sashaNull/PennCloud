@@ -22,6 +22,7 @@
 #include "./backend_communication.h"
 #include "./webmail.h"
 #include "./admin.h"
+#include "./bulletin.h"
 using namespace std;
 
 #define LOAD_BALANCER_IP "127.0.0.1"
@@ -4731,6 +4732,150 @@ void *handle_connection(void *arg)
         }
       }
     }
+
+    // GET: /bulletin
+    else if (html_request_map["uri"] == "/bulletin" && html_request_map["method"] == "GET")
+    {
+      string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
+      }
+      else
+      {
+        // get (bulletin-board items) from backend
+        // render_bulletin_board(uids_list)
+        // parse item uids (uid1, uid2, ....)
+        // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
+        // store as list of BulletinMsg objects
+        // render bulletin board
+      }
+    }
+
+    // GET: /my-bulletins
+    else if (html_request_map["uri"] == "/my-bulletins" && html_request_map["method"] == "GET")
+    {
+      string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
+      }
+      else
+      {
+        // get (username_bulletin items) from backend
+        // render_my_bulletins(uids_list)
+        // parse item uids (uid1, uid2, ....)
+        // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
+        // store as list of BulletinMsg objects
+        // render as list with edit and delete buttons
+        // if click on edit button, /edit-bulletin?title=<title>&msg=<msg>
+        // if click on delete button, /delete-bulletin
+      }
+    }
+
+    // GET: /edit-bulletin?title=<title>&msg=<msg>
+    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "GET")
+    {
+      string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
+      }
+      else
+      {
+        // Get username from cookie
+        string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          map<string, string> params = parse_query_params(html_request_map["uri"]);
+          string title = params["title"];
+          string msg = params["msg"];
+          string response_html = generate_edit_bulletin_form(username, title, msg);
+          send_response(client_fd, 200, "OK", "text/html", response_html);
+        }
+      }
+    }
+
+    // POST: /edit-bulletin?title=<title>&msg=<msg>
+    else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST")
+    {
+      string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        redirect(client_fd, "/login");
+      }
+      else
+      {
+        string username = get_username_from_cookie(cookie, fd);
+        if (username.empty())
+        {
+          redirect(client_fd, "/login");
+        }
+        else
+        {
+          // parse form data: title, msg
+          // owner=username (from cookie)
+          // ts = get_timestamp()
+          // uid = compute_md5_hash(title + msg)
+          // put_bulletin_item_to_backend() :
+          // cput uid into (bullet-board items)
+          // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
+          // cput uid into (username_bulletin items)
+          cout << html_request_map["body"] << endl;
+          map<string, string> form_data = parseQueryString(html_request_map["body"]);
+          for (const auto &pair : form_data)
+          {
+            std::cout << pair.first << ": " << pair.second << std::endl;
+          }
+          string title = form_data["title"];
+          string msg = form_data["msg"];
+          string ts = get_timestamp();
+          string uid = compute_md5_hash(title + msg + ts);
+
+          string encoded_owner = base64_encode(username);
+          string encoded_ts = base64_encode(ts);
+          string encoded_title = base64_encode(title);
+          string encoded_msg = base64_encode(msg);
+
+          int result = put_bulletin_item_to_backend(username, encoded_owner, encoded_ts, encoded_title, encoded_msg, uid, g_map_rowkey_to_server, g_coordinator_addr, fd);
+          if (result == 0)
+          {
+            // Redirect to bulletin board view or confirmation page
+            redirect(client_fd, "/bulletin-board");
+          }
+          else
+          {
+            // Error handling
+            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+          }
+        }
+      }
+    }
+
+    // GET: /delete-bulletin?uid=<uid>
+    else if (html_request_map["uri"].substr(0, 16) == "/delete-bulletin" && html_request_map["method"] == "GET")
+    {
+      string cookie = get_cookie_from_header(request);
+      if (cookie.empty())
+      {
+        // Redirect to login for all other pages
+        redirect(client_fd, "/login");
+      }
+      else
+      {
+        // parse out uid from uri
+        // delete_bulletin_item(username, uid)
+      }
+    }
+
+    // unknown method
     else
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
