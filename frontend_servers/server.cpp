@@ -822,79 +822,21 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         row_key = username + "_" + oldFolderPath + "/" + itemName;
         new_row_key = username + "_" + newFolderPath + "/" + itemName;
 
-        colkey = "content";
-        type = "get";
-        msg_to_send = construct_msg(1, row_key, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-        if (response_code == 1)
-        {
-          cerr << "ERROR in communicating with coordinator" << endl;
-          return;
-        }
-        else if (response_code == 2)
-        {
-          cerr << "ERROR in communicating with backend" << endl;
-          return;
-        }
-        std::cout << "Row key for get: " << row_key << std::endl;
-        std::cout << "Value of get: " << response_value << std::endl;
+        int get_put_response_status = copyChunks(fd, row_key, new_row_key, g_map_rowkey_to_server, g_coordinator_addr);
 
-        if (response_status != 0)
+        if (get_put_response_status != 0)
         {
           // Error handling: send appropriate error response to the client
-          string error_message = "Failed to fetch old file";
+          string error_message = "Failed to create new file path";
           send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-          return; // Stop processing if there's an error
-        }
-        type = "put";
-        msg_to_send = construct_msg(2, new_row_key, colkey, response_value, "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                            response_error_msg, new_row_key, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-        if (response_code == 1)
-        {
-          cerr << "ERROR in communicating with coordinator" << endl;
-          return;
-        }
-        else if (response_code == 2)
-        {
-          cerr << "ERROR in communicating with backend" << endl;
-          return;
-        }
-        std::cout << "New Row key for put: " << new_row_key << std::endl;
-        std::cout << "Value of put: " << response_value << std::endl;
-
-        if (response_status != 0)
-        {
-          // Error handling: send appropriate error response to the client
-          string error_message = "Failed to create new path";
-          send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
-          return; // Stop processing if there's an error
         }
 
         // Delete file content
         string row_key = username + "_" + oldFolderPath + "/" + itemName;
 
-        std::cout << "row key for delete file: " << row_key << std::endl;
-        type = "delete";
-        msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                            response_error_msg, row_key, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-        if (response_code == 1)
-        {
-          cerr << "ERROR in communicating with coordinator" << endl;
-          return;
-        }
-        else if (response_code == 2)
-        {
-          cerr << "ERROR in communicating with backend" << endl;
-          return;
-        }
+        int delete_response_status = delete_file_chunks(fd, row_key, g_map_rowkey_to_server, g_coordinator_addr);
 
-        if (response_status != 0)
+        if (delete_response_status != 0)
         {
           // Error handling: send appropriate error response to the client
           string error_message = "Failed to delete file";
@@ -3705,7 +3647,7 @@ void *handle_connection(void *arg)
 
             if (response_status_get == 0)
             {
-              // file already exists
+              // folder already exists
               string content = "{\"error\":\"Folder with same name already exists in new directory!!\"}";
               send_response(client_fd, 409, "Conflict", "application/json", content);
             }
