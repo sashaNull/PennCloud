@@ -190,4 +190,5 @@ int copyChunks(int fd, const std::string &old_row_key, const std::string &new_ro
         // Error handling
         return get_response_status;
     }
+    return 1;
 }

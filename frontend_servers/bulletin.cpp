@@ -11,6 +11,7 @@ int render_bulletin_board(string uids)
     // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
     // store as list of BulletinMsg objects
     // render bulletin board
+    return 1;
 }
 
 int render_my_bulletins(string uids)
@@ -21,6 +22,7 @@ int render_my_bulletins(string uids)
     // render as list with edit and delete buttons
     // if click on edit button, /edit-bulletin?title=<title>&msg=<msg>
     // if click on delete button, /delete-bulletin
+    return 1;
 }
 
 std::vector<std::string> parse_json_list_to_vector(const std::string &json_list)
@@ -162,6 +164,7 @@ int delete_bulletin_item(string username, string uid)
     // cput new (bullet-board items)
     // cput new (username_bulletin items)
     // delete bulletin/uid owner, timestamp, title, message
+    return 1;
 }
 
 map<string, string> parse_query_params(const string &uri)

@@ -23,6 +23,7 @@
 #include "./webmail.h"
 #include "./admin.h"
 #include "./bulletin.h"
+#include "./drive.h"
 using namespace std;
 
 #define LOAD_BALANCER_IP "127.0.0.1"
@@ -4736,7 +4737,7 @@ void *handle_connection(void *arg)
     // GET: /bulletin
     else if (html_request_map["uri"] == "/bulletin" && html_request_map["method"] == "GET")
     {
-      string cookie = get_cookie_from_header(request);
+      string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
@@ -4756,7 +4757,7 @@ void *handle_connection(void *arg)
     // GET: /my-bulletins
     else if (html_request_map["uri"] == "/my-bulletins" && html_request_map["method"] == "GET")
     {
-      string cookie = get_cookie_from_header(request);
+      string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
@@ -4778,7 +4779,7 @@ void *handle_connection(void *arg)
     // GET: /edit-bulletin?title=<title>&msg=<msg>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "GET")
     {
-      string cookie = get_cookie_from_header(request);
+      string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
@@ -4806,7 +4807,7 @@ void *handle_connection(void *arg)
     // POST: /edit-bulletin?title=<title>&msg=<msg>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST")
     {
-      string cookie = get_cookie_from_header(request);
+      string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
         redirect(client_fd, "/login");
@@ -4862,7 +4863,7 @@ void *handle_connection(void *arg)
     // GET: /delete-bulletin?uid=<uid>
     else if (html_request_map["uri"].substr(0, 16) == "/delete-bulletin" && html_request_map["method"] == "GET")
     {
-      string cookie = get_cookie_from_header(request);
+      string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
         // Redirect to login for all other pages
