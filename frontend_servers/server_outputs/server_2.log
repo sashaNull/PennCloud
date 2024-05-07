@@ -1547,3 +1547,109 @@ Host: 127.0.0.1
 
 Sent response successfully, bytes sent: 105
 Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+Listening...
+GET /status HTTP/1.1
+Host: 127.0.0.1
+
+
+Sent response successfully, bytes sent: 105
+Listening...
+SIGINT received, shutting down.
