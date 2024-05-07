@@ -879,6 +879,13 @@ void *handle_connection(void *arg)
 
     // Decode received message into F_2_B_Message
     F_2_B_Message f2b_message = decode_message(message);
+    // print_message(f2b_message);
+    if (f2b_message.isFromPrimary != 1)
+    {
+      // cout << "UPDATED MESSAGE: " << endl;
+      // print_message(f2b_message);
+      f2b_message.isFromPrimary = 0;
+    }
     F_2_B_Message f2b_message_for_other_server = f2b_message;
 
     if (suspended && f2b_message.type != 6)

@@ -54,6 +54,7 @@ int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, 
         delete_msg.type = 3; // DELETE request
         delete_msg.rowkey = rowkey;
         delete_msg.colkey = "no_chunks";
+        delete_msg.isFromPrimary = 0;
 
         result = send_msg_to_backend(fd, delete_msg, value, status, error_msg, rowkey, "no_chunks", g_map_rowkey_to_server, g_coordinator_addr, "delete");
         if (result != 0 || status != 0)
@@ -82,6 +83,7 @@ int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, 
         delete_msg.type = 3; // DELETE request
         delete_msg.rowkey = rowkey;
         delete_msg.colkey = "content_" + std::to_string(i);
+        delete_msg.isFromPrimary = 0;
 
         result = send_msg_to_backend(fd, delete_msg, value, status, error_msg, rowkey, "content_" + std::to_string(i), g_map_rowkey_to_server, g_coordinator_addr, "delete");
         if (result != 0 || status != 0)
@@ -89,6 +91,7 @@ int delete_file_chunks(int fd, const std::string &rowkey, std::map<std::string, 
             std::cerr << "Failed to delete chunk " << i << ": " << error_msg << std::endl;
             return 1; // Stop and return failure if any deletion fails
         }
+        usleep(1000);
     }
 
     std::cout << "All chunks deleted successfully." << std::endl;
@@ -210,6 +213,7 @@ int copyChunks(int fd, const std::string &old_row_key, const std::string &new_ro
                 // Error handling
                 return get_response_status;
             }
+            usleep(1000);
         }
         cout << "All chunks copied successfully." << endl;
         return 0;
