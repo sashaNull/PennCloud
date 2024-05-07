@@ -72,58 +72,7 @@ Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
 Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
 Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
 [4] New connection
-<<<<<<< HEAD
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
+PGET aa_am Response: -ERR No primary server for this range
 [4] New connection
 PGET ka_km Response: -ERR No primary server for this range
 [4] New connection
@@ -153,583 +102,435 @@ PGET ka_km Response: -ERR No primary server for this range
 [4] New connection
 PGET kn_kz Response: -ERR No primary server for this range
 [4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
 PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
+[4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET pn_pz Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: -ERR No primary server for this range
+[4] New connection
+PGET an_az Response: -ERR No primary server for this range
+[4] New connection
+PGET an_az Response: -ERR No primary server for this range
+[4] New connection
+PGET ba_bm Response: -ERR No primary server for this range
+[4] New connection
+PGET bn_bz Response: -ERR No primary server for this range
+[4] New connection
+PGET ca_cm Response: -ERR No primary server for this range
+[4] New connection
+PGET cn_cz Response: -ERR No primary server for this range
+[4] New connection
+PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: -ERR No primary server for this range
+[4] New connection
+PGET dn_dz Response: -ERR No primary server for this range
+[4] New connection
+PGET ea_em Response: -ERR No primary server for this range
+[4] New connection
+PGET en_ez Response: -ERR No primary server for this range
+[4] New connection
+PGET fa_fm Response: -ERR No primary server for this range
+[4] New connection
+PGET fn_fz Response: -ERR No primary server for this range
+[4] New connection
+PGET ga_gm Response: -ERR No primary server for this range
+[4] New connection
+PGET gn_gz Response: -ERR No primary server for this range
+[4] New connection
+PGET ha_hm Response: -ERR No primary server for this range
+[4] New connection
+PGET hn_hz Response: -ERR No primary server for this range
+[4] New connection
+PGET ia_im Response: -ERR No primary server for this range
 [4] New connection
 PGET qa_qm Response: -ERR No primary server for this range
 [4] New connection
+PGET ba_bm Response: -ERR No primary server for this range
+[4] New connection
+PGET in_iz Response: -ERR No primary server for this range
+[4] New connection
+PGET ja_jm Response: -ERR No primary server for this range
+[4] New connection
+PGET jn_jz Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: -ERR No primary server for this range
+[4] New connection
+PGET ka_km Response: -ERR No primary server for this range
+[4] New connection
+PGET an_az Response: -ERR No primary server for this range
+[4] New connection
+PGET kn_kz Response: -ERR No primary server for this range
+[4] New connection
+PGET ba_bm Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
+PGET bn_bz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET ca_cm Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET cn_cz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
+[4] New connection
+PGET dn_dz Response: -ERR No primary server for this range
+[4] New connection
+PGET qa_qm Response: -ERR No primary server for this range
+[4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
+PGET ea_em Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET pn_pz Response: -ERR No primary server for this range
+[4] New connection
+PGET en_ez Response: -ERR No primary server for this range
+[4] New connection
 PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET ka_km Response: -ERR No primary server for this range
+[4] New connection
+PGET fa_fm Response: -ERR No primary server for this range
+[4] New connection
+PGET kn_kz Response: -ERR No primary server for this range
+[4] New connection
+PGET fn_fz Response: -ERR No primary server for this range
 [4] New connection
 PGET ra_rm Response: -ERR No primary server for this range
 [4] New connection
+PGET ga_gm Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET gn_gz Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
+PGET ha_hm Response: -ERR No primary server for this range
+[4] New connection
 PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET hn_hz Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET ia_im Response: -ERR No primary server for this range
 [4] New connection
 PGET sa_sm Response: -ERR No primary server for this range
 [4] New connection
+PGET in_iz Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
+[4] New connection
+PGET ja_jm Response: -ERR No primary server for this range
+[4] New connection
 PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET jn_jz Response: -ERR No primary server for this range
+[4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET pn_pz Response: -ERR No primary server for this range
+[4] New connection
+PGET ka_km Response: -ERR No primary server for this range
+[4] New connection
+PGET bn_bz Response: -ERR No primary server for this range
+[4] New connection
+PGET ca_cm Response: -ERR No primary server for this range
+[4] New connection
+PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET cn_cz Response: -ERR No primary server for this range
+[4] New connection
+PGET kn_kz Response: -ERR No primary server for this range
 [4] New connection
 PGET ta_tm Response: -ERR No primary server for this range
 [4] New connection
+PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET dn_dz Response: -ERR No primary server for this range
+[4] New connection
 PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
 [4] New connection
 PGET ua_um Response: -ERR No primary server for this range
 [4] New connection
 PGET un_uz Response: -ERR No primary server for this range
 [4] New connection
+PGET ea_em Response: -ERR No primary server for this range
+[4] New connection
 PGET va_vm Response: -ERR No primary server for this range
 [4] New connection
 PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
+PGET en_ez Response: -ERR No primary server for this range
+[4] New connection
 PGET wa_wm Response: -ERR No primary server for this range
 [4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
+PGET fa_fm Response: -ERR No primary server for this range
 [4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
+PGET sa_sm Response: -ERR No primary server for this range
 [4] New connection
 PGET ma_mm Response: -ERR No primary server for this range
 [4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
+PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
 PGET fn_fz Response: -ERR No primary server for this range
 [4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
+PGET sn_sz Response: -ERR No primary server for this range
 [4] New connection
 PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
 PGET mn_mz Response: -ERR No primary server for this range
 [4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
 PGET ga_gm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
 PGET gn_gz Response: -ERR No primary server for this range
 [4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
 PGET ha_hm Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
 [4] New connection
 PGET hn_hz Response: -ERR No primary server for this range
 [4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
 PGET ia_im Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
 [4] New connection
 PGET in_iz Response: -ERR No primary server for this range
 [4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
 PGET ja_jm Response: -ERR No primary server for this range
 [4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
 PGET jn_jz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
 PGET qa_qm Response: -ERR No primary server for this range
 [4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
+PGET an_az Response: -ERR No primary server for this range
 [4] New connection
 PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
 [4] New connection
 PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET ba_bm Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
 [4] New connection
 PGET rn_rz Response: -ERR No primary server for this range
 [4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
+PGET bn_bz Response: -ERR No primary server for this range
 [4] New connection
-PGET oa_om Response: -ERR No primary server for this range
+PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
-PGET na_nm Response: -ERR No primary server for this range
+PGET ca_cm Response: -ERR No primary server for this range
 [4] New connection
-PGET an_az Response: -ERR No primary server for this range
+PGET wa_wm Response: -ERR No primary server for this range
+[4] New connection
+PGET sa_sm Response: -ERR No primary server for this range
+[4] New connection
+PGET cn_cz Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET wn_wz Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET xa_xm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
+[4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET vn_vz Response: -ERR No primary server for this range
+[4] New connection
+PGET dn_dz Response: -ERR No primary server for this range
+[4] New connection
+PGET wa_wm Response: -ERR No primary server for this range
 [4] New connection
 PGET qa_qm Response: -ERR No primary server for this range
 [4] New connection
-PGET on_oz Response: -ERR No primary server for this range
+PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
-PGET an_az Response: -ERR No primary server for this range
+PGET ea_em Response: -ERR No primary server for this range
 [4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
+PGET pn_pz Response: -ERR No primary server for this range
 [4] New connection
 PGET qn_qz Response: -ERR No primary server for this range
 [4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
+PGET xa_xm Response: -ERR No primary server for this range
 [4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
+PGET en_ez Response: -ERR No primary server for this range
 [4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
+PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
 PGET ra_rm Response: -ERR No primary server for this range
 [4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
 PGET fa_fm Response: -ERR No primary server for this range
 [4] New connection
 PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
 PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-=======
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
 [4] New connection
 PGET ka_km Response: -ERR No primary server for this range
 [4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
+PGET rn_rz Response: -ERR No primary server for this range
 [4] New connection
 PGET ga_gm Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
 [4] New connection
 PGET gn_gz Response: -ERR No primary server for this range
 [4] New connection
 PGET kn_kz Response: -ERR No primary server for this range
 [4] New connection
+PGET an_az Response: -ERR No primary server for this range
+[4] New connection
+PGET ba_bm Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET bn_bz Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET ca_cm Response: -ERR No primary server for this range
+[4] New connection
+PGET cn_cz Response: -ERR No primary server for this range
+[4] New connection
+PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET dn_dz Response: -ERR No primary server for this range
+[4] New connection
 PGET ha_hm Response: -ERR No primary server for this range
+[4] New connection
+PGET ea_em Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET en_ez Response: -ERR No primary server for this range
 [4] New connection
 PGET hn_hz Response: -ERR No primary server for this range
 [4] New connection
+PGET fa_fm Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
 PGET ia_im Response: -ERR No primary server for this range
 [4] New connection
+PGET fn_fz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET ga_gm Response: -ERR No primary server for this range
+[4] New connection
 PGET in_iz Response: -ERR No primary server for this range
+[4] New connection
+PGET gn_gz Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET ha_hm Response: -ERR No primary server for this range
+[4] New connection
+PGET ja_jm Response: -ERR No primary server for this range
+[4] New connection
+PGET hn_hz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET ia_im Response: -ERR No primary server for this range
+[4] New connection
+PGET jn_jz Response: -ERR No primary server for this range
+[4] New connection
+PGET in_iz Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
 [4] New connection
 PGET ja_jm Response: -ERR No primary server for this range
 [4] New connection
@@ -747,89 +548,15 @@ PGET ca_cm Response: -ERR No primary server for this range
 [4] New connection
 PGET cn_cz Response: -ERR No primary server for this range
 [4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
 PGET oa_om Response: -ERR No primary server for this range
 [4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
+PGET sa_sm Response: -ERR No primary server for this range
 [4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
+PGET sn_sz Response: -ERR No primary server for this range
 [4] New connection
 PGET da_dm Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
 [4] New connection
 PGET dn_dz Response: -ERR No primary server for this range
 [4] New connection
@@ -857,108 +584,6 @@ PGET ja_jm Response: -ERR No primary server for this range
 [4] New connection
 PGET jn_jz Response: -ERR No primary server for this range
 [4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
 PGET tn_tz Response: -ERR No primary server for this range
 [4] New connection
 PGET ua_um Response: -ERR No primary server for this range
@@ -969,13 +594,7 @@ PGET va_vm Response: -ERR No primary server for this range
 [4] New connection
 PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
 PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
 PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
@@ -983,334 +602,99 @@ PGET xa_xm Response: -ERR No primary server for this range
 [4] New connection
 PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
 PGET ya_ym Response: -ERR No primary server for this range
 [4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
 PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
 [4] New connection
 PGET on_oz Response: -ERR No primary server for this range
 [4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
 PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
 [4] New connection
 PGET pa_pm Response: -ERR No primary server for this range
 [4] New connection
 PGET pn_pz Response: -ERR No primary server for this range
 [4] New connection
-PGET aa_am Response: -ERR No primary server for this range
+PGET za_zm Response: -ERR No primary server for this range
 [4] New connection
-PGET an_az Response: -ERR No primary server for this range
+PGET qn_qz Response: -ERR No primary server for this range
 [4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
+PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
+PGET ra_rm Response: -ERR No primary server for this range
 [4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
+PGET rn_rz Response: -ERR No primary server for this range
 [4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
+PGET sa_sm Response: -ERR No primary server for this range
 [4] New connection
-PGET da_dm Response: -ERR No primary server for this range
+PGET sn_sz Response: -ERR No primary server for this range
 [4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
+PGET ta_tm Response: -ERR No primary server for this range
 [4] New connection
-PGET ea_em Response: -ERR No primary server for this range
+PGET tn_tz Response: -ERR No primary server for this range
 [4] New connection
-PGET en_ez Response: -ERR No primary server for this range
+PGET ua_um Response: -ERR No primary server for this range
 [4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
+PGET un_uz Response: -ERR No primary server for this range
 [4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
+PGET va_vm Response: -ERR No primary server for this range
 [4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
+PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
+PGET wa_wm Response: -ERR No primary server for this range
 [4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
+PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
+PGET xa_xm Response: -ERR No primary server for this range
 [4] New connection
-PGET ia_im Response: -ERR No primary server for this range
+PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
-PGET in_iz Response: -ERR No primary server for this range
+PGET ya_ym Response: -ERR No primary server for this range
 [4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
+PGET yn_yz Response: -ERR No primary server for this range
 [4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
+PGET za_zm Response: -ERR No primary server for this range
 [4] New connection
-PGET aa_am Response: -ERR No primary server for this range
+PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
-PGET an_az Response: -ERR No primary server for this range
+PGET qa_qm Response: -ERR No primary server for this range
 [4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
+PGET qn_qz Response: -ERR No primary server for this range
 [4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
+PGET ra_rm Response: -ERR No primary server for this range
 [4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
+PGET rn_rz Response: -ERR No primary server for this range
 [4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
+PGET sa_sm Response: -ERR No primary server for this range
 [4] New connection
-PGET da_dm Response: -ERR No primary server for this range
+PGET sn_sz Response: -ERR No primary server for this range
 [4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
+PGET ta_tm Response: -ERR No primary server for this range
 [4] New connection
-PGET ea_em Response: -ERR No primary server for this range
+PGET tn_tz Response: -ERR No primary server for this range
 [4] New connection
-PGET en_ez Response: -ERR No primary server for this range
+PGET ua_um Response: -ERR No primary server for this range
 [4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
+PGET un_uz Response: -ERR No primary server for this range
 [4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
+PGET va_vm Response: -ERR No primary server for this range
 [4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
+PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
+PGET wa_wm Response: -ERR No primary server for this range
 [4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
+PGET wn_wz Response: -ERR No primary server for this range
 [4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
+PGET xa_xm Response: -ERR No primary server for this range
 [4] New connection
-PGET ia_im Response: -ERR No primary server for this range
+PGET xn_xz Response: -ERR No primary server for this range
 [4] New connection
-PGET in_iz Response: -ERR No primary server for this range
+PGET ya_ym Response: -ERR No primary server for this range
 [4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
+PGET yn_yz Response: -ERR No primary server for this range
 [4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
 PGET aa_am Response: -ERR No primary server for this range
 Server 127.0.0.1:6000 is up.
@@ -1492,7 +876,6 @@ Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
 [4] New connection
-<<<<<<< HEAD
 PGET aa_am Response: +OK 127.0.0.1:6000
 Server 127.0.0.1:6000 is up.
 [4] New connection
@@ -1564,3146 +947,3 @@ Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
 Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
 Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-=======
-c_e
-Got request: cookie Gave Response: +OK RESP 127.0.0.1:6000
-
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-<<<<<<< HEAD
-c_e
-Got request: cookie Gave Response: +OK RESP 127.0.0.1:6002
-
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-<<<<<<< HEAD
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-<<<<<<< HEAD
-k_m
-Got request: musk_info Gave Response: +OK RESP 127.0.0.1:6005
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-k_m
-Got request: musk_email Gave Response: +OK RESP 127.0.0.1:6003
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-k_m
-Got request: musk_drive Gave Response: +OK RESP 127.0.0.1:6003
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-<<<<<<< HEAD
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET cn_cz Response: +OK 127.0.0.1:6000
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-<<<<<<< HEAD
-k_m
-Got request: musk_drive/hw1 Gave Response: +OK RESP 127.0.0.1:6003
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-<<<<<<< HEAD
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-<<<<<<< HEAD
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-k_m
-Got request: musk_drive/jpeg-optimizer_dog.jpeg Gave Response: +OK RESP 127.0.0.1:6003
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-<<<<<<< HEAD
-=======
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-<<<<<<< HEAD
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-k_m
-Got request: musk_drive/hw1/jpeg-optimizer_dog.jpeg Gave Response: +OK RESP 127.0.0.1:6005
-
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET mn_mz Response: +OK 127.0.0.1:6003
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6005 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6006 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6007 is up.
-[4] New connection
-PGET ta_tm Response: +OK 127.0.0.1:6006
-Server 127.0.0.1:6008 is up.
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6000 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6001 is up.
-[4] New connection
-PGET aa_am Response: +OK 127.0.0.1:6000
-Server 127.0.0.1:6002 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6003 is up.
-[4] New connection
-PGET ka_km Response: +OK 127.0.0.1:6003
-Server 127.0.0.1:6004 is up.
-=======
->>>>>>> ede2c005f530661f02445442b9b04ebc2f848d7c
