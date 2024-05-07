@@ -1056,6 +1056,34 @@ void *handle_connection(void *arg)
   int fd = create_socket();
 
   string colkey, rowkey, type;
+
+  string bulletin_board_string, get_response_error_msg;
+  F_2_B_Message msg_to_send;
+  int get_response_status;
+  rowkey = "bulletin-board";
+  colkey = "items";
+  type = "get";
+  msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+  int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                          get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                          g_coordinator_addr, type);
+  if (response_code == 1) {
+      cerr << "ERROR in communicating with coordinator" << endl;
+  } else if (response_code == 2) {
+      cerr << "ERROR in communicating with backend" << endl;
+  }
+  if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist") {
+    type = "put";
+    msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
+    int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
+                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+    if (response_code == 1) {
+        cerr << "ERROR in communicating with coordinator" << endl;
+    } else if (response_code == 2) {
+        cerr << "ERROR in communicating with backend" << endl;
+    }
+  }
   // Keep listening for requests
   while (true)
   {
@@ -1363,6 +1391,23 @@ void *handle_connection(void *arg)
         rowkey = username + "_drive";
         colkey = "items";
         msg_to_send = construct_msg(2, username + "_drive", "items", "[]", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
+
+        rowkey = username + "_bulletin";
+        colkey = "items";
+        msg_to_send = construct_msg(2,rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
@@ -1903,7 +1948,7 @@ void *handle_connection(void *arg)
       if (cookie.empty())
       {
         // Redirect to login for all other pages
-        redirect(client_fd, "http://" + g_serveraddr_str + "/login");
+        redirect(client_fd, "/login");
       }
       else
       {
@@ -4746,11 +4791,28 @@ void *handle_connection(void *arg)
       else
       {
         // get (bulletin-board items) from backend
-        // render_bulletin_board(uids_list)
-        // parse item uids (uid1, uid2, ....)
-        // for each uid, fetch (bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
-        // store as list of BulletinMsg objects
-        // render bulletin board
+        string bulletin_board_str, response_error_msg;
+        int response_status, response_code;
+        rowkey = "bulletin-board";
+        colkey = "items";
+        type = "get";
+        F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status,
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
+        vector<BulletinMsg> bulletin_board = retrieve_bulletin_board(fd, bulletin_board_str, g_map_rowkey_to_server, g_coordinator_addr); 
+        string html_content = construct_bulletin_board_html(bulletin_board);
+        send_response(client_fd, 200, "OK", "text/html", html_content);
       }
     }
 
@@ -4765,18 +4827,34 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // get (username_bulletin items) from backend
-        // render_my_bulletins(uids_list)
-        // parse item uids (uid1, uid2, ....)
-        // for each uid, fetch (bulletin/uid timestamp, bulletin/uid title, bulletin/uid message)
-        // store as list of BulletinMsg objects
-        // render as list with edit and delete buttons
-        // if click on edit button, /edit-bulletin?title=<title>&msg=<msg>
-        // if click on delete button, /delete-bulletin
+        string username = get_username_from_cookie(cookie, fd);
+
+        string my_bulletin_str, response_error_msg;
+        int response_status, response_code;
+        rowkey = username + "_bulletin";
+        colkey = "items";
+        type = "get";
+        F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        response_code = send_msg_to_backend(fd, msg_to_send, my_bulletin_str, response_status,
+                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+          continue;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+          continue;
+        }
+        vector<BulletinMsg> my_bulletin = retrieve_my_bulletin(fd, my_bulletin_str, g_map_rowkey_to_server, g_coordinator_addr);  
+        string html_content = construct_my_bulletins_html(my_bulletin);
+        send_response(client_fd, 200, "OK", "text/html", html_content);
       }
     }
 
-    // GET: /edit-bulletin?title=<title>&msg=<msg>
+    // GET: /edit-bulletin?uid=<uid>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "GET")
     {
       string cookie = get_cookie_from_header(request_header);
@@ -4795,16 +4873,23 @@ void *handle_connection(void *arg)
         }
         else
         {
-          map<string, string> params = parse_query_params(html_request_map["uri"]);
-          string title = params["title"];
-          string msg = params["msg"];
-          string response_html = generate_edit_bulletin_form(username, title, msg);
+          string prefill_title = "";
+          string prefill_msg = "";
+          if (html_request_map["uri"] != "/edit-bulletin") 
+          {
+            string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];
+            BulletinMsg msg = retrieve_bulletin_msg(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+            prefill_title = msg.title;
+            prefill_msg = msg.message;
+          }
+
+          string response_html = construct_edit_bulletin_html(prefill_title, prefill_msg);
           send_response(client_fd, 200, "OK", "text/html", response_html);
         }
       }
     }
 
-    // POST: /edit-bulletin?title=<title>&msg=<msg>
+    // POST: /edit-bulletin?uid=<uid>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST")
     {
       string cookie = get_cookie_from_header(request_header);
@@ -4821,22 +4906,10 @@ void *handle_connection(void *arg)
         }
         else
         {
-          // parse form data: title, msg
-          // owner=username (from cookie)
-          // ts = get_timestamp()
-          // uid = compute_md5_hash(title + msg)
-          // put_bulletin_item_to_backend() :
-          // cput uid into (bullet-board items)
-          // put bulletin/uid owner, bulletin/uid timestamp, bulletin/uid title, bulletin/uid message
-          // cput uid into (username_bulletin items)
-          cout << html_request_map["body"] << endl;
-          map<string, string> form_data = parseQueryString(html_request_map["body"]);
-          for (const auto &pair : form_data)
-          {
-            std::cout << pair.first << ": " << pair.second << std::endl;
-          }
+          map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
+
           string title = form_data["title"];
-          string msg = form_data["msg"];
+          string msg = form_data["message"];
           string ts = get_timestamp();
           string uid = compute_md5_hash(title + msg + ts);
 
@@ -4844,18 +4917,31 @@ void *handle_connection(void *arg)
           string encoded_ts = base64_encode(ts);
           string encoded_title = base64_encode(title);
           string encoded_msg = base64_encode(msg);
-
-          int result = put_bulletin_item_to_backend(username, encoded_owner, encoded_ts, encoded_title, encoded_msg, uid, g_map_rowkey_to_server, g_coordinator_addr, fd);
-          if (result == 0)
-          {
-            // Redirect to bulletin board view or confirmation page
-            redirect(client_fd, "/bulletin-board");
-          }
-          else
-          {
-            // Error handling
+          int result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
+                                                    uid, g_map_rowkey_to_server, g_coordinator_addr);
+          if (result != 0) {
+            cerr << "ERROR in putting bulletin item to backend" << endl;
             send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+            continue;
           }
+          result = add_to_my_bulletins(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
+          if (result != 0)
+          {
+            cerr << "ERROR in putting bulletin item to my bulletins" << endl;
+            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+            continue;
+          }
+
+          result = add_to_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+          if (result != 0)
+          {
+            cerr << "ERROR in putting bulletin item to my bulletins" << endl;
+            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+            continue;
+          }
+
+          string redirect_to = "/my-bulletins";
+          redirect(client_fd, redirect_to);
         }
       }
     }
@@ -4871,8 +4957,32 @@ void *handle_connection(void *arg)
       }
       else
       {
+        string username = get_username_from_cookie(cookie, fd);
         // parse out uid from uri
-        // delete_bulletin_item(username, uid)
+        string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];
+        int result = delete_in_my_bulletin(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
+        if (result != 0)
+        {
+          cerr << "ERROR in deleting bulletin item from my bulletins" << endl;
+          send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to delete bulletin.");
+          continue;
+        }
+        result = delete_in_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+        if (result != 0)
+        {
+          cerr << "ERROR in deleting bulletin item from bulletin board" << endl;
+          send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to delete bulletin.");
+          continue;
+        }
+        result = delete_bulletin_item_from_backend(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+        if (result != 0)
+        {
+          cerr << "ERROR in deleting bulletin item from backend" << endl;
+          send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to delete bulletin.");
+          continue;
+        }
+        string redirect_to = "/my-bulletins";
+        redirect(client_fd, redirect_to);
       }
     }
 
