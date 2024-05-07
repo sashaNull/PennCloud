@@ -145,7 +145,8 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << "<!DOCTYPE html><html><head><title>Admin - Server Status</title>";
     html << "<style>";
     html << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525}";
-    html << "h1, h2 { text-align: left; }";
+    html << "h1{ text-align: center; }";
+    html << "h2{ text-align: left; }";
     html << ".server-grid { display: flex; flex-wrap: wrap; justify-content: space-around; }";
     html << ".server-card-1 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 100px;  flex-direction: column; justify-content: center; align-items: center;}";
     html << ".server-card-2 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 150px; flex-direction: column; justify-content: center; align-items: center;}";
@@ -157,7 +158,13 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << ".inactiveStatus { color: red; margin: 10px; font-weight: bold;}";
     html << "button { margin: 0 auto; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; }";
     html << "button:hover { opacity: 0.8; }";
+    html << ".button-bar { display: flex; justify-content: space-between; margin-bottom: 20px; }"; // Flex container for buttons
+    html << ".new-button button { background-color: #161637; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }";
     html << "</style></head><body>";
+    html << "<div class='button-bar'>";                                                                     // Flex container for buttons
+    html << "<div class = 'new-button'><button onclick=\"location.href='/home';\">Home</button></div>";     // Home button
+    html << "<div class = 'new-button'><button onclick=\"location.href='/logout';\">Logout</button></div>"; // Logout button
+    html << "</div>";
     html << "<h1>Server Status</h1>";
 
     // Frontend Servers
@@ -283,9 +290,16 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     html << "th { background-color: #161637; color: white; }";
     html << "tr:nth-child(even) { background-color: #e9e9e9; }";
     html << "tr:nth-child(odd) { background-color: #d1d1d1; }";
-    html << "tr:hover { background-color: #ffffff; }";                                                                   // Adding hover effect to rows
-    html << "div.scrollable { max-width: 300px; word-wrap: break-word; max-height: 100px; overflow: auto; width: 100%}"; // Ensure the value wraps within the cell
+    html << "tr:hover { background-color: #ffffff; }";
+    html << "div.scrollable { max-width: 300px; word-wrap: break-word; max-height: 100px; overflow: auto; width: 100%}";
+    html << ".button-bar { display: flex; justify-content: space-between; margin-bottom: 20px; }"; // Flex container for buttons
+    html << "button { background-color: #161637; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }";
+    html << "button:hover { background-color: #27274a; }";
     html << "</style></head><body>";
+    html << "<div class='button-bar'>";                                     // Flex container for buttons
+    html << "<button onclick=\"location.href='/home';\">Home</button>";     // Home button
+    html << "<button onclick=\"location.href='/logout';\">Logout</button>"; // Logout button
+    html << "</div>";
     html << "<h2>Data from Server " << server_ip << ":" << server_port << "</h2>";
     html << "<table>";
     html << "<tr><th>Row Key</th><th>Column Key</th><th>Value</th></tr>";
