@@ -62,8 +62,13 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
   F_2_B_Message msg_to_return;
   sockaddr_in addr = get_socket_address(addr_str);
   int new_fd = create_socket();
-  connect(new_fd, (struct sockaddr *)&addr,
-          sizeof(addr));
+  if (connect(new_fd, (struct sockaddr *)&addr,
+              sizeof(addr)) < 0)
+  {
+    cerr << "Connection to Backend failed." << endl;
+    close(new_fd);
+    return {};
+  }
   string to_send = encode_message(msg);
   // cout << "to send: " << to_send << endl;
 
@@ -132,8 +137,14 @@ F_2_B_Message construct_msg(int type, const std::string &rowkey, const std::stri
 std::string ask_coordinator(sockaddr_in coordinator_addr, const std::string &rowkey, const std::string &type)
 {
   int fd = create_socket();
-  connect(fd, (struct sockaddr *)&coordinator_addr,
-          sizeof(coordinator_addr));
+
+  if (connect(fd, (struct sockaddr *)&coordinator_addr,
+              sizeof(coordinator_addr)) < 0)
+  {
+    cerr << "Connection to Coordinator failed." << endl;
+    close(fd);
+    return {};
+  }
   cout << "connected to coordinator" << endl;
   // From Frontend: GET rowname type
   string to_send = "GET " + rowkey + " " + type + "\r\n";
