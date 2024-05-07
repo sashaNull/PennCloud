@@ -4854,7 +4854,7 @@ void *handle_connection(void *arg)
       }
     }
 
-    // GET: /edit-bulletin?uid=<uid>
+    // GET: /edit-bulletin?mode=new&uid=new    OR /edit-bulletin?mode=edit&uid=<uid>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "GET")
     {
       string cookie = get_cookie_from_header(request_header);
@@ -4875,21 +4875,21 @@ void *handle_connection(void *arg)
         {
           string prefill_title = "";
           string prefill_msg = "";
-          if (html_request_map["uri"] != "/edit-bulletin") 
-          {
-            string uid = split(split(html_request_map["uri"], "?")[1], "=")[1];
+          string mode = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
+          string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
+          if (mode != "new") {
             BulletinMsg msg = retrieve_bulletin_msg(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
             prefill_title = msg.title;
             prefill_msg = msg.message;
           }
 
-          string response_html = construct_edit_bulletin_html(prefill_title, prefill_msg);
+          string response_html = construct_edit_bulletin_html(uid, mode, prefill_title, prefill_msg);
           send_response(client_fd, 200, "OK", "text/html", response_html);
         }
       }
     }
 
-    // POST: /edit-bulletin?uid=<uid>
+    // POST: /edit-bulletin?mode=<mode>&uid=<uid>
     else if (html_request_map["uri"].substr(0, 14) == "/edit-bulletin" && html_request_map["method"] == "POST")
     {
       string cookie = get_cookie_from_header(request_header);
@@ -4907,37 +4907,64 @@ void *handle_connection(void *arg)
         else
         {
           map<string, string> form_data = parse_json_string_to_map(html_request_map["body"]);
+          string mode = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
+          string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
 
           string title = form_data["title"];
           string msg = form_data["message"];
           string ts = get_timestamp();
-          string uid = compute_md5_hash(title + msg + ts);
-
           string encoded_owner = base64_encode(username);
           string encoded_ts = base64_encode(ts);
           string encoded_title = base64_encode(title);
           string encoded_msg = base64_encode(msg);
-          int result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
-                                                    uid, g_map_rowkey_to_server, g_coordinator_addr);
-          if (result != 0) {
-            cerr << "ERROR in putting bulletin item to backend" << endl;
-            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
-            continue;
-          }
-          result = add_to_my_bulletins(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
-          if (result != 0)
-          {
-            cerr << "ERROR in putting bulletin item to my bulletins" << endl;
-            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
-            continue;
-          }
 
-          result = add_to_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
-          if (result != 0)
-          {
-            cerr << "ERROR in putting bulletin item to my bulletins" << endl;
-            send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
-            continue;
+          int result;
+          if (mode == "edit") {
+            // editing existing message
+            result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
+                                                  uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0) {
+              cerr << "ERROR in putting bulletin item to backend" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
+            result = update_to_my_bulletins(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0) {
+              cerr << "ERROR in putting bulletin item to backend" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
+            result = update_to_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0) {
+              cerr << "ERROR in putting bulletin item to backend" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
+          } else {
+            uid = compute_md5_hash(title + msg + ts);
+            result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
+                                                    uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0) {
+              cerr << "ERROR in putting bulletin item to backend" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
+
+            result = add_to_my_bulletins(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0)
+            {
+              cerr << "ERROR in putting bulletin item to my bulletins" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
+
+            result = add_to_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0)
+            {
+              cerr << "ERROR in putting bulletin item to my bulletins" << endl;
+              send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
+              continue;
+            }
           }
 
           string redirect_to = "/my-bulletins";

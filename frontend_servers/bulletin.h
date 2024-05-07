@@ -43,9 +43,13 @@ std::string construct_my_bulletins_html(std::vector<BulletinMsg> msgs);
 
 int add_to_my_bulletins(int fd, const std::string &username, const std::string &uid, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
+int update_to_my_bulletins(int fd, const std::string &username, const std::string &uid, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+
 int put_bulletin_item_to_backend(const std::string &encoded_owner, const std::string &encoded_ts, const std::string &encoded_title, const std::string &encoded_msg, const std::string &uid,std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 int add_to_bulletin_board(int fd, const std::string &uid,std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
+
+int update_to_bulletin_board(int fd, const std::string &uid,std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
 
 std::string delete_uid_from_string(const std::string& original, const std::string& to_remove, const std::string& delimiter);
@@ -57,4 +61,4 @@ int delete_in_bulletin_board(int fd, const std::string &uid, std::map<std::strin
 
 int delete_bulletin_item_from_backend(int fd, const std::string &uid, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
-std::string construct_edit_bulletin_html(const std::string &prefill_title, const std::string &prefill_message);
+std::string construct_edit_bulletin_html(const std::string &uid, const std::string &mode, const std::string &prefill_title, const std::string &prefill_message);
