@@ -7,13 +7,14 @@ if [ "$#" -ne 1 ]; then
 fi
 
 n=$1
-
+sleep 0.5
 # Compile the server
 make server
-
+sleep 0.5
 # Start server instances
 for ((i=0; i<n; i++))
 do
     ./server server_config.txt $i -v &> "./server_outputs/server_$i.log" &
     echo "Server $i started, outputting to server_$i.log"
+    sleep 0.5
 done

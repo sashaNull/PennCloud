@@ -65,7 +65,7 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
   connect(new_fd, (struct sockaddr *)&addr,
           sizeof(addr));
   string to_send = encode_message(msg);
-  cout << "to send: " << to_send << endl;
+  // cout << "to send: " << to_send << endl;
 
   send_message(new_fd, to_send);
   // Receive response from the server

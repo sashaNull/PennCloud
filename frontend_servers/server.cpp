@@ -270,7 +270,7 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
     cout << "ITERATION: " << i << endl;
     cout << "BUFFER LENGTH: " << bytes_received << endl;
     cout << "LENGTH AFTER TURNING TO A STRING: " << string(buffer, bytes_received).size() << endl;
-    cout << "BUFFER: " << value << endl;
+    // cout << "BUFFER: " << value << endl;
     value = base64_encode(value);
 
     cout << "LENGTH AFTER TURNING TO BASE64: " << value.size() << endl;
@@ -754,7 +754,7 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         std::cout << "Row key for get: " << row_key << std::endl;
-        std::cout << "Value of get: " << response_value << std::endl;
+        // std::cout << "Value of get: " << response_value << std::endl;
 
         if (response_status != 0)
         {
@@ -780,7 +780,7 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         std::cout << "New Row key for put: " << new_row_key << std::endl;
-        std::cout << "Value of put: " << response_value << std::endl;
+        // std::cout << "Value of put: " << response_value << std::endl;
 
         if (response_status != 0)
         {
@@ -996,7 +996,7 @@ void *handle_connection(void *arg)
       break;
     }
 
-    cout << request_header << endl;
+    // cout << request_header << endl;
     unordered_map<string, string> html_request_map = parse_http_header(request_header);
 
     if (html_request_map["method"] != "POST" || html_request_map["uri"] != "/upload_file")
@@ -3054,7 +3054,7 @@ void *handle_connection(void *arg)
                 continue;
               }
 
-              cout << "RESPONSE: " << response_value << endl;
+              // cout << "RESPONSE: " << response_value << endl;
               cout << "content_" << i << ": " << response_value.size() << endl;
               string decoded_value = base64_decode(response_value);
               cout << "DECODED LENGTH: " << decoded_value.size() << endl;
@@ -3214,7 +3214,7 @@ void *handle_connection(void *arg)
                   }
                   newValue += "]";
 
-                  std::cout << "New value after deletion in parent: " << newValue << std::endl;
+                  // std::cout << "New value after deletion in parent: " << newValue << std::endl;
                 }
 
                 // CPUT the parent folder
@@ -3502,7 +3502,7 @@ void *handle_connection(void *arg)
                     }
                     newValue += "]";
 
-                    std::cout << "New value after deletion in parent: " << newValue << std::endl;
+                    // std::cout << "New value after deletion in parent: " << newValue << std::endl;
                   }
                   F_2_B_Message msg_to_send_cput;
                   string response_value_cput, response_error_msg_cput;

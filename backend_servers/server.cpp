@@ -108,6 +108,7 @@ void update_primary(const string &range)
   send(sock, request.c_str(), request.length(), 0);
   read(sock, buffer, MAX_BUFFER_SIZE);
   string response(buffer);
+  cout << response;
 
   // Parse response
   if (response.substr(0, 3) == "+OK")
