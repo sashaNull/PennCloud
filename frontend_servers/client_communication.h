@@ -13,7 +13,7 @@
 
 void send_response(int client_fd, int status_code, const std::string &status_message, const std::string &content_type, const std::string &body, const std::string &cookie = "");
 
-std::unordered_map<std::string, std::string> parse_http_request(const std::string &request);
+std::unordered_map<std::string, std::string> parse_http_header(const std::string &request);
 
 std::unordered_map<std::string, std::string> load_html_files();
 

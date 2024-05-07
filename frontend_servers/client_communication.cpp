@@ -27,12 +27,11 @@ void send_response(int client_fd, int status_code, const std::string &status_mes
     }
 }
 
-unordered_map<string, string> parse_http_request(const string &request)
+unordered_map<string, string> parse_http_header(const string &request)
 {
     istringstream request_stream(request);
     string request_line;
     getline(request_stream, request_line);
-    // cout << "Request Line: " << request_line << endl;
 
     istringstream request_line_stream(request_line);
     string method, uri, http_version;
@@ -61,18 +60,27 @@ unordered_map<string, string> parse_http_request(const string &request)
         }
     }
 
-    // Parse body
-    string body = string(istreambuf_iterator<char>(request_stream), {});
 
     // Adding headers to the result
     for (const auto &header : headers)
     {
         result["header_" + header.first] = header.second;
     }
+    
+    // cout << "METHOD: " << result["method"] << endl;
+    // cout << "URI: " << result["uri"] << endl;
+    // cout << "Content-Length: " << result["header_Content-Length"] << endl;
 
-    result["body"] = body;
+    // if (result["method"] == "POST" && result["uri"] == "/upload_file")
+    // {
+    //     cout << "End of parse" << endl;
+    //     return result;
+        // }
 
-    cout << "End of parse" << endl;
+    // Parse body
+    // string body = string(istreambuf_iterator<char>(request_stream), {});
+    // result["body"] = body;
+    // cout << "End of parse" << endl;
     return result;
 }
 
