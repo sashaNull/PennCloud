@@ -201,7 +201,6 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
     for (const auto &r : recipients)
     {
         cout << "recipient: " << r << endl;
-    {   
         if (split(r, "@")[1] == "localhost")
         {
             to_return[0].push_back(split(r, "@")[0]);
@@ -785,9 +784,11 @@ int delete_email(const string &username, const string &uid,
 //     return nullptr;
 // }
 
-void send_smtp_command(int fd, const char* cmd) {
+void send_smtp_command(int fd, const char *cmd)
+{
     std::cout << "Sending SMTP command: " << cmd;
-    if (send(fd, cmd, strlen(cmd), 0) <= 0) {
+    if (send(fd, cmd, strlen(cmd), 0) <= 0)
+    {
         perror("Failed to send command");
         throw std::runtime_error("Failed to send command");
     }
@@ -862,7 +863,8 @@ void *smtp_client(void *arg)
         for (res = result; res != NULL; res = res->ai_next)
         {
             int fd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
-            if (fd == -1) continue;
+            if (fd == -1)
+                continue;
 
             ((struct sockaddr_in *)res->ai_addr)->sin_port = htons(25);
 
