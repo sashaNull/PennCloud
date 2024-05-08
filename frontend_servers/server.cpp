@@ -4800,11 +4800,11 @@ void *handle_connection(void *arg)
         }
         // get (bulletin-board items) from backend
         string bulletin_board_str, response_error_msg;
-        int response_status, response_code;
+        int response_status;
         rowkey = "bulletin-board";
         colkey = "items";
         type = "get";
-        F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status,
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
