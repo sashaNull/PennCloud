@@ -982,33 +982,6 @@ void *handle_connection(void *arg)
 
   string colkey, rowkey, type;
 
-  string bulletin_board_string, get_response_error_msg;
-  F_2_B_Message msg_to_send;
-  int get_response_status;
-  rowkey = "bulletin-board";
-  colkey = "items";
-  type = "get";
-  msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-  int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
-                                          get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                          g_coordinator_addr, type);
-  if (response_code == 1) {
-      cerr << "ERROR in communicating with coordinator" << endl;
-  } else if (response_code == 2) {
-      cerr << "ERROR in communicating with backend" << endl;
-  }
-  if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist") {
-    type = "put";
-    msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
-    int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status, 
-                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
-        cerr << "ERROR in communicating with coordinator" << endl;
-    } else if (response_code == 2) {
-        cerr << "ERROR in communicating with backend" << endl;
-    }
-  }
   // Keep listening for requests
   while (true)
   {
@@ -1332,7 +1305,7 @@ void *handle_connection(void *arg)
 
         rowkey = username + "_bulletin";
         colkey = "items";
-        msg_to_send = construct_msg(2,rowkey, colkey, "", "", "", 0);
+        msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
@@ -2980,7 +2953,7 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-            
+
             std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
             if (get_response_status == 0)
@@ -3011,66 +2984,25 @@ void *handle_connection(void *arg)
                 cerr << "ERROR in communicating with backend" << endl;
                 continue;
               }
-            
+
               bool file_transfer_successfully = file_chunk_storing(client_fd, fd, content_length, file_row_key, boundary);
 
               if (file_transfer_successfully)
               {
                 // Success response
-                              // Loop till success: GET the parent folder
-              bool success = false;
-              string response_value, response_error_msg;
-              int response_code, response_status;
+                // Loop till success: GET the parent folder
+                bool success = false;
+                string response_value, response_error_msg;
+                int response_code, response_status;
 
-              while (!success)
-              {
-                // GET request for the parent folder
-                type = "get";
-                colkey = "items";
-                msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
-                response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
-                                                    response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
-                                                    g_coordinator_addr, type);
-                if (response_code == 1)
+                while (!success)
                 {
-                  cerr << "ERROR in communicating with coordinator" << endl;
-                  continue;
-                }
-                else if (response_code == 2)
-                {
-                  cerr << "ERROR in communicating with backend" << endl;
-                  continue;
-                }
-
-                if (response_status == 0)
-                {
-                  std::string newValue;
-
-                  if (response_value == "[]")
-                  {
-                    // If the list is empty, simply add the new value with square brackets
-                    newValue = "[F@" + filename + "]";
-                  }
-                  else
-                  {
-                    // Find the position of the last closing bracket
-                    size_t last_bracket_pos = response_value.find_last_of(']');
-
-                    // Extract the substring up to the last closing bracket (excluding)
-                    std::string existing_values = response_value.substr(0, last_bracket_pos);
-
-                    // Concatenate the new value with a comma
-                    newValue = existing_values + ",F@" + filename + "]";
-                  }
-
-                  // CPUT the parent folder
-                  string cput_response_value, cput_response_error_msg;
-                  int cput_response_status;
-                  type = "cput";
+                  // GET request for the parent folder
+                  type = "get";
                   colkey = "items";
-                  msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
-                  response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
-                                                      cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                  msg_to_send = construct_msg(1, parentRowKey, colkey, "", "", "", 0);
+                  response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                                      response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
                                                       g_coordinator_addr, type);
                   if (response_code == 1)
                   {
@@ -3083,31 +3015,71 @@ void *handle_connection(void *arg)
                     continue;
                   }
 
-                  if (cput_response_status == 0)
+                  if (response_status == 0)
                   {
-                    success = true;
-                  }
-                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
-                  {
-                    // Parent folder does not exist - Construct and send the HTTP response
-                    string content = "{\"error\":\"Parent folder does not exist\"}";
-                    send_response(client_fd, 404, "Not Found", "application/json", content);
-                  }
-                  else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
-                  {
-                    // Old value is wrong - Construct and send the HTTP response
-                    string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
-                    send_response(client_fd, 401, "Unauthorized", "application/json", content);
-                  }
-                  else
-                  {
-                    // Error in fetching user - Construct and send the HTTP response
-                    string content = "{\"error\":\"Error fetching user\"}";
-                    send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                    std::string newValue;
+
+                    if (response_value == "[]")
+                    {
+                      // If the list is empty, simply add the new value with square brackets
+                      newValue = "[F@" + filename + "]";
+                    }
+                    else
+                    {
+                      // Find the position of the last closing bracket
+                      size_t last_bracket_pos = response_value.find_last_of(']');
+
+                      // Extract the substring up to the last closing bracket (excluding)
+                      std::string existing_values = response_value.substr(0, last_bracket_pos);
+
+                      // Concatenate the new value with a comma
+                      newValue = existing_values + ",F@" + filename + "]";
+                    }
+
+                    // CPUT the parent folder
+                    string cput_response_value, cput_response_error_msg;
+                    int cput_response_status;
+                    type = "cput";
+                    colkey = "items";
+                    msg_to_send = construct_msg(4, parentRowKey, colkey, response_value, newValue, "", 0);
+                    response_code = send_msg_to_backend(fd, msg_to_send, cput_response_value, cput_response_status,
+                                                        cput_response_error_msg, parentRowKey, colkey, g_map_rowkey_to_server,
+                                                        g_coordinator_addr, type);
+                    if (response_code == 1)
+                    {
+                      cerr << "ERROR in communicating with coordinator" << endl;
+                      continue;
+                    }
+                    else if (response_code == 2)
+                    {
+                      cerr << "ERROR in communicating with backend" << endl;
+                      continue;
+                    }
+
+                    if (cput_response_status == 0)
+                    {
+                      success = true;
+                    }
+                    else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Rowkey does not exist")
+                    {
+                      // Parent folder does not exist - Construct and send the HTTP response
+                      string content = "{\"error\":\"Parent folder does not exist\"}";
+                      send_response(client_fd, 404, "Not Found", "application/json", content);
+                    }
+                    else if (cput_response_status == 1 && strip(cput_response_error_msg) == "Current value is not v1")
+                    {
+                      // Old value is wrong - Construct and send the HTTP response
+                      string content = "{\"error\":\"Current items in parent folder are wrong!\"}";
+                      send_response(client_fd, 401, "Unauthorized", "application/json", content);
+                    }
+                    else
+                    {
+                      // Error in fetching user - Construct and send the HTTP response
+                      string content = "{\"error\":\"Error fetching user\"}";
+                      send_response(client_fd, 500, "Internal Server Error", "application/json", content);
+                    }
                   }
                 }
-              }
-
 
                 string refresh_script = "<script>window.location.reload(true);</script>";
                 send_response(client_fd, 200, "OK", "text/html", refresh_script);
@@ -4792,6 +4764,40 @@ void *handle_connection(void *arg)
       }
       else
       {
+        string bulletin_board_string, get_response_error_msg;
+        F_2_B_Message msg_to_send;
+        int get_response_status;
+        rowkey = "bulletin-board";
+        colkey = "items";
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
+                                                get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+        }
+        if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist")
+        {
+          type = "put";
+          msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
+          int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
+                                                  get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+          if (response_code == 1)
+          {
+            cerr << "ERROR in communicating with coordinator" << endl;
+          }
+          else if (response_code == 2)
+          {
+            cerr << "ERROR in communicating with backend" << endl;
+          }
+        }
         // get (bulletin-board items) from backend
         string bulletin_board_str, response_error_msg;
         int response_status, response_code;
@@ -4800,8 +4806,8 @@ void *handle_connection(void *arg)
         type = "get";
         F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status,
-                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1)
         {
           cerr << "ERROR in communicating with coordinator" << endl;
@@ -4812,7 +4818,7 @@ void *handle_connection(void *arg)
           cerr << "ERROR in communicating with backend" << endl;
           continue;
         }
-        vector<BulletinMsg> bulletin_board = retrieve_bulletin_board(fd, bulletin_board_str, g_map_rowkey_to_server, g_coordinator_addr); 
+        vector<BulletinMsg> bulletin_board = retrieve_bulletin_board(fd, bulletin_board_str, g_map_rowkey_to_server, g_coordinator_addr);
         string html_content = construct_bulletin_board_html(bulletin_board);
         send_response(client_fd, 200, "OK", "text/html", html_content);
       }
@@ -4838,8 +4844,8 @@ void *handle_connection(void *arg)
         type = "get";
         F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, my_bulletin_str, response_status,
-                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
         if (response_code == 1)
         {
           cerr << "ERROR in communicating with coordinator" << endl;
@@ -4850,7 +4856,7 @@ void *handle_connection(void *arg)
           cerr << "ERROR in communicating with backend" << endl;
           continue;
         }
-        vector<BulletinMsg> my_bulletin = retrieve_my_bulletin(fd, my_bulletin_str, g_map_rowkey_to_server, g_coordinator_addr);  
+        vector<BulletinMsg> my_bulletin = retrieve_my_bulletin(fd, my_bulletin_str, g_map_rowkey_to_server, g_coordinator_addr);
         string html_content = construct_my_bulletins_html(my_bulletin);
         send_response(client_fd, 200, "OK", "text/html", html_content);
       }
@@ -4879,7 +4885,8 @@ void *handle_connection(void *arg)
           string prefill_msg = "";
           string mode = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
-          if (mode != "new") {
+          if (mode != "new")
+          {
             BulletinMsg msg = retrieve_bulletin_msg(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
             prefill_title = msg.title;
             prefill_msg = msg.message;
@@ -4921,32 +4928,39 @@ void *handle_connection(void *arg)
           string encoded_msg = base64_encode(msg);
 
           int result;
-          if (mode == "edit") {
+          if (mode == "edit")
+          {
             // editing existing message
             result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
                                                   uid, g_map_rowkey_to_server, g_coordinator_addr);
-            if (result != 0) {
+            if (result != 0)
+            {
               cerr << "ERROR in putting bulletin item to backend" << endl;
               send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
               continue;
             }
             result = update_to_my_bulletins(fd, username, uid, g_map_rowkey_to_server, g_coordinator_addr);
-            if (result != 0) {
+            if (result != 0)
+            {
               cerr << "ERROR in putting bulletin item to backend" << endl;
               send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
               continue;
             }
             result = update_to_bulletin_board(fd, uid, g_map_rowkey_to_server, g_coordinator_addr);
-            if (result != 0) {
+            if (result != 0)
+            {
               cerr << "ERROR in putting bulletin item to backend" << endl;
               send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
               continue;
             }
-          } else {
+          }
+          else
+          {
             uid = compute_md5_hash(title + msg + ts);
             result = put_bulletin_item_to_backend(encoded_owner, encoded_ts, encoded_title, encoded_msg,
-                                                    uid, g_map_rowkey_to_server, g_coordinator_addr);
-            if (result != 0) {
+                                                  uid, g_map_rowkey_to_server, g_coordinator_addr);
+            if (result != 0)
+            {
               cerr << "ERROR in putting bulletin item to backend" << endl;
               send_response(client_fd, 500, "Internal Server Error", "text/plain", "Failed to post bulletin.");
               continue;
