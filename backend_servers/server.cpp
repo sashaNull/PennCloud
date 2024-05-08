@@ -1098,7 +1098,7 @@ void *handle_connection(void *arg)
         {
           cerr << "Connection Failed" << endl;
           close(sock);
-          break;
+          continue;
         }
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
