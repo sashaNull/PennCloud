@@ -27,16 +27,34 @@ string generate_inbox_html(const string &emails_str)
     vector<DisplayEmail> emails = parse_emails_str(emails_str);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Inbox</title><style>"
-         << "table { width: 100%; }"
-         << "td { padding: 5px; border-bottom: 1px solid #ddd; }"
-         << "button { margin: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; }"
+         << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
+         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }" // Light blue background with padding
+         << "table { width: 100%; border-collapse: collapse; }"
+         << "td { padding: 8px; border-bottom: 1.5px solid #ddd; }"
+         << "tr:nth-child(odd) { background-color: #e9e9e9; }"  // Light grey for odd rows
+         << "tr:nth-child(even) { background-color: #d1d1d1; }" // Slightly darker grey for even rows
+         << "tr:hover { background-color: #ffffff; }"           // White background on hover
+         << "td:nth-child(1) { text-align: left; }"             // Email ID left aligned
+         << "td:nth-child(2) { text-align: left; }"             // Subject centered
+         << "td:nth-child(3) { text-align: right; }"            // Timestamp right aligned
+         << "button { background-color: #161637; width: 120px ;color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-right: 10px; margin-bottom: 10px;}"
+         << "button:hover { background-color: #27274a; }"
          << "</style></head><body>";
 
     // Navigation buttons
-    html << "<div><button onclick=\"window.location.href='/sentbox'\">Sent</button>"
-         << "<button onclick=\"window.location.href='/compose'\">New Email</button></div>";
+    html << "<header style='width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;'>"
+         << "<div>"
+         << "<button onclick=\"window.location.href='/home'\">Home</button>"
+         << "</div>"
+         << "<button onclick=\"window.location.href='/logout'\">Logout</button>"
+         << "</header>";
 
-    html << "<h1>Inbox</h1><table>";
+    html << "<h2>Inbox</h2><table>"
+         << "<div>"
+         << "<button onclick=\"window.location.href='/sentbox'\">Sent</button>"
+         << "<button onclick=\"window.location.href='/compose'\">New Email</button>"
+         << "</div>";
+
     for (const auto &email : emails)
     {
         html << "<tr onclick=\"location.href='/view_email/?source=inbox&id=" << email.uid << "'\" style='cursor:pointer;'>";
@@ -55,16 +73,34 @@ string generate_sentbox_html(const string &emails_str)
     vector<DisplayEmail> emails = parse_emails_str(emails_str);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Sent</title><style>"
-         << "table { width: 100%; }"
-         << "td { padding: 5px; border-bottom: 1px solid #ddd; }"
-         << "button { margin: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; }"
+         << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
+         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }" // Light blue background with padding
+         << "table { width: 100%; border-collapse: collapse; }"
+         << "td { padding: 8px; border-bottom: 1.5px solid #ddd; text-align: left; }"
+         << "tr:nth-child(odd) { background-color: #e9e9e9; }"  // Light grey for odd rows
+         << "tr:nth-child(even) { background-color: #d1d1d1; }" // Slightly darker grey for even rows
+         << "tr:hover { background-color: #ffffff; }"           // White background on hover
+         << "td:nth-child(1) { text-align: left; }"             // Email ID left aligned
+         << "td:nth-child(2) { text-align: left; }"             // Subject centered
+         << "td:nth-child(3) { text-align: right; }"            // Timestamp right aligned
+         << "button { background-color: #161637; width: 120px; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-right: 10px; margin-bottom: 10px; }"
+         << "button:hover { background-color: #27274a; }"
          << "</style></head><body>";
 
     // Navigation buttons
-    html << "<div><button onclick=\"window.location.href='/inbox'\">Inbox</button>"
-         << "<button onclick=\"window.location.href='/compose'\">New Email</button></div>";
+    html << "<header style='width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;'>"
+         << "<div>"
+         << "<button onclick=\"window.location.href='/home'\">Home</button>"
+         << "</div>"
+         << "<button onclick=\"window.location.href='/logout'\">Logout</button>"
+         << "</header>";
 
-    html << "<h1>Sent</h1><table>";
+    html << "<h2>Sent</h2><table>"
+         << "<div>"
+         << "<button onclick=\"window.location.href='/inbox'\">Inbox</button>"
+         << "<button onclick=\"window.location.href='/compose'\">New Email</button>"
+         << "</div>";
+
     for (const auto &email : emails)
     {
         html << "<tr onclick=\"location.href='/view_email/?source=sentbox&id=" << email.uid << "'\" style='cursor:pointer;'>";
@@ -100,8 +136,13 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
 {
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Compose Email</title><style>"
-         << "input, textarea { width: 95%; margin: 10px; padding: 8px; }"
-         << "textarea { height: 200px; }"
+         << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
+         << "input, textarea { width: 95%; margin: 5px auto; display: block; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }"
+         << "textarea { height: 180px; }"
+         << "button { background-color: #161637; width: 120px; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; display: block; margin-bottom: 5px; }"
+         << "button:hover { background-color: #27274a; }"
+         << "header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }"
+         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; }"
          << "</style>"
          << "<script>"
          << "document.addEventListener('DOMContentLoaded', function () {"
@@ -119,8 +160,7 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
          << "        .then(response => {"
          << "            if (response.ok) {"
          << "               window.location.href = '/inbox';"
-         << "            }"
-         << "            else {"
+         << "            } else {"
          << "               return response.json().then(data => {"
          << "                   if (data.error) {"
          << "                       throw new Error(data.error);"
@@ -136,7 +176,11 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
          << "});"
          << "</script>"
          << "</head><body>"
-         << "<h1>Compose Email</h1>"
+         << "<header>"
+         << "<button onclick=\"location.href='/home'\">Home</button>"
+         << "<button onclick=\"location.href='/logout'\">Logout</button>"
+         << "</header>"
+         << "<h2>Compose Email</h2>"
          << "<form id='emailForm'>"
          << "<label for='to'>To:</label><input type='text' id='to' name='to' placeholder='Enter recipients, separated by semicolons' value='" << prefill_to << "'><br>"
          << "<label for='subject'>Subject:</label><input type='text' id='subject' name='subject' placeholder='Subject' value='" << prefill_subject << "'><br>"
@@ -156,7 +200,7 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
     to_return.push_back(external);
     vector<string> recipients = split(recipients_str, ";");
     for (const auto &r : recipients)
-    {   
+    {
         cout << "recipient: " << r << endl;
         if (split(r, "@")[1] == "localhost")
         {
@@ -189,7 +233,7 @@ string get_timestamp()
 
 // TODO: make helper function for deliver_local_mail and put_in_sentbox
 int deliver_local_email(const string &recipient, const string &uid, const string &encoded_from,
-                        const string &encoded_subject, const string &encoded_body, const string &encoded_display, 
+                        const string &encoded_subject, const string &encoded_body, const string &encoded_display,
                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
     int fd = create_socket();
@@ -200,13 +244,16 @@ int deliver_local_email(const string &recipient, const string &uid, const string
     string colkey = "inbox_items";
     string type = "get";
     msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-    int response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, get_response_status, 
+    int response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, get_response_status,
                                             get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-    if (response_code == 1) {
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -225,13 +272,16 @@ int deliver_local_email(const string &recipient, const string &uid, const string
 
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_inbox_str, to_cput, "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, cput_response_status, 
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, cput_response_status,
                                             cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-        if (response_code == 1) {
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
@@ -243,25 +293,27 @@ int deliver_local_email(const string &recipient, const string &uid, const string
 
         type = "get";
         msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, get_response_status, 
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_inbox_str, get_response_status,
                                             get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-        if (response_code == 1) {
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
-
     }
 
     return 0;
 }
 
-int put_in_sentbox( const string &username, const string &uid, const string &encoded_to, 
-                    const string &encoded_ts, const string &encoded_subject, const string &encoded_body,
-                    map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
+int put_in_sentbox(const string &username, const string &uid, const string &encoded_to,
+                   const string &encoded_ts, const string &encoded_subject, const string &encoded_body,
+                   map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
     int fd = create_socket();
 
@@ -272,13 +324,16 @@ int put_in_sentbox( const string &username, const string &uid, const string &enc
     string colkey = "sentbox_items";
     string type = "get";
     msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-    int response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, get_response_status, 
+    int response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, get_response_status,
                                             get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-    if (response_code == 1) {
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -294,13 +349,16 @@ int put_in_sentbox( const string &username, const string &uid, const string &enc
         to_cput = uid + "##" + encoded_to + "##" + encoded_subject + "##" + encoded_ts + "," + usr_sentbox_str;
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_sentbox_str, to_cput, "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, cput_response_status, 
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, cput_response_status,
                                             cput_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-        if (response_code == 1) {
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
@@ -312,13 +370,16 @@ int put_in_sentbox( const string &username, const string &uid, const string &enc
 
         type = "get";
         msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, get_response_status, 
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_sentbox_str, get_response_status,
                                             get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
-        if (response_code == 1) {
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
@@ -329,10 +390,14 @@ int put_in_sentbox( const string &username, const string &uid, const string &enc
 string newline_to_br(const string &input)
 {
     string output;
-    for (char ch : input) {
-        if (ch == '\n') {
+    for (char ch : input)
+    {
+        if (ch == '\n')
+        {
             output += "<br>";
-        } else {
+        }
+        else
+        {
             output += ch;
         }
     }
@@ -346,28 +411,44 @@ string construct_view_email_html(const string &subject, const string &from, cons
     string formatted_body = newline_to_br(body);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>" << subject << "</title><style>"
-         << "body { font-family: Arial, sans-serif; margin: 20px; }"
-         << "h1 { color: #333; }"
-         << "p { margin: 5px 0; }"
+         << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
+         << "header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }"
+         << "h1 { text-align: left; font-size: 20px; margin-bottom: 5px; margin-left: 3px;}"
+         << "p, label { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 5px 0; }"
          << "label { font-weight: bold; }"
-         << "button { margin: 10px; padding: 5px 10px; font-size: 16px; cursor: pointer; }"
+         << ".subject { font-weight: bold; }"
+         << ".message { background-color: #3737516b; border-radius: 10px; padding: 20px; margin-bottom: 20px; }"
+         << ".message-header { padding-bottom: 10px; margin-bottom: 10px; }"
+         << ".button-bar { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }"
+         << "button { background-color: #161637; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }"
+         << "button:hover { background-color: #27274a; }"
          << "</style></head><body>"
-         << "<h1>" << subject << "</h1>"
+         << "<header>"
+         << "<button onclick=\"location.href='/home';\">Home</button>"
+         << "<button onclick=\"location.href='/logout';\">Logout</button>"
+         << "</header>"
+         << "<h1>Subject: <span class='subject' style='font-weight: normal;'>" << subject << "</span></h1>"
+         << "<div class='message'>"
+         << "<div class='message-header'>"
          << "<p><label>From:</label> " << formatted_from << "</p>"
          << "<p><label>To:</label> " << formatted_to << "</p>"
          << "<p><label>Date:</label> " << timestamp << "</p>"
-         << "<h2>Message</h2>"
+         << "</div>"
+         << "<div class='message-line' style='border-bottom: 1px solid #282525; margin-bottom: 10px;'></div>"
          << "<p>" << formatted_body << "</p>"
+         << "</div>"
+         << "<div class='button-bar'>"
          << "<button onclick=\"window.location.href='/compose?mode=reply&email_id=" << uid << "'\">Reply</button>"
          << "<button onclick=\"window.location.href='/compose?mode=forward&email_id=" << uid << "'\">Forward</button>"
-         << "<button onclick=\"if(confirm('Are you sure you want to delete this email from " << source << "?')) window.location.href='/delete_email?source=" << source << "&id=" << uid << "';\">Delete</button>";
+         << "<button onclick=\"if(confirm('Are you sure you want to delete this email from " << source << "?')) window.location.href='/delete_email?source=" << source << "&id=" << uid << "';\">Delete</button>"
+         << "</div>";
 
     return html.str();
 }
 
-int put_email_to_backend(const string &uid, const string &encoded_from, const string &encoded_to, const string &encoded_ts, 
-                        const string &encoded_subject, const string &encoded_body, const string &encoded_display,
-                        map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) 
+int put_email_to_backend(const string &uid, const string &encoded_from, const string &encoded_to, const string &encoded_ts,
+                         const string &encoded_subject, const string &encoded_body, const string &encoded_display,
+                         map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
 {
     int fd = create_socket();
     string response_value, response_error_msg;
@@ -379,13 +460,16 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put from
     string colkey = "from";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_from, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -393,13 +477,16 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put to
     colkey = "to";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_to, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -407,13 +494,16 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put ts
     colkey = "timestamp";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_ts, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -421,13 +511,16 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put subject
     colkey = "subject";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_subject, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -435,13 +528,16 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put body
     colkey = "body";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_body, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -449,37 +545,46 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     // put display
     colkey = "display";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_display, "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
-    
+
     return 0;
 }
 
-string delete_email_from_box_string(const string& input, const string& uid, const string& delimiter) {
+string delete_email_from_box_string(const string &input, const string &uid, const string &delimiter)
+{
     size_t uid_pos = input.find(uid);
-    
-    if (uid_pos == string::npos) {
+
+    if (uid_pos == string::npos)
+    {
         cout << "UID not found." << endl;
         return input;
     }
 
     size_t start_pos = input.rfind(delimiter, uid_pos);
-    if (start_pos == string::npos) {
+    if (start_pos == string::npos)
+    {
         start_pos = 0;
     }
 
     size_t end_pos = input.find(delimiter, uid_pos + uid.length());
-    if (end_pos != string::npos) {
+    if (end_pos != string::npos)
+    {
         end_pos += delimiter.length();
-    } else {
+    }
+    else
+    {
         end_pos = input.length();
     }
 
@@ -489,9 +594,9 @@ string delete_email_from_box_string(const string& input, const string& uid, cons
     return modified_string;
 }
 
-
-int delete_email(const string& username, const string& uid, 
-                  const string& source, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr) {
+int delete_email(const string &username, const string &uid,
+                 const string &source, map<string, string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr)
+{
 
     int fd = create_socket();
     string usr_box_str, response_error_msg;
@@ -501,13 +606,16 @@ int delete_email(const string& username, const string& uid,
     string rowkey = username + "_email";
     string colkey = source + "_items";
     msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-    response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
-                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1) {
+    response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status,
+                                        response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                        g_coordinator_addr, type);
+    if (response_code == 1)
+    {
         cerr << "ERROR in communicating with coordinator" << endl;
         return 1;
-    } else if (response_code == 2) {
+    }
+    else if (response_code == 2)
+    {
         cerr << "ERROR in communicating with backend" << endl;
         return 2;
     }
@@ -520,13 +628,16 @@ int delete_email(const string& username, const string& uid,
 
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_box_str, to_cput, "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
-                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-        if (response_code == 1) {
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
@@ -538,13 +649,16 @@ int delete_email(const string& username, const string& uid,
 
         type = "get";
         msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status, 
-                                                response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                                g_coordinator_addr, type);
-        if (response_code == 1) {
+        response_code = send_msg_to_backend(fd, msg_to_send, usr_box_str, response_status,
+                                            response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                            g_coordinator_addr, type);
+        if (response_code == 1)
+        {
             cerr << "ERROR in communicating with coordinator" << endl;
             return 1;
-        } else if (response_code == 2) {
+        }
+        else if (response_code == 2)
+        {
             cerr << "ERROR in communicating with backend" << endl;
             return 2;
         }
@@ -684,29 +798,35 @@ int delete_email(const string& username, const string& uid,
 //     return nullptr;
 // }
 
-void send_smtp_command(int fd, const char* cmd) {
+void send_smtp_command(int fd, const char *cmd)
+{
     std::cout << "Sending command: " << cmd;
-    if (send(fd, cmd, strlen(cmd), 0) <= 0) {
+    if (send(fd, cmd, strlen(cmd), 0) <= 0)
+    {
         perror("Failed to send command");
         throw std::runtime_error("Failed to send command");
     }
-    char buffer[1024] = {0};  // Clear buffer
-    if (recv(fd, buffer, sizeof(buffer), 0) <= 0) {
+    char buffer[1024] = {0}; // Clear buffer
+    if (recv(fd, buffer, sizeof(buffer), 0) <= 0)
+    {
         perror("Failed to read response");
         throw std::runtime_error("Failed to read response");
     }
     std::cout << "Received: " << buffer << std::endl;
 }
 
-void cleanup(int fd) {
-    if (fd != -1) {
+void cleanup(int fd)
+{
+    if (fd != -1)
+    {
         close(fd);
         std::cout << "Socket closed" << std::endl;
     }
 }
 
-void* smtp_client(void* arg) {
-    auto data = static_cast<std::map<std::string, std::string>*>(arg);
+void *smtp_client(void *arg)
+{
+    auto data = static_cast<std::map<std::string, std::string> *>(arg);
     std::string to = (*data)["to"];
     std::string from = (*data)["from"];
     std::string subject = (*data)["subject"];
@@ -716,7 +836,8 @@ void* smtp_client(void* arg) {
 
     unsigned char query_buffer[NS_PACKETSZ];
     int response = res_query(domain.c_str(), ns_c_in, ns_t_mx, query_buffer, sizeof(query_buffer));
-    if (response < 0) {
+    if (response < 0)
+    {
         std::cerr << "DNS query failed" << std::endl;
         return nullptr;
     }
@@ -725,9 +846,11 @@ void* smtp_client(void* arg) {
     ns_initparse(query_buffer, response, &handle);
     int count = ns_msg_count(handle, ns_s_an);
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
+    {
         ns_rr record;
-        if (ns_parserr(&handle, ns_s_an, i, &record) != 0) {
+        if (ns_parserr(&handle, ns_s_an, i, &record) != 0)
+        {
             std::cerr << "Failed to parse MX record" << std::endl;
             continue;
         }
@@ -737,25 +860,31 @@ void* smtp_client(void* arg) {
 
         struct addrinfo hints, *res, *result;
         memset(&hints, 0, sizeof(hints));
-        hints.ai_family = AF_INET;  // Use AF_INET6 to force IPv6
+        hints.ai_family = AF_INET; // Use AF_INET6 to force IPv6
         hints.ai_socktype = SOCK_STREAM;
 
-        if (getaddrinfo(mx_host, NULL, &hints, &result) != 0) {
+        if (getaddrinfo(mx_host, NULL, &hints, &result) != 0)
+        {
             std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
             continue;
-        } else {
+        }
+        else
+        {
             cout << "Resolved MX host: " << mx_host << std::endl;
         }
 
         // Try each address until we successfully connect
-        for (res = result; res != NULL; res = res->ai_next) {
+        for (res = result; res != NULL; res = res->ai_next)
+        {
             int fd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
             cout << "fd: " << fd << endl;
-            if (fd == -1) continue;
+            if (fd == -1)
+                continue;
 
-            ((struct sockaddr_in*)res->ai_addr)->sin_port = htons(25);
+            ((struct sockaddr_in *)res->ai_addr)->sin_port = htons(25);
 
-            if (connect(fd, res->ai_addr, res->ai_addrlen) == 0) {
+            if (connect(fd, res->ai_addr, res->ai_addrlen) == 0)
+            {
                 std::cout << "Connected to " << mx_host << std::endl;
 
                 send_smtp_command(fd, ("HELO " + domain + "\r\n").c_str());
@@ -769,7 +898,9 @@ void* smtp_client(void* arg) {
                 cleanup(fd);
                 freeaddrinfo(result);
                 return nullptr;
-            } else {
+            }
+            else
+            {
                 cout << "Can't connect to " << mx_host << endl;
             }
             cleanup(fd);
@@ -781,7 +912,8 @@ void* smtp_client(void* arg) {
     return nullptr;
 }
 
-bool is_valid_email(const string& email) {
-    const regex pattern ("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+bool is_valid_email(const string &email)
+{
+    const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
     return regex_match(email, pattern);
 }
