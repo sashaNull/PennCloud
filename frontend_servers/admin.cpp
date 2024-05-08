@@ -145,8 +145,8 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << "<!DOCTYPE html><html><head><title>Admin - Server Status</title>";
     html << "<style>";
     html << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525}";
-    html << "h1{ text-align: center; }";
-    html << "h2{ text-align: left; }";
+    html << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }"; // Light blue background with padding
+    html << "h3{ text-align: left; }";
     html << ".server-grid { display: flex; flex-wrap: wrap; justify-content: space-around; }";
     html << ".server-card-1 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 100px;  flex-direction: column; justify-content: center; align-items: center;}";
     html << ".server-card-2 { background-color: #161637; border-radius: 10px; width: 250px; margin: 10px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; height: 150px; flex-direction: column; justify-content: center; align-items: center;}";
@@ -165,10 +165,10 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << "<div class = 'new-button'><button onclick=\"location.href='/home';\">Home</button></div>";     // Home button
     html << "<div class = 'new-button'><button onclick=\"location.href='/logout';\">Logout</button></div>"; // Logout button
     html << "</div>";
-    html << "<h1>Server Status</h1>";
+    html << "<h2>Server Status</h2>";
 
     // Frontend Servers
-    html << "<h2>Frontend Servers</h2><div class='server-grid'>";
+    html << "<h3>Frontend Servers</h3><div class='server-grid'>";
     for (const auto &server : frontend_servers)
     {
         std::string server_addr = server.ip + ":" + std::to_string(server.port);
@@ -182,7 +182,7 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     html << "</div>";
 
     // Backend Servers
-    html << "<h2>Backend Servers</h2><div class='server-grid'>";
+    html << "<h3>Backend Servers</h3><div class='server-grid'>";
     for (const auto &server : backend_servers)
     {
         std::string server_addr = server.ip + ":" + std::to_string(server.port);

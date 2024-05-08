@@ -2207,7 +2207,7 @@ void *handle_connection(void *arg)
             html_content << "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>";
             html_content << "<style>";
             html_content << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }";
-            html_content << "h1 { text-align: center; }";
+            html_content << "h2 {text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px;}";
             html_content << "header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }";
             html_content << "#files { display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; }";
             html_content << ".card { background-color: #3737516b; width: 220px; margin: 10px; height: 200px; text-align: center; border-radius: 10px; display: inline-block; }";
@@ -2221,13 +2221,14 @@ void *handle_connection(void *arg)
             html_content << ".button-bar { display: flex; justify-content: flex-start; margin-bottom: 20px; gap: 20px; }";
             html_content << "button { background-color: #161637; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }";
             html_content << "button:hover { background-color: #27274a; }";
+            html_content << "#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center; color: white; font-size: 24px; }";
             html_content << "</style>";
             html_content << "</head><body>";
             html_content << "<header>";
             html_content << "<button onclick=\"location.href='/home';\">Home</button>";
             html_content << "<button onclick=\"location.href='/logout';\">Logout</button>";
             html_content << "</header>";
-            html_content << "<h1>Your Storage</h1>";
+            html_content << "<h2>Storage</h2>";
             html_content << "<div class='button-bar'>"; // Container for upload and create folder buttons
             html_content << "<button onclick=\"uploadFile('" << path << "')\">Upload File</button>";
             html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
@@ -2274,8 +2275,13 @@ void *handle_connection(void *arg)
             }
             html_content << "</div>";
 
+            // Loading indicator element
+            html_content << "<div id='loading'>Uploading... <i class='fas fa-spinner fa-spin'></i></div>";
+
             // JavaScript functions for upload and create folder actions
             html_content << "<script>";
+            html_content << "function showLoading() { document.getElementById('loading').style.display = 'flex'; }";
+            html_content << "function hideLoading() { document.getElementById('loading').style.display = 'none'; }";
             html_content << "function uploadFile(path) { ";
             html_content << "var input = document.createElement('input');";
             html_content << "input.type = 'file';";
@@ -2288,6 +2294,7 @@ void *handle_connection(void *arg)
             html_content << "input.click();";
             html_content << "}";
             html_content << "function uploadFileRequest(file, filename, path) {";
+            html_content << "showLoading();";
             html_content << "var formData = new FormData();";
             html_content << "formData.append('filename', filename);";
             html_content << "formData.append('path', path);";

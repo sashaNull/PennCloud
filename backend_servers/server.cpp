@@ -181,7 +181,7 @@ void get_latest_tablet_and_log()
       send(sock, get_command.c_str(), get_command.length(), 0);
       char buffer[MAX_BUFFER_SIZE] = {0};
       read(sock, buffer, MAX_BUFFER_SIZE);
-      cout << "GET Response from primary: " << range << " " << buffer << endl;
+      // cout << "GET Response from primary: " << range << " " << buffer << endl;
 
       // Check version response and possibly send TABGET
       string response(buffer);
@@ -225,7 +225,7 @@ void get_latest_tablet_and_log()
                 break;
               }
               out << line; // Write the complete line to file
-              cout << "READ THE LINE: " << line;
+              // cout << "READ THE LINE: " << line;
             }
           }
           if (!accumulatedData.empty())
