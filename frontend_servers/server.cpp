@@ -2207,11 +2207,78 @@ void *handle_connection(void *arg)
             std::stringstream html_content;
 
             // Append upload file and create folder buttons
+            html_content << "<!DOCTYPE html><html lang='en'><head>";
+            html_content << "<meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+            html_content << "<title>Your Storage</title>";
+            html_content << "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>";
+            html_content << "<style>";
+            html_content << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }";
+            html_content << "h1 { text-align: center; }";
+            html_content << "header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }";
+            html_content << "#files { display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; }";
+            html_content << ".card { background-color: #3737516b; width: 220px; margin: 10px; height: 200px; text-align: center; border-radius: 10px; display: inline-block; }";
+            html_content << ".icon-bg { background-color: #161637; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 20px auto 0; font-size: 35px; color: white; }";
+            html_content << ".icon-bg-2 { cursor: pointer; background-color: #161637; width: 35px; height: 35px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 5px; position: relative; }";
+            html_content << ".file-name { display: block; color: #282525; margin-top: 10px; font-size: 18px; margin-bottom: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer;}";
+            html_content << ".actions { display: flex; justify-content: center; margin-top: 5px; }";
+            html_content << ".actions i, .actions a { color: white; font-size: 18px; position: relative; }";
+            html_content << ".tooltip { font-family: Verdana, sans-serif; position: absolute; top: -40px; left: 60%; transform: translateX(-60%); background-color: #d1d1d1; color: black; padding: 5px 10px; border-radius: 5px; font-size: 12px; display: none; z-index: 1; }";
+            html_content << ".icon-bg-2:hover .tooltip {font-family: Verdana, sans-serif; display: block; }";
+            html_content << ".button-bar { display: flex; justify-content: flex-start; margin-bottom: 20px; gap: 20px; }";
+            html_content << "button { background-color: #161637; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }";
+            html_content << "button:hover { background-color: #27274a; }";
+            html_content << "</style>";
+            html_content << "</head><body>";
+            html_content << "<header>";
+            html_content << "<button onclick=\"location.href='/home';\">Home</button>";
+            html_content << "<button onclick=\"location.href='/logout';\">Logout</button>";
+            html_content << "</header>";
+            html_content << "<h1>Your Storage</h1>";
+            html_content << "<div class='button-bar'>"; // Container for upload and create folder buttons
             html_content << "<button onclick=\"uploadFile('" << path << "')\">Upload File</button>";
             html_content << "<button onclick=\"createFolder()\">Create Folder</button>";
+            html_content << "</div>";
+            html_content << "<div id='files'>"; // Container for file cards
 
-            // Add a loading indicator element
-            html_content << "<div id='loadingIndicator' style='display:none;'>Loading...</div>";
+            // Dynamically generate cards with items data
+            if (!items.empty())
+            {
+              for (const auto &item : items)
+              {
+                std::string item_type = item.substr(0, 2);
+                std::string item_name = item.substr(2);
+                std::string icon_class = item_type == "D@" ? "fas fa-folder" : "fas fa-file";
+                html_content << "<div class='card'>";
+                html_content << "<div class='icon-bg'><i class='" << icon_class << "'></i></div>"; // Icon display
+                // Conditional logic for folder or file click behavior
+                if (item_type == "D@")
+                {
+                  html_content << "<span class='file-name' style='cursor: pointer;' onclick=\"window.location.href='/" << path << "/" << item_name << "'\">" << item_name << "</span>"; // Make folder name clickable
+                }
+                else if (item_type == "F@")
+                {
+                  html_content << "<span class='file-name' style='cursor: pointer;' onclick=\"downloadFile('" << path << "/" << item_name << "')\">" << item_name << "</span>"; // Make file name clickable
+                }
+                html_content << "<div class='actions'>"; // Action icons
+                if (item_type == "D@")
+                {
+                  // Actions for folders
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-trash-alt' onclick=\"deleteFolder('" << path << "/" << item_name << "')\"><span class='tooltip'>Delete</span></i></div>";
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-arrows-alt' onclick=\"moveFolder('" << path << "/" << item_name << "')\"><span class='tooltip'>Move</span></i></div>";
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-edit' onclick=\"renameFolder('" << path << "/" << item_name << "')\"><span class='tooltip'>Rename</span></i></div>";
+                }
+                else if (item_type == "F@")
+                {
+                  // Actions for files
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-trash-alt' onclick=\"deleteFile('" << path << "/" << item_name << "')\"><span class='tooltip'>Delete</span></i></div>";
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-arrows-alt' onclick=\"moveFile('" << path << "/" << item_name << "')\"><span class='tooltip'>Move</span></i></div>";
+                  html_content << "<div class='icon-bg-2'><i class='fas fa-edit' onclick=\"renameFile('" << path << "/" << item_name << "')\"><span class='tooltip'>Rename</span></i></div>";
+                }
+                html_content << "</div>"; // Close actions
+                html_content << "</div>"; // Close card
+              }
+            }
+            html_content << "</div>";
 
             // JavaScript functions for upload and create folder actions
             html_content << "<script>";
@@ -2232,26 +2299,19 @@ void *handle_connection(void *arg)
             html_content << "formData.append('path', path);";
             html_content << "let blobVar = new Blob([file], { type: file.type });";
             html_content << "formData.append('file', blobVar, file.name);";
-
-            // Show the loading indicator
-            html_content << "document.getElementById('loadingIndicator').style.display = 'block';";
-
             html_content << "fetch('/upload_file', {";
             html_content << "method: 'POST',";
             html_content << "body: formData";
             html_content << "})";
             html_content << ".then(response => {";
-            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator
             html_content << "if (response.ok) {";
             html_content << "window.location.reload(true);";
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
             html_content << "alert('Failed to upload file: ' + data.error); window.location.reload(true)});";
-
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
-            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator on error
             html_content << "console.error('Error:', error);";
             html_content << "});";
             html_content << "}";
@@ -2290,102 +2350,104 @@ void *handle_connection(void *arg)
             html_content << "}";
             html_content << "</script>";
 
-            // Check if the response contains a list of items (folders)
-            if (!items.empty())
-            {
-              html_content << "<ul>";
+            // // Check if the response contains a list of items (folders)
+            // if (!items.empty())
+            // {
+            //   html_content << "<ul>";
 
-              for (const auto &item : items)
-              {
-                std::string item_type = item.substr(0, 2);
-                std::string item_name = item.substr(2);
+            //   for (const auto &item : items)
+            //   {
+            //     std::string item_type = item.substr(0, 2);
+            //     std::string item_name = item.substr(2);
 
-                if (item_type == "D@")
-                {
-                  html_content << "<li><img src=\"https://www.creativefabrica.com/wp-content/uploads/2021/06/22/Folder-Icon-Template-Design-Vector-Graphics-13725642-1-1-580x387.jpg\" alt=\"Folder\" width=\"20\" height=\"20\"> <a href=\"#\" onclick=\"showFolderOptions('" << path << "/" << item_name << "');\">" << item_name << "</a></li>";
-                }
-                else if (item_type == "F@")
-                {
-                  html_content << "<li><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv3qczswxiDVO0twxBealS6lUxxOOm5rrnRrTbRoMjKA&s\" alt=\"File\" width=\"20\" height=\"20\"> <a href=\"#\" onclick=\"showFileOptions('" << path << "/" << item_name << "');\">" << item_name << "</a></li>";
-                }
-              }
-              html_content << "</ul>";
-            }
+            //     if (item_type == "D@")
+            //     {
+            //       html_content << "<li><img src=\"https://www.creativefabrica.com/wp-content/uploads/2021/06/22/Folder-Icon-Template-Design-Vector-Graphics-13725642-1-1-580x387.jpg\" alt=\"Folder\" width=\"20\" height=\"20\"> <a href=\"#\" onclick=\"showFolderOptions('" << path << "/" << item_name << "');\">" << item_name << "</a></li>";
+            //     }
+            //     else if (item_type == "F@")
+            //     {
+            //       html_content << "<li><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv3qczswxiDVO0twxBealS6lUxxOOm5rrnRrTbRoMjKA&s\" alt=\"File\" width=\"20\" height=\"20\"> <a href=\"#\" onclick=\"showFileOptions('" << path << "/" << item_name << "');\">" << item_name << "</a></li>";
+            //     }
+            //   }
+            //   html_content << "</ul>";
+            // }
 
             // JavaScript function for showing folder options
-            html_content << "<script>";
-            html_content << "function showFolderOptions(folderPath) {";
-            html_content << "var options = ['Delete', 'Move', 'Rename', 'Show'];";
-            html_content << "var choice = prompt('Select an option:\\n1. Delete\\n2. Move\\n3. Rename\\n4. Show');";
-            html_content << "if (choice) {";
-            html_content << "var optionIndex = parseInt(choice) - 1;";
-            html_content << "var selectedOption = options[optionIndex];";
-            html_content << "if (selectedOption === 'Delete') {";
-            html_content << "if (confirm('Are you sure you want to delete the folder?')) {";
-            html_content << "deleteFolder(folderPath);"; // Call delete folder function
-            html_content << "}";
-            html_content << "} else if (selectedOption === 'Rename') {";
-            html_content << "var newFolderName = prompt('Enter the new name for the folder:');";
-            html_content << "if (newFolderName) {";
-            html_content << "renameFolder(folderPath, newFolderName);"; // Call rename folder function
-            html_content << "}";
-            html_content << "} else if (selectedOption === 'Move') {";
-            html_content << "var newPath = prompt('Enter the absolute path where you want to move the folder:');";
-            html_content << "if (newPath) {";
-            html_content << "moveFolder(folderPath, newPath);"; // Call move folder function
-            html_content << "}";
-            html_content << "} else if (selectedOption === 'Show') {";
-            html_content << "window.location.href = '/' + folderPath;"; // Redirect to folder path without encoding slashes
-            html_content << "} else {";
-            html_content << "alert(selectedOption + ' selected for folder: ' + folderPath);"; // Placeholder for other options
-            html_content << "}";
-            html_content << "}";
-            html_content << "}";
-            html_content << "</script>";
+            // html_content << "<script>";
+            // html_content << "function showFolderOptions(folderPath) {";
+            // html_content << "var options = ['Delete', 'Move', 'Rename', 'Show'];";
+            // html_content << "var choice = prompt('Select an option:\\n1. Delete\\n2. Move\\n3. Rename\\n4. Show');";
+            // html_content << "if (choice) {";
+            // html_content << "var optionIndex = parseInt(choice) - 1;";
+            // html_content << "var selectedOption = options[optionIndex];";
+            // html_content << "if (selectedOption === 'Delete') {";
+            // html_content << "if (confirm('Are you sure you want to delete the folder?')) {";
+            // html_content << "deleteFolder(folderPath);"; // Call delete folder function
+            // html_content << "}";
+            // html_content << "} else if (selectedOption === 'Rename') {";
+            // html_content << "var newFolderName = prompt('Enter the new name for the folder:');";
+            // html_content << "if (newFolderName) {";
+            // html_content << "renameFolder(folderPath, newFolderName);"; // Call rename folder function
+            // html_content << "}";
+            // html_content << "} else if (selectedOption === 'Move') {";
+            // html_content << "var newPath = prompt('Enter the absolute path where you want to move the folder:');";
+            // html_content << "if (newPath) {";
+            // html_content << "moveFolder(folderPath, newPath);"; // Call move folder function
+            // html_content << "}";
+            // html_content << "} else if (selectedOption === 'Show') {";
+            // html_content << "window.location.href = '/' + folderPath;"; // Redirect to folder path without encoding slashes
+            // html_content << "} else {";
+            // html_content << "alert(selectedOption + ' selected for folder: ' + folderPath);"; // Placeholder for other options
+            // html_content << "}";
+            // html_content << "}";
+            // html_content << "}";
+            // html_content << "</script>";
 
             // JavaScript function for deleting a folder
             html_content << "<script>";
             html_content << "function deleteFolder(folderPath) {";
-            // Show the loading indicator when the deletion process starts
-            html_content << "document.getElementById('loadingIndicator').style.display = 'block';";
-
-            html_content << "fetch('/delete_folder', {";
+            html_content << "if (confirm('Are you sure you want to permanently delete this folder?')) {"; // Confirmation prompt
+            html_content << "fetch('/delete_folder', {";                                                  // Send POST request to delete_folder endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
-            html_content << "'folderPath': folderPath";
+            html_content << "'folderPath': folderPath"; // Include folder path in JSON data
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
-            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator
             html_content << "if (response.ok) {";
-            html_content << "alert('Folder deleted successfully');";
-            html_content << "window.location.reload(true);";
+            html_content << "alert('Folder deleted successfully');"; // Show success message
+            html_content << "window.location.reload(true);";         // Refresh the page after successful deletion
             html_content << "} else {";
             html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to delete folder: ' + data.error); window.location.reload(true)});";
+            html_content << "alert('Failed to delete folder: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Optionally reload to update the state even if failed
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
-            html_content << "document.getElementById('loadingIndicator').style.display = 'none';"; // Hide the loading indicator on error
-            html_content << "console.error('Error:', error);";
+            html_content << "console.error('Error:', error);";  // Log error to console
+            html_content << "alert('Error deleting folder.');"; // Display error message
             html_content << "});";
+            html_content << "}"; // Close if(confirm()) block
             html_content << "}";
             html_content << "</script>";
 
             // JavaScript function for renaming a folder
             html_content << "<script>";
-            html_content << "function renameFolder(folderPath, newFolderName) {";
-            html_content << "fetch('/rename_folder', {"; // Send POST request to rename_folder endpoint
+            html_content << "function renameFolder(folderPath) {";                                      // Removed newFolderName parameter to prompt inside function
+            html_content << "var newFolderName = prompt('Please enter the new name for the folder:');"; // Ask for the new folder name
+            html_content << "if (newFolderName && newFolderName.trim() !== '') {";                      // Check if input is not empty
+            html_content << "fetch('/rename_folder', {";                                                // Send POST request to rename_folder endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
-            html_content << "'folderPath': folderPath,";      // Include folder path in JSON data
-            html_content << "'newFolderName': newFolderName"; // Include new folder name in JSON data
+            html_content << "'folderPath': folderPath,";      // Include current folder path in JSON data
+            html_content << "'newFolderName': newFolderName"; // Include new folder name provided by user
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
@@ -2393,79 +2455,92 @@ void *handle_connection(void *arg)
             html_content << "alert('Folder renamed successfully');"; // Show success message
             html_content << "window.location.reload(true);";         // Refresh the page after successful renaming
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to rename folder: ' + data.error); window.location.reload(true)});";
+            html_content << "response.json().then(data => {"; // Parse JSON and show error message
+            html_content << "alert('Failed to rename folder: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Optionally reload to update the state even if failed
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
             html_content << "console.error('Error:', error);"; // Log error to console
             html_content << "});";
+            html_content << "} else {";
+            html_content << "alert('No new name was entered. Folder rename cancelled.');"; // Inform user renaming was cancelled
+            html_content << "}";
             html_content << "}";
             html_content << "</script>";
 
             // JavaScript function for moving a folder
             html_content << "<script>";
-            html_content << "function moveFolder(folderPath, newPath) {";
-            html_content << "fetch('/move_folder', {"; // Send POST request to move_folder endpoint
+            html_content << "function moveFolder(folderPath) {";                                           // Removed newPath parameter to prompt inside function
+            html_content << "var newPath = prompt('Please enter the new absolute path for the folder:');"; // Ask for the new path
+            html_content << "if (newPath && newPath.trim() !== '') {";                                     // Check if input is not empty
+            html_content << "fetch('/move_folder', {";                                                     // Send POST request to move_folder endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
-            html_content << "'folderPath': folderPath,"; // Include folder path in JSON data
-            html_content << "'newPath': newPath";        // Include new path in JSON data
+            html_content << "'folderPath': folderPath,"; // Include current folder path in JSON data
+            html_content << "'newPath': newPath";        // Include new path provided by user
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
             html_content << "if (response.ok) {";
             html_content << "alert('Folder moved successfully');"; // Show success message
-            html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
+            html_content << "window.location.reload(true);";       // Refresh the page after successful move
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move folder: ' + data.error); window.location.reload(true)});";
+            html_content << "response.json().then(data => {"; // Parse JSON from response and show error message
+            html_content << "alert('Failed to move folder: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Optionally reload to update the state even if failed
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
             html_content << "console.error('Error:', error);"; // Log error to console
             html_content << "});";
+            html_content << "} else {";
+            html_content << "alert('No new path was entered. Folder move cancelled.');"; // Inform user move was cancelled
+            html_content << "}";
             html_content << "}";
             html_content << "</script>";
 
-            // JavaScript function for showing file options
-            html_content << "<script>";
-            html_content << "function showFileOptions(filePath) {";
-            html_content << "var options = ['Delete', 'Move', 'Rename', 'Download'];";
-            html_content << "var choice = prompt('Select an option:\\n1. Delete\\n2. Move\\n3. Rename\\n4. Download');";
-            html_content << "if (choice) {";
-            html_content << "var optionIndex = parseInt(choice) - 1;";
-            html_content << "var selectedOption = options[optionIndex];";
-            html_content << "if (selectedOption === 'Delete') {";
-            html_content << "if (confirm('Are you sure you want to delete the file?')) {";
-            html_content << "deleteFile(filePath);"; // Call delete file function
-            html_content << "}";
-            html_content << "} else if (selectedOption === 'Download') {";
-            html_content << "downloadFile(filePath);"; // Call download file function
-            html_content << "} else if (selectedOption === 'Rename') {";
-            html_content << "var newFileName = prompt('Enter the new name for the file:');";
-            html_content << "if (newFileName) {";
-            html_content << "renameFile(filePath, newFileName);"; // Call rename file function
-            html_content << "}";
-            html_content << "} else if (selectedOption === 'Move') {";
-            html_content << "var newFilePath = prompt('Enter the new path for the file:');";
-            html_content << "if (newFilePath) {";
-            html_content << "moveFile(filePath, newFilePath);"; // Call move file function
-            html_content << "}";
-            html_content << "} else {";
-            html_content << "alert(selectedOption + ' selected for file: ' + filePath);"; // Placeholder for other options
-            html_content << "}";
-            html_content << "}";
-            html_content << "}";
-            html_content << "</script>";
+            // // JavaScript function for showing file options
+            // html_content << "<script>";
+            // html_content << "function showFileOptions(filePath) {";
+            // html_content << "var options = ['Delete', 'Move', 'Rename', 'Download'];";
+            // html_content << "var choice = prompt('Select an option:\\n1. Delete\\n2. Move\\n3. Rename\\n4. Download');";
+            // html_content << "if (choice) {";
+            // html_content << "var optionIndex = parseInt(choice) - 1;";
+            // html_content << "var selectedOption = options[optionIndex];";
+            // html_content << "if (selectedOption === 'Delete') {";
+            // html_content << "if (confirm('Are you sure you want to delete the file?')) {";
+            // html_content << "deleteFile(filePath);"; // Call delete file function
+            // html_content << "}";
+            // html_content << "} else if (selectedOption === 'Download') {";
+            // html_content << "downloadFile(filePath);"; // Call download file function
+            // html_content << "} else if (selectedOption === 'Rename') {";
+            // html_content << "var newFileName = prompt('Enter the new name for the file:');";
+            // html_content << "if (newFileName) {";
+            // html_content << "renameFile(filePath, newFileName);"; // Call rename file function
+            // html_content << "}";
+            // html_content << "} else if (selectedOption === 'Move') {";
+            // html_content << "var newFilePath = prompt('Enter the new path for the file:');";
+            // html_content << "if (newFilePath) {";
+            // html_content << "moveFile(filePath, newFilePath);"; // Call move file function
+            // html_content << "}";
+            // html_content << "} else {";
+            // html_content << "alert(selectedOption + ' selected for file: ' + filePath);"; // Placeholder for other options
+            // html_content << "}";
+            // html_content << "}";
+            // html_content << "}";
+            // html_content << "</script>";
 
             // JavaScript function for deleting a file
             html_content << "<script>";
             html_content << "function deleteFile(filePath) {";
-            html_content << "fetch('/delete_file', {"; // Send POST request to delete_file endpoint
+            html_content << "if (confirm('Are you sure you want to permanently delete this file?')) {"; // Add confirmation prompt
+            html_content << "fetch('/delete_file', {";                                                  // Send POST request to delete_file endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
@@ -2479,27 +2554,32 @@ void *handle_connection(void *arg)
             html_content << "alert('File deleted successfully');"; // Show success message
             html_content << "window.location.reload(true);";       // Refresh the page after successful deletion
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to delete file: ' + data.error); window.location.reload(true)});";
+            html_content << "response.json().then(data => {"; // Parse JSON from response and show error message
+            html_content << "alert('Failed to delete file: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Refresh page even if error to show updated state
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
             html_content << "console.error('Error:', error);"; // Log error to console
             html_content << "});";
+            html_content << "}"; // Close if statement for confirm
             html_content << "}";
             html_content << "</script>";
 
             // JavaScript function for moving a file
             html_content << "<script>";
-            html_content << "function moveFile(filePath, newFilePath) {";
-            html_content << "fetch('/move_file', {"; // Send POST request to move_file endpoint
+            html_content << "function moveFile(filePath) {";                                                 // Removed newFilePath parameter to prompt inside function
+            html_content << "var newFilePath = prompt('Please enter the new absolute path for the file:');"; // Ask for the new file path
+            html_content << "if (newFilePath && newFilePath.trim() !== '') {";                               // Check if input is not empty
+            html_content << "fetch('/move_file', {";                                                         // Send POST request to move_file endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
             html_content << "'filePath': filePath,";      // Include current file path in JSON data
-            html_content << "'newFilePath': newFilePath"; // Include new file path in JSON data
+            html_content << "'newFilePath': newFilePath"; // Include new file path provided by user
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
@@ -2507,41 +2587,54 @@ void *handle_connection(void *arg)
             html_content << "alert('File moved successfully');"; // Show success message
             html_content << "window.location.reload(true);";     // Refresh the page after successful move
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to move file: ' + data.error); window.location.reload(true)});";
+            html_content << "response.json().then(data => {"; // Parse JSON from response and show error message
+            html_content << "alert('Failed to move file: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Optionally reload to update the state even if failed
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
             html_content << "console.error('Error:', error);"; // Log error to console
             html_content << "});";
+            html_content << "} else {";
+            html_content << "alert('No new path was entered. File move cancelled.');"; // Inform user move was cancelled
+            html_content << "}";
             html_content << "}";
             html_content << "</script>";
 
             // JavaScript function for renaming a file
             html_content << "<script>";
-            html_content << "function renameFile(filePath, newFileName) {";
-            html_content << "fetch('/rename_file', {"; // Send POST request to rename_file endpoint
+            html_content << "function renameFile(filePath) {";                                      // Removed newFileName parameter to prompt inside function
+            html_content << "var newFileName = prompt('Please enter the new name for the file:');"; // Ask for the new file name
+            html_content << "if (newFileName && newFileName.trim() !== '') {";                      // Check if input is not empty
+            html_content << "fetch('/rename_file', {";                                              // Send POST request to rename_file endpoint
             html_content << "method: 'POST',";
             html_content << "headers: {";
             html_content << "'Content-Type': 'application/json'";
             html_content << "},";
             html_content << "body: JSON.stringify({";
-            html_content << "'filePath': filePath,";      // Include file path in JSON data
-            html_content << "'newFileName': newFileName"; // Include new file name in JSON data
+            html_content << "'filePath': filePath,";      // Include current file path in JSON data
+            html_content << "'newFileName': newFileName"; // Include new file name provided by user
             html_content << "})";
             html_content << "})";
             html_content << ".then(response => {";
             html_content << "if (response.ok) {";
             html_content << "alert('File renamed successfully');"; // Show success message
-            html_content << "window.location.reload(true);";       // Refresh the page after successful renaming
+            html_content << "window.location.reload(true);";       // Refresh the page after successful rename
             html_content << "} else {";
-            html_content << "response.json().then(data => {"; // Show error message
-            html_content << "alert('Failed to rename file: ' + data.error); window.location.reload(true)});";
+            html_content << "response.json().then(data => {"; // Parse JSON from response and show error message
+            html_content << "alert('Failed to rename file: ' + data.error);";
+            html_content << "window.location.reload(true);"; // Optionally reload to update the state even if failed
+            html_content << "});";
             html_content << "}";
             html_content << "})";
             html_content << ".catch(error => {";
             html_content << "console.error('Error:', error);"; // Log error to console
+            html_content << "alert('Error renaming file.');";  // Display error message
             html_content << "});";
+            html_content << "} else {";
+            html_content << "alert('No new name was entered. File rename cancelled.');"; // Inform user rename was cancelled
+            html_content << "}";
             html_content << "}";
             html_content << "</script>";
 
