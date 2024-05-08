@@ -4,4 +4,4 @@
 make
 echo "Starting load balancer..."
 ./loadbalancer -v ../frontend_servers/server_config.txt > ../logger/load_balancer.log 2>&1 &
-echo "Load Balancer Started"
+echo "Load Balancer Started. PID: $!"

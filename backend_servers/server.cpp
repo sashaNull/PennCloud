@@ -108,6 +108,7 @@ void update_primary(const string &range)
   send(sock, request.c_str(), request.length(), 0);
   read(sock, buffer, MAX_BUFFER_SIZE);
   string response(buffer);
+  cout << "Response from Coordinator: " << response << endl;
 
   // Parse response
   if (response.substr(0, 3) == "+OK")
@@ -135,7 +136,10 @@ void get_latest_tablet_and_log()
   for (const auto &range : server_tablet_ranges)
   {
     update_primary(range);
+    pthread_mutex_lock(&primary_mutex);
     auto it = range_to_primary_map.find(range);
+    cout << range_to_primary_map[range] << " " << server_ip + ":" + to_string(server_port) << endl;
+    pthread_mutex_unlock(&primary_mutex);
     if (it != range_to_primary_map.end() && it->second != "No primary available" && it->second != server_ip + ":" + to_string(server_port))
     {
       string primary = it->second;
@@ -309,6 +313,7 @@ void get_latest_tablet_and_log()
     else
     {
       cout << "Cannot find primary for: " << range << endl;
+      cout << range_to_primary_map[range];
       printMap(range_to_primary_map);
     }
   }
@@ -517,11 +522,9 @@ sockaddr_in parse_addr(char *raw_line)
   addr.sin_family = AF_INET;
 
   char *token = strtok(raw_line, ":");
-  server_ip = string(token); // Assuming `server_ip` is a global variable
   inet_pton(AF_INET, token, &addr.sin_addr);
 
   token = strtok(NULL, ":");
-  server_port = atoi(token); // Assuming `server_port` is a global variable
   addr.sin_port = htons(atoi(token));
   return addr;
 }
@@ -1095,7 +1098,7 @@ void *handle_connection(void *arg)
         {
           cerr << "Connection Failed" << endl;
           close(sock);
-          break;
+          continue;
         }
         bytes_sent = send(sock, serialized_to_backend.c_str(), serialized_to_backend.length(), 0);
         if (bytes_sent < 0)
