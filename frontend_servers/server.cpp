@@ -39,7 +39,6 @@ string g_coordinator_addr_str = "127.0.0.1:7070";
 sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
 
 map<string, string> g_map_rowkey_to_server;
-// TODO: coordinator map: row key -> backend server address
 
 string g_serveraddr_str;
 int g_listen_fd;
@@ -254,7 +253,6 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
     {
       break;
     }
-    cout << "BUFFER LENGTH: " << bytes_received << endl;
 
     string rowkey = file_row_key;
     string colkey = "content_" + to_string(i);
@@ -267,13 +265,7 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
       value.erase(value.length() - boundary_and_crlf_length, boundary_and_crlf_length);
     }
 
-    cout << "ITERATION: " << i << endl;
-    cout << "BUFFER LENGTH: " << bytes_received << endl;
-    cout << "LENGTH AFTER TURNING TO A STRING: " << string(buffer, bytes_received).size() << endl;
-    // cout << "BUFFER: " << value << endl;
     value = base64_encode(value);
-
-    cout << "LENGTH AFTER TURNING TO BASE64: " << value.size() << endl;
 
     F_2_B_Message msg_to_send_put = construct_msg(2, rowkey, colkey, value, "", "", 0);
     string response_value, response_error_msg;
@@ -303,8 +295,6 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
     i++;
   }
 
-  cout << "OUT OF LOOP!!!!!!!!!!!" << endl;
-
   string type = "put";
   string rowkey = file_row_key;
   string colkey = "no_chunks";
@@ -316,7 +306,7 @@ bool file_chunk_storing(int client_fd, int backend_fd, int content_length, strin
   response_code = send_msg_to_backend(backend_fd, msg_to_send_put, response_value, response_status,
                                       response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                       g_coordinator_addr, type);
-  cout << "CHECK HERE PLEASE: " << response_code << endl;
+
   if (response_code == 1)
   {
     cerr << "ERROR in communicating with coordinator" << endl;
@@ -354,23 +344,18 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       line.pop_back();
     }
 
-    // std::cout << "Processing line: " << line << std::endl;
-
     // Detect boundaries
     if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
     {
-      // std::cout << "I FOUND A DELIMITER / END DEMILITER : " << line << std::endl;
       if (!isHeaderPart && !partName.empty())
       {
         parts[partName] = std::move(currentPart); // Save completed part
-        // std::cout << "SAVED PART : " << std::endl;
         currentPart = Part(); // Reset part
         partName.clear();
       }
       isHeaderPart = true;
       if (compare_stripped(line, end_delimiter))
       {
-        // std::cout << "I FOUND FINAL BOUNDARY : " << line << std::endl;
         break; // Stop processing after the final boundary
       }
       continue;
@@ -381,7 +366,6 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
     {
       if (line.empty())
       {
-        // std::cout << "I FOUND EMPTY LINE SO HEADER ENDS " << std::endl;
         isHeaderPart = false; // Empty line indicates the end of headers
         continue;
       }
@@ -391,9 +375,7 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (pos != std::string::npos)
       {
         std::string headerKey = line.substr(0, pos);
-        // std::cout << "HEADER KEY : " << headerKey << std::endl;
         std::string headerValue = line.substr(pos + 2); // Skip ': ' after the key
-        // std::cout << "HEADER VALUE : " << headerValue << std::endl;
 
         // Check if this is a disposition header containing the part name
         if (headerKey == "Content-Disposition")
@@ -405,7 +387,6 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
             size_t nameEnd = headerValue.find('"', namePos);
             partName = headerValue.substr(namePos, nameEnd - namePos);
 
-            // std::cout << "IN CONTENT DISPOSITION - PART NAME : " << partName << std::endl;
           }
         }
         currentPart.headers[headerKey] = headerValue;
@@ -422,7 +403,6 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
         {
           line.pop_back(); // Normalize the line
         }
-        // std::cout << "CONTENT READING LINE : " << line << std::endl;
 
         contentStream << "\n"
                       << line; // Append the line to content
@@ -431,22 +411,13 @@ std::map<std::string, Part> parse_multipart_form_data(const std::string &body, c
       if (compare_stripped(line, delimiter) || compare_stripped(line, end_delimiter))
       {
         stream.seekg(-(long)(line.length() + 2), std::ios_base::cur); // Rewind to handle the delimiter again
-        // std::cout << "REWINDED : " << line << std::endl;
       }
 
       // Assign content to the current part
       std::string contentStr = contentStream.str();
-      // std::cout << "CONTENT STREAM: " << contentStr << std::endl;
       currentPart.content.assign(contentStr.begin(), contentStr.end());
       isHeaderPart = true; // Prepare for the next part
-      // std::cout << "ASSIGNED CONTENT TO PART " << std::endl;
     }
-    // std::cout << "GOING TO NEXT LINE: " << std::endl;
-    // if (!std::getline(stream, line))
-    // {
-    //   std::cerr << "Failed to read line, stopping." << std::endl;
-    //   break;
-    // }
   }
   return parts;
 }
@@ -505,7 +476,9 @@ void send_response_with_headers(int client_fd, int status_code, const std::strin
 
 std::string get_cookie_from_header(const std::string &request)
 {
-  std::cout << "I am in get cookie handler from the request" << std::endl;
+  if (verbose) {
+    std::cout << "I am in get cookie handler from the request" << std::endl;
+  }
   std::string cookie_header = "Cookie: sid=";
   size_t start_pos = request.find(cookie_header);
   if (start_pos != std::string::npos)
@@ -514,7 +487,9 @@ std::string get_cookie_from_header(const std::string &request)
     start_pos += cookie_header.length();
     if (end_pos != std::string::npos)
     {
-      std::cout << "cookie is: " << request.substr(start_pos, end_pos - start_pos) << std::endl;
+      if (verbose) {
+        std::cout << "cookie is: " << request.substr(start_pos, end_pos - start_pos) << std::endl;
+      }
       return request.substr(start_pos, end_pos - start_pos);
     }
   }
@@ -569,8 +544,9 @@ std::string get_username_from_cookie(const std::string &cookie, int backend_fd)
 
       // Map the cookie to the username
       cookie_user_map[cookie] = username; // Cache the username for future requests
-      cout << cookie << endl;
-      cout << username << endl;
+      if (verbose) {
+        cout << "Got username from cookie: " << username << endl;
+      }
 
       // Unlock the mutex after modifying the map
       pthread_mutex_unlock(&map_mutex);
@@ -630,8 +606,6 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
     return;
   }
 
-  std::cout << "row key for delete: " << row_key << std::endl;
-
   if (response_status == 0)
   {
     // Parse items list
@@ -666,8 +640,9 @@ void deleteFolderContents(const string &folderPath, int client_fd, int fd, const
           cerr << "ERROR in communicating with backend" << endl;
           return;
         }
-
-        std::cout << "Sending delete for: " << row_key << std::endl;
+        if (verbose) {
+          std::cout << "Sending delete request for: " << row_key << std::endl;
+        }
       }
       // Delete files
       else if (itemType == "F@")
@@ -697,8 +672,9 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
 
   string response_value, response_error_msg;
   int response_status, response_code;
-
-  std::cout << "new row key for rename: " << new_row_key << std::endl;
+  if (verbose) {
+    std::cout << "new row key for rename: " << new_row_key << std::endl;
+  }
 
   // GET items from original folder
   string colkey = "items";
@@ -753,9 +729,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
           return;
         }
 
-        std::cout << "Row key for get: " << row_key << std::endl;
-        // std::cout << "Value of get: " << response_value << std::endl;
-
         if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
@@ -779,9 +752,6 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
           return;
         }
 
-        std::cout << "New Row key for put: " << new_row_key << std::endl;
-        // std::cout << "Value of put: " << response_value << std::endl;
-
         if (response_status != 0)
         {
           // Error handling: send appropriate error response to the client
@@ -791,7 +761,9 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
         }
 
         // Delete folder item
-        std::cout << "Sending delete for: " << row_key << std::endl;
+        if (verbose) {
+          std::cout << "Sending delete requests for: " << row_key << std::endl;
+        }
         type = "delete";
         msg_to_send = construct_msg(3, row_key, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
@@ -851,7 +823,9 @@ void renameFolder(const string &oldFolderPath, const string &newFolderPath, int 
 
 void sigint_handler(int signum)
 {
-  cout << "SIGINT received, shutting down." << endl;
+  if (verbose) {
+    cout << "SIGINT received, shutting down." << endl;
+  }
   if (fd_is_open(g_listen_fd))
   {
     close(g_listen_fd);
@@ -985,7 +959,10 @@ void *handle_connection(void *arg)
   // Keep listening for requests
   while (true)
   {
-    cout << "Listening..." << endl;
+    try {
+    if (verbose) {
+      cout << "Listening for requests..." << endl;
+    }
     string request_header = recv_header(client_fd);
 
     if (request_header == "HANDLE ERROR")
@@ -997,7 +974,6 @@ void *handle_connection(void *arg)
       break;
     }
 
-    // cout << request_header << endl;
     unordered_map<string, string> html_request_map = parse_http_header(request_header);
 
     if (html_request_map["method"] != "POST" || html_request_map["uri"] != "/upload_file")
@@ -1191,9 +1167,6 @@ void *handle_connection(void *arg)
         cerr << "ERROR in communicating with backend" << endl;
         continue;
       }
-
-      cout << "get response status: " << get_response_status << endl;
-      cout << "get response error msg: " << get_response_error_msg << endl;
 
       if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist")
       {
@@ -1470,8 +1443,6 @@ void *handle_connection(void *arg)
         std::string username = get_username_from_cookie(cookie, fd);
         if (username.empty())
         {
-          cout << "redirecting from home to login coz no user" << endl;
-          // Handle error or redirect if username not found
           redirect(client_fd, "/login");
         }
         else
@@ -1604,9 +1575,6 @@ void *handle_connection(void *arg)
           cerr << "ERROR in communicating with backend" << endl;
           continue;
         }
-
-        cout << "Delete response status: " << delete_response_status << endl;
-        cout << "Delete response error msg: " << delete_response_error_msg << endl;
 
         // Redirect to the login page and delete the cookie
         std::string response_stream = "HTTP/1.1 302 Found\r\n";
@@ -1962,13 +1930,15 @@ void *handle_connection(void *arg)
           {
             int deliver_success = deliver_local_email(usrname, uid, encoded_from, encoded_subject, encoded_body,
                                                       encoded_display, g_map_rowkey_to_server, g_coordinator_addr);
-            if (deliver_success == 0)
-            {
-              cout << "SUCCESS: delivered local mail to " << usrname << endl;
-            }
-            else
-            {
-              cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+            if (verbose) {
+              if (deliver_success == 0)
+              {
+                cout << "SUCCESS: delivered local mail to " << usrname << endl;
+              }
+              else
+              {
+                cout << "ERROR: failed to deliver local mail to " << usrname << endl;
+              }
             }
           }
 
@@ -1976,26 +1946,30 @@ void *handle_connection(void *arg)
           int store_email_success = put_email_to_backend(uid, encoded_from, encoded_to, encoded_ts,
                                                          encoded_subject, encoded_body, encoded_display,
                                                          g_map_rowkey_to_server, g_coordinator_addr);
+          if (verbose) {
           if (store_email_success == 0)
-          {
-            cout << "SUCCESS: stored email with uid " << uid << endl;
-          }
-          else
-          {
-            cout << "ERROR: failed to store email with uid " << uid << endl;
+            {
+              cout << "SUCCESS: stored email with uid " << uid << endl;
+            }
+            else
+            {
+              cout << "ERROR: failed to store email with uid " << uid << endl;
+            }
           }
 
           // put in sentbox
           int sentbox_success = put_in_sentbox(from_username, uid, encoded_to, encoded_ts,
                                                encoded_subject, encoded_body, g_map_rowkey_to_server,
                                                g_coordinator_addr);
+          if (verbose) {
           if (sentbox_success == 0)
-          {
-            cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
-          }
-          else
-          {
-            cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
+            {
+              cout << "SUCCESS: stored email with uid " << uid << " in sentbox of " << from_username << endl;
+            }
+            else
+            {
+              cout << "ERROR: failed to store email with uid " << uid << " in sentbox of " << from_username << endl;
+            }
           }
 
           std::string redirect_to = "/inbox";
@@ -2152,17 +2126,23 @@ void *handle_connection(void *arg)
         std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
-          // /delete_email?source=" << source << "&id=" << uid << "
+
           string source = split(split(split(html_request_map["uri"], "?")[1], "&")[0], "=")[1];
           string uid = split(split(split(html_request_map["uri"], "?")[1], "&")[1], "=")[1];
-          cout << "delete email with uid: " << uid << " from " << source << endl;
-          delete_email(username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
+          int result = delete_email(username, uid, source, g_map_rowkey_to_server, g_coordinator_addr);
+          if (result != 0) {
+            cerr << "ERROR in deleting email with with uid: " << uid << " from " << source << endl;
+          } else {
+            if (verbose) {
+              cout << "deleted email with uid: " << uid << " from " << source << endl;
+            }
+          }
+
           std::string redirect_to = "/" + source;
           redirect(client_fd, redirect_to);
         }
         else
         {
-          // Handle unauthenticated or failed lookup
           redirect(client_fd, "/login");
         }
       }
@@ -2176,14 +2156,10 @@ void *handle_connection(void *arg)
       std::string cookie = get_cookie_from_header(request_header);
       if (cookie.empty())
       {
-        // Redirect to login for all other pages
-        cout << "Going from drive to home" << endl;
         redirect(client_fd, "/login");
       }
       else
       {
-        // get username from cookie
-        std::cout << "username: " << cookie_user_map[cookie] << " " << cookie << std::endl;
         std::string username = get_username_from_cookie(cookie, fd); // TO DO: backend address
         if (!username.empty())
         {
@@ -2678,8 +2654,6 @@ void *handle_connection(void *arg)
         }
         else
         {
-          // Handle unauthenticated or failed lookup
-          cout << "Drive me error" << endl;
           redirect(client_fd, "/login");
         }
       }
@@ -2706,7 +2680,6 @@ void *handle_connection(void *arg)
         {
           // Construct the row key by appending "user_" to the foldername
           string parentRowKey = username + "_" + path;
-          std::cout << "parent row key: " << parentRowKey << std::endl;
 
           // Construct the row key for the new folder
           string newFolderRowKey = parentRowKey + "/" + folderName;
@@ -2904,29 +2877,9 @@ void *handle_connection(void *arg)
           std::string path;
           bool file_ready_to_read = recv_file_name_path(client_fd, content_length, boundary, filename, path);
 
-          // cout << "Boundary used for parsing: " << boundary << endl;
-
-          // auto parts = parse_multipart_form_data(html_request_map["body"], boundary);
-
-          // for (const auto &part : parts)
-          // {
-          //   cout << "Part: " << part.first << " Content: ";
-          //   cout.write(part.second.content.data(), part.second.content.size());
-          //   cout << endl;
-          // }
-
           // Getting the file from FormData
           if (file_ready_to_read)
           {
-            // auto &filePart = parts["file"];
-            // auto &filenamePart = parts["filename"];
-            // auto &pathPart = parts["path"];
-
-            // std::string fileContent = base64_encode(std::string(filePart.content.begin(), filePart.content.end()));
-
-            cout << "FILENAME: " << filename << endl;
-            cout << "FILEPATH: " << path << endl;
-            // cout << "FILECONTENT: " << fileContent << endl;
 
             // Construct the row key by appending "user_" to the folder name
             std::string parentRowKey = username + "_" + path;
@@ -2953,8 +2906,6 @@ void *handle_connection(void *arg)
               cerr << "ERROR in communicating with backend" << endl;
               continue;
             }
-
-            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
             if (get_response_status == 0)
             {
@@ -3130,13 +3081,8 @@ void *handle_connection(void *arg)
           size_t last_separator_pos = file_path.find_last_of('/');
           std::string file_name = file_path.substr(last_separator_pos + 1);
 
-          std::cout << "in download file" << std::endl;
-
           // Construct the row key by appending "user_" to the foldername
           string rowKey = username + "_" + file_path;
-
-          std::cout << "parent row key: " << rowKey << std::endl;
-          std::cout << "file name: " << file_name << std::endl;
 
           // GET the contents of the file
           F_2_B_Message msg_to_send;
@@ -3161,7 +3107,7 @@ void *handle_connection(void *arg)
           }
 
           int no_chunks = stoi(response_value);
-          cout << "Number of chunks: " << no_chunks << endl;
+
           if (no_chunks > 0)
           {
             string file_content = "";
@@ -3186,10 +3132,8 @@ void *handle_connection(void *arg)
                 continue;
               }
 
-              // cout << "RESPONSE: " << response_value << endl;
-              cout << "content_" << i << ": " << response_value.size() << endl;
               string decoded_value = base64_decode(response_value);
-              cout << "DECODED LENGTH: " << decoded_value.size() << endl;
+
               file_content += decoded_value;
             }
             std::string content_disposition = "attachment; filename=\"" + file_name + "\"";
@@ -3206,8 +3150,6 @@ void *handle_connection(void *arg)
 
             // Send the response with the redirect script
             send_response(client_fd, 200, "OK", "text/html", redirect_script.str());
-
-            cout << "TRANSER SUCCESS!!!" << endl;
           }
           else
           {
@@ -3243,8 +3185,6 @@ void *handle_connection(void *arg)
           map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
           string folderPath = post_data["folderPath"];
 
-          std::cout << "folder path for delete: " << folderPath << std::endl;
-
           // Recursively delete folder contents
           deleteFolderContents(folderPath, client_fd, fd, username);
 
@@ -3270,8 +3210,6 @@ void *handle_connection(void *arg)
             continue;
           }
 
-          std::cout << "Sending delete for: " << row_key << std::endl;
-
           if (response_status != 0)
           {
             // Error handling: send appropriate error response to the client
@@ -3286,8 +3224,6 @@ void *handle_connection(void *arg)
             string folderName = folderPath.substr(lastSlashPos + 1);      // Extract the folder name
             string parentFolderPath = folderPath.substr(0, lastSlashPos); // Get the parent folder path
             string parentRowKey = username + "_" + parentFolderPath;
-
-            std::cout << "parent row key for delete: " << parentRowKey << std::endl;
 
             // Loop till success: GET the parent folder
             bool success = false;
@@ -3345,8 +3281,6 @@ void *handle_connection(void *arg)
                     firstItem = false;
                   }
                   newValue += "]";
-
-                  // std::cout << "New value after deletion in parent: " << newValue << std::endl;
                 }
 
                 // CPUT the parent folder
@@ -3436,8 +3370,9 @@ void *handle_connection(void *arg)
           map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
           string oldFolderPath = post_data["folderPath"];
           string newFolderName = post_data["newFolderName"];
-
-          std::cout << "folder path for rename: " << oldFolderPath << std::endl;
+          if (verbose) {
+            std::cout << "Performing rename for: " << oldFolderPath << std::endl;
+          }
 
           // Construct the new folder path with the new folder name
           string newFolderPath = oldFolderPath;
@@ -3471,8 +3406,6 @@ void *handle_connection(void *arg)
             cerr << "ERROR in communicating with backend" << endl;
             continue;
           }
-
-          std::cout << "RESPONSE: " << response_error_msg << std::endl;
 
           if (response_status == 0)
           {
@@ -3531,8 +3464,6 @@ void *handle_connection(void *arg)
             // Delete folder item
             row_key = username + "_" + oldFolderPath;
 
-            std::cout << "Sending delete for: " << row_key << std::endl;
-
             F_2_B_Message msg_to_send_delete;
             string response_value_delete, response_error_msg_delete;
             int response_status_delete;
@@ -3567,8 +3498,6 @@ void *handle_connection(void *arg)
               string folderName = oldFolderPath.substr(lastSlashPos + 1);      // Extract the folder name
               string parentFolderPath = oldFolderPath.substr(0, lastSlashPos); // Get the parent folder path
               string parentRowKey = username + "_" + parentFolderPath;
-
-              std::cout << "parent row key for delete: " << parentRowKey << std::endl;
 
               // Loop till success: GET the parent folder
               bool success = false;
@@ -3633,8 +3562,6 @@ void *handle_connection(void *arg)
                       firstItem = false;
                     }
                     newValue += "]";
-
-                    // std::cout << "New value after deletion in parent: " << newValue << std::endl;
                   }
                   F_2_B_Message msg_to_send_cput;
                   string response_value_cput, response_error_msg_cput;
@@ -3724,9 +3651,9 @@ void *handle_connection(void *arg)
           map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
           string oldFolderPath = post_data["folderPath"];
           string newPath = post_data["newPath"];
-
-          std::cout << "folder path for rename: " << oldFolderPath << std::endl;
-
+          if (verbose) {
+            std::cout << "Moving folder with path: " << oldFolderPath << std::endl;
+          }
           // Construct the new folder path
           string folderName;
           size_t lastSlashPos = oldFolderPath.find_last_of('/');
@@ -3792,8 +3719,6 @@ void *handle_connection(void *arg)
               continue;
             }
 
-            std::cout << "RESPONSE: " << response_error_msg_get << std::endl;
-
             if (response_status_get == 0)
             {
               // folder already exists
@@ -3855,9 +3780,6 @@ void *handle_connection(void *arg)
                 send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
               }
 
-              // Delete folder item
-              std::cout << "Sending delete for: " << row_key << std::endl;
-
               F_2_B_Message msg_to_send_delete;
               string response_value_delete, response_error_msg_delete;
               int response_status_delete;
@@ -3894,7 +3816,6 @@ void *handle_connection(void *arg)
                 string parentFolderPath = oldFolderPath.substr(0, lastSlashPos); // Get the parent folder path
                 string parentRowKey = username + "_" + parentFolderPath;
 
-                std::cout << "parent row key for delete: " << parentRowKey << std::endl;
 
                 // Loop till success: GET the parent folder
                 bool success = false;
@@ -3943,7 +3864,6 @@ void *handle_connection(void *arg)
                     cerr << "ERROR in communicating with backend" << endl;
                     continue;
                   }
-                  std::cout << "ROW KEY FOR HW2: " << new_row_key << std::endl;
 
                   // Parent folder handling
                   if (response_status_get == 0)
@@ -3980,8 +3900,6 @@ void *handle_connection(void *arg)
                         firstItem = false;
                       }
                       newValue += "]";
-
-                      std::cout << "New value after deletion in parent: " << newValue << std::endl;
                     }
 
                     // New folder handling
@@ -3990,8 +3908,6 @@ void *handle_connection(void *arg)
                     // Add the folder name to the list
                     string newItem = "D@" + folderName;
                     folderItems.push_back(newItem);
-
-                    std::cout << "NEW ITEM TO PUT FOR HW2: " << newItem << std::endl;
 
                     // Concatenate remaining items to form the new value
                     newValueFolder = "[";
@@ -4028,9 +3944,6 @@ void *handle_connection(void *arg)
                       continue;
                     }
                     // CPUT the parent folder
-
-                    std::cout << "NEW ITEM ROW KEY FOR HW2: " << new_row_key << std::endl;
-                    std::cout << "NEW VALUE TO PUT FOR HW2: " << newValueFolder << std::endl;
 
                     F_2_B_Message msg_to_send_cput_new;
                     string response_value_cput_new, response_error_msg_cput_new;
@@ -4110,12 +4023,8 @@ void *handle_connection(void *arg)
           map<string, string> post_data = parse_json_string_to_map(html_request_map["body"]);
           string filePath = post_data["filePath"];
 
-          std::cout << "file path for deletion: " << filePath << std::endl;
-
           // Construct the row key for the file
           string row_key = username + "_" + filePath;
-
-          std::cout << "row key for file to delete: " << row_key << std::endl;
 
           // Get current directory path
           size_t lastSlashPos = filePath.find_last_of('/');
@@ -4124,8 +4033,6 @@ void *handle_connection(void *arg)
             string fileName = filePath.substr(lastSlashPos + 1);             // Extract the file name
             std::string parentFolderPath = filePath.substr(0, lastSlashPos); // Get the parent folder path
             std::string parentRowKey = username + "_" + parentFolderPath;
-
-            std::cout << "parent directory to update: " << parentRowKey << std::endl;
 
             // Loop till success: GET the parent folder
             bool success = false;
@@ -4175,8 +4082,6 @@ void *handle_connection(void *arg)
                   firstItem = false;
                 }
                 newValue += "]";
-
-                std::cout << "new value to update: " << newValue << std::endl;
 
                 // CPUT the current directory items without the file
                 string cput_response_value, cput_response_error_msg;
@@ -4274,9 +4179,6 @@ void *handle_connection(void *arg)
           string filePath = post_data["filePath"];
           string newFileName = post_data["newFileName"];
 
-          std::cout << "File path for rename: " << filePath << std::endl;
-          std::cout << "New file name: " << newFileName << std::endl;
-
           // Get current directory path and file name
           size_t lastSlashPos = filePath.find_last_of('/');
           if (lastSlashPos != std::string::npos)
@@ -4298,7 +4200,6 @@ void *handle_connection(void *arg)
                                                 get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                 g_coordinator_addr, type);
 
-            std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
             if (get_response_status == 0)
             {
@@ -4317,8 +4218,6 @@ void *handle_connection(void *arg)
                 string error_message = "Failed to create new file path";
                 send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
               }
-
-              std::cout << "Parent directory to update: " << parentRowKey << std::endl;
 
               // Loop until success: GET the parent folder
               bool success = false;
@@ -4364,8 +4263,6 @@ void *handle_connection(void *arg)
                     firstItem = false;
                   }
                   newValue += "]";
-
-                  std::cout << "New value to update: " << newValue << std::endl;
 
                   // CPUT the current directory items with the renamed file
 
@@ -4462,7 +4359,7 @@ void *handle_connection(void *arg)
             string type = "get";
             string rowkey = new_parent_row_key;
             string colkey = "items";
-            cout << "PATH TO CHECK FOR NEW DIRECTORY" << new_parent_row_key << endl;
+
             // Check whether the new directory exists
             F_2_B_Message msg_to_send_get = construct_msg(1, rowkey, colkey, "", "", "", 0);
             response_code = send_msg_to_backend(fd, msg_to_send_get, get_response_value, get_response_status,
@@ -4496,7 +4393,6 @@ void *handle_connection(void *arg)
                                                   get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                                   g_coordinator_addr, type);
 
-              std::cout << "RESPONSE: " << get_response_error_msg << std::endl;
 
               if (get_response_status == 0)
               {
@@ -4515,8 +4411,6 @@ void *handle_connection(void *arg)
                   string error_message = "Failed to create new file path";
                   send_response(client_fd, 500, "Internal Server Error", "application/json", error_message);
                 }
-
-                std::cout << "Parent directory to update: " << parentRowKey << std::endl;
 
                 // Loop until success: GET the parent folder
                 bool success = false;
@@ -4565,8 +4459,6 @@ void *handle_connection(void *arg)
                       firstItem = false;
                     }
                     newValue += "]";
-
-                    std::cout << "New value to update: " << newValue << std::endl;
 
                     // For old directory: Parse items list
                     vector<string> old_items = parse_items_list(old_get_response_value);
@@ -5034,6 +4926,13 @@ void *handle_connection(void *arg)
     {
       send_response(client_fd, 405, "Method Not Allowed", "text/html", "");
     }
+  } catch (const std::exception& e) {
+        // This will catch any exceptions derived from std::exception
+        std::cout << "Standard exception caught: " << e.what() << std::endl;
+  } catch (...) {
+      // This will catch any other types of exceptions not derived from std::exception
+      std::cout << "Non-standard exception caught" << std::endl;
+  }
   }
   close(client_fd);
   return nullptr;
@@ -5056,12 +4955,12 @@ int main(int argc, char *argv[])
   // parse commands
   // <ip>:<port> string for future use
   g_serveraddr_str = parse_commands(argc, argv);
-  cout << "IP: " << g_serveraddr_str << endl;
+
   sockaddr_in server_sockaddr = get_socket_address(g_serveraddr_str);
 
   // create listening socket
   g_listen_fd = socket(PF_INET, SOCK_STREAM, 0);
-  cout << "Listening fd: " << g_listen_fd << endl;
+
   if (g_listen_fd == -1)
   {
     cerr << "Socket creation failed.\n"

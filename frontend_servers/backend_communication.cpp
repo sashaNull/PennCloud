@@ -70,7 +70,6 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
     return msg_to_return;
   }
   string to_send = encode_message(msg);
-  cout << "to send: " << to_send << endl;
 
   send_message(new_fd, to_send);
   // Receive response from the server
@@ -106,17 +105,13 @@ F_2_B_Message send_and_receive_msg(int fd, const string &addr_str, F_2_B_Message
 
       if (!line.empty() && line != "WELCOME TO THE SERVER")
       {
-        // cout << "going to decode message: " << line << endl;
         msg_to_return = decode_message(line);
-        // cout << "decoded message" << endl;
         close(new_fd);
         return msg_to_return;
-        cout << "after return" << endl;
       }
     }
   }
   close(new_fd);
-  cout << "before return" << endl;
   return msg_to_return;
 }
 
@@ -162,7 +157,6 @@ std::string ask_coordinator(sockaddr_in coordinator_addr, const std::string &row
   }
   if (message.substr(0, 3) == "+OK")
   {
-    cout << "Message: " << message << endl;
     vector<string> splitted = split(message);
     return splitted[2];
   }
@@ -181,7 +175,6 @@ bool check_backend_connection(int fd, const string &backend_serveraddr_str, cons
 {
   F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
   F_2_B_Message get_response_msg = send_and_receive_msg(fd, backend_serveraddr_str, msg_to_send);
-  cout << "got response" << endl;
   if (get_response_msg.status == 2)
   {
     return false;

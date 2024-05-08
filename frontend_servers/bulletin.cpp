@@ -182,7 +182,6 @@ int put_bulletin_item_to_backend(const string &encoded_owner, const string &enco
     // put owner
     colkey = "owner";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_owner, "", "", 0);
-    cout << "!!!putting owner to backend: " << encoded_owner << endl;
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                         response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                         g_coordinator_addr, type);
@@ -200,7 +199,6 @@ int put_bulletin_item_to_backend(const string &encoded_owner, const string &enco
     // put timestamp
     colkey = "timestamp";
     msg_to_send = construct_msg(2, rowkey, colkey, encoded_ts, "", "", 0);
-    cout << "!!!putting timestamp to backend: " << encoded_ts << endl;
     response_code = send_msg_to_backend(fd, msg_to_send, response_value, response_status,
                                         response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                         g_coordinator_addr, type);

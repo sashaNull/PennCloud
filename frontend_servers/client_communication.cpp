@@ -67,20 +67,6 @@ unordered_map<string, string> parse_http_header(const string &request)
         result["header_" + header.first] = header.second;
     }
     
-    // cout << "METHOD: " << result["method"] << endl;
-    // cout << "URI: " << result["uri"] << endl;
-    // cout << "Content-Length: " << result["header_Content-Length"] << endl;
-
-    // if (result["method"] == "POST" && result["uri"] == "/upload_file")
-    // {
-    //     cout << "End of parse" << endl;
-    //     return result;
-        // }
-
-    // Parse body
-    // string body = string(istreambuf_iterator<char>(request_stream), {});
-    // result["body"] = body;
-    // cout << "End of parse" << endl;
     return result;
 }
 
@@ -124,7 +110,6 @@ void redirect(int client_fd, std::string redirect_to)
     send(client_fd, response.c_str(), response.size(), 0);
 
     std::cout << "Sent redirection response to " << redirect_to << std::endl;
-    std::cout << "redirect response: " << response << std::endl;
 }
 
 void redirect_with_cookie(int client_fd, std::string redirect_url, std::string cookie)
@@ -146,8 +131,6 @@ void redirect_with_cookie(int client_fd, std::string redirect_url, std::string c
     }
     else
     {
-        std::cout << "Response being sent:\n"
-                  << response_stream << std::endl;
         std::cout << "Redirect with cookie response sent successfully, bytes sent: " << bytes_sent << std::endl;
     }
 }

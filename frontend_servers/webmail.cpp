@@ -149,7 +149,6 @@ string generate_compose_html(const string &prefill_to, const string &prefill_sub
 
 vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
 {
-    cout << "recipients str: " << recipients_str << endl;
     vector<vector<string>> to_return;
     vector<string> local, external;
     to_return.push_back(local);
@@ -157,16 +156,12 @@ vector<vector<string>> parse_recipients_str_to_vec(const string &recipients_str)
     vector<string> recipients = split(recipients_str, ";");
     for (const auto &r : recipients)
     {   
-        cout << "recipient: " << r << endl;
         if (split(r, "@")[1] == "localhost")
         {
-            // just push back the username
-            cout << "in local if: " << split(r, "@")[0] << endl;
             to_return[0].push_back(split(r, "@")[0]);
         }
         else
         {
-            cout << "in external if" << endl;
             to_return[1].push_back(r);
         }
     }
@@ -677,7 +672,7 @@ int delete_email(const string& username, const string& uid,
 // }
 
 void send_smtp_command(int fd, const char* cmd) {
-    std::cout << "Sending command: " << cmd;
+    std::cout << "Sending SMTP command: " << cmd;
     if (send(fd, cmd, strlen(cmd), 0) <= 0) {
         perror("Failed to send command");
         throw std::runtime_error("Failed to send command");
@@ -687,7 +682,7 @@ void send_smtp_command(int fd, const char* cmd) {
         perror("Failed to read response");
         throw std::runtime_error("Failed to read response");
     }
-    std::cout << "Received: " << buffer << std::endl;
+    std::cout << "Received form SMTP server: " << buffer << std::endl;
 }
 
 void cleanup(int fd) {
@@ -742,7 +737,6 @@ void* smtp_client(void* arg) {
         // Try each address until we successfully connect
         for (res = result; res != NULL; res = res->ai_next) {
             int fd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
-            cout << "fd: " << fd << endl;
             if (fd == -1) continue;
 
             ((struct sockaddr_in*)res->ai_addr)->sin_port = htons(25);
