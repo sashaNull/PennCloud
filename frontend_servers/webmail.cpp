@@ -562,36 +562,25 @@ int put_email_to_backend(const string &uid, const string &encoded_from, const st
     return 0;
 }
 
-string delete_email_from_box_string(const string &input, const string &uid, const string &delimiter)
+std::string erase_to_comma(const std::string &original, const std::string &substring)
 {
-    size_t uid_pos = input.find(uid);
-
-    if (uid_pos == string::npos)
+    std::string str = original; // Make a copy of the original string
+    size_t start_pos = str.find(substring);
+    if (start_pos != std::string::npos)
     {
-        cout << "UID not found." << endl;
-        return input;
+        size_t end_pos = str.find(',', start_pos);
+        if (end_pos != std::string::npos)
+        {
+            // Erase from start_pos to end_pos + 1 to include the comma
+            str.erase(start_pos, end_pos - start_pos + 1);
+        }
+        else
+        {
+            // If no comma is found, erase until the end of the string
+            str.erase(start_pos);
+        }
     }
-
-    size_t start_pos = input.rfind(delimiter, uid_pos);
-    if (start_pos == string::npos)
-    {
-        start_pos = 0;
-    }
-
-    size_t end_pos = input.find(delimiter, uid_pos + uid.length());
-    if (end_pos != string::npos)
-    {
-        end_pos += delimiter.length();
-    }
-    else
-    {
-        end_pos = input.length();
-    }
-
-    string modified_string = input;
-    modified_string.erase(start_pos, end_pos - start_pos);
-
-    return modified_string;
+    return str;
 }
 
 int delete_email(const string &username, const string &uid,
@@ -624,7 +613,8 @@ int delete_email(const string &username, const string &uid,
     string received_ts, to_cput;
     while (true)
     {
-        to_cput = delete_email_from_box_string(usr_box_str, uid, ",");
+        // to_cput = delete_email_from_box_string(usr_box_str, uid, ",");
+        to_cput = erase_to_comma(usr_box_str, uid);
 
         type = "cput";
         msg_to_send = construct_msg(4, rowkey, colkey, usr_box_str, to_cput, "", 0);

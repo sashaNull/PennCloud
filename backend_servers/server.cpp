@@ -742,7 +742,7 @@ void *handle_connection(void *arg)
 {
   // Extract client file descriptor from argument
   int client_fd = *static_cast<int *>(arg);
-  delete static_cast<int *>(arg); // Delete memory allocated for the argument
+  // delete static_cast<int *>(arg); // Delete memory allocated for the argument
 
   // Send welcome message to client
   string response = "WELCOME TO THE SERVER\r\n";

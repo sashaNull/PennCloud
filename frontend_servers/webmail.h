@@ -52,7 +52,7 @@ std::string construct_view_email_html(const std::string& subject, const std::str
 
 int put_email_to_backend(const std::string &uid, const std::string &encoded_from, const std::string &encoded_to, const std::string &encoded_ts, const std::string &encoded_subject, const std::string &encoded_body, const std::string &encoded_display, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 
-std::string delete_email_from_box_string(const std::string& input, const std::string& uid, const std::string& delimiter);
+std::string erase_to_comma(const std::string& original, const std::string& substring);
 
 int delete_email(const std::string& username, const std::string& uid, const std::string& source, std::map<std::string, std::string> &g_map_rowkey_to_server, sockaddr_in g_coordinator_addr);
 

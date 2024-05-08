@@ -982,40 +982,6 @@ void *handle_connection(void *arg)
 
   string colkey, rowkey, type;
 
-  string bulletin_board_string, get_response_error_msg;
-  F_2_B_Message msg_to_send;
-  int get_response_status;
-  rowkey = "bulletin-board";
-  colkey = "items";
-  type = "get";
-  msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
-  int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
-                                          get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                          g_coordinator_addr, type);
-  if (response_code == 1)
-  {
-    cerr << "ERROR in communicating with coordinator" << endl;
-  }
-  else if (response_code == 2)
-  {
-    cerr << "ERROR in communicating with backend" << endl;
-  }
-  if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist")
-  {
-    type = "put";
-    msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
-    int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
-                                            get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
-                                            g_coordinator_addr, type);
-    if (response_code == 1)
-    {
-      cerr << "ERROR in communicating with coordinator" << endl;
-    }
-    else if (response_code == 2)
-    {
-      cerr << "ERROR in communicating with backend" << endl;
-    }
-  }
   // Keep listening for requests
   while (true)
   {
@@ -4805,13 +4771,47 @@ void *handle_connection(void *arg)
       }
       else
       {
-        // get (bulletin-board items) from backend
-        string bulletin_board_str, response_error_msg;
-        int response_status, response_code;
+        string bulletin_board_string, get_response_error_msg;
+        F_2_B_Message msg_to_send;
+        int get_response_status;
         rowkey = "bulletin-board";
         colkey = "items";
         type = "get";
-        F_2_B_Message msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
+        int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
+                                                get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                g_coordinator_addr, type);
+        if (response_code == 1)
+        {
+          cerr << "ERROR in communicating with coordinator" << endl;
+        }
+        else if (response_code == 2)
+        {
+          cerr << "ERROR in communicating with backend" << endl;
+        }
+        if (get_response_status == 1 && strip(get_response_error_msg) == "Rowkey does not exist")
+        {
+          type = "put";
+          msg_to_send = construct_msg(2, rowkey, colkey, "", "", "", 0);
+          int response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_string, get_response_status,
+                                                  get_response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
+                                                  g_coordinator_addr, type);
+          if (response_code == 1)
+          {
+            cerr << "ERROR in communicating with coordinator" << endl;
+          }
+          else if (response_code == 2)
+          {
+            cerr << "ERROR in communicating with backend" << endl;
+          }
+        }
+        // get (bulletin-board items) from backend
+        string bulletin_board_str, response_error_msg;
+        int response_status;
+        rowkey = "bulletin-board";
+        colkey = "items";
+        type = "get";
+        msg_to_send = construct_msg(1, rowkey, colkey, "", "", "", 0);
         response_code = send_msg_to_backend(fd, msg_to_send, bulletin_board_str, response_status,
                                             response_error_msg, rowkey, colkey, g_map_rowkey_to_server,
                                             g_coordinator_addr, type);
