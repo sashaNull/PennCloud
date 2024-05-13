@@ -194,6 +194,15 @@ void trim_trailing_whitespaces(string &str)
     str.erase(it.base(), str.end());
 }
 
+/**
+ * @brief Generates the log file name for a given tablet data file.
+ *
+ * This function takes a filename, removes its extension, and appends
+ * "_logs.txt" to create the log file name.
+ *
+ * @param filename The base filename for the tablet data file.
+ * @return A string representing the log file name.
+ */
 std::string get_log_file_name(const std::string &filename)
 {
     // Find the position of the last occurrence of '.'
@@ -204,6 +213,17 @@ std::string get_log_file_name(const std::string &filename)
     return "logs/" + name_without_extension + "_logs.txt";
 }
 
+/**
+ * @brief Logs a message to the specified tablet's log file.
+ *
+ * This function serializes an F_2_B_Message, constructs the log file path,
+ * and appends the serialized message to the log file. It ensures the log file
+ * is correctly opened and checks for write errors.
+ *
+ * @param f2b_message The message to be logged.
+ * @param data_file_location The directory location of the log files.
+ * @param tablet_name The name of the tablet associated with the log.
+ */
 void log_message(const F_2_B_Message &f2b_message, string data_file_location, string tablet_name)
 {
     // Serialize the message using the provided serialize function
@@ -236,6 +256,15 @@ void log_message(const F_2_B_Message &f2b_message, string data_file_location, st
     log_file.close();
 }
 
+/**
+ * @brief Clears the contents of the specified log file.
+ *
+ * This function truncates the log file, effectively clearing its contents,
+ * and confirms the successful clearance of the logs.
+ *
+ * @param folderPath The path to the directory containing the log file.
+ * @param fileName The name of the log file to be cleared.
+ */
 void clearLogFile(const string &folderPath, string &fileName)
 {
     string filePath = folderPath + "/" + fileName;
@@ -244,6 +273,17 @@ void clearLogFile(const string &folderPath, string &fileName)
     cout << "Logs cleared successfully." << endl;
 }
 
+/**
+ * @brief Saves the tablet data to a new file version and removes the old version.
+ *
+ * This function increments the tablet version, writes the current tablet data
+ * to a new file with the updated version number, and deletes the old version
+ * of the file. It ensures the directory exists and handles file operations safely.
+ *
+ * @param checkpoint_tablet_data The data of the tablet to be saved.
+ * @param tablet_name The name of the tablet.
+ * @param data_file_location The directory location to save the tablet files.
+ */
 void save_tablet(tablet_data &checkpoint_tablet_data, const std::string &tablet_name, const std::string &data_file_location)
 {
     // Ensure the directory exists
@@ -288,6 +328,16 @@ void save_tablet(tablet_data &checkpoint_tablet_data, const std::string &tablet_
     }
 }
 
+/**
+ * @brief Checkpoints the tablet data and clears the corresponding log file.
+ *
+ * This function saves the current state of the tablet data to a new file version,
+ * updates the tablet version, and clears the associated log file.
+ *
+ * @param checkpoint_tablet_data The data of the tablet to be checkpointed.
+ * @param tablet_name The name of the tablet.
+ * @param data_file_location The directory location to save the tablet files.
+ */
 void checkpoint_tablet(tablet_data &checkpoint_tablet_data, string tablet_name, std::string data_file_location)
 {
     string tablet_log_file = get_log_file_name(tablet_name);
@@ -295,6 +345,17 @@ void checkpoint_tablet(tablet_data &checkpoint_tablet_data, string tablet_name, 
     clearLogFile(data_file_location, tablet_log_file);
 }
 
+/**
+ * @brief Determines the new file name for a row key based on tablet ranges.
+ *
+ * This function checks if the row key's prefix falls within any of the
+ * server's tablet ranges and returns the matching range. If no match is found,
+ * it returns the first range in the server's tablet list.
+ *
+ * @param row_key The row key to find the file name for.
+ * @param server_tablet_list The list of tablet ranges on the server.
+ * @return A string representing the new file name or tablet range.
+ */
 std::string get_new_file_name(const std::string &row_key, const std::vector<std::string> &server_tablet_list)
 {
     if (row_key.length() < 2)
@@ -328,6 +389,16 @@ std::string get_new_file_name(const std::string &row_key, const std::vector<std:
     return server_tablet_list[0];
 }
 
+/**
+ * @brief Loads the cache with tablet data from files in the specified directory.
+ *
+ * This function iterates through each tablet in the cache, reads the corresponding
+ * files in the directory, and loads the data into the cache. It updates the tablet
+ * version and ensures an initial file exists if no files are found.
+ *
+ * @param cache The cache to be loaded with tablet data.
+ * @param data_file_location The directory location of the tablet files.
+ */
 void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string data_file_location)
 {
     // Iterate through each entry in the cache map
@@ -419,6 +490,16 @@ void load_cache(std::unordered_map<std::string, tablet_data> &cache, std::string
     }
 }
 
+/**
+ * @brief Replays a message on the cache, updating the tablet data accordingly.
+ *
+ * This function handles GET, PUT, DELETE, and CPUT messages by invoking the
+ * appropriate handlers and updating the cache and requests_since_checkpoint count.
+ *
+ * @param cache The cache containing the tablet data.
+ * @param f2b_message The message to be replayed.
+ * @param server_tablet_ranges The list of tablet ranges on the server.
+ */
 void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_Message f2b_message, vector<string> &server_tablet_ranges)
 {
     string tablet_name = get_new_file_name(f2b_message.rowkey, server_tablet_ranges);
@@ -447,6 +528,17 @@ void replay_message(std::unordered_map<std::string, tablet_data> &cache, F_2_B_M
     }
 }
 
+/**
+ * @brief Recovers the cache state by replaying log messages.
+ *
+ * This function iterates through the cache, reads log files, and replays
+ * the messages to restore the state of each tablet. It updates the
+ * requests_since_checkpoint count accordingly.
+ *
+ * @param cache The cache to be recovered.
+ * @param data_file_location The directory location of the log files.
+ * @param server_tablet_ranges The list of tablet ranges on the server.
+ */
 void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &data_file_location, vector<string> &server_tablet_ranges)
 {
     // Loop over the cache
@@ -476,6 +568,16 @@ void recover(std::unordered_map<std::string, tablet_data> &cache, std::string &d
     }
 }
 
+/**
+ * @brief Computes the next character offset from a starting character.
+ *
+ * This function calculates the next character by adding an offset to the
+ * starting character, ensuring it does not exceed 'z'.
+ *
+ * @param start The starting character.
+ * @param offset The offset to add to the starting character.
+ * @return The next character within the valid range.
+ */
 char get_next_char(char start, int offset)
 {
     char nextChar = char(start + offset);
@@ -486,6 +588,16 @@ char get_next_char(char start, int offset)
     return nextChar;
 }
 
+/**
+ * @brief Splits a range into sub-ranges based on the number of splits per character.
+ *
+ * This function divides a given range into multiple sub-ranges by iterating
+ * through the characters and generating sub-ranges with specified splits.
+ *
+ * @param range The range to be split.
+ * @param splits_per_char The number of splits per character.
+ * @return A vector of strings representing the sub-ranges.
+ */
 vector<string> split_range(const string &range, int splits_per_char)
 {
     char start = range[0];
@@ -509,6 +621,14 @@ vector<string> split_range(const string &range, int splits_per_char)
     return sub_ranges;
 }
 
+/**
+ * @brief Updates the server's tablet ranges by splitting existing ranges.
+ *
+ * This function iterates through the server's tablet ranges, splits each
+ * range into sub-ranges, and updates the global list of tablet ranges.
+ *
+ * @param server_tablet_ranges The list of tablet ranges to be updated.
+ */
 void update_server_tablet_ranges(vector<string> &server_tablet_ranges)
 {
     vector<string> new_ranges;
