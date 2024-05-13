@@ -23,20 +23,19 @@ vector<DisplayEmail> parse_emails_str(const string &emails_str)
 
 string generate_inbox_html(const string &emails_str)
 {
-    // "uid##sender##subject##timestamp&&&uid##sender##subject##timestamp"
     vector<DisplayEmail> emails = parse_emails_str(emails_str);
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Inbox</title><style>"
          << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
-         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }" // Light blue background with padding
+         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }"
          << "table { width: 100%; border-collapse: collapse; }"
          << "td { padding: 8px; border-bottom: 1.5px solid #ddd; }"
-         << "tr:nth-child(odd) { background-color: #e9e9e9; }"  // Light grey for odd rows
-         << "tr:nth-child(even) { background-color: #d1d1d1; }" // Slightly darker grey for even rows
-         << "tr:hover { background-color: #ffffff; }"           // White background on hover
-         << "td:nth-child(1) { text-align: left; }"             // Email ID left aligned
-         << "td:nth-child(2) { text-align: left; }"             // Subject centered
-         << "td:nth-child(3) { text-align: right; }"            // Timestamp right aligned
+         << "tr:nth-child(odd) { background-color: #e9e9e9; }"
+         << "tr:nth-child(even) { background-color: #d1d1d1; }"
+         << "tr:hover { background-color: #ffffff; }"
+         << "td:nth-child(1) { text-align: left; }"
+         << "td:nth-child(2) { text-align: left; }"
+         << "td:nth-child(3) { text-align: right; }"
          << "button { background-color: #161637; width: 120px ;color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-right: 10px; margin-bottom: 10px;}"
          << "button:hover { background-color: #27274a; }"
          << "</style></head><body>";
@@ -74,15 +73,15 @@ string generate_sentbox_html(const string &emails_str)
     stringstream html;
     html << "<!DOCTYPE html><html><head><title>Sent</title><style>"
          << "body { font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 20px; background-color: #e7cccb; color: #282525; }"
-         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }" // Light blue background with padding
+         << "h2 { text-align: center; background-color: #3737516b; padding: 10px; border-radius: 10px; margin: 20px 0; }"
          << "table { width: 100%; border-collapse: collapse; }"
          << "td { padding: 8px; border-bottom: 1.5px solid #ddd; text-align: left; }"
-         << "tr:nth-child(odd) { background-color: #e9e9e9; }"  // Light grey for odd rows
-         << "tr:nth-child(even) { background-color: #d1d1d1; }" // Slightly darker grey for even rows
-         << "tr:hover { background-color: #ffffff; }"           // White background on hover
-         << "td:nth-child(1) { text-align: left; }"             // Email ID left aligned
-         << "td:nth-child(2) { text-align: left; }"             // Subject centered
-         << "td:nth-child(3) { text-align: right; }"            // Timestamp right aligned
+         << "tr:nth-child(odd) { background-color: #e9e9e9; }" 
+         << "tr:nth-child(even) { background-color: #d1d1d1; }"
+         << "tr:hover { background-color: #ffffff; }"
+         << "td:nth-child(1) { text-align: left; }"
+         << "td:nth-child(2) { text-align: left; }"
+         << "td:nth-child(3) { text-align: right; }"
          << "button { background-color: #161637; width: 120px; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-right: 10px; margin-bottom: 10px; }"
          << "button:hover { background-color: #27274a; }"
          << "</style></head><body>";
@@ -651,138 +650,6 @@ int delete_email(const string &username, const string &uid,
     }
     return 0;
 }
-
-// SSL_CTX* create_ssl_context() {
-//     const SSL_METHOD* method = TLS_client_method();
-//     if (!method) {
-//         std::cerr << "Unable to get SSL method" << std::endl;
-//         ERR_print_errors_fp(stderr);
-//         exit(EXIT_FAILURE);
-//     }
-//     SSL_CTX* ctx = SSL_CTX_new(method);
-//     if (!ctx) {
-//         std::cerr << "Unable to create SSL context" << std::endl;
-//         ERR_print_errors_fp(stderr);
-//         exit(EXIT_FAILURE);
-//     }
-//     // SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1);
-//     SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv3);
-//     return ctx;
-// }
-
-// void ssl_cleanup(SSL_CTX* ctx, int sock, SSL* ssl) {
-//     if (ssl) {
-//         SSL_free(ssl);
-//         std::cout << "SSL freed" << std::endl;
-//     }
-//     if (sock != -1) {
-//         close(sock);
-//         std::cout << "Socket closed" << std::endl;
-//     }
-//     if (ctx) {
-//         SSL_CTX_free(ctx);
-//         std::cout << "SSL context freed" << std::endl;
-//     }
-//     ERR_free_strings();
-// }
-
-// void send_smtp_command(SSL* ssl, const char* cmd) {
-//     std::cout << "Sending command: " << cmd;
-//     if (SSL_write(ssl, cmd, strlen(cmd)) <= 0) {
-//         ERR_print_errors_fp(stderr);
-//         throw std::runtime_error("Failed to send command");
-//     }
-//     char buffer[1024];
-//     if (SSL_read(ssl, buffer, sizeof(buffer)) <= 0) {
-//         ERR_print_errors_fp(stderr);
-//         throw std::runtime_error("Failed to read response");
-//     }
-//     std::cout << "Received: " << buffer << std::endl;
-// }
-
-// void* smtp_client(void* arg) {
-//     auto data = static_cast<std::map<std::string, std::string>*>(arg);
-//     std::string to = (*data)["to"];
-//     std::string from = (*data)["from"];
-//     std::string subject = (*data)["subject"];
-//     std::string content = (*data)["content"];
-//     std::string domain = to.substr(to.find('@') + 1);
-//     delete data;
-
-//     // Lookup MX record
-//     unsigned char query_buffer[NS_PACKETSZ];
-//     int response = res_query(domain.c_str(), ns_c_in, ns_t_mx, query_buffer, sizeof(query_buffer));
-//     if (response < 0) {
-//         std::cerr << "DNS query failed" << std::endl;
-//         return nullptr;
-//     }
-
-//     ns_msg handle;
-//     ns_initparse(query_buffer, response, &handle);
-//     ns_rr record;
-//     char mx_host[NS_MAXDNAME];
-//     if (ns_parserr(&handle, ns_s_an, 0, &record) == 0) {
-//         dn_expand(ns_msg_base(handle), ns_msg_end(handle), ns_rr_rdata(record) + NS_INT16SZ, mx_host, sizeof(mx_host));
-//         std::cout << "MX Record found: " << mx_host << std::endl;
-//     } else {
-//         std::cerr << "Failed to parse MX record" << std::endl;
-//         return nullptr;
-//     }
-
-//     // Resolve IP address of MX host
-//     std::cout << "Resolving IP address for: " << mx_host << std::endl;
-//     struct hostent* host = gethostbyname(mx_host);
-//     if (!host) {
-//         std::cerr << "Failed to resolve MX host: " << mx_host << std::endl;
-//         return nullptr;
-//     }
-//     struct in_addr* address = (struct in_addr*)host->h_addr;
-//     std::cout << "IP Address: " << inet_ntoa(*address) << std::endl;
-
-//     // Create socket and establish a connection
-//     int sock = socket(AF_INET, SOCK_STREAM, 0);
-//     struct sockaddr_in dest;
-//     dest.sin_family = AF_INET;
-//     dest.sin_port = htons(25);
-//     memcpy(&dest.sin_addr.s_addr, host->h_addr, host->h_length);
-
-//     std::cout << "Connecting to server: " << mx_host << " on port 587" << std::endl;
-//     if (connect(sock, (struct sockaddr*)&dest, sizeof(dest)) != 0) {
-//         std::cerr << "Failed to connect to the server: " << strerror(errno) << std::endl;
-//         ssl_cleanup(nullptr, sock, nullptr);
-//         return nullptr;
-//     }
-
-//     // Initialize SSL
-//     SSL_CTX* ctx = create_ssl_context();
-//     SSL* ssl = SSL_new(ctx);
-//     SSL_set_fd(ssl, sock);
-//     if (SSL_connect(ssl) != 1) {
-//         std::cerr << "SSL connection failed" << std::endl;
-//         ssl_cleanup(ctx, sock, ssl);
-//         return nullptr;
-//     }
-
-//     std::cout << "SSL connection established" << std::endl;
-
-//     try {
-//         send_smtp_command(ssl, "HELO seas.upenn.edu\r\n");
-//         // send_smtp_command(ssl, ("MAIL FROM: <" + from + ">\r\n").c_str());
-//         send_smtp_command(ssl, "MAIL FROM: <mqjin@seas.upenn.edu>\r\n");
-//         send_smtp_command(ssl, ("RCPT TO: <" + to + ">\r\n").c_str());
-//         send_smtp_command(ssl, "DATA\r\n");
-//         send_smtp_command(ssl, ("Subject: " + subject + "\r\n" + content + "\r\n.\r\n").c_str());
-//         send_smtp_command(ssl, "QUIT\r\n");
-//     } catch (const std::exception& e) {
-//         std::cerr << "Error during SMTP communication: " << e.what() << std::endl;
-//         ssl_cleanup(ctx, sock, ssl);
-//         return nullptr;
-//     }
-
-//     ssl_cleanup(ctx, sock, ssl);
-
-//     return nullptr;
-// }
 
 void send_smtp_command(int fd, const char *cmd)
 {
