@@ -15,6 +15,17 @@ using namespace std;
 
 #define MAX_BUFFER_SIZE 1024
 
+/**
+ * @brief Retrieves a list of backend servers from the coordinator.
+ *
+ * This function connects to the coordinator at the given IP and port,
+ * sends a LIST command, and parses the response to extract server
+ * information including IP, port, and active status.
+ *
+ * @param coordinator_ip The IP address of the coordinator.
+ * @param coordinator_port The port number of the coordinator.
+ * @return A vector of server_info structures representing the backend servers.
+ */
 vector<server_info> get_list_of_backend_servers(const string &coordinator_ip, int coordinator_port)
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -70,6 +81,18 @@ vector<server_info> get_list_of_backend_servers(const string &coordinator_ip, in
     close(sock);
     return servers;
 }
+
+/**
+ * @brief Retrieves a list of frontend servers from the load balancer.
+ *
+ * This function connects to the load balancer at the given IP and port,
+ * sends an HTTP GET request to retrieve the list of servers, and parses
+ * the response to extract server information including IP, port, and active status.
+ *
+ * @param load_balancer_ip The IP address of the load balancer.
+ * @param load_balancer_port The port number of the load balancer.
+ * @return A vector of server_info structures representing the frontend servers.
+ */
 
 vector<server_info> get_list_of_frontend_servers(const string &load_balancer_ip, int load_balancer_port)
 {
@@ -139,6 +162,18 @@ vector<server_info> get_list_of_frontend_servers(const string &load_balancer_ip,
     return servers;
 }
 
+/**
+ * @brief Generates HTML content from server information vectors.
+ *
+ * This function takes vectors of frontend and backend servers and
+ * generates an HTML string displaying their status and providing
+ * options to toggle their active state.
+ *
+ * @param frontend_servers A vector of server_info structures for frontend servers.
+ * @param backend_servers A vector of server_info structures for backend servers.
+ * @return A string containing the generated HTML content.
+ */
+
 string get_admin_html_from_vector(const vector<server_info> &frontend_servers, const vector<server_info> &backend_servers)
 {
     stringstream html;
@@ -198,6 +233,17 @@ string get_admin_html_from_vector(const vector<server_info> &frontend_servers, c
     return html.str();
 }
 
+/**
+ * @brief Fetches data from a server.
+ *
+ * This function connects to a server at the given IP and port,
+ * sends a request to list data, and parses the response to
+ * extract key-value pairs of data.
+ *
+ * @param ip The IP address of the server.
+ * @param port The port number of the server.
+ * @return A map containing the data organized by row and column keys.
+ */
 map<string, map<string, string>> fetch_data_from_server(const string &ip, int port)
 {
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -278,6 +324,18 @@ map<string, map<string, string>> fetch_data_from_server(const string &ip, int po
     return data;
 }
 
+/**
+ * @brief Generates HTML content from server data.
+ *
+ * This function takes a map of server data and generates an HTML
+ * string displaying the data in a table format.
+ *
+ * @param data A map containing the server data organized by row and column keys.
+ * @param server_ip The IP address of the server.
+ * @param server_port The port number of the server.
+ * @return A string containing the generated HTML content.
+ */
+
 string generate_html_from_data(const map<string, map<string, string>> &data, const string &server_ip, int server_port)
 {
     stringstream html;
@@ -316,6 +374,17 @@ string generate_html_from_data(const map<string, map<string, string>> &data, con
     html << "</body></html>";
     return html.str();
 }
+
+/**
+ * @brief Handles a toggle request for a server.
+ *
+ * This function parses the query string to determine the server
+ * and the action (suspend or revive), sends the appropriate
+ * command to the server, and returns a response.
+ *
+ * @param query The query string containing the toggle action and server address.
+ * @return A string indicating the result of the toggle request.
+ */
 
 string handle_toggle_request(const string &query)
 {
@@ -385,6 +454,18 @@ string handle_toggle_request(const string &query)
 
     return "";
 }
+
+/**
+ * @brief Safely converts a string to an integer.
+ *
+ * This function attempts to convert the given string to an integer
+ * and stores the result in the provided output parameter. It handles
+ * exceptions and returns false if the conversion fails.
+ *
+ * @param str The string to convert.
+ * @param out The integer output parameter to store the result.
+ * @return True if the conversion is successful, false otherwise.
+ */
 
 bool safe_stoi(const string &str, int &out)
 {
