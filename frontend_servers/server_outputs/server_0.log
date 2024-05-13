@@ -1,66 +1,781 @@
-IP: 127.0.0.1:8000
-Listening fd: 3
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
-Listening...
-GET /status HTTP/1.1
-Host: 127.0.0.1
-
-
+Listening for requests...
+Listening for requests...
 Sent response successfully, bytes sent: 105
-Listening...
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: dYAoU6VtVnFFE5rhppB1252NI0PsjVvL
+Sent redirection response to /home
+Sent redirection response to /login
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: dYAoU6VtVnFFE5rhppB1252NI0PsjVvL
+connected to coordinator
+Message sent successfully: 16 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6001
+Message sent successfully: 50 bytes.
+Got username from cookie: linh
+Sent response successfully, bytes sent: 4467
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: dYAoU6VtVnFFE5rhppB1252NI0PsjVvL
+connected to coordinator
+Message sent successfully: 20 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6005
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 8332
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: dYAoU6VtVnFFE5rhppB1252NI0PsjVvL
+Message sent successfully: 50 bytes.
+Message sent successfully: 50 bytes.
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 4214
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+connected to coordinator
+Message sent successfully: 19 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6001
+Message sent successfully: 29 bytes.
+Sent response successfully, bytes sent: 111
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Message sent successfully: 29 bytes.
+Message sent successfully: 29 bytes.
+Sent response successfully, bytes sent: 111
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Message sent successfully: 29 bytes.
+Message sent successfully: 29 bytes.
+I am in get cookie handler from the request
+Message sent successfully: 50 bytes.
+Message sent successfully: 54 bytes.
+Redirect with cookie response sent successfully, bytes sent: 189
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Sent response successfully, bytes sent: 4467
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Sent response successfully, bytes sent: 4467
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+connected to coordinator
+Message sent successfully: 20 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 9568
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+connected to coordinator
+Message sent successfully: 32 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 43 bytes.
+Message sent successfully: 43 bytes.
+Message sent successfully: 44 bytes.
+Message sent successfully: 43 bytes.
+Message sent successfully: 13927 bytes.
+Message sent successfully: 43 bytes.
+Message sent successfully: 44 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 83 bytes.
+Sent response successfully, bytes sent: 110
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 10191
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+connected to coordinator
+Message sent successfully: 30 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 41 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 6165 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 109 bytes.
+Sent response successfully, bytes sent: 110
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 10803
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+connected to coordinator
+Message sent successfully: 30 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6001
+Message sent successfully: 41 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 15241 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 8233 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 9514 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 15242 bytes.
+Message sent successfully: 42 bytes.
+Message sent successfully: 1214 bytes.
+Message sent successfully: 41 bytes.
+Message sent successfully: 43 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 133 bytes.
+Sent response successfully, bytes sent: 110
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 11415
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Performing rename for: drive/testing
+connected to coordinator
+Message sent successfully: 28 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 35 bytes.
+new row key for rename: emma_drive/Project
+connected to coordinator
+Message sent successfully: 28 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 35 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 37 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 145 bytes.
+Sent response successfully, bytes sent: 110
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 11415
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Performing rename for: drive/myfiles
+connected to coordinator
+Message sent successfully: 27 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 34 bytes.
+new row key for rename: emma_drive/Secret
+connected to coordinator
+Message sent successfully: 28 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 35 bytes.
+connected to coordinator
+Message sent successfully: 38 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 49 bytes.
+Number of chunks: 1
+connected to coordinator
+Message sent successfully: 37 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+Message sent successfully: 48 bytes.
+Message sent successfully: 8336 bytes.
+All chunks copied successfully.
+I AM DELETING FILES
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+Number of chunks: 1
+Message sent successfully: 49 bytes.
+Message sent successfully: 49 bytes.
+All chunks deleted successfully.
+connected to coordinator
+Message sent successfully: 41 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 52 bytes.
+Number of chunks: 2
+connected to coordinator
+Message sent successfully: 40 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 52 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 51 bytes.
+Message sent successfully: 15251 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 51 bytes.
+Message sent successfully: 9931 bytes.
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+All chunks copied successfully.
+I AM DELETING FILES
+Message sent successfully: 52 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 62 bytes.
+Number of chunks: 2
+Message sent successfully: 52 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 52 bytes.
+Message sent successfully: 62 bytes.
+All chunks deleted successfully.
+Message sent successfully: 34 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 34 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 34 bytes.
+Message sent successfully: 35 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Message sent successfully: 144 bytes.
+Sent response successfully, bytes sent: 110
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 27 bytes.
+Message sent successfully: 27 bytes.
+Sent response successfully, bytes sent: 11410
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: glNHcvBe2uPbU5J6CHOF4Niuxo4e9E0o
+Message sent successfully: 50 bytes.
+Message sent successfully: 50 bytes.
+Listening for requests...
+Listening for requests...
+I am in get cookie handler from the request
+Sent response successfully, bytes sent: 4214
+Listening for requests...
+Sent response successfully, bytes sent: 79
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+connected to coordinator
+Message sent successfully: 21 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6000
+Message sent successfully: 31 bytes.
+I am in get cookie handler from the request
+Message sent successfully: 50 bytes.
+Message sent successfully: 56 bytes.
+Redirect with cookie response sent successfully, bytes sent: 189
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: nSUAQYTmLGOEwqwQNIdcHuKOXRVJsIDf
+Sent response successfully, bytes sent: 4469
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: nSUAQYTmLGOEwqwQNIdcHuKOXRVJsIDf
+Sent response successfully, bytes sent: 4469
+Listening for requests...
+I am in get cookie handler from the request
+cookie is: nSUAQYTmLGOEwqwQNIdcHuKOXRVJsIDf
+connected to coordinator
+Message sent successfully: 24 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6002
+Message sent successfully: 31 bytes.
+Message sent successfully: 31 bytes.
+Message sent successfully: 31 bytes.
+connected to coordinator
+Message sent successfully: 51 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6002
+Message sent successfully: 58 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 58 bytes.
+Message sent successfully: 58 bytes.
+Message sent successfully: 60 bytes.
+Message sent successfully: 60 bytes.
+connected to coordinator
+Message sent successfully: 51 bytes.
+sent message to coordinator
+received message from coordinator
+asked coordinator: 127.0.0.1:6002
+Message sent successfully: 58 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 62 bytes.
+Message sent successfully: 58 bytes.
+Message sent successfully: 58 bytes.
+Message sent successfully: 60 bytes.
+Message sent successfully: 60 bytes.
+Sent response successfully, bytes sent: 1571
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
+Listening for requests...
+Sent response successfully, bytes sent: 105
+Listening for requests...
 SIGINT received, shutting down.

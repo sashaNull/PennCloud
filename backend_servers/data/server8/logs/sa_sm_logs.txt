@@ -1,0 +1,8 @@
+2|sasha_info|firstName|sasha||0|1|
+2|sasha_info|email|sasha@gmail.com||0|1|
+2|sasha_info|password|123||0|1|
+2|sasha_email|inbox_items|||0|1|
+2|sasha_email|sentbox_items|||0|1|
+2|sasha_drive|items|[]||0|1|
+2|sasha_bulletin|items|||0|1|
+4|sasha_bulletin|items||2317f3ab78cd7e2e9678ceeff81a98c3,|0|1|

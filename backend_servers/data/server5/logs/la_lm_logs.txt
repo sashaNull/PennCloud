@@ -1,0 +1,9 @@
+2|linh_info|firstName|linh||0|1|
+2|linh_info|email|linh@gmail.com||0|1|
+2|linh_info|password|123||0|1|
+2|linh_email|inbox_items|||0|1|
+2|linh_email|sentbox_items|||0|1|
+2|linh_drive|items|[]||0|1|
+2|linh_bulletin|items|||0|1|
+4|linh_email|sentbox_items||89fe7dcec703aaa21421daf92c12026a##ZW1tYUBsb2NhbGhvc3Q=##SGVsbG8gRW1tYQ==##V2VkIE1heSAwOCAxMjoyMjoyNiAyMDI0,|0|1|
+4|linh_email|inbox_items||d18dd9b7a403fa9e03afa046b4940f64##ZW1tYUBsb2NhbGhvc3Q=##UkU6IEhlbGxvIEVtbWE=##V2VkIE1heSAwOCAxMjoyMzoxMCAyMDI0,|0|1|
