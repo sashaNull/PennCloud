@@ -47,14 +47,7 @@ Failed to open log file: ./data/server6/logs/qa_qm_logs.txt
 Failed to open log file: ./data/server6/logs/qn_qz_logs.txt
 Failed to open log file: ./data/server6/logs/ua_um_logs.txt
 Failed to open log file: ./data/server6/logs/ta_tm_logs.txt
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
+Failed to open log file: ./data/server6/logs/sa_sm_logs.txt
 Failed to open log file: ./data/server6/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
@@ -615,14 +608,7 @@ Failed to open log file: ./data/server6/logs/qa_qm_logs.txt
 Failed to open log file: ./data/server6/logs/qn_qz_logs.txt
 Failed to open log file: ./data/server6/logs/ua_um_logs.txt
 Failed to open log file: ./data/server6/logs/ta_tm_logs.txt
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
-This row is in file: sa_sm
+Failed to open log file: ./data/server6/logs/sa_sm_logs.txt
 Failed to open log file: ./data/server6/logs/tn_tz_logs.txt
 Failed to open log file: ./data/server6/logs/un_uz_logs.txt
 Failed to open log file: ./data/server6/logs/vn_vz_logs.txt
@@ -645,10 +631,10 @@ GET Response:VER 0
 [5] C: LGET qa_qm
 LGET Response:VER 0
 
+[4] New connection
 [5] C: quit
 [5] S: Quit command received. Server goodbye!
 [5] Connection closed!
-[4] New connection
 [4] C: GET qn_qz
 qn_qz
 GET Response:VER 0
@@ -659,18 +645,18 @@ LGET Response:VER 0
 [4] C: quit
 [4] S: Quit command received. Server goodbye!
 [4] Connection closed!
-[5] New connection
-[5] C: GET ra_rm
+[6] New connection
+[6] C: GET ra_rm
 ra_rm
 GET Response:VER 0
 
-[5] C: LGET ra_rm
+[6] C: LGET ra_rm
 LGET Response:VER 0
 
 [4] New connection
-[5] C: quit
-[5] S: Quit command received. Server goodbye!
-[5] Connection closed!
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
 [4] C: GET rn_rz
 rn_rz
 GET Response:VER 0
@@ -678,65 +664,65 @@ GET Response:VER 0
 [4] C: LGET rn_rz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[6] New connection
-[6] C: GET sa_sm
+[5] New connection
+[5] C: GET sa_sm
 sa_sm
 GET Response:VER 0
 
-[6] C: LGET sa_sm
-LGET Response:VER 8
+[4] C: quit
+[5] C: LGET sa_sm
+LGET Response:VER 0
+
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] New connection
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[6] C: GET sn_sz
+sn_sz
+GET Response:VER 0
+
+[6] C: LGET sn_sz
+LGET Response:VER 0
+
+[4] New connection
+[4] C: GET ta_tm
+ta_tm
+GET Response:VER 0
+
+[4] C: LGET ta_tm
+LGET Response:VER 0
 
 [6] C: quit
 [6] S: Quit command received. Server goodbye!
 [6] Connection closed!
-[4] New connection
-[4] C: GET sn_sz
-sn_sz
-GET Response:VER 0
-
-[4] C: LGET sn_sz
-LGET Response:VER 0
-
+[5] New connection
 [4] C: quit
 [4] S: Quit command received. Server goodbye!
 [4] Connection closed!
-[5] New connection
-[5] C: GET ta_tm
-ta_tm
-GET Response:VER 0
-
-[5] C: LGET ta_tm
-LGET Response:VER 0
-
-[5] C: quit
-[5] S: Quit command received. Server goodbye!
-[5] Connection closed!
-[4] New connection
-[4] C: GET tn_tz
+[5] C: GET tn_tz
 tn_tz
 GET Response:VER 0
 
-[4] C: LGET tn_tz
+[5] C: LGET tn_tz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: GET ua_um
+[6] New connection
+[6] C: GET ua_um
 ua_um
 GET Response:VER 0
 
-[5] C: LGET ua_um
+[6] C: LGET ua_um
 LGET Response:VER 0
 
 [5] C: quit
 [5] S: Quit command received. Server goodbye!
 [5] Connection closed!
 [4] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
 [4] C: GET un_uz
 un_uz
 GET Response:VER 0
@@ -744,9 +730,6 @@ GET Response:VER 0
 [4] C: LGET un_uz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
 [5] New connection
 [5] C: GET va_vm
 va_vm
@@ -755,978 +738,121 @@ GET Response:VER 0
 [5] C: LGET va_vm
 LGET Response:VER 0
 
+[6] New connection
 [5] C: quit
 [5] S: Quit command received. Server goodbye!
 [5] Connection closed!
-[4] New connection
-[4] C: GET vn_vz
+[6] C: GET vn_vz
 vn_vz
 GET Response:VER 0
 
-[4] C: LGET vn_vz
+[6] C: LGET vn_vz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: GET wa_wm
+[7] New connection
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[7] C: GET wa_wm
 wa_wm
 GET Response:VER 0
 
-[5] C: LGET wa_wm
+[7] C: LGET wa_wm
 LGET Response:VER 0
 
-[5] C: quit
-[5] S: Quit command received. Server goodbye!
-[5] Connection closed!
-[4] New connection
-[4] C: GET wn_wz
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[7] C: quit
+[7] S: Quit command received. Server goodbye!
+[7] Connection closed!
+[5] C: GET wn_wz
 wn_wz
 GET Response:VER 0
 
-[4] C: LGET wn_wz
+[5] C: LGET wn_wz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: GET xa_xm
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET xa_xm
 xa_xm
 GET Response:VER 0
 
-[5] C: LGET xa_xm
+[4] C: LGET xa_xm
 LGET Response:VER 0
 
-[5] C: quit
-[5] S: Quit command received. Server goodbye!
-[5] Connection closed!
-[4] New connection
-[4] C: GET xn_xz
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET xn_xz
 xn_xz
 GET Response:VER 0
 
-[4] C: LGET xn_xz
+[5] C: LGET xn_xz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: GET ya_ym
+[4] New connection
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] C: GET ya_ym
 ya_ym
 GET Response:VER 0
 
-[5] C: LGET ya_ym
+[4] C: LGET ya_ym
 LGET Response:VER 0
 
-[5] C: quit
-[5] S: Quit command received. Server goodbye!
-[5] Connection closed!
-[4] New connection
-[4] C: GET yn_yz
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] New connection
+[6] C: GET yn_yz
 yn_yz
 GET Response:VER 0
 
-[4] C: LGET yn_yz
+[6] C: LGET yn_yz
 LGET Response:VER 0
 
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: GET za_zm
+[4] New connection
+[6] C: quit
+[4] C: GET za_zm
 za_zm
 GET Response:VER 0
 
-[5] C: LGET za_zm
+[6] S: Quit command received. Server goodbye!
+[6] Connection closed!
+[4] C: LGET za_zm
+LGET Response:VER 0
+
+[5] New connection
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] C: GET zn_zz
+zn_zz
+GET Response:VER 0
+
+[5] C: LGET zn_zz
 LGET Response:VER 0
 
 [5] C: quit
 [5] S: Quit command received. Server goodbye!
 [5] Connection closed!
-[4] New connection
-[4] C: GET zn_zz
-zn_zz
-GET Response:VER 0
-
-[4] C: LGET zn_zz
-LGET Response:VER 0
-
-[4] C: quit
-[4] S: Quit command received. Server goodbye!
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
-[4] New connection
-[4] C: 1|test_row|test_col|||0|0|
-This row is in new file: ta_tm
-Response from Coordinator: +OK 127.0.0.1:6006
-
-1 127.0.0.1:6006 127.0.0.1:6006
-PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
-
-[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[4] Connection closed!
-[5] New connection
-[5] C: 1|test_row|test_col|||0|0|
+[6] New connection
+[6] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
 Response from Coordinator: +OK 127.0.0.1:6006
 
 1 127.0.0.1:6006 127.0.0.1:6006
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
-[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
-[5] Connection closed!
+[6] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[6] Connection closed!
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ta_tm
