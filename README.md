@@ -70,8 +70,8 @@ From the main directory:
 
 ## Component Images
 
-1. **Image 1**: ![PennCloud](https://freeimage.host/i/J6uzXF1)
-2. **Image 2**: ![Email Page](https://freeimage.host/i/J6uzj8g)
-3. **Image 3**: ![Drive Page](https://freeimage.host/i/J6uz4cX)
-4. **Image 4**: ![Admin Page](https://freeimage.host/i/J6uzhcF)
-5. **Image 5**: ![Bulletin Board Page](https://freeimage.host/i/J6uzrFt)
+1. **Image 1**: ![PennCloud](https://iili.io/J6uzXF1.png)
+2. **Image 2**: ![Email Page](https://iili.io/J6uzj8g.png)
+3. **Image 3**: ![Drive Page](https://iili.io/J6uz4cX.png)
+4. **Image 4**: ![Admin Page](https://iili.io/J6uzhcF.png)
+5. **Image 5**: ![Bulletin Board Page](https://iili.io/J6uzrFt.png)
