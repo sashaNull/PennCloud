@@ -39,6 +39,13 @@ sockaddr_in g_coordinator_addr = get_socket_address(g_coordinator_addr_str);
 
 map<string, string> g_map_rowkey_to_server;
 
+/**
+ * Handles the SIGINT signal for an SMTP server. This handler sends a SIGUSR1 signal to all user threads,
+ * signaling them to shut down. It also notifies any connected clients by sending a server shutdown message.
+ * The function ensures all user threads are properly notified before the program exits.
+ *
+ * @param signum The signal number (should be SIGINT).
+ */
 void sigint_handler_smtp(int signum) {
   // Send SIGUSR signal to every user thread
   for (const auto& entry : g_thread_args_map) {
@@ -57,6 +64,10 @@ void sigint_handler_smtp(int signum) {
   exit(EXIT_SUCCESS);
 }
 
+/**
+ * Installs the SIGINT signal handler for the main SMTP server thread. This setup ensures that if a SIGINT
+ * signal is received (e.g., from pressing Ctrl+C), the `sigint_handler_smtp` function will be called.
+ */
 void install_sigint_handler_smtp() {
   if (signal(SIGINT, sigint_handler_smtp) == SIG_ERR) {
     cerr << "SIGINT handling in main thread failed" << endl;
@@ -64,6 +75,15 @@ void install_sigint_handler_smtp() {
   }
 }
 
+/**
+ * Handles the SIGUSR1 signal for individual threads within an SMTP server. This function closes the
+ * socket associated with the thread if it is still open and then terminates the thread. It is typically
+ * called as part of the server shutdown process initiated by `sigint_handler_smtp`.
+ *
+ * @param signum The signal number (should be SIGUSR1).
+ * @param info Pointer to a siginfo_t structure providing additional context (not used).
+ * @param context Pointer to the ucontext_t structure (not used).
+ */
 void sigusr_handler(int signum, siginfo_t *info, void *context) {
   pthread_t thread_id = pthread_self();
   int fd = g_thread_args_map[thread_id];
@@ -75,6 +95,10 @@ void sigusr_handler(int signum, siginfo_t *info, void *context) {
   pthread_exit(NULL);
 }
 
+/**
+ * Blocks the SIGINT signal for the calling thread. This prevents the thread from being interrupted by
+ * SIGINT, which is instead handled by specific handlers set up elsewhere in the program.
+ */
 void register_sigint_mask() {
   sigset_t mask;
   sigemptyset(&mask);
@@ -82,6 +106,10 @@ void register_sigint_mask() {
   pthread_sigmask(SIG_BLOCK, &mask, NULL);
 }
 
+/**
+ * Sets up the SIGUSR1 signal handler for individual threads of an SMTP server. This configuration ensures
+ * that threads will correctly handle cleanup operations when a SIGUSR1 is received, typically during a server shutdown.
+ */
 void install_sigusr_handler() {
   struct sigaction sa;
   sa.sa_sigaction = sigusr_handler;
@@ -90,6 +118,12 @@ void install_sigusr_handler() {
   sigaction(SIGUSR1, &sa, NULL);
 }
 
+/**
+ * Validates an email receiver format, ensuring it conforms to expected structure like <username@domain>.
+ *
+ * @param receiver The email receiver string to validate.
+ * @return true if the receiver format is valid, false otherwise.
+ */
 bool receiver_is_valid(const string& receiver) {
   // parse out username
   if (! (receiver[0] == '<' || receiver.back() == '>')) {
@@ -112,6 +146,12 @@ bool receiver_is_valid(const string& receiver) {
   return true;
 }
 
+/**
+ * Extracts the username portion from an email receiver formatted as <username@domain>.
+ *
+ * @param receiver The email receiver string.
+ * @return The username part of the email receiver.
+ */
 string get_receiver_username(const string& receiver) {
   size_t delimiter_pos = receiver.find('@');
   size_t end_pos = receiver.find('>');
@@ -119,6 +159,13 @@ string get_receiver_username(const string& receiver) {
   return username;
 }
 
+/**
+ * Parses structured email data from a vector of strings, identifying key parts such as subject, from, and body.
+ * It organizes these parts into a map for easier access.
+ *
+ * @param maildata A vector of strings representing the raw lines of an email.
+ * @return A map containing structured data with keys like "subject", "from", and "body".
+ */
 map<string, string> parse_mail_data(vector<string> maildata) {
   map<string, string> to_return;
   string body;
@@ -146,6 +193,13 @@ map<string, string> parse_mail_data(vector<string> maildata) {
   return to_return;
 }
 
+/**
+ * Converts a vector of strings into a single concatenated string. This utility function is useful for
+ * generating continuous text or data from a list of individual string items.
+ *
+ * @param to_flatten The vector of strings to concatenate.
+ * @return A single string containing all elements from the vector concatenated together.
+ */
 string flatten_vector(vector<string> to_flatten) {
   string to_return;
   for (const auto &line : to_flatten) {
