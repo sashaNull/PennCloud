@@ -1,0 +1,9 @@
+2|musk_info|firstName|muskaan||0|1|
+2|musk_info|email|musk@gmail.com||0|1|
+2|musk_info|password|123||0|1|
+2|musk_email|inbox_items|||0|1|
+2|musk_email|sentbox_items|||0|1|
+2|musk_drive|items|[]||0|1|
+2|musk_bulletin|items|||0|1|
+4|musk_email|inbox_items||0861f95be30672429091457e4ef30330##ZW1tYUBsb2NhbGhvc3Q=##SGV5##V2VkIE1heSAwOCAxMTo0MDo0MyAyMDI0,|0|1|
+4|musk_email|inbox_items|0861f95be30672429091457e4ef30330##ZW1tYUBsb2NhbGhvc3Q=##SGV5##V2VkIE1heSAwOCAxMTo0MDo0MyAyMDI0,|523a8c82b7f15e6822408db6e2e70c5a##YWR3YWl0QGxvY2FsaG9zdA==##SGVsbG8=##V2VkIE1heSAwOCAxMTo0MTozNSAyMDI0,0861f95be30672429091457e4ef30330##ZW1tYUBsb2NhbGhvc3Q=##SGV5##V2VkIE1heSAwOCAxMTo0MDo0MyAyMDI0,|0|1|

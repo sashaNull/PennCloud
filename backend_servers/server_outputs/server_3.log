@@ -27,15 +27,55 @@ pn_pz
 Failed to open log file: ./data/server3/logs/pa_pm_logs.txt
 Failed to open log file: ./data/server3/logs/pn_pz_logs.txt
 Failed to open log file: ./data/server3/logs/nn_nz_logs.txt
-Failed to open log file: ./data/server3/logs/mn_mz_logs.txt
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
 Failed to open log file: ./data/server3/logs/on_oz_logs.txt
 Failed to open log file: ./data/server3/logs/ma_mm_logs.txt
 Failed to open log file: ./data/server3/logs/ln_lz_logs.txt
-Failed to open log file: ./data/server3/logs/la_lm_logs.txt
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
 Failed to open log file: ./data/server3/logs/na_nm_logs.txt
 Failed to open log file: ./data/server3/logs/kn_kz_logs.txt
 Failed to open log file: ./data/server3/logs/oa_om_logs.txt
 Failed to open log file: ./data/server3/logs/ka_km_logs.txt
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
+Response from Coordinator: -ERR No primary server for this range
+
 Range to Primary Map:
 Range: pa_pm - Primary: No primary available
 Range: pn_pz - Primary: No primary available
@@ -49,8 +89,11 @@ Range: na_nm - Primary: No primary available
 Range: kn_kz - Primary: No primary available
 Range: oa_om - Primary: No primary available
 Range: ka_km - Primary: No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: ka_km
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -62,8 +105,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: kn_kz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -75,8 +121,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: la_lm
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -88,8 +137,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: ln_lz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -101,8 +153,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: ma_mm
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -114,8 +169,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: mn_mz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -127,8 +185,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: na_nm
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -140,8 +201,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: nn_nz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -153,8 +217,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: oa_om
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -166,8 +233,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: on_oz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -179,8 +249,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: pa_pm
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -192,8 +265,11 @@ na_nm -> No primary available
 kn_kz -> No primary available
 oa_om -> No primary available
 ka_km -> No primary available
+Response from Coordinator: -ERR No primary server for this range
+
+No primary available 127.0.0.1:6003
 Cannot find primary for: pn_pz
-pa_pm -> No primary available
+No primary availablepa_pm -> No primary available
 pn_pz -> No primary available
 nn_nz -> No primary available
 mn_mz -> No primary available
@@ -208,11 +284,27 @@ ka_km -> No primary available
 Failed to open log file: ./data/server3/logs/pa_pm_logs.txt
 Failed to open log file: ./data/server3/logs/pn_pz_logs.txt
 Failed to open log file: ./data/server3/logs/nn_nz_logs.txt
-Failed to open log file: ./data/server3/logs/mn_mz_logs.txt
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
+This row is in file: mn_mz
 Failed to open log file: ./data/server3/logs/on_oz_logs.txt
 Failed to open log file: ./data/server3/logs/ma_mm_logs.txt
 Failed to open log file: ./data/server3/logs/ln_lz_logs.txt
-Failed to open log file: ./data/server3/logs/la_lm_logs.txt
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
+This row is in file: la_lm
 Failed to open log file: ./data/server3/logs/na_nm_logs.txt
 Failed to open log file: ./data/server3/logs/kn_kz_logs.txt
 Failed to open log file: ./data/server3/logs/oa_om_logs.txt
@@ -220,14 +312,282 @@ Failed to open log file: ./data/server3/logs/ka_km_logs.txt
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: -ERR No primary server for this range
+
 0 127.0.0.1:6003 No primary available
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
 [5] New connection
+[5] C: GET ka_km
+ka_km
+GET Response:VER 0
+
+[5] C: LGET ka_km
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET kn_kz
+kn_kz
+GET Response:VER 0
+
+[4] C: LGET kn_kz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET la_lm
+la_lm
+GET Response:VER 0
+
+[5] C: LGET la_lm
+LGET Response:VER 9
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET ln_lz
+ln_lz
+GET Response:VER 0
+
+[4] C: LGET ln_lz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET ma_mm
+ma_mm
+GET Response:VER 0
+
+[5] C: LGET ma_mm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET mn_mz
+mn_mz
+GET Response:VER 0
+
+[4] C: LGET mn_mz
+LGET Response:VER 9
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET na_nm
+na_nm
+GET Response:VER 0
+
+[5] C: LGET na_nm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET nn_nz
+nn_nz
+GET Response:VER 0
+
+[4] C: LGET nn_nz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET oa_om
+oa_om
+GET Response:VER 0
+
+[5] C: LGET oa_om
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET on_oz
+on_oz
+GET Response:VER 0
+
+[4] C: LGET on_oz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET pa_pm
+pa_pm
+GET Response:VER 0
+
+[5] C: LGET pa_pm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET pn_pz
+pn_pz
+GET Response:VER 0
+
+[4] C: LGET pn_pz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET ka_km
+ka_km
+GET Response:VER 0
+
+[5] C: LGET ka_km
+LGET Response:VER 0
+
+[4] New connection
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] C: GET kn_kz
+kn_kz
+GET Response:VER 0
+
+[4] C: LGET kn_kz
+LGET Response:VER 0
+
+[4] C: quit
+[6] New connection
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[6] C: GET la_lm
+la_lm
+GET Response:VER 0
+
+[6] C: LGET la_lm
+LGET Response:VER 9
+
+[6] C: quit
+[6] S: Quit command received. Server goodbye!
+[4] New connection
+[6] Connection closed!
+[4] C: GET ln_lz
+ln_lz
+GET Response:VER 0
+
+[4] C: LGET ln_lz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET ma_mm
+ma_mm
+GET Response:VER 0
+
+[5] C: LGET ma_mm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET mn_mz
+mn_mz
+GET Response:VER 0
+
+[4] C: LGET mn_mz
+LGET Response:VER 9
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET na_nm
+na_nm
+GET Response:VER 0
+
+[5] C: LGET na_nm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET nn_nz
+nn_nz
+GET Response:VER 0
+
+[4] C: LGET nn_nz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET oa_om
+oa_om
+GET Response:VER 0
+
+[5] C: LGET oa_om
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET on_oz
+on_oz
+GET Response:VER 0
+
+[4] C: LGET on_oz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
+[5] C: GET pa_pm
+pa_pm
+GET Response:VER 0
+
+[5] C: LGET pa_pm
+LGET Response:VER 0
+
+[5] C: quit
+[5] S: Quit command received. Server goodbye!
+[5] Connection closed!
+[4] New connection
+[4] C: GET pn_pz
+pn_pz
+GET Response:VER 0
+
+[4] C: LGET pn_pz
+LGET Response:VER 0
+
+[4] C: quit
+[4] S: Quit command received. Server goodbye!
+[4] Connection closed!
+[5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -236,6 +596,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -244,6 +606,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -252,6 +616,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -260,6 +626,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -268,6 +636,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -276,6 +646,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -284,6 +656,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -292,6 +666,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -300,6 +676,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -308,6 +686,8 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [5] New connection
 [5] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
@@ -316,8 +696,820 @@ PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] New connection
 [4] C: 1|test_row|test_col|||0|0|
 This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
 1 127.0.0.1:6003 127.0.0.1:6003
 PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
 
 [4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
 [4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!
+[4] New connection
+[4] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[4] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[4] Connection closed!
+[5] New connection
+[5] C: 1|test_row|test_col|||0|0|
+This row is in new file: ka_km
+Response from Coordinator: +OK 127.0.0.1:6003
+
+1 127.0.0.1:6003 127.0.0.1:6003
+PRINTING SPECIAL: 1|test_row|test_col|||1|0|Rowkey does not exist
+
+[5] S: 1|test_row|test_col|||1|0|Rowkey does not exist
+[5] Connection closed!

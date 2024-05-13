@@ -97,74 +97,14 @@ Range: n_p -> Primary Server: 127.0.0.1:6003, Active: No
 Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
 Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
 Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
-Server 127.0.0.1:6000 is down.
-Server 127.0.0.1:6001 is down.
-Server 127.0.0.1:6002 is down.
-Server 127.0.0.1:6003 is down.
-Server 127.0.0.1:6004 is down.
-Server 127.0.0.1:6005 is down.
-Server 127.0.0.1:6006 is down.
-Server 127.0.0.1:6007 is down.
-Server 127.0.0.1:6008 is down.
-No active servers available for range a_b
-No active servers available for range c_e
-No active servers available for range f_j
-No active servers available for range k_m
-No active servers available for range n_p
-No active servers available for range q_s
-No active servers available for range t_v
-No active servers available for range w_z
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: No
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: No
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: No
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: No
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: No
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
-Server 127.0.0.1:6000 is down.
-Server 127.0.0.1:6001 is down.
-Server 127.0.0.1:6002 is down.
-Server 127.0.0.1:6003 is down.
-Server 127.0.0.1:6004 is down.
-Server 127.0.0.1:6005 is down.
-Server 127.0.0.1:6006 is down.
-Server 127.0.0.1:6007 is down.
-Server 127.0.0.1:6008 is down.
-No active servers available for range a_b
-No active servers available for range c_e
-No active servers available for range f_j
-No active servers available for range k_m
-No active servers available for range n_p
-No active servers available for range q_s
-No active servers available for range t_v
-No active servers available for range w_z
-Listing primary servers for each range:
-Range: a_b -> Primary Server: 127.0.0.1:6000, Active: No
-Range: c_e -> Primary Server: 127.0.0.1:6000, Active: No
-Range: f_j -> Primary Server: 127.0.0.1:6000, Active: No
-Range: k_m -> Primary Server: 127.0.0.1:6003, Active: No
-Range: n_p -> Primary Server: 127.0.0.1:6003, Active: No
-Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
-Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
-Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
 [4] New connection
 PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
 [4] New connection
 PGET an_az Response: -ERR No primary server for this range
 [4] New connection
 PGET ba_bm Response: -ERR No primary server for this range
 [4] New connection
 PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
 [4] New connection
 PGET ca_cm Response: -ERR No primary server for this range
 [4] New connection
@@ -190,511 +130,55 @@ PGET ha_hm Response: -ERR No primary server for this range
 [4] New connection
 PGET hn_hz Response: -ERR No primary server for this range
 [4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
 PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
 [4] New connection
 PGET in_iz Response: -ERR No primary server for this range
 [4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
 PGET ja_jm Response: -ERR No primary server for this range
 [4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
 PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
 [4] New connection
 PGET aa_am Response: -ERR No primary server for this range
 [4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
 PGET an_az Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
 [4] New connection
 PGET ba_bm Response: -ERR No primary server for this range
 [4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
 PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
 [4] New connection
 PGET ca_cm Response: -ERR No primary server for this range
 [4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
 PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET aa_am Response: -ERR No primary server for this range
 [4] New connection
 PGET da_dm Response: -ERR No primary server for this range
 [4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET an_az Response: -ERR No primary server for this range
-[4] New connection
 PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ba_bm Response: -ERR No primary server for this range
 [4] New connection
 PGET ea_em Response: -ERR No primary server for this range
 [4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
 PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET bn_bz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
 [4] New connection
 PGET fa_fm Response: -ERR No primary server for this range
 [4] New connection
-PGET ca_cm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
 PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET cn_cz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
 [4] New connection
 PGET ga_gm Response: -ERR No primary server for this range
 [4] New connection
-PGET da_dm Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET dn_dz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
 PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ea_em Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET en_ez Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
 [4] New connection
 PGET ha_hm Response: -ERR No primary server for this range
 [4] New connection
-PGET fa_fm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET fn_fz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET ga_gm Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
 PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET gn_gz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET ha_hm Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET hn_hz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
 [4] New connection
 PGET ia_im Response: -ERR No primary server for this range
 [4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ia_im Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
 PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET in_iz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
 [4] New connection
 PGET ja_jm Response: -ERR No primary server for this range
 [4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
 PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET ja_jm Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET jn_jz Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET ka_km Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET kn_kz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET la_lm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ln_lz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET ma_mm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET mn_mz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET na_nm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET nn_nz Response: -ERR No primary server for this range
-[4] New connection
-PGET oa_om Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET on_oz Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET pa_pm Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET pn_pz Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
 PGET aa_am Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
-[4] New connection
-PGET qa_qm Response: -ERR No primary server for this range
-[4] New connection
-PGET qn_qz Response: -ERR No primary server for this range
-[4] New connection
-PGET ra_rm Response: -ERR No primary server for this range
-[4] New connection
-PGET rn_rz Response: -ERR No primary server for this range
-[4] New connection
-PGET sa_sm Response: -ERR No primary server for this range
-[4] New connection
-PGET sn_sz Response: -ERR No primary server for this range
-[4] New connection
-PGET ta_tm Response: -ERR No primary server for this range
-[4] New connection
-PGET tn_tz Response: -ERR No primary server for this range
-[4] New connection
-PGET ua_um Response: -ERR No primary server for this range
-[4] New connection
-PGET un_uz Response: -ERR No primary server for this range
-[4] New connection
-PGET va_vm Response: -ERR No primary server for this range
-[4] New connection
-PGET vn_vz Response: -ERR No primary server for this range
-[4] New connection
-PGET wa_wm Response: -ERR No primary server for this range
-[4] New connection
-PGET wn_wz Response: -ERR No primary server for this range
-[4] New connection
-PGET xa_xm Response: -ERR No primary server for this range
-[4] New connection
-PGET xn_xz Response: -ERR No primary server for this range
-[4] New connection
-PGET ya_ym Response: -ERR No primary server for this range
-[4] New connection
-PGET yn_yz Response: -ERR No primary server for this range
-[4] New connection
-PGET za_zm Response: -ERR No primary server for this range
-[4] New connection
-PGET zn_zz Response: -ERR No primary server for this range
 [4] New connection
 PGET an_az Response: -ERR No primary server for this range
 [4] New connection
@@ -781,9 +265,455 @@ PGET aa_am Response: +OK 127.0.0.1:6000
 Server 127.0.0.1:6001 is up.
 [4] New connection
 PGET aa_am Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET an_az Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ba_bm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ca_cm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET da_dm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET dn_dz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET en_ez Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET fa_fm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET fn_fz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ga_gm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET gn_gz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ha_hm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET hn_hz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ia_im Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET in_iz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ja_jm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET jn_jz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET an_az Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ba_bm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ca_cm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET da_dm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET dn_dz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET en_ez Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET fa_fm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET fn_fz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ga_gm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET gn_gz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ha_hm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET hn_hz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ia_im Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET in_iz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ja_jm Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET jn_jz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ka_km Response: -ERR No primary server for this range
+[4] New connection
+PGET kn_kz Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
+[4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET pn_pz Response: -ERR No primary server for this range
+[4] New connection
+PGET ka_km Response: -ERR No primary server for this range
+[4] New connection
+PGET kn_kz Response: -ERR No primary server for this range
+[4] New connection
+PGET la_lm Response: -ERR No primary server for this range
+[4] New connection
+PGET ln_lz Response: -ERR No primary server for this range
+[4] New connection
+PGET ma_mm Response: -ERR No primary server for this range
+[4] New connection
+PGET mn_mz Response: -ERR No primary server for this range
+[4] New connection
+PGET na_nm Response: -ERR No primary server for this range
+[4] New connection
+PGET nn_nz Response: -ERR No primary server for this range
+[4] New connection
+PGET oa_om Response: -ERR No primary server for this range
+[4] New connection
+PGET on_oz Response: -ERR No primary server for this range
+[4] New connection
+PGET pa_pm Response: -ERR No primary server for this range
+[4] New connection
+PGET pn_pz Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
 Server 127.0.0.1:6002 is up.
 [4] New connection
 PGET ka_km Response: -ERR No primary server for this range
+Server 127.0.0.1:6003 is up.
+Server 127.0.0.1:6004 is down.
+Server 127.0.0.1:6005 is down.
+Server 127.0.0.1:6006 is down.
+Server 127.0.0.1:6007 is down.
+Server 127.0.0.1:6008 is down.
+No active servers available for range q_s
+No active servers available for range t_v
+No active servers available for range w_z
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET kn_kz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET la_lm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ln_lz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ma_mm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET mn_mz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET na_nm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET nn_nz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET oa_om Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET on_oz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pa_pm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pn_pz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET kn_kz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET la_lm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ln_lz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ma_mm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET mn_mz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET na_nm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET nn_nz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET oa_om Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET on_oz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pa_pm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pn_pz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET kn_kz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET la_lm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ln_lz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ma_mm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET mn_mz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET na_nm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET nn_nz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET oa_om Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET on_oz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pa_pm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pn_pz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET kn_kz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET la_lm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ln_lz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET ma_mm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET mn_mz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET na_nm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET nn_nz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET oa_om Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET on_oz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pa_pm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET pn_pz Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+Server 127.0.0.1:6006 is down.
+Server 127.0.0.1:6007 is down.
+Server 127.0.0.1:6008 is down.
+No active servers available for range q_s
+No active servers available for range t_v
+No active servers available for range w_z
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: No
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: No
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: No
+[4] New connection
+PGET qa_qm Response: -ERR No primary server for this range
+[4] New connection
+PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET sa_sm Response: -ERR No primary server for this range
+[4] New connection
+PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
+[4] New connection
+PGET vn_vz Response: -ERR No primary server for this range
+[4] New connection
+PGET wa_wm Response: -ERR No primary server for this range
+[4] New connection
+PGET wn_wz Response: -ERR No primary server for this range
+[4] New connection
+PGET xa_xm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET qa_qm Response: -ERR No primary server for this range
+[4] New connection
+PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET sa_sm Response: -ERR No primary server for this range
+[4] New connection
+PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
+[4] New connection
+PGET vn_vz Response: -ERR No primary server for this range
+[4] New connection
+PGET wa_wm Response: -ERR No primary server for this range
+[4] New connection
+PGET wn_wz Response: -ERR No primary server for this range
+[4] New connection
+PGET xa_xm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET qa_qm Response: -ERR No primary server for this range
+[4] New connection
+PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET sa_sm Response: -ERR No primary server for this range
+[4] New connection
+PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
+[4] New connection
+PGET vn_vz Response: -ERR No primary server for this range
+[4] New connection
+PGET wa_wm Response: -ERR No primary server for this range
+[4] New connection
+PGET wn_wz Response: -ERR No primary server for this range
+[4] New connection
+PGET xa_xm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET qa_qm Response: -ERR No primary server for this range
+[4] New connection
+PGET qn_qz Response: -ERR No primary server for this range
+[4] New connection
+PGET ra_rm Response: -ERR No primary server for this range
+[4] New connection
+PGET rn_rz Response: -ERR No primary server for this range
+[4] New connection
+PGET sa_sm Response: -ERR No primary server for this range
+[4] New connection
+PGET sn_sz Response: -ERR No primary server for this range
+[4] New connection
+PGET ta_tm Response: -ERR No primary server for this range
+[4] New connection
+PGET tn_tz Response: -ERR No primary server for this range
+[4] New connection
+PGET ua_um Response: -ERR No primary server for this range
+[4] New connection
+PGET un_uz Response: -ERR No primary server for this range
+[4] New connection
+PGET va_vm Response: -ERR No primary server for this range
+[4] New connection
+PGET vn_vz Response: -ERR No primary server for this range
+[4] New connection
+PGET wa_wm Response: -ERR No primary server for this range
+[4] New connection
+PGET wn_wz Response: -ERR No primary server for this range
+[4] New connection
+PGET xa_xm Response: -ERR No primary server for this range
+[4] New connection
+PGET xn_xz Response: -ERR No primary server for this range
+[4] New connection
+PGET ya_ym Response: -ERR No primary server for this range
+[4] New connection
+PGET yn_yz Response: -ERR No primary server for this range
+[4] New connection
+PGET za_zm Response: -ERR No primary server for this range
+[4] New connection
+PGET zn_zz Response: -ERR No primary server for this range
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
 Server 127.0.0.1:6003 is up.
 [4] New connection
 PGET ka_km Response: +OK 127.0.0.1:6003
@@ -793,6 +723,4134 @@ PGET ka_km Response: +OK 127.0.0.1:6003
 Server 127.0.0.1:6005 is up.
 [4] New connection
 PGET ta_tm Response: -ERR No primary server for this range
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+Server 127.0.0.1:6008 is down.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET qa_qm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET qn_qz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ra_rm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET rn_rz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET sa_sm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET sn_sz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET tn_tz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ua_um Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET un_uz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET va_vm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET vn_vz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET wa_wm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET wn_wz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET xa_xm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET xn_xz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ya_ym Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET yn_yz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET za_zm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET zn_zz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET qa_qm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET qn_qz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ra_rm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET rn_rz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET sa_sm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET sn_sz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET tn_tz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ua_um Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET un_uz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET va_vm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET vn_vz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET wa_wm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET wn_wz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET xa_xm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET xn_xz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ya_ym Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET yn_yz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET za_zm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET zn_zz Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: cookie Gave Response: +OK RESP 127.0.0.1:6001
+
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+k_m
+Got request: linh_drive Gave Response: +OK RESP 127.0.0.1:6005
+
+[4] New connection
+PGET la_lm Response: +OK 127.0.0.1:6003
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_info Gave Response: +OK RESP 127.0.0.1:6001
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_drive/splash.jpeg Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_drive/doggo.jpg Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_drive/audio.mp3 Gave Response: +OK RESP 127.0.0.1:6001
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_drive/Project Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/testing Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+c_e
+Got request: emma_drive/Secret Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/myfiles Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/myfiles/yoga.jpeg Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/Secret/yoga.jpeg Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/myfiles/sample-4.pdf Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+c_e
+Got request: emma_drive/Secret/sample-4.pdf Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET ea_em Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+a_b
+Got request: adwait_info Gave Response: +OK RESP 127.0.0.1:6000
+
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET cn_cz Response: +OK 127.0.0.1:6000
+[4] New connection
+a_b
+Got request: bulletin-board Gave Response: +OK RESP 127.0.0.1:6002
+
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+a_b
+Got request: bulletin/2317f3ab78cd7e2e9678ceeff81a98c3 Gave Response: +OK RESP 127.0.0.1:6002
+
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+a_b
+Got request: bulletin/6cf1f039986812dbcfc9990fea6e6c7e Gave Response: +OK RESP 127.0.0.1:6002
+
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET bn_bz Response: +OK 127.0.0.1:6000
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6006 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6007 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
+Server 127.0.0.1:6008 is up.
+Listing primary servers for each range:
+Range: a_b -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: c_e -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: f_j -> Primary Server: 127.0.0.1:6000, Active: Yes
+Range: k_m -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: n_p -> Primary Server: 127.0.0.1:6003, Active: Yes
+Range: q_s -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: t_v -> Primary Server: 127.0.0.1:6006, Active: Yes
+Range: w_z -> Primary Server: 127.0.0.1:6006, Active: Yes
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6000 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6001 is up.
+[4] New connection
+PGET aa_am Response: +OK 127.0.0.1:6000
+Server 127.0.0.1:6002 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6003 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6004 is up.
+[4] New connection
+PGET ka_km Response: +OK 127.0.0.1:6003
+Server 127.0.0.1:6005 is up.
+[4] New connection
+PGET ta_tm Response: +OK 127.0.0.1:6006
 Server 127.0.0.1:6006 is up.
 [4] New connection
 PGET ta_tm Response: +OK 127.0.0.1:6006
