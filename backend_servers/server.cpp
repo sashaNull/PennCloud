@@ -78,6 +78,15 @@ void printMap(const std::unordered_map<std::string, std::string> &map)
   }
 }
 
+/**
+ * @brief Updates the primary server for a given range.
+ *
+ * This function connects to the coordinator to request the primary server
+ * for the specified range. It sends a "PGET" command and updates the global
+ * map with the primary server information if the response is successful.
+ *
+ * @param range The data range for which the primary server is being updated.
+ */
 void update_primary(const string &range)
 {
   int sock;
@@ -131,6 +140,14 @@ void update_primary(const string &range)
   close(sock);
 }
 
+/**
+ * @brief Retrieves the latest tablet and log data from the primary servers.
+ *
+ * This function iterates over the server's tablet ranges, updates the primary
+ * server for each range, and fetches the latest tablet and log data. It sends
+ * "GET", "TABGET", "LGET", and "LOGGET" commands to the primary servers to
+ * synchronize data and updates the local cache and log files accordingly.
+ */
 void get_latest_tablet_and_log()
 {
   for (const auto &range : server_tablet_ranges)
@@ -515,6 +532,15 @@ int main(int argc, char *argv[])
   return EXIT_SUCCESS;
 }
 
+/**
+ * @brief Parses a raw address line into a sockaddr_in structure.
+ *
+ * This function takes a raw line containing an IP address and port, parses these
+ * components, and fills a sockaddr_in structure with the parsed address information.
+ *
+ * @param raw_line A C-style string containing the raw address line to be parsed.
+ * @return A sockaddr_in structure containing the parsed IP address and port.
+ */
 sockaddr_in parse_addr(char *raw_line)
 {
   sockaddr_in addr;
@@ -570,6 +596,15 @@ sockaddr_in parse_current_address(char *raw_line)
   return addr;
 }
 
+/**
+ * @brief Parses raw address lines and maps tablet ranges to their corresponding addresses.
+ *
+ * This function takes a raw line containing IP address, port, and tablet range information,
+ * parses the IP address and port, and associates them with tablet ranges in the
+ * global map `tablet_ranges_to_other_addr`.
+ *
+ * @param raw_line A C-style string containing the raw address line to be parsed.
+ */
 void parse_other_addresses(char *raw_line)
 {
   sockaddr_in addr;
@@ -679,6 +714,16 @@ void exit_handler(int sig)
   exit(EXIT_SUCCESS);
 }
 
+/**
+ * @brief Determines the tablet range for a given row key.
+ *
+ * This function iterates through all unique tablet ranges and returns the
+ * range that matches the first character of the given row key. If no matching
+ * range is found, it returns "-ERR".
+ *
+ * @param row_key The row key for which the tablet range is being determined.
+ * @return A string representing the tablet range or "-ERR" if no match is found.
+ */
 string get_tablet_range_from_row_key(string row_key)
 {
   for (const string s : all_unique_tablet_ranges)
@@ -691,6 +736,16 @@ string get_tablet_range_from_row_key(string row_key)
   return "-ERR";
 }
 
+/**
+ * @brief Handles the LIST command by sending all key-value pairs to the client.
+ *
+ * This function iterates through the cache, locks each tablet, and sends
+ * all key-value pairs to the client in serialized form. After processing
+ * all entries, it sends a final success message to indicate completion.
+ *
+ * @param client_fd The file descriptor of the client connection.
+ * @return An F_2_B_Message indicating the completion status of the LIST operation.
+ */
 F_2_B_Message handle_list(int client_fd)
 {
   for (auto &entry : cache)
