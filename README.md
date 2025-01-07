@@ -1,4 +1,4 @@
-# 505 Project Team T15
+# PennCloud
 
 ## Team Members
 - Adwait Agashe
